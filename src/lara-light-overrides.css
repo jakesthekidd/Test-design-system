@@ -1,0 +1,229 @@
+/* Complete Lara Light Component Overrides - Exact JSON Values */
+
+/* Button Component Overrides */
+.p-button {
+  background-color: var(--button-primary-background) !important;
+  border-color: var(--button-primary-background) !important;
+  color: var(--button-primary-color) !important;
+}
+
+.p-button:hover {
+  background-color: var(--button-primary-hover-background) !important;
+  border-color: var(--button-primary-hover-background) !important;
+}
+
+.p-button:active,
+.p-button:focus {
+  background-color: var(--button-primary-active-background) !important;
+  border-color: var(--button-primary-active-background) !important;
+  box-shadow: 0 0 0 0.1rem var(--theme-primary-light-color) !important;
+}
+
+/* Secondary Button - From JSON: cyan.100 background, blue.700 color */
+.p-button.p-button-secondary {
+  background-color: var(--button-secondary-background) !important;
+  border-color: var(--button-secondary-border-color) !important;
+  color: var(--button-secondary-color) !important;
+}
+
+.p-button.p-button-secondary:hover {
+  background-color: #475569 !important;
+  border-color: #475569 !important;
+  color: var(--button-secondary-color) !important;
+}
+
+.p-button.p-button-secondary:active,
+.p-button.p-button-secondary:focus {
+  background-color: #334155 !important;
+  border-color: #334155 !important;
+  color: var(--button-secondary-color) !important;
+}
+
+/* Success Button - From JSON: #22C55E */
+.p-button.p-button-success {
+  background-color: var(--button-success-background) !important;
+  border-color: var(--button-success-background) !important;
+  color: #ffffff !important;
+}
+
+.p-button.p-button-success:hover {
+  background-color: var(--button-success-hover-background) !important;
+  border-color: var(--button-success-hover-background) !important;
+}
+
+.p-button.p-button-success:active,
+.p-button.p-button-success:focus {
+  background-color: var(--button-success-active-background) !important;
+  border-color: var(--button-success-active-background) !important;
+}
+
+/* Info Button - From JSON: #0ea5e9 */
+.p-button.p-button-info {
+  background-color: var(--button-info-background) !important;
+  border-color: var(--button-info-background) !important;
+  color: #ffffff !important;
+}
+
+.p-button.p-button-info:hover {
+  background-color: var(--button-info-hover-background) !important;
+  border-color: var(--button-info-hover-background) !important;
+}
+
+.p-button.p-button-info:active,
+.p-button.p-button-info:focus {
+  background-color: var(--button-info-active-background) !important;
+  border-color: var(--button-info-active-background) !important;
+}
+
+/* Warning Button - From JSON: #f97316 */
+.p-button.p-button-warning {
+  background-color: var(--button-warning-background) !important;
+  border-color: var(--button-warning-background) !important;
+  color: #ffffff !important;
+}
+
+.p-button.p-button-warning:hover {
+  background-color: var(--button-warning-hover-background) !important;
+  border-color: var(--button-warning-hover-background) !important;
+}
+
+.p-button.p-button-warning:active,
+.p-button.p-button-warning:focus {
+  background-color: var(--button-warning-active-background) !important;
+  border-color: var(--button-warning-active-background) !important;
+}
+
+/* Danger Button - From JSON: #EF4444 */
+.p-button.p-button-danger {
+  background-color: var(--button-danger-background) !important;
+  border-color: var(--button-danger-background) !important;
+  color: #ffffff !important;
+}
+
+.p-button.p-button-danger:hover {
+  background-color: var(--button-danger-hover-background) !important;
+  border-color: var(--button-danger-hover-background) !important;
+}
+
+.p-button.p-button-danger:active,
+.p-button.p-button-danger:focus {
+  background-color: var(--button-danger-active-background) !important;
+  border-color: var(--button-danger-active-background) !important;
+}
+
+/* Help Button - Purple from JSON */
+.p-button.p-button-help {
+  background-color: var(--purple-500) !important;
+  border-color: var(--purple-500) !important;
+  color: #ffffff !important;
+}
+
+.p-button.p-button-help:hover {
+  background-color: var(--purple-600) !important;
+  border-color: var(--purple-600) !important;
+}
+
+.p-button.p-button-help:active,
+.p-button.p-button-help:focus {
+  background-color: var(--purple-700) !important;
+  border-color: var(--purple-700) !important;
+}
+
+/* Input Field Overrides */
+.p-inputtext {
+  border-color: var(--surface-border) !important;
+  background-color: var(--shade-000) !important;
+  color: var(--shade-700) !important;
+}
+
+.p-inputtext:hover {
+  border-color: var(--theme-primary-color) !important;
+}
+
+.p-inputtext:focus {
+  border-color: var(--theme-primary-color) !important;
+  box-shadow: 0 0 0 0.1rem var(--theme-primary-light-color) !important;
+}
+
+/* Card Overrides */
+.p-card {
+  background-color: var(--surface-card) !important;
+  border: 1px solid var(--surface-border) !important;
+  color: var(--global-text-color) !important;
+}
+
+.p-card .p-card-header {
+  background-color: var(--surface-section) !important;
+  color: var(--global-text-color) !important;
+  border-bottom: 1px solid var(--surface-border) !important;
+}
+
+/* Table Overrides */
+.p-datatable .p-datatable-thead > tr > th {
+  background-color: var(--shade-100) !important;
+  color: var(--shade-800) !important;
+  border-color: var(--shade-300) !important;
+}
+
+.p-datatable .p-datatable-tbody > tr {
+  background-color: var(--shade-000) !important;
+  color: var(--shade-700) !important;
+}
+
+.p-datatable .p-datatable-tbody > tr:nth-child(even) {
+  background-color: #fcfcfc !important;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+  border-color: var(--shade-300) !important;
+}
+
+.p-datatable .p-datatable-tbody > tr:hover {
+  background-color: var(--shade-200) !important;
+}
+
+/* Message Component Colors */
+.p-message.p-message-info {
+  background-color: rgba(219, 234, 254, .7) !important;
+  border-color: var(--theme-primary-color) !important;
+  color: var(--theme-primary-color) !important;
+}
+
+.p-message.p-message-success {
+  background-color: var(--green-100) !important;
+  border-color: var(--green-600) !important;
+  color: var(--green-500) !important;
+}
+
+.p-message.p-message-warn {
+  background-color: rgba(255, 242, 226, .7) !important;
+  border-color: var(--orange-600) !important;
+  color: var(--orange-600) !important;
+}
+
+.p-message.p-message-error {
+  background-color: var(--red-50) !important;
+  border-color: var(--red-400) !important;
+  color: var(--red-500) !important;
+}
+
+/* Badge Overrides */
+.p-badge {
+  background-color: var(--theme-primary-color) !important;
+  color: var(--theme-primary-contrast-color) !important;
+}
+
+/* Chip Overrides */
+.p-chip {
+  background-color: var(--cyan-100) !important;
+  color: var(--global-text-color) !important;
+}
+
+/* Progress Bar Overrides */
+.p-progressbar .p-progressbar-value {
+  background-color: var(--theme-primary-color) !important;
+}
+
+.p-progressbar {
+  background-color: var(--shade-300) !important;
+}
