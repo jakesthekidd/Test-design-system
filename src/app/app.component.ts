@@ -69,36 +69,76 @@ import { TableModule } from 'primeng/table';
       padding: 2rem;
       max-width: 1200px;
       margin: 0 auto;
+      background-color: var(--surface-ground);
     }
 
     .demo-card {
       margin-bottom: 2rem;
+      background-color: var(--surface-card);
+      border: 1px solid var(--surface-border);
     }
 
     .content-section h2 {
-      color: #495057;
+      color: var(--text-color);
       margin-bottom: 1rem;
     }
 
     .demo-section {
       margin: 2rem 0;
-      padding: 1rem;
-      border: 1px solid #e9ecef;
-      border-radius: 6px;
-      background-color: #f8f9fa;
+      padding: 1.5rem;
+      border: 1px solid var(--surface-border);
+      border-radius: 8px;
+      background-color: var(--surface-section);
+      transition: background-color 0.2s ease;
+    }
+
+    .demo-section:hover {
+      background-color: var(--surface-hover);
     }
 
     .demo-section h3 {
       margin-top: 0;
-      color: #6c757d;
+      color: var(--text-color-secondary);
+      font-weight: 600;
     }
 
-    .p-mr-2 {
-      margin-right: 0.5rem;
+    .button-group {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .input-section {
+      max-width: 300px;
     }
 
     .p-float-label {
-      margin-top: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    /* Custom button styling using design tokens */
+    :host ::ng-deep .p-button.p-button-primary {
+      background-color: var(--primary-500);
+      border-color: var(--primary-500);
+    }
+
+    :host ::ng-deep .p-button.p-button-primary:hover {
+      background-color: var(--primary-600);
+      border-color: var(--primary-600);
+    }
+
+    :host ::ng-deep .p-button.p-button-success {
+      background-color: var(--green-500);
+      border-color: var(--green-500);
+    }
+
+    :host ::ng-deep .p-inputtext {
+      border-color: var(--surface-border);
+    }
+
+    :host ::ng-deep .p-inputtext:focus {
+      border-color: var(--primary-500);
+      box-shadow: 0 0 0 0.1rem var(--primary-50);
     }
   `]
 })
