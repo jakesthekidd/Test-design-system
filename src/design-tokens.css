@@ -1,4 +1,4 @@
-/* Design Tokens - Correct Values */
+/* Design Tokens - Correct Values from JSON */
 :root {
   /* Surface Tokens */
   --surface-ground: #EFF2F4;
@@ -16,18 +16,6 @@
   --surface-300: #EFF2F4;
   --surface-400: #E2E6EB;
   --surface-500: #D1D5DB;
-
-  /* Primary Colors - Updated with correct values */
-  --primary-50: #FEF2E7;
-  --primary-100: #FCE4CE;
-  --primary-200: #F9C99D;
-  --primary-300: #F6AE6C;
-  --primary-400: #F3933B;
-  --primary-500: #F0780A;
-  --primary-600: #C06008;
-  --primary-700: #904806;
-  --primary-800: #603004;
-  --primary-900: #301802;
 
   /* Text Colors */
   --text-color: #1F2937;
