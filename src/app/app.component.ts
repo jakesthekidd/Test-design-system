@@ -171,6 +171,46 @@ import { TableModule } from 'primeng/table';
       border-color: var(--primary-500);
       box-shadow: 0 0 0 0.1rem var(--primary-50);
     }
+
+    /* Color showcase styles */
+    .color-palette {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .color-group h4 {
+      margin: 0 0 1rem 0;
+      color: var(--text-color);
+      font-weight: 600;
+    }
+
+    .color-swatches {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .color-swatch {
+      padding: 1rem 0.5rem;
+      text-align: center;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      border: 1px solid var(--surface-border);
+      color: var(--text-color);
+    }
+
+    .surface-ground { background-color: var(--surface-ground); }
+    .surface-section { background-color: var(--surface-section); }
+    .surface-card { background-color: var(--surface-card); }
+    .surface-hover { background-color: var(--surface-hover); }
+
+    .primary-50 { background-color: var(--primary-50); }
+    .primary-200 { background-color: var(--primary-200); }
+    .primary-500 { background-color: var(--primary-500); color: white; }
+    .primary-700 { background-color: var(--primary-700); color: white; }
   `]
 })
 export class AppComponent {
