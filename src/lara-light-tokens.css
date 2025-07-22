@@ -1,0 +1,291 @@
+/* Complete Lara Light Design System - From JSON Specification */
+:root {
+  /* Surface Colors */
+  --surface-ground: #EFF2F4;
+  --surface-section: #ffffff;
+  --surface-card: #ffffff;
+  --surface-overlay: #ffffff;
+  --surface-border: #E2E6EB;
+  --surface-hover: #f6f9fc;
+  --surface-0: #ffffff;
+  --surface-50: #FBFCFC;
+  --surface-100: #F7F8F9;
+  --surface-200: #F3F5F7;
+  --surface-300: #EFF2F4;
+  --surface-400: #E2E6EB;
+  --surface-500: #C6CCD6;
+  --surface-600: #A9B3C2;
+  --surface-700: #8D9AAE;
+  --surface-800: #717B8B;
+  --surface-900: #5A626F;
+
+  /* Blue Scale */
+  --blue-50: #E9F1F8;
+  --blue-100: #D3E3F1;
+  --blue-200: #A7C7E4;
+  --blue-300: #7CACD6;
+  --blue-400: #5090C9;
+  --blue-500: #2474BB;
+  --blue-600: #2068A8;
+  --blue-700: #1D5D96;
+  --blue-800: #164670;
+  --blue-900: #0E2E4B;
+
+  /* Green Scale */
+  --green-50: #E5F9EA;
+  --green-100: #CCF2D6;
+  --green-200: #99E5AC;
+  --green-300: #66D983;
+  --green-400: #33CC59;
+  --green-500: #00BF30;
+  --green-600: #00AC2B;
+  --green-700: #009926;
+  --green-800: #00731D;
+  --green-900: #004C13;
+
+  /* Yellow Scale */
+  --yellow-50: #FEFDE8;
+  --yellow-100: #FEFAD2;
+  --yellow-200: #FCF5A4;
+  --yellow-300: #FBF177;
+  --yellow-400: #F9EC49;
+  --yellow-500: #F8E71C;
+  --yellow-600: #DFD019;
+  --yellow-700: #C6B916;
+  --yellow-800: #958B11;
+  --yellow-900: #635C0B;
+
+  /* Cyan Scale */
+  --cyan-50: #F1FAFE;
+  --cyan-100: #E3F5FD;
+  --cyan-200: #C7EBFB;
+  --cyan-300: #AAE1F8;
+  --cyan-400: #8ED7F6;
+  --cyan-500: #72CDF4;
+  --cyan-600: #67B8DC;
+  --cyan-700: #5BA4C3;
+  --cyan-800: #447B92;
+  --cyan-900: #2E5262;
+
+  /* Orange Scale */
+  --orange-50: #FFF6E5;
+  --orange-100: #FFEDCC;
+  --orange-200: #FFDA99;
+  --orange-300: #FFC866;
+  --orange-400: #FFB533;
+  --orange-500: #FFA300;
+  --orange-600: #E59300;
+  --orange-700: #CC8200;
+  --orange-800: #996200;
+  --orange-900: #664100;
+
+  /* Red Scale */
+  --red-50: #FBE9EA;
+  --red-100: #F8D2D5;
+  --red-200: #F0A5AB;
+  --red-300: #E97980;
+  --red-400: #E14C56;
+  --red-500: #DA1F2C;
+  --red-600: #C41C28;
+  --red-700: #AE1923;
+  --red-800: #83131A;
+  --red-900: #570C12;
+
+  /* Purple Scale */
+  --purple-50: #fbf7ff;
+  --purple-100: #ead6fd;
+  --purple-200: #dab6fc;
+  --purple-300: #c996fa;
+  --purple-400: #b975f9;
+  --purple-500: #a855f7;
+  --purple-600: #8f48d2;
+  --purple-700: #763cad;
+  --purple-800: #5c2f88;
+  --purple-900: #432263;
+
+  /* Pink Scale */
+  --pink-50: #fef6fa;
+  --pink-100: #fad3e7;
+  --pink-200: #f7b0d3;
+  --pink-300: #f38ec0;
+  --pink-400: #f06bac;
+  --pink-500: #ec4899;
+  --pink-600: #c93d82;
+  --pink-700: #a5326b;
+  --pink-800: #822854;
+  --pink-900: #5e1d3d;
+
+  /* Indigo Scale */
+  --indigo-50: #f7f7fe;
+  --indigo-100: #dadafc;
+  --indigo-200: #bcbdf9;
+  --indigo-300: #9ea0f6;
+  --indigo-400: #8183f4;
+  --indigo-500: #6366f1;
+  --indigo-600: #5457cd;
+  --indigo-700: #4547a9;
+  --indigo-800: #363885;
+  --indigo-900: #282960;
+
+  /* Teal Scale */
+  --teal-50: #f3fbfb;
+  --teal-100: #c7eeea;
+  --teal-200: #9ae0d9;
+  --teal-300: #6dd3c8;
+  --teal-400: #41c5b7;
+  --teal-500: #14b8a6;
+  --teal-600: #119c8d;
+  --teal-700: #0e8174;
+  --teal-800: #0b655b;
+  --teal-900: #084a42;
+
+  /* BlueGray Scale */
+  --bluegray-50: #f7f8f9;
+  --bluegray-100: #dadee3;
+  --bluegray-200: #bcc3cd;
+  --bluegray-300: #9fa9b7;
+  --bluegray-400: #818ea1;
+  --bluegray-500: #64748b;
+  --bluegray-600: #556376;
+  --bluegray-700: #465161;
+  --bluegray-800: #37404c;
+  --bluegray-900: #282e38;
+
+  /* Global Shade Scale */
+  --shade-000: #ffffff;
+  --shade-100: #ECECEC;
+  --shade-200: #D8D8D8;
+  --shade-300: #B1B1B1;
+  --shade-400: #646464;
+  --shade-500: #3D3D3D;
+  --shade-600: #373737;
+  --shade-700: #313131;
+  --shade-800: #252525;
+  --shade-900: #181818;
+
+  /* Theme Colors */
+  --theme-primary-color: #2474BB;
+  --theme-primary-light-color: #D3E3F1;
+  --theme-primary-dark-color: #1D5D96;
+  --theme-primary-darker-color: #164670;
+  --theme-primary-contrast-color: #ffffff;
+  --theme-highlight-background: #E9F1F8;
+  --theme-highlight-color: #2068A8;
+
+  /* Text Colors */
+  --global-text-color: var(--shade-500);
+  --global-text-secondary-color: var(--shade-600);
+  --global-divider-color: var(--surface-400);
+  --global-error-color: var(--red-400);
+
+  /* Button Colors from Design System */
+  --button-primary-background: var(--theme-primary-color);
+  --button-primary-color: var(--theme-primary-contrast-color);
+  --button-primary-hover-background: var(--theme-primary-dark-color);
+  --button-primary-active-background: var(--theme-primary-darker-color);
+
+  --button-secondary-background: var(--cyan-100);
+  --button-secondary-color: var(--blue-700);
+  --button-secondary-border-color: var(--blue-500);
+
+  --button-success-background: #22C55E;
+  --button-success-hover-background: #16A34A;
+  --button-success-active-background: #15803D;
+
+  --button-info-background: #0ea5e9;
+  --button-info-hover-background: #0284c7;
+  --button-info-active-background: #0369a1;
+
+  --button-warning-background: #f97316;
+  --button-warning-hover-background: #ea580c;
+  --button-warning-active-background: #c2410c;
+
+  --button-danger-background: #EF4444;
+  --button-danger-hover-background: #DC2626;
+  --button-danger-active-background: #B91C1C;
+}
+
+/* Complete PrimeNG Variable Overrides */
+:root {
+  /* Core Theme Variables */
+  --p-primary-color: var(--theme-primary-color);
+  --p-primary-contrast-color: var(--theme-primary-contrast-color);
+  --p-surface-ground: var(--surface-ground);
+  --p-surface-section: var(--surface-section);
+  --p-surface-card: var(--surface-card);
+  --p-surface-overlay: var(--surface-overlay);
+  --p-surface-border: var(--surface-border);
+  --p-surface-hover: var(--surface-hover);
+  --p-content-color: var(--global-text-color);
+  --p-text-color: var(--global-text-color);
+  --p-text-muted-color: var(--global-text-secondary-color);
+  --p-highlight-bg: var(--theme-highlight-background);
+  --p-highlight-color: var(--theme-highlight-color);
+
+  /* Color Scale Overrides */
+  --p-blue-50: var(--blue-50);
+  --p-blue-100: var(--blue-100);
+  --p-blue-200: var(--blue-200);
+  --p-blue-300: var(--blue-300);
+  --p-blue-400: var(--blue-400);
+  --p-blue-500: var(--blue-500);
+  --p-blue-600: var(--blue-600);
+  --p-blue-700: var(--blue-700);
+  --p-blue-800: var(--blue-800);
+  --p-blue-900: var(--blue-900);
+
+  --p-green-50: var(--green-50);
+  --p-green-100: var(--green-100);
+  --p-green-200: var(--green-200);
+  --p-green-300: var(--green-300);
+  --p-green-400: var(--green-400);
+  --p-green-500: var(--green-500);
+  --p-green-600: var(--green-600);
+  --p-green-700: var(--green-700);
+  --p-green-800: var(--green-800);
+  --p-green-900: var(--green-900);
+
+  --p-yellow-50: var(--yellow-50);
+  --p-yellow-100: var(--yellow-100);
+  --p-yellow-200: var(--yellow-200);
+  --p-yellow-300: var(--yellow-300);
+  --p-yellow-400: var(--yellow-400);
+  --p-yellow-500: var(--yellow-500);
+  --p-yellow-600: var(--yellow-600);
+  --p-yellow-700: var(--yellow-700);
+  --p-yellow-800: var(--yellow-800);
+  --p-yellow-900: var(--yellow-900);
+
+  --p-red-50: var(--red-50);
+  --p-red-100: var(--red-100);
+  --p-red-200: var(--red-200);
+  --p-red-300: var(--red-300);
+  --p-red-400: var(--red-400);
+  --p-red-500: var(--red-500);
+  --p-red-600: var(--red-600);
+  --p-red-700: var(--red-700);
+  --p-red-800: var(--red-800);
+  --p-red-900: var(--red-900);
+
+  --p-cyan-50: var(--cyan-50);
+  --p-cyan-100: var(--cyan-100);
+  --p-cyan-200: var(--cyan-200);
+  --p-cyan-300: var(--cyan-300);
+  --p-cyan-400: var(--cyan-400);
+  --p-cyan-500: var(--cyan-500);
+  --p-cyan-600: var(--cyan-600);
+  --p-cyan-700: var(--cyan-700);
+  --p-cyan-800: var(--cyan-800);
+  --p-cyan-900: var(--cyan-900);
+
+  --p-orange-50: var(--orange-50);
+  --p-orange-100: var(--orange-100);
+  --p-orange-200: var(--orange-200);
+  --p-orange-300: var(--orange-300);
+  --p-orange-400: var(--orange-400);
+  --p-orange-500: var(--orange-500);
+  --p-orange-600: var(--orange-600);
+  --p-orange-700: var(--orange-700);
+  --p-orange-800: var(--orange-800);
+  --p-orange-900: var(--orange-900);
+}
