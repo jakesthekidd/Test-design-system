@@ -11,12 +11,13 @@ import { FigmaButtonComponent } from './figma-button.component';
   selector: 'app-root',
   standalone: true,
   imports: [
-    CommonModule, 
-    RouterOutlet, 
-    ButtonModule, 
-    CardModule, 
+    CommonModule,
+    RouterOutlet,
+    ButtonModule,
+    CardModule,
     InputTextModule,
-    TableModule
+    TableModule,
+    FigmaButtonComponent
   ],
   template: `
     <div class="app-container">
