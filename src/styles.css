@@ -12,10 +12,10 @@ body {
   color: var(--text-color);
 }
 
-/* Override PrimeNG variables with our design tokens */
+/* Override PrimeNG variables with our theme tokens */
 :root {
-  --p-primary-color: var(--primary-500);
-  --p-primary-contrast-color: #ffffff;
+  --p-primary-color: var(--primary-color);
+  --p-primary-contrast-color: var(--primary-contrast);
   --p-surface-ground: var(--surface-ground);
   --p-surface-section: var(--surface-section);
   --p-surface-card: var(--surface-card);
@@ -25,4 +25,6 @@ body {
   --p-content-color: var(--text-color);
   --p-text-color: var(--text-color);
   --p-text-muted-color: var(--text-color-secondary);
+  --p-highlight-bg: var(--highlight-background);
+  --p-highlight-color: var(--highlight-color);
 }
