@@ -174,8 +174,8 @@ import { TableModule } from 'primeng/table';
     }
 
     :host ::ng-deep .p-inputtext:focus {
-      border-color: var(--primary-500);
-      box-shadow: 0 0 0 0.1rem var(--primary-50);
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 0.1rem var(--primary-light);
     }
 
     /* Color showcase styles */
