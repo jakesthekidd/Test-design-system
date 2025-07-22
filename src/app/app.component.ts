@@ -94,6 +94,15 @@ import { TableModule } from 'primeng/table';
                   <div class="color-swatch highlight-color">Color</div>
                 </div>
               </div>
+              <div class="color-group">
+                <h4>Button Colors</h4>
+                <div class="color-swatches">
+                  <div class="color-swatch button-success">Success</div>
+                  <div class="color-swatch button-info">Info</div>
+                  <div class="color-swatch button-warning">Warning</div>
+                  <div class="color-swatch button-danger">Danger</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
