@@ -25,18 +25,25 @@ import { TableModule } from 'primeng/table';
           <p>PrimeNG has been successfully imported and configured.</p>
           
           <div class="demo-section">
-            <h3>Button Component</h3>
-            <p-button label="Primary Button" class="p-mr-2"></p-button>
-            <p-button label="Secondary" severity="secondary" class="p-mr-2"></p-button>
-            <p-button label="Success" severity="success"></p-button>
+            <h3>Button Components</h3>
+            <div class="button-group">
+              <p-button label="Primary" severity="primary"></p-button>
+              <p-button label="Secondary" severity="secondary"></p-button>
+              <p-button label="Success" severity="success"></p-button>
+              <p-button label="Info" severity="info"></p-button>
+              <p-button label="Warning" severity="warning"></p-button>
+              <p-button label="Danger" severity="danger"></p-button>
+            </div>
           </div>
 
           <div class="demo-section">
-            <h3>Input Component</h3>
-            <span class="p-float-label">
-              <input id="username" type="text" pInputText />
-              <label for="username">Username</label>
-            </span>
+            <h3>Input Components</h3>
+            <div class="input-section">
+              <span class="p-float-label">
+                <input id="username" type="text" pInputText />
+                <label for="username">Username</label>
+              </span>
+            </div>
           </div>
 
           <div class="demo-section">
