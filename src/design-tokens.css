@@ -1,4 +1,4 @@
-/* Design Tokens - Correct Values from JSON */
+/* Design Tokens - Theme(7) Specification */
 :root {
   /* Surface Tokens */
   --surface-ground: #EFF2F4;
@@ -16,6 +16,17 @@
   --surface-300: #EFF2F4;
   --surface-400: #E2E6EB;
   --surface-500: #D1D5DB;
+
+  /* Primary Theme Colors */
+  --primary-color: #2474BB;
+  --primary-light: #D3E3F1;
+  --primary-dark: #1D5D96;
+  --primary-darker: #164670;
+  --primary-contrast: #ffffff;
+
+  /* Highlight Colors */
+  --highlight-background: #E9F1F8;
+  --highlight-color: #2068A8;
 
   /* Text Colors */
   --text-color: #1F2937;
