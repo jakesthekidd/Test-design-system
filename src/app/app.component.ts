@@ -147,15 +147,21 @@ import { TableModule } from 'primeng/table';
       margin-top: 1.5rem;
     }
 
-    /* Custom button styling using design tokens */
+    /* Custom button styling using theme tokens */
     :host ::ng-deep .p-button.p-button-primary {
-      background-color: var(--primary-500);
-      border-color: var(--primary-500);
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+      color: var(--primary-contrast);
     }
 
     :host ::ng-deep .p-button.p-button-primary:hover {
-      background-color: var(--primary-600);
-      border-color: var(--primary-600);
+      background-color: var(--primary-dark);
+      border-color: var(--primary-dark);
+    }
+
+    :host ::ng-deep .p-button.p-button-primary:active {
+      background-color: var(--primary-darker);
+      border-color: var(--primary-darker);
     }
 
     :host ::ng-deep .p-button.p-button-success {
