@@ -27,18 +27,6 @@ import { FigmaButtonComponent } from './figma-button.component';
           <p>PrimeNG has been successfully imported and configured.</p>
           
           <div class="demo-section">
-            <h3>PrimeNG Button Components</h3>
-            <div class="button-group">
-              <p-button label="Primary" severity="primary"></p-button>
-              <p-button label="Secondary" severity="secondary"></p-button>
-              <p-button label="Success" severity="success"></p-button>
-              <p-button label="Info" severity="info"></p-button>
-              <p-button label="Warning" severity="warning"></p-button>
-              <p-button label="Danger" severity="danger"></p-button>
-            </div>
-          </div>
-
-          <div class="demo-section">
             <h3>Figma Design Buttons</h3>
             <p>Custom buttons matching the exact Figma design with icons and Inter font</p>
             <div class="button-group">
