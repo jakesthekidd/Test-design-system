@@ -1,0 +1,157 @@
+/* Complete Design System - All Color Tokens */
+:root {
+  /* Surface Tokens - From your JSON */
+  --surface-ground: #EFF2F4;
+  --surface-section: #ffffff;
+  --surface-card: #ffffff;
+  --surface-overlay: #ffffff;
+  --surface-border: #E2E6EB;
+  --surface-hover: #F6F9FC;
+  --surface-0: #ffffff;
+  --surface-50: #FBFCFC;
+  --surface-100: #F7F8F9;
+  --surface-200: #F3F5F7;
+  --surface-300: #EFF2F4;
+  --surface-400: #E2E6EB;
+
+  /* Theme Colors - From Theme(7) specification */
+  --theme-primary-color: #2474BB;
+  --theme-primary-light-color: #D3E3F1;
+  --theme-primary-dark-color: #1D5D96;
+  --theme-primary-darker-color: #164670;
+  --theme-primary-contrast-color: #ffffff;
+  --theme-highlight-background: #E9F1F8;
+  --theme-highlight-color: #2068A8;
+
+  /* Blue Primitives - From your color palette */
+  --blue-50: #EFF6FF;
+  --blue-100: #DBEAFE;
+  --blue-200: #BFDBFE;
+  --blue-300: #93C5FD;
+  --blue-400: #60A5FA;
+  --blue-500: #2474BB;
+  --blue-600: #2563EB;
+  --blue-700: #1D4ED8;
+  --blue-800: #1E40AF;
+  --blue-900: #1E3A8A;
+
+  /* Green Primitives */
+  --green-50: #F0FDF4;
+  --green-100: #DCFCE7;
+  --green-200: #BBF7D0;
+  --green-300: #86EFAC;
+  --green-400: #4ADE80;
+  --green-500: #22C55E;
+  --green-600: #16A34A;
+  --green-700: #15803D;
+  --green-800: #166534;
+  --green-900: #14532D;
+
+  /* Yellow Primitives */
+  --yellow-50: #FEFCE8;
+  --yellow-100: #FEF3C7;
+  --yellow-200: #FEE68A;
+  --yellow-300: #FDE047;
+  --yellow-400: #FACC15;
+  --yellow-500: #EAB308;
+  --yellow-600: #CA8A04;
+  --yellow-700: #A16207;
+  --yellow-800: #854D0E;
+  --yellow-900: #713F12;
+
+  /* Cyan Primitives */
+  --cyan-50: #ECFEFF;
+  --cyan-100: #CFFAFE;
+  --cyan-200: #A5F3FC;
+  --cyan-300: #67E8F9;
+  --cyan-400: #22D3EE;
+  --cyan-500: #06B6D4;
+  --cyan-600: #0891B2;
+  --cyan-700: #0E7490;
+  --cyan-800: #155E75;
+  --cyan-900: #164E63;
+
+  /* Semantic Color Mapping */
+  --primary: var(--theme-primary-color);
+  --primary-contrast: var(--theme-primary-contrast-color);
+  --secondary: var(--surface-400);
+  --success: var(--green-500);
+  --info: var(--cyan-500);
+  --warning: var(--yellow-500);
+  --danger: var(--red-500);
+
+  /* Red for danger */
+  --red-50: #FEF2F2;
+  --red-500: #EF4444;
+  --red-600: #DC2626;
+  --red-700: #B91C1C;
+
+  /* Text Colors */
+  --text-color: #374151;
+  --text-color-secondary: #6B7280;
+  --text-color-muted: #9CA3AF;
+}
+
+/* Complete PrimeNG Override */
+:root {
+  /* Primary Colors */
+  --p-primary-50: var(--blue-50);
+  --p-primary-100: var(--blue-100);
+  --p-primary-200: var(--blue-200);
+  --p-primary-300: var(--blue-300);
+  --p-primary-400: var(--blue-400);
+  --p-primary-500: var(--theme-primary-color);
+  --p-primary-600: var(--blue-600);
+  --p-primary-700: var(--blue-700);
+  --p-primary-800: var(--blue-800);
+  --p-primary-900: var(--blue-900);
+
+  /* Surface Colors */
+  --p-surface-0: var(--surface-0);
+  --p-surface-50: var(--surface-50);
+  --p-surface-100: var(--surface-100);
+  --p-surface-200: var(--surface-200);
+  --p-surface-300: var(--surface-300);
+  --p-surface-400: var(--surface-400);
+  --p-surface-500: var(--surface-400);
+  --p-surface-600: var(--surface-400);
+  --p-surface-700: var(--surface-400);
+  --p-surface-800: var(--surface-400);
+  --p-surface-900: var(--surface-400);
+
+  /* Semantic Colors */
+  --p-green-50: var(--green-50);
+  --p-green-500: var(--green-500);
+  --p-green-600: var(--green-600);
+  --p-green-700: var(--green-700);
+
+  --p-yellow-50: var(--yellow-50);
+  --p-yellow-500: var(--yellow-500);
+  --p-yellow-600: var(--yellow-600);
+  --p-yellow-700: var(--yellow-700);
+
+  --p-red-50: var(--red-50);
+  --p-red-500: var(--red-500);
+  --p-red-600: var(--red-600);
+  --p-red-700: var(--red-700);
+
+  --p-cyan-50: var(--cyan-50);
+  --p-cyan-500: var(--cyan-500);
+  --p-cyan-600: var(--cyan-600);
+  --p-cyan-700: var(--cyan-700);
+
+  /* Core PrimeNG Variables */
+  --p-primary-color: var(--theme-primary-color);
+  --p-primary-contrast-color: var(--theme-primary-contrast-color);
+  --p-surface-ground: var(--surface-ground);
+  --p-surface-section: var(--surface-section);
+  --p-surface-card: var(--surface-card);
+  --p-surface-overlay: var(--surface-overlay);
+  --p-surface-border: var(--surface-border);
+  --p-surface-hover: var(--surface-hover);
+  --p-content-color: var(--text-color);
+  --p-text-color: var(--text-color);
+  --p-text-muted-color: var(--text-color-secondary);
+  --p-highlight-bg: var(--theme-highlight-background);
+  --p-highlight-color: var(--theme-highlight-color);
+}
