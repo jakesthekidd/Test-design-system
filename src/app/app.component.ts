@@ -27,7 +27,7 @@ import { FigmaButtonComponent } from './figma-button.component';
           <p>PrimeNG has been successfully imported and configured.</p>
           
           <div class="demo-section">
-            <h3>Button Components</h3>
+            <h3>PrimeNG Button Components</h3>
             <div class="button-group">
               <p-button label="Primary" severity="primary"></p-button>
               <p-button label="Secondary" severity="secondary"></p-button>
@@ -35,6 +35,49 @@ import { FigmaButtonComponent } from './figma-button.component';
               <p-button label="Info" severity="info"></p-button>
               <p-button label="Warning" severity="warning"></p-button>
               <p-button label="Danger" severity="danger"></p-button>
+            </div>
+          </div>
+
+          <div class="demo-section">
+            <h3>Figma Design Buttons</h3>
+            <p>Custom buttons matching the exact Figma design with icons and Inter font</p>
+            <div class="button-group">
+              <app-figma-button
+                label="Button"
+                severity="primary"
+                leftIcon="heart"
+                rightIcon="heart">
+              </app-figma-button>
+              <app-figma-button
+                label="Secondary"
+                severity="secondary"
+                leftIcon="star"
+                rightIcon="star">
+              </app-figma-button>
+              <app-figma-button
+                label="Success"
+                severity="success"
+                leftIcon="check"
+                rightIcon="check">
+              </app-figma-button>
+              <app-figma-button
+                label="Info"
+                severity="info"
+                leftIcon="info"
+                rightIcon="info">
+              </app-figma-button>
+              <app-figma-button
+                label="Warning"
+                severity="warning"
+                leftIcon="exclamation"
+                rightIcon="exclamation">
+              </app-figma-button>
+              <app-figma-button
+                label="Danger"
+                severity="danger"
+                leftIcon="times"
+                rightIcon="times">
+              </app-figma-button>
             </div>
           </div>
 
