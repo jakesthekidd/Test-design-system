@@ -1,0 +1,45 @@
+/* Design Tokens - Lara Light Theme */
+:root {
+  /* Surface Tokens */
+  --surface-ground: #EFF2F4;
+  --surface-section: #ffffff;
+  --surface-card: #ffffff;
+  --surface-overlay: #ffffff;
+  --surface-border: #E2E6EB;
+  --surface-hover: #F6F9FC;
+
+  /* Surface Scale */
+  --surface-0: #ffffff;
+  --surface-50: #FBFCFC;
+  --surface-100: #F7F8F9;
+  --surface-200: #F3F5F7;
+  --surface-300: #EFF2F4;
+  --surface-400: #E2E6EB;
+
+  /* Primary Colors */
+  --primary-50: #E3F2FD;
+  --primary-100: #BBDEFB;
+  --primary-200: #90CAF9;
+  --primary-300: #64B5F6;
+  --primary-400: #42A5F5;
+  --primary-500: #2196F3;
+  --primary-600: #1E88E5;
+  --primary-700: #1976D2;
+  --primary-800: #1565C0;
+  --primary-900: #0D47A1;
+
+  /* Text Colors */
+  --text-color: #495057;
+  --text-color-secondary: #6C757D;
+  --text-color-muted: #ADB5BD;
+
+  /* Semantic Colors */
+  --green-50: #E8F5E8;
+  --green-500: #4CAF50;
+  --red-50: #FFEBEE;
+  --red-500: #F44336;
+  --orange-50: #FFF3E0;
+  --orange-500: #FF9800;
+  --blue-50: #E3F2FD;
+  --blue-500: #2196F3;
+}
