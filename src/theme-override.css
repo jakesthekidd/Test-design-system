@@ -1,0 +1,90 @@
+/* Force Override All PrimeNG Colors */
+
+/* Button Overrides */
+.p-button.p-button-primary {
+  background-color: var(--theme-primary-color) !important;
+  border-color: var(--theme-primary-color) !important;
+  color: var(--theme-primary-contrast-color) !important;
+}
+
+.p-button.p-button-primary:hover {
+  background-color: var(--theme-primary-dark-color) !important;
+  border-color: var(--theme-primary-dark-color) !important;
+}
+
+.p-button.p-button-primary:active,
+.p-button.p-button-primary:focus {
+  background-color: var(--theme-primary-darker-color) !important;
+  border-color: var(--theme-primary-darker-color) !important;
+  box-shadow: 0 0 0 0.1rem var(--theme-primary-light-color) !important;
+}
+
+.p-button.p-button-secondary {
+  background-color: var(--surface-400) !important;
+  border-color: var(--surface-400) !important;
+  color: var(--text-color) !important;
+}
+
+.p-button.p-button-success {
+  background-color: var(--green-500) !important;
+  border-color: var(--green-500) !important;
+  color: white !important;
+}
+
+.p-button.p-button-info {
+  background-color: var(--cyan-500) !important;
+  border-color: var(--cyan-500) !important;
+  color: white !important;
+}
+
+.p-button.p-button-warning {
+  background-color: var(--yellow-500) !important;
+  border-color: var(--yellow-500) !important;
+  color: var(--text-color) !important;
+}
+
+.p-button.p-button-danger {
+  background-color: var(--red-500) !important;
+  border-color: var(--red-500) !important;
+  color: white !important;
+}
+
+/* Input Overrides */
+.p-inputtext {
+  border-color: var(--surface-border) !important;
+  color: var(--text-color) !important;
+}
+
+.p-inputtext:focus {
+  border-color: var(--theme-primary-color) !important;
+  box-shadow: 0 0 0 0.1rem var(--theme-primary-light-color) !important;
+}
+
+/* Table Overrides */
+.p-datatable .p-datatable-thead > tr > th {
+  background-color: var(--surface-section) !important;
+  color: var(--text-color) !important;
+  border-color: var(--surface-border) !important;
+}
+
+.p-datatable .p-datatable-tbody > tr {
+  background-color: var(--surface-card) !important;
+  color: var(--text-color) !important;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+  border-color: var(--surface-border) !important;
+}
+
+/* Card Overrides */
+.p-card {
+  background-color: var(--surface-card) !important;
+  border: 1px solid var(--surface-border) !important;
+  color: var(--text-color) !important;
+}
+
+.p-card .p-card-header {
+  background-color: var(--surface-section) !important;
+  color: var(--text-color) !important;
+  border-bottom: 1px solid var(--surface-border) !important;
+}
