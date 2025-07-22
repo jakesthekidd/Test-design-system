@@ -217,12 +217,19 @@ import { TableModule } from 'primeng/table';
     .surface-card { background-color: var(--surface-card); }
     .surface-hover { background-color: var(--surface-hover); }
 
-    .primary-light { background-color: var(--primary-light); }
-    .primary-color { background-color: var(--primary-color); color: var(--primary-contrast); }
-    .primary-dark { background-color: var(--primary-dark); color: var(--primary-contrast); }
-    .primary-darker { background-color: var(--primary-darker); color: var(--primary-contrast); }
-    .highlight-bg { background-color: var(--highlight-background); }
-    .highlight-color { background-color: var(--highlight-color); color: var(--primary-contrast); }
+    .primary-light { background-color: var(--theme-primary-light-color); }
+    .primary-color { background-color: var(--theme-primary-color); color: var(--theme-primary-contrast-color); }
+    .primary-dark { background-color: var(--theme-primary-dark-color); color: var(--theme-primary-contrast-color); }
+    .primary-darker { background-color: var(--theme-primary-darker-color); color: var(--theme-primary-contrast-color); }
+    .highlight-bg { background-color: var(--theme-highlight-background); }
+    .highlight-color { background-color: var(--theme-highlight-color); color: var(--theme-primary-contrast-color); }
+
+    /* Button Color Swatches */
+    .button-success { background-color: var(--button-success-background); color: white; }
+    .button-info { background-color: var(--button-info-background); color: white; }
+    .button-warning { background-color: var(--button-warning-background); color: white; }
+    .button-danger { background-color: var(--button-danger-background); color: white; }
+    .button-secondary { background-color: var(--button-secondary-background); color: var(--button-secondary-color); }
   `]
 })
 export class AppComponent {
