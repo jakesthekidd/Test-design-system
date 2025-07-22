@@ -220,10 +220,12 @@ import { TableModule } from 'primeng/table';
     .surface-card { background-color: var(--surface-card); }
     .surface-hover { background-color: var(--surface-hover); }
 
-    .primary-50 { background-color: var(--primary-50); }
-    .primary-200 { background-color: var(--primary-200); }
-    .primary-500 { background-color: var(--primary-500); color: white; }
-    .primary-700 { background-color: var(--primary-700); color: white; }
+    .primary-light { background-color: var(--primary-light); }
+    .primary-color { background-color: var(--primary-color); color: var(--primary-contrast); }
+    .primary-dark { background-color: var(--primary-dark); color: var(--primary-contrast); }
+    .primary-darker { background-color: var(--primary-darker); color: var(--primary-contrast); }
+    .highlight-bg { background-color: var(--highlight-background); }
+    .highlight-color { background-color: var(--highlight-color); color: var(--primary-contrast); }
   `]
 })
 export class AppComponent {
