@@ -65,6 +65,30 @@ import { TableModule } from 'primeng/table';
               </ng-template>
             </p-table>
           </div>
+
+          <div class="demo-section">
+            <h3>Design Tokens Showcase</h3>
+            <div class="color-palette">
+              <div class="color-group">
+                <h4>Surface Colors</h4>
+                <div class="color-swatches">
+                  <div class="color-swatch surface-ground">Ground</div>
+                  <div class="color-swatch surface-section">Section</div>
+                  <div class="color-swatch surface-card">Card</div>
+                  <div class="color-swatch surface-hover">Hover</div>
+                </div>
+              </div>
+              <div class="color-group">
+                <h4>Primary Scale</h4>
+                <div class="color-swatches">
+                  <div class="color-swatch primary-50">50</div>
+                  <div class="color-swatch primary-200">200</div>
+                  <div class="color-swatch primary-500">500</div>
+                  <div class="color-swatch primary-700">700</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </p-card>
     </div>
