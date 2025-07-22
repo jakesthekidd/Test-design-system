@@ -79,12 +79,19 @@ import { TableModule } from 'primeng/table';
                 </div>
               </div>
               <div class="color-group">
-                <h4>Primary Scale</h4>
+                <h4>Primary Theme</h4>
                 <div class="color-swatches">
-                  <div class="color-swatch primary-50">50</div>
-                  <div class="color-swatch primary-200">200</div>
-                  <div class="color-swatch primary-500">500</div>
-                  <div class="color-swatch primary-700">700</div>
+                  <div class="color-swatch primary-light">Light</div>
+                  <div class="color-swatch primary-color">Primary</div>
+                  <div class="color-swatch primary-dark">Dark</div>
+                  <div class="color-swatch primary-darker">Darker</div>
+                </div>
+              </div>
+              <div class="color-group">
+                <h4>Highlight</h4>
+                <div class="color-swatches">
+                  <div class="color-swatch highlight-bg">Background</div>
+                  <div class="color-swatch highlight-color">Color</div>
                 </div>
               </div>
             </div>
