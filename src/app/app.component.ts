@@ -154,35 +154,32 @@ import { TableModule } from 'primeng/table';
       margin-top: 1.5rem;
     }
 
-    /* Custom button styling using theme tokens */
+    /* Lara Light Design System Integration */
     :host ::ng-deep .p-button.p-button-primary {
-      background-color: var(--primary-color);
-      border-color: var(--primary-color);
-      color: var(--primary-contrast);
+      background-color: var(--theme-primary-color);
+      border-color: var(--theme-primary-color);
+      color: var(--theme-primary-contrast-color);
     }
 
     :host ::ng-deep .p-button.p-button-primary:hover {
-      background-color: var(--primary-dark);
-      border-color: var(--primary-dark);
+      background-color: var(--theme-primary-dark-color);
+      border-color: var(--theme-primary-dark-color);
     }
 
     :host ::ng-deep .p-button.p-button-primary:active {
-      background-color: var(--primary-darker);
-      border-color: var(--primary-darker);
-    }
-
-    :host ::ng-deep .p-button.p-button-success {
-      background-color: var(--green-500);
-      border-color: var(--green-500);
+      background-color: var(--theme-primary-darker-color);
+      border-color: var(--theme-primary-darker-color);
     }
 
     :host ::ng-deep .p-inputtext {
       border-color: var(--surface-border);
+      background-color: var(--shade-000);
+      color: var(--shade-700);
     }
 
     :host ::ng-deep .p-inputtext:focus {
-      border-color: var(--primary-color);
-      box-shadow: 0 0 0 0.1rem var(--primary-light);
+      border-color: var(--theme-primary-color);
+      box-shadow: 0 0 0 0.1rem var(--theme-primary-light-color);
     }
 
     /* Color showcase styles */
