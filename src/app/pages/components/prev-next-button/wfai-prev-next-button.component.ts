@@ -185,7 +185,7 @@ export interface WorkItem {
     }
 
     .next-button .button-content {
-      color: #2474BB !important;
+      color: var(--theme-primary-color, #2474BB) !important;
       justify-content: flex-end;
     }
 
