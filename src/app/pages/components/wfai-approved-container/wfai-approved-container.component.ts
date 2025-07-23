@@ -179,12 +179,12 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
           &lt;i class="chevron-icon fa-solid fa-angle-right"&gt;&lt;/i&gt;
           &lt;i class="fa-solid fa-circle-check approved-icon"&gt;&lt;/i&gt;
           &lt;span class="container-title"&gt;Approved&lt;/span&gt;
-          &lt;span class="document-count"&gt;(&#123;&#123; getDocumentCount() &#125;&#125;)&lt;/span&gt;
+          &lt;span class="document-count"&gt;(&#123;&#123; count &#125;&#125;)&lt;/span&gt;
         &lt;/div&gt;
         &lt;i class="fa-solid fa-ellipsis-vertical menu-icon"&gt;&lt;/i&gt;
       &lt;/div&gt;
     &lt;/ng-template&gt;
-    
+
     &lt;div class="container-content"&gt;
       &lt;!-- Nested document panels --&gt;
     &lt;/div&gt;
