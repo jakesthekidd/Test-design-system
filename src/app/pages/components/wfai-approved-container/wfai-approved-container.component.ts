@@ -522,7 +522,7 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 16px;
+      padding: 0; /* Remove extra padding since panel header already has 16px */
       cursor: pointer;
       user-select: none;
       width: 100%;
