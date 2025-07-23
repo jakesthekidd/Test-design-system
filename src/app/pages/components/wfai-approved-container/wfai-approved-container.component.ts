@@ -726,6 +726,7 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
       border-collapse: collapse;
       font-family: 'Roboto', sans-serif;
       background: var(--surface-overlay);
+      table-layout: fixed;
     }
 
     .document-table td {
@@ -746,7 +747,7 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
     }
 
     .field-label {
-      width: 121px;
+      width: 33.33%;
       color: #3D3D3D;
       font-size: 12px;
       font-weight: 400;
@@ -755,6 +756,7 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
     }
 
     .field-expected {
+      width: 33.33%;
       color: #3D3D3D;
       font-size: 14px;
       font-weight: 300;
@@ -767,6 +769,7 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
     }
 
     .field-evaluated {
+      width: 33.33%;
       padding: 4px 8px;
       background: var(--surface-overlay);
     }
