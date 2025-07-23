@@ -27,31 +27,31 @@ import { TabViewModule } from 'primeng/tabview';
                 <div class="color-swatch" style="background-color: var(--theme-primary-light-color)"></div>
                 <div class="color-info">
                   <span class="color-name">Primary Light</span>
-                  <span class="color-value">{{ getActualColorValue('--theme-primary-light-color') || '#D3E3F1' }}</span>
+                  <span class="color-value">#D3E3F1</span>
                   <span class="color-var">--theme-primary-light-color</span>
                 </div>
               </div>
               <div class="color-card">
-                <div class="color-swatch" style="background-color: var(--theme-primary-color)"></div>
+                <div class="color-swatch" style="background-color: #2474BB"></div>
                 <div class="color-info">
                   <span class="color-name">Primary</span>
-                  <span class="color-value">{{ getActualColorValue('--theme-primary-color') || '#2474BB' }}</span>
+                  <span class="color-value">#2474BB</span>
                   <span class="color-var">--theme-primary-color</span>
                 </div>
               </div>
               <div class="color-card">
-                <div class="color-swatch" style="background-color: var(--theme-primary-dark-color)"></div>
+                <div class="color-swatch" style="background-color: #1D5D96"></div>
                 <div class="color-info">
                   <span class="color-name">Primary Dark</span>
-                  <span class="color-value">{{ getActualColorValue('--theme-primary-dark-color') || '#1D5D96' }}</span>
+                  <span class="color-value">#1D5D96</span>
                   <span class="color-var">--theme-primary-dark-color</span>
                 </div>
               </div>
               <div class="color-card">
-                <div class="color-swatch" style="background-color: var(--theme-primary-darker-color)"></div>
+                <div class="color-swatch" style="background-color: #164670"></div>
                 <div class="color-info">
                   <span class="color-name">Primary Darker</span>
-                  <span class="color-value">{{ getActualColorValue('--theme-primary-darker-color') || '#164670' }}</span>
+                  <span class="color-value">#164670</span>
                   <span class="color-var">--theme-primary-darker-color</span>
                 </div>
               </div>
