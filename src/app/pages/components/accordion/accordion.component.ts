@@ -986,4 +986,22 @@ export class AccordionDocComponent {
   getCurrentDate(): string {
     return new Date().toLocaleDateString();
   }
+
+  onPanelToggle(panelKey: string, event: any): void {
+    if (event && typeof event.collapsed === 'boolean') {
+      (this.panels as any)[panelKey] = event.collapsed;
+    }
+  }
+
+  onFaqToggle(questionKey: string, event: any): void {
+    if (event && typeof event.collapsed === 'boolean') {
+      (this.faq as any)[questionKey] = event.collapsed;
+    }
+  }
+
+  onSettingsToggle(settingKey: string, event: any): void {
+    if (event && typeof event.collapsed === 'boolean') {
+      (this.settings as any)[settingKey] = event.collapsed;
+    }
+  }
 }
