@@ -51,7 +51,7 @@ npm install &#64;fortawesome/fontawesome-free
 &#64;import "lara-light-overrides.css";
 
 /* Font Imports */
-&#64;import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+&#64;import url('https://fonts.googleapis.com/css2?family=Inter:wght&#64;400;700&display=swap');
 &#64;import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
 body {{ '{' }}
