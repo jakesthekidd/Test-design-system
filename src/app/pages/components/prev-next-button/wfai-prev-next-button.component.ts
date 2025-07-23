@@ -393,7 +393,11 @@ export class WfaiPrevNextButtonComponent {
 
   onPreviousDropdownClick(event: Event): void {
     event.stopPropagation();
-    if (!this.disabled && this.previousItems.length > 0) {
+    if (!this.disabled && this.previousItems.length > 0 && this.showPreviousDropdown) {
+      // Close next panel if open
+      if (this.nextPanel) {
+        this.nextPanel.hide();
+      }
       this.previousPanel.toggle(event);
     }
   }
@@ -401,8 +405,16 @@ export class WfaiPrevNextButtonComponent {
   onNextDropdownClick(event: Event): void {
     event.stopPropagation();
     if (!this.disabled && this.nextItems.length > 0) {
+      // Close previous panel if open
+      if (this.previousPanel && this.showPreviousDropdown) {
+        this.previousPanel.hide();
+      }
       this.nextPanel.toggle(event);
     }
+  }
+
+  onDropdownHide(): void {
+    // Optional callback when dropdown closes
   }
 
   onPreviousItemSelect(item: WorkItem): void {
