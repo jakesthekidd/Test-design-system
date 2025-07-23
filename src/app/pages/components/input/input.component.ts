@@ -13,7 +13,6 @@ import { ButtonModule } from 'primeng/button';
     FormsModule,
     TabViewModule,
     InputTextModule,
-    FloatLabelModule,
     ButtonModule
   ],
   template: `
