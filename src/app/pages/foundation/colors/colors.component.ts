@@ -386,11 +386,12 @@ import { TabViewModule } from 'primeng/tabview';
   `]
 })
 export class ColorsComponent {
+  // Blue scale values - these should match lara-light-tokens.css exactly
   blueScale = [
     { shade: '50', value: '#E9F1F8' },
     { shade: '100', value: '#D3E3F1' },
     { shade: '200', value: '#A7C7E4' },
-    { shade: '300', value: '#7CACD6' },
+    { shade: '300', value: '#7CADD6' },
     { shade: '400', value: '#5090C9' },
     { shade: '500', value: '#2474BB' },
     { shade: '600', value: '#2068A8' },
