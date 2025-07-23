@@ -914,6 +914,11 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
       display: none;
     }
 
+    /* Hide the default PrimeNG toggle button completely */
+    :host ::ng-deep .p-panel .p-panel-header .p-panel-toggler {
+      display: none !important;
+    }
+
     /* Make custom header fully clickable */
     .panel-header-content {
       cursor: pointer;
