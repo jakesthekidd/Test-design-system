@@ -631,6 +631,8 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
       border-left: 4px solid var(--cyan-500, #72CDF4);
       border-bottom: 1px solid #C6CCD6;
       border-radius: 4px 4px 0 0;
+      border-left-top-radius: 4px;
+      border-left-bottom-radius: 0;
     }
 
     /* Ensure selected document title has proper color */
