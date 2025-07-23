@@ -121,7 +121,7 @@ export interface WorkItem {
       flex: 1;
     }
 
-    .previous-button:hover:not(.disabled) {
+    .previous-button:hover:not(.disabled):not(.dropdown-hover) {
       background: var(--blue-700, #1D5D96);
     }
 
