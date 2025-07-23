@@ -416,15 +416,20 @@ import { WfaiPrevNextButtonComponent } from './wfai-prev-next-button.component';
 })
 export class PrevNextButtonDocComponent {
   mockPreviousItems = [
-    { id: '1', title: 'Feature Request #247', type: 'feature', description: 'Add user authentication' },
-    { id: '2', title: 'Bug Fix #156', type: 'bug', description: 'Fix navigation issue' },
-    { id: '3', title: 'Enhancement #89', type: 'enhancement', description: 'Improve performance' },
-    { id: '4', title: 'Task #324', type: 'task', description: 'Update documentation' },
-    { id: '5', title: 'Story #78', type: 'story', description: 'User profile page' }
+    { id: 'LD-34521', title: 'LD-34521' },
+    { id: 'LD-34522', title: 'LD-34522' },
+    { id: 'LD-34523', title: 'LD-34523' },
+    { id: 'LD-34524', title: 'LD-34524' },
+    { id: 'LD-34525', title: 'LD-34525' },
+    { id: 'LD-34526', title: 'LD-34526' },
+    { id: 'LD-34527', title: 'LD-34527' },
+    { id: 'LD-34528', title: 'LD-34528' },
+    { id: 'LD-34529', title: 'LD-34529' },
+    { id: 'LD-34530', title: 'LD-34530' }
   ];
 
   mockNextItems = [
-    { id: '6', title: 'Feature Request #248', type: 'feature', description: 'Add notification system' }
+    { id: 'next-results', title: 'Next From Results' }
   ];
 
   onPreviousClick() {
