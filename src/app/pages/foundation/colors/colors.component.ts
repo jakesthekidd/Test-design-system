@@ -63,7 +63,7 @@ import { TabViewModule } from 'primeng/tabview';
                 <div class="color-swatch" style="background-color: var(--theme-highlight-background)"></div>
                 <div class="color-info">
                   <span class="color-name">Highlight Background</span>
-                  <span class="color-value">#E9F1F8</span>
+                  <span class="color-value">{{ getActualColorValue('--theme-highlight-background') || '#E9F1F8' }}</span>
                   <span class="color-var">--theme-highlight-background</span>
                 </div>
               </div>
@@ -71,7 +71,7 @@ import { TabViewModule } from 'primeng/tabview';
                 <div class="color-swatch" style="background-color: var(--theme-highlight-color)"></div>
                 <div class="color-info">
                   <span class="color-name">Highlight Color</span>
-                  <span class="color-value">#2068A8</span>
+                  <span class="color-value">{{ getActualColorValue('--theme-highlight-color') || '#2068A8' }}</span>
                   <span class="color-var">--theme-highlight-color</span>
                 </div>
               </div>
