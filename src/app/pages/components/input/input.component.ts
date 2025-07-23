@@ -49,7 +49,8 @@ import { ButtonModule } from 'primeng/button';
 
             <h3>Email Input with Validation</h3>
             <div class="example-container">
-              <p-floatlabel variant="on">
+              <div class="input-wrapper">
+                <label for="emailInput" class="input-label">Email Address</label>
                 <input
                   pInputText
                   id="emailInput"
@@ -57,10 +58,10 @@ import { ButtonModule } from 'primeng/button';
                   type="email"
                   autocomplete="email"
                   tabindex="0"
+                  placeholder="Enter your email"
                   [class.ng-invalid]="emailValue && !isValidEmail(emailValue)"
                 />
-                <label for="emailInput">Email Address</label>
-              </p-floatlabel>
+              </div>
               <div class="example-output">
                 <small>Value: "{{ emailValue }}"</small>
                 <small *ngIf="emailValue && !isValidEmail(emailValue)" class="error-text">
