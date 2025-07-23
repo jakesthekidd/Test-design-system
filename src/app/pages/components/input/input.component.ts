@@ -448,24 +448,25 @@ import &#123; FormsModule &#125; from '&#64;angular/forms';
 
         <p-tabPanel header="Design">
           <div class="design-section">
-            <h3>Float Label Behavior</h3>
+            <h3>Input Label Behavior</h3>
             <div class="design-specs">
               <div class="spec-item">
-                <strong>variant="on"</strong>
+                <strong>Standard Labels</strong>
                 <ul>
-                  <li>Label stays on top when input is focused or has value</li>
-                  <li>Smooth transition animation</li>
-                  <li>Label scales down when floating</li>
-                  <li>Consistent behavior across all input states</li>
+                  <li>Label positioned above input field</li>
+                  <li>Clear visual hierarchy</li>
+                  <li>Accessible label association with for/id</li>
+                  <li>Consistent spacing and typography</li>
                 </ul>
               </div>
               <div class="spec-item">
                 <strong>Input States</strong>
                 <ul>
-                  <li>Empty: Label inside input field</li>
-                  <li>Focused: Label floats to top with animation</li>
-                  <li>Filled: Label remains on top</li>
-                  <li>Disabled: Grayed out appearance</li>
+                  <li>Default: Clean border, placeholder text visible</li>
+                  <li>Focused: Primary color border highlight</li>
+                  <li>Filled: Content visible, maintains focus styling</li>
+                  <li>Disabled: Grayed out appearance, non-interactive</li>
+                  <li>Error: Red border and validation messages</li>
                 </ul>
               </div>
             </div>
