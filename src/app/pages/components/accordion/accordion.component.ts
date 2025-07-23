@@ -897,13 +897,23 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
       font-weight: 600;
     }
 
-    /* Hide default panel icons */
+    /* Hide default panel icons and title */
     :host ::ng-deep .p-panel .p-panel-header .p-panel-title {
       display: none;
     }
 
     :host ::ng-deep .p-panel .p-panel-header .p-panel-icons {
       display: none;
+    }
+
+    /* Make custom header fully clickable */
+    .panel-header-content {
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .panel-header-content:hover {
+      opacity: 0.8;
     }
 
     /* Responsive Design */
