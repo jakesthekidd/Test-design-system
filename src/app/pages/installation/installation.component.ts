@@ -218,10 +218,10 @@ export const environment = {{ '{' }}
               <p><strong>Solution:</strong> Ensure correct import order in styles.css:</p>
               <div class="code-block">
                 <pre><code>/* Correct order */
-@import "lara-light-tokens.css";        /* 1. Tokens first */
-@import "primeng/resources/themes/..."; /* 2. PrimeNG theme */
-@import "primeng/resources/primeng.css"; /* 3. PrimeNG styles */
-@import "lara-light-overrides.css";     /* 4. Overrides last */</code></pre>
+&#64;import "lara-light-tokens.css";        /* 1. Tokens first */
+&#64;import "primeng/resources/themes/..."; /* 2. PrimeNG theme */
+&#64;import "primeng/resources/primeng.css"; /* 3. PrimeNG styles */
+&#64;import "lara-light-overrides.css";     /* 4. Overrides last */</code></pre>
               </div>
             </div>
 
