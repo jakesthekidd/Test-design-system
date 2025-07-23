@@ -216,12 +216,13 @@ export interface WorkItem {
       transition: all 0.2s ease;
     }
 
-    .previous-button .dropdown-trigger:hover:not(.disabled) {
-      background: var(--blue-700, #1D5D96);
+    .dropdown-trigger:hover:not(.disabled) {
+      background: var(--blue-700, #1D5D96) !important;
+      z-index: 1;
     }
 
     .next-button .dropdown-trigger:hover:not(.disabled) {
-      background: var(--surface-200, #F3F5F7);
+      background: var(--surface-200, #F3F5F7) !important;
     }
 
     .dropdown-trigger.disabled {
