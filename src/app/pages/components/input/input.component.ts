@@ -225,28 +225,29 @@ import { ButtonModule } from 'primeng/button';
           <div class="code-section">
             <h3>Import Required Modules</h3>
             <pre><code>import &#123; InputTextModule &#125; from 'primeng/inputtext';
-import &#123; FloatLabelModule &#125; from 'primeng/floatlabel';
 import &#123; FormsModule &#125; from '&#64;angular/forms';
 
 &#64;Component(&#123;
-  imports: [InputTextModule, FloatLabelModule, FormsModule],
+  imports: [InputTextModule, FormsModule],
   // ...
 &#125;)</code></pre>
 
-            <h3>Basic Float Label Usage</h3>
-            <pre><code>&lt;p-floatlabel variant="on"&gt;
+            <h3>Basic Input Usage</h3>
+            <pre><code>&lt;div class="input-wrapper"&gt;
+  &lt;label for="userInput" class="input-label"&gt;Input Label&lt;/label&gt;
   &lt;input
     pInputText
     id="userInput"
     [(ngModel)]="value"
     autocomplete="off"
     tabindex="0"
+    placeholder="Enter value"
   /&gt;
-  &lt;label for="userInput"&gt;Input Label&lt;/label&gt;
-&lt;/p-floatlabel&gt;</code></pre>
+&lt;/div&gt;</code></pre>
 
             <h3>Email Input with Validation</h3>
-            <pre><code>&lt;p-floatlabel variant="on"&gt;
+            <pre><code>&lt;div class="input-wrapper"&gt;
+  &lt;label for="emailInput" class="input-label"&gt;Email Address&lt;/label&gt;
   &lt;input
     pInputText
     id="emailInput"
@@ -254,10 +255,10 @@ import &#123; FormsModule &#125; from '&#64;angular/forms';
     type="email"
     autocomplete="email"
     tabindex="0"
+    placeholder="Enter your email"
     [class.ng-invalid]="emailValue && !isValidEmail(emailValue)"
   /&gt;
-  &lt;label for="emailInput"&gt;Email Address&lt;/label&gt;
-&lt;/p-floatlabel&gt;</code></pre>
+&lt;/div&gt;</code></pre>
 
             <h3>Component Logic</h3>
             <pre><code>export class MyComponent &#123;
