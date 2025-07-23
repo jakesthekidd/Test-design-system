@@ -463,6 +463,22 @@ export class WfaiPrevNextButtonComponent {
     // Optional callback when dropdown closes
   }
 
+  onDropdownMouseEnter(type: 'previous' | 'next'): void {
+    if (type === 'previous') {
+      this.previousDropdownHover = true;
+    } else {
+      this.nextDropdownHover = true;
+    }
+  }
+
+  onDropdownMouseLeave(type: 'previous' | 'next'): void {
+    if (type === 'previous') {
+      this.previousDropdownHover = false;
+    } else {
+      this.nextDropdownHover = false;
+    }
+  }
+
   onPreviousItemSelect(item: WorkItem): void {
     this.previousItemSelect.emit(item);
     this.previousPanel.hide();
