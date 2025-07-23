@@ -655,6 +655,7 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
     .container-content {
       display: flex;
       flex-direction: column;
+      padding: 16px;
     }
 
     .separator {
