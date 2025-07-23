@@ -137,7 +137,8 @@ import { ButtonModule } from 'primeng/button';
 
             <h3>Disabled State</h3>
             <div class="example-container">
-              <p-floatlabel variant="on">
+              <div class="input-wrapper">
+                <label for="disabledInput" class="input-label">Disabled Input</label>
                 <input
                   pInputText
                   id="disabledInput"
@@ -145,9 +146,9 @@ import { ButtonModule } from 'primeng/button';
                   [disabled]="true"
                   autocomplete="off"
                   tabindex="-1"
+                  placeholder="This field is disabled"
                 />
-                <label for="disabledInput">Disabled Input</label>
-              </p-floatlabel>
+              </div>
             </div>
 
             <h3>Form Example</h3>
