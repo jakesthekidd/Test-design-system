@@ -42,8 +42,9 @@ export interface WorkItem {
       </div>
 
       <!-- Next Button -->
-      <div class="next-button" 
+      <div class="next-button"
            [class.disabled]="disabled || nextItems.length === 0"
+           [class.dropdown-hover]="nextDropdownHover"
            (click)="onNextClick()">
         <div class="button-content">
           <div class="dropdown-trigger"
