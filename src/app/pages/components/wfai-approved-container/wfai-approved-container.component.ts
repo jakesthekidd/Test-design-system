@@ -778,6 +778,52 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
       font-size: 12px;
     }
 
+    /* Range display styling */
+    .field-value-with-range {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .main-value {
+      color: #3D3D3D;
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    .range-text {
+      display: flex;
+      gap: 4px;
+    }
+
+    .range-label {
+      color: #3D3D3D;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .range-value {
+      color: #3D3D3D;
+      font-size: 10px;
+      font-weight: 400;
+    }
+
+    /* Invalid state styling */
+    .evaluated-cell-invalid {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 8px;
+      background: var(--surface-overlay);
+      border-radius: 4px;
+      border-left: 1px solid #E2E6EB;
+    }
+
+    .invalid-icon {
+      color: #8D9AAE;
+      font-size: 12px;
+    }
+
     /* States demo */
     .states-demo {
       display: grid;
