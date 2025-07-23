@@ -32,7 +32,7 @@ import { ButtonModule } from 'primeng/button';
             <h3>Basic Accordion</h3>
             <div class="example-container">
               <div class="accordion-container">
-                <p-panel header="General Information" [toggleable]="true" [collapsed]="panels.general" (onAfterToggle)="onPanelToggle('general', $event)">
+                <p-panel header="General Information" [toggleable]="true" [collapsed]="panels.general" (onAfterToggle)="onPanelToggle('general', $event)" [attr.data-collapsed]="panels.general">
                   <ng-template pTemplate="header">
                     <span class="panel-header-content" (click)="togglePanel('general')">
                       <i class="panel-toggle-icon fa-solid"
