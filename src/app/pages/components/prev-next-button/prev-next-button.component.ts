@@ -257,9 +257,9 @@ import { WfaiPrevNextButtonComponent } from './wfai-prev-next-button.component';
               <div class="spec-item">
                 <strong>Next Button:</strong>
                 <ul>
-                  <li>Background: #FFFFFF</li>
-                  <li>Hover: var(--surface-200) #F3F5F7</li>
-                  <li>Text Color: var(--blue-500) #2474BB</li>
+                  <li>Background: var(--color-white)</li>
+                  <li>Hover: var(--surface-200)</li>
+                  <li>Text Color: var(--theme-primary-color)</li>
                   <li>Border Radius: 0px 4px 4px 0px</li>
                   <li>Padding: 10px</li>
                   <li>Font: Roboto, 12px, Bold</li>
