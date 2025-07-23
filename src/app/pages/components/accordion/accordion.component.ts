@@ -120,10 +120,10 @@ import { ButtonModule } from 'primeng/button';
             <h3>FAQ Accordion</h3>
             <div class="example-container">
               <div class="accordion-container">
-                <p-panel header="How do I get started?" [toggleable]="true" [collapsed]="faq.question1">
+                <p-panel header="How do I get started?" [toggleable]="true" [collapsed]="faq.question1" (onAfterToggle)="faq.question1 = $event.collapsed">
                   <ng-template pTemplate="header">
                     <span class="panel-header-content">
-                      <i class="panel-toggle-icon fa-solid" 
+                      <i class="panel-toggle-icon fa-solid"
                          [class.fa-angle-right]="faq.question1"
                          [class.fa-angle-down]="!faq.question1"></i>
                       <span class="panel-title">How do I get started?</span>
@@ -140,10 +140,10 @@ import { ButtonModule } from 'primeng/button';
                   </div>
                 </p-panel>
 
-                <p-panel header="What payment methods do you accept?" [toggleable]="true" [collapsed]="faq.question2">
+                <p-panel header="What payment methods do you accept?" [toggleable]="true" [collapsed]="faq.question2" (onAfterToggle)="faq.question2 = $event.collapsed">
                   <ng-template pTemplate="header">
                     <span class="panel-header-content">
-                      <i class="panel-toggle-icon fa-solid" 
+                      <i class="panel-toggle-icon fa-solid"
                          [class.fa-angle-right]="faq.question2"
                          [class.fa-angle-down]="!faq.question2"></i>
                       <span class="panel-title">What payment methods do you accept?</span>
@@ -161,10 +161,10 @@ import { ButtonModule } from 'primeng/button';
                   </div>
                 </p-panel>
 
-                <p-panel header="Can I cancel my subscription?" [toggleable]="true" [collapsed]="faq.question3">
+                <p-panel header="Can I cancel my subscription?" [toggleable]="true" [collapsed]="faq.question3" (onAfterToggle)="faq.question3 = $event.collapsed">
                   <ng-template pTemplate="header">
                     <span class="panel-header-content">
-                      <i class="panel-toggle-icon fa-solid" 
+                      <i class="panel-toggle-icon fa-solid"
                          [class.fa-angle-right]="faq.question3"
                          [class.fa-angle-down]="!faq.question3"></i>
                       <span class="panel-title">Can I cancel my subscription?</span>
@@ -182,10 +182,10 @@ import { ButtonModule } from 'primeng/button';
                   </div>
                 </p-panel>
 
-                <p-panel header="Is there a mobile app?" [toggleable]="true" [collapsed]="faq.question4">
+                <p-panel header="Is there a mobile app?" [toggleable]="true" [collapsed]="faq.question4" (onAfterToggle)="faq.question4 = $event.collapsed">
                   <ng-template pTemplate="header">
                     <span class="panel-header-content">
-                      <i class="panel-toggle-icon fa-solid" 
+                      <i class="panel-toggle-icon fa-solid"
                          [class.fa-angle-right]="faq.question4"
                          [class.fa-angle-down]="!faq.question4"></i>
                       <span class="panel-title">Is there a mobile app?</span>
