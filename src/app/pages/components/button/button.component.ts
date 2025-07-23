@@ -178,7 +178,7 @@ import { FigmaButtonComponent } from '../../../figma-button.component';
             <div class="code-block">
               <pre><code>import {{ '{' }} FigmaButtonComponent {{ '}' }} from './figma-button.component';
 
-@Component({{ '{' }}
+&#64;Component({{ '{' }}
   // ...
   imports: [FigmaButtonComponent],
   // ...
