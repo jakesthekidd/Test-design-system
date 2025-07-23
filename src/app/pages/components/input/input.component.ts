@@ -944,6 +944,10 @@ export class InputDocComponent {
     return `${this.firstNameValue} ${this.lastNameValue}`.trim() || 'Not provided';
   }
 
+  getFloatFullName(): string {
+    return `${this.floatFirstNameValue} ${this.floatLastNameValue}`.trim() || 'Not provided';
+  }
+
   submitForm(): void {
     if (this.formData.title) {
       console.log('Form submitted:', this.formData);
