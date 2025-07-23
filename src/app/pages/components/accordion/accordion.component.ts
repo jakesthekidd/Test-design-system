@@ -83,10 +83,10 @@ import { ButtonModule } from 'primeng/button';
                   </div>
                 </p-panel>
 
-                <p-panel header="Support & Warranty" [toggleable]="true" [collapsed]="panels.support">
+                <p-panel header="Support & Warranty" [toggleable]="true" [collapsed]="panels.support" (onAfterToggle)="panels.support = $event.collapsed">
                   <ng-template pTemplate="header">
                     <span class="panel-header-content">
-                      <i class="panel-toggle-icon fa-solid" 
+                      <i class="panel-toggle-icon fa-solid"
                          [class.fa-angle-right]="panels.support"
                          [class.fa-angle-down]="!panels.support"></i>
                       <span class="panel-title">Support & Warranty</span>
