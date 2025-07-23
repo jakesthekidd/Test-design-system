@@ -293,23 +293,31 @@ import &#123; FormsModule &#125; from '&#64;angular/forms';
 
         <p-tabPanel header="API">
           <div class="api-section">
-            <h3>FloatLabel Properties</h3>
+            <h3>Input Wrapper Structure</h3>
             <div class="api-table">
               <table>
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Default</th>
-                    <th>Description</th>
+                    <th>Element</th>
+                    <th>Class</th>
+                    <th>Purpose</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>variant</td>
-                    <td>string</td>
-                    <td>over</td>
-                    <td>Defines the label behavior. "on" keeps label on top when focused/filled</td>
+                    <td>div</td>
+                    <td>input-wrapper</td>
+                    <td>Container for label and input field</td>
+                  </tr>
+                  <tr>
+                    <td>label</td>
+                    <td>input-label</td>
+                    <td>Accessible label for the input field</td>
+                  </tr>
+                  <tr>
+                    <td>input</td>
+                    <td>pInputText</td>
+                    <td>PrimeNG styled input field</td>
                   </tr>
                 </tbody>
               </table>
