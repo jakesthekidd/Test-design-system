@@ -31,6 +31,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/components/card/card.component').then(m => m.CardDocComponent)
   },
   {
+    path: 'components/prev-next-button',
+    loadComponent: () => import('./pages/components/prev-next-button/prev-next-button.component').then(m => m.PrevNextButtonDocComponent)
+  },
+  {
     path: 'foundation/colors',
     loadComponent: () => import('./pages/foundation/colors/colors.component').then(m => m.ColorsComponent)
   },
