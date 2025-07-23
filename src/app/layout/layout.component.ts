@@ -7,7 +7,7 @@ import { NavigationService, NavigationCategory, ComponentItem } from '../service
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   template: `
     <div class="design-system-layout">
       <!-- Header -->
