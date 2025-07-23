@@ -386,6 +386,16 @@ import { TabViewModule } from 'primeng/tabview';
   `]
 })
 export class ColorsComponent {
+
+  // Method to get the actual computed value of a CSS custom property
+  getActualColorValue(cssVar: string): string {
+    if (typeof window !== 'undefined') {
+      const rootStyles = getComputedStyle(document.documentElement);
+      const value = rootStyles.getPropertyValue(cssVar).trim();
+      return value || '';
+    }
+    return '';
+  }
   // Blue scale values - these should match lara-light-tokens.css exactly
   blueScale = [
     { shade: '50', value: '#E9F1F8' },
