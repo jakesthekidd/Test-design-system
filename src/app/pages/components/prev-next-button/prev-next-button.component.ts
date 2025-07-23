@@ -42,13 +42,24 @@ import { WfaiPrevNextButtonComponent } from './wfai-prev-next-button.component';
               </wfai-prev-next-button>
             </div>
 
-            <h3>With Custom Content</h3>
+            <h3>With Custom Labels</h3>
             <div class="example-container">
               <wfai-prev-next-button
                 [previousItems]="mockPreviousItems"
                 [nextItems]="mockNextItems"
                 previousLabel="Back"
                 nextLabel="Forward"
+                (previousClick)="onPreviousClick()"
+                (nextClick)="onNextClick()">
+              </wfai-prev-next-button>
+            </div>
+
+            <h3>No Previous Dropdown Variant</h3>
+            <div class="example-container">
+              <wfai-prev-next-button
+                [previousItems]="mockPreviousItems"
+                [nextItems]="mockNextItems"
+                [showPreviousDropdown]="false"
                 (previousClick)="onPreviousClick()"
                 (nextClick)="onNextClick()">
               </wfai-prev-next-button>
