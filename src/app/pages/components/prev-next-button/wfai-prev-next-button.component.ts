@@ -22,8 +22,9 @@ export interface WorkItem {
          [class.disabled]="disabled">
       
       <!-- Previous Button -->
-      <div class="previous-button" 
+      <div class="previous-button"
            [class.disabled]="disabled || previousItems.length === 0"
+           [class.dropdown-hover]="previousDropdownHover"
            (click)="onPreviousClick()">
         <div class="button-content">
           <i class="fas fa-arrow-left previous-icon"></i>
