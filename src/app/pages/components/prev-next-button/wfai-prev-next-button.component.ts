@@ -304,8 +304,10 @@ export interface WorkItem {
     .next-dropdown-item {
       display: flex;
       align-items: center;
+      align-self: center;
       gap: 10px;
       padding: 8px;
+      width: auto;
       cursor: pointer;
       transition: background-color 0.2s ease;
     }
