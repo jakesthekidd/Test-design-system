@@ -259,7 +259,7 @@ export interface WorkItem {
     }
 
     .next-button .dropdown-icon {
-      color: var(--blue-500, #2474BB);
+      color: #2474BB !important;
     }
 
     /* Dropdown Styles */
