@@ -539,8 +539,13 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
       font-family: 'Roboto', sans-serif;
     }
 
-    .wfai-header-content:hover,
+    /* Remove problematic hover effects */
     .document-header-content:hover {
+      background: transparent;
+    }
+
+    /* Only apply hover to main container when collapsed */
+    :host ::ng-deep .wfai-approved-container .p-panel[data-collapsed="true"] .wfai-header-content:hover {
       background: var(--surface-hover);
     }
 
@@ -619,25 +624,29 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
       margin-bottom: 0;
       padding: 0; /* Remove padding since we'll add it to content */
       min-height: 44px;
+      background: var(--surface-overlay);
     }
 
+    /* Collapsed state */
     :host ::ng-deep .document-panel .p-panel[data-collapsed="true"] .p-panel-header {
       border-radius: 4px;
+      background: var(--surface-overlay);
     }
 
-    /* Selected State for Document Panel */
+    /* Selected State for Document Panel - Applied when expanded */
     :host ::ng-deep .document-panel .p-panel[data-collapsed="false"] .p-panel-header {
-      background: var(--cyan-50, #EAF8FD);
-      border-left: 4px solid var(--cyan-500, #72CDF4);
-      border-bottom: 1px solid #C6CCD6;
-      border-radius: 4px 4px 0 0;
+      background: #EAF8FD !important;
+      border-left: 4px solid #72CDF4 !important;
+      border-bottom: 1px solid #C6CCD6 !important;
+      border-radius: 4px 4px 0 0 !important;
     }
 
     /* Ensure selected document title has proper color */
     :host ::ng-deep .document-panel .p-panel[data-collapsed="false"] .document-title {
-      color: #2474BB;
+      color: #2474BB !important;
     }
 
+    /* Selected panel content styling */
     :host ::ng-deep .document-panel .p-panel[data-collapsed="false"] .p-panel-content {
       border: 1px solid #E2E6EB;
       border-top: 0;
