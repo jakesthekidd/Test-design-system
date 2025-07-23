@@ -129,7 +129,7 @@ export interface WorkItem {
     }
 
     .previous-button:hover:not(.disabled):not(.dropdown-hover) {
-      background: var(--blue-700, #1D5D96);
+      background: #1D5D96 !important;
     }
 
     .previous-button:active:not(.disabled) {
