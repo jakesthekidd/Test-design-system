@@ -236,11 +236,11 @@ export interface WorkItem {
     }
 
     /* Ensure dropdown trigger hover doesn't affect main button */
-    .previous-button:has(.dropdown-trigger:hover) {
+    .previous-button.dropdown-hover {
       background: var(--blue-500, #2474BB) !important;
     }
 
-    .next-button:has(.dropdown-trigger:hover) {
+    .next-button.dropdown-hover {
       background: #FFF !important;
     }
 
