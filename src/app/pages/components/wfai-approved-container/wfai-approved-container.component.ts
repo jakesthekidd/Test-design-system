@@ -627,10 +627,15 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
 
     /* Selected State for Document Panel */
     :host ::ng-deep .document-panel .p-panel[data-collapsed="false"] .p-panel-header {
-      background: var(--cyan-50, #F1FAFE);
+      background: var(--cyan-50, #EAF8FD);
       border-left: 4px solid var(--cyan-500, #72CDF4);
       border-bottom: 1px solid #C6CCD6;
       border-radius: 4px 4px 0 0;
+    }
+
+    /* Ensure selected document title has proper color */
+    :host ::ng-deep .document-panel .p-panel[data-collapsed="false"] .document-title {
+      color: #2474BB;
     }
 
     :host ::ng-deep .document-panel .p-panel[data-collapsed="false"] .p-panel-content {
