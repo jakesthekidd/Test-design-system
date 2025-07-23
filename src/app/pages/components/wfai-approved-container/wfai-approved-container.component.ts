@@ -542,7 +542,7 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
     .document-header-left {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px; /* Use 8px token-based spacing */
     }
 
     .chevron-icon {
