@@ -95,10 +95,10 @@ import { TabViewModule } from 'primeng/tabview';
             <h3>Green Scale</h3>
             <div class="scale-grid">
               <div class="scale-item" *ngFor="let color of greenScale">
-                <div class="scale-swatch" [style.background-color]="'var(--green-' + color.shade + ')'"></div>
+                <div class="scale-swatch" [style.background-color]="color.value"></div>
                 <div class="scale-info">
                   <span class="scale-shade">{{ color.shade }}</span>
-                  <span class="scale-value">{{ getActualColorValue('--green-' + color.shade) || color.value }}</span>
+                  <span class="scale-value">{{ color.value }}</span>
                 </div>
               </div>
             </div>
