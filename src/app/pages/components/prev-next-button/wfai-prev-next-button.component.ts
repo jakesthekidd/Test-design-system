@@ -28,8 +28,9 @@ export interface WorkItem {
         <div class="button-content">
           <i class="fas fa-arrow-left previous-icon"></i>
           <span class="button-text">{{ previousLabel }}</span>
-          <span class="divider">|</span>
-          <div class="dropdown-trigger" 
+          <span class="divider" *ngIf="showPreviousDropdown">|</span>
+          <div class="dropdown-trigger"
+               *ngIf="showPreviousDropdown"
                (click)="onPreviousDropdownClick($event)"
                [class.disabled]="disabled || previousItems.length === 0">
             <i class="fas fa-angle-down dropdown-icon"></i>
