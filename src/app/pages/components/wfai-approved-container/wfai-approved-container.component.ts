@@ -559,7 +559,7 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
       border: 1px solid #E2E6EB;
       border-top: 0;
       border-radius: 0 0 8px 8px;
-      padding: 16px;
+      padding: 0;
       background: var(--surface-50, #F8F9FA);
     }
 
