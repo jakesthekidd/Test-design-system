@@ -586,14 +586,18 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
       font-family: 'Roboto', sans-serif;
     }
 
-    /* Remove problematic hover effects */
-    .document-header-content:hover {
-      background: transparent;
+    /* Hover states for all panel titles */
+    .wfai-header-content:hover {
+      background: #F1FAFE !important;
     }
 
-    /* Only apply hover to main container when collapsed */
-    :host ::ng-deep .wfai-approved-container .p-panel[data-collapsed="true"] .wfai-header-content:hover {
-      background: var(--surface-hover);
+    .document-header-content:hover {
+      background: #F1FAFE !important;
+    }
+
+    /* Override hover for selected state to maintain cyan-50 background */
+    :host ::ng-deep .document-panel .p-panel[data-collapsed="false"] .document-header-content:hover {
+      background: #F1FAFE !important;
     }
 
     .hover-state {
