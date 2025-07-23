@@ -494,7 +494,7 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
       background: var(--surface-overlay);
       border: 1px solid #E2E6EB;
       border-radius: 8px;
-      padding: 16px;
+      padding: 0;
       min-height: auto;
     }
 
@@ -521,7 +521,7 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0; /* Remove extra padding since panel header already has 16px */
+      padding: 16px; /* Add 16px padding to content */
       cursor: pointer;
       user-select: none;
       width: 100%;
@@ -643,10 +643,15 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
 
     /* Selected State for Document Panel - Applied when expanded */
     :host ::ng-deep .document-panel .p-panel[data-collapsed="false"] .p-panel-header {
-      background: #EAF8FD !important;
-      border-left: 4px solid #72CDF4 !important;
-      border-bottom: 1px solid #C6CCD6 !important;
+      background: var(--surface-overlay) !important;
+      border: 1px solid #E2E6EB !important;
       border-radius: 4px 4px 0 0 !important;
+    }
+
+    /* Selected state styling for header content */
+    :host ::ng-deep .document-panel .p-panel[data-collapsed="false"] .document-header-content {
+      background: rgba(241, 250, 254, 1) !important;
+      border-left: 4px solid rgba(114, 205, 244, 1) !important;
     }
 
     /* Ensure selected document title has proper color */
