@@ -489,31 +489,31 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
       display: none;
     }
 
-    /* Custom header styling */
+    /* Outer Panel - Approved Section */
     :host ::ng-deep .wfai-approved-container .p-panel .p-panel-header {
       background: var(--surface-overlay);
       border: 1px solid #E2E6EB;
-      border-radius: 4px;
-      padding: 0;
-      min-height: 44px;
+      border-radius: 8px;
+      padding: 16px;
+      min-height: auto;
     }
 
     :host ::ng-deep .wfai-approved-container .p-panel[data-collapsed="true"] .p-panel-header {
-      border-radius: 4px;
+      border-radius: 8px;
     }
 
     :host ::ng-deep .wfai-approved-container .p-panel[data-collapsed="false"] .p-panel-header {
       border-bottom: 0;
-      border-radius: 4px 4px 0 0;
+      border-radius: 8px 8px 0 0;
     }
 
-    /* Panel content styling */
+    /* Outer Panel Content */
     :host ::ng-deep .wfai-approved-container .p-panel .p-panel-content {
       border: 1px solid #E2E6EB;
       border-top: 0;
-      border-radius: 0 0 4px 4px;
-      padding: 0;
-      background: var(--surface-overlay);
+      border-radius: 0 0 8px 8px;
+      padding: 16px;
+      background: var(--surface-50, #F8F9FA);
     }
 
     /* Header content layout */
