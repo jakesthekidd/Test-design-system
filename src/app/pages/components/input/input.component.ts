@@ -912,15 +912,22 @@ export class InputDocComponent {
   basicValue = '';
   emailValue = '';
   passwordValue = '';
-  
+
   // Multiple inputs
   firstNameValue = '';
   lastNameValue = '';
   phoneValue = '';
-  
+
+  // Float label examples
+  floatLabelValue = '';
+  floatEmailValue = '';
+  floatFirstNameValue = '';
+  floatLastNameValue = '';
+  floatPhoneValue = '';
+
   // Disabled input
   disabledValue = 'This field is disabled';
-  
+
   // Form example
   formData = {
     title: '',
