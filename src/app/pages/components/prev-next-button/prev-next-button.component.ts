@@ -134,13 +134,13 @@ import { WfaiPrevNextButtonComponent } from './wfai-prev-next-button.component';
                     <td>previousItems</td>
                     <td>WorkItem[]</td>
                     <td>[]</td>
-                    <td>Array of previous work items to show in dropdown (max 10, displays 3)</td>
+                    <td>Array of previous work items (max 10, shows 3 with scroll). Simple list format.</td>
                   </tr>
                   <tr>
                     <td>nextItems</td>
                     <td>WorkItem[]</td>
                     <td>[]</td>
-                    <td>Array of next work items to show in dropdown</td>
+                    <td>Typically single item: "Next From Results". Shows in minimal dropdown.</td>
                   </tr>
                   <tr>
                     <td>previousLabel</td>
@@ -215,10 +215,14 @@ import { WfaiPrevNextButtonComponent } from './wfai-prev-next-button.component';
             <pre><code>interface WorkItem &#123;
   id: string;
   title: string;
-  type?: string;
-  description?: string;
-  timestamp?: Date;
-&#125;</code></pre>
+  type?: string;        // Not used in simplified dropdown
+  description?: string; // Not used in simplified dropdown
+  timestamp?: Date;     // Not used in simplified dropdown
+&#125;
+
+// Simplified usage for WFAI:
+// Previous items: &#123; id: 'LD-34521', title: 'LD-34521' &#125;
+// Next item: &#123; id: 'next-results', title: 'Next From Results' &#125;</code></pre>
           </div>
         </p-tabPanel>
 
@@ -238,6 +242,7 @@ import { WfaiPrevNextButtonComponent } from './wfai-prev-next-button.component';
                 <strong>Previous Button:</strong>
                 <ul>
                   <li>Background: var(--blue-500) #2474BB</li>
+                  <li>Hover: var(--blue-700) #1D5D96</li>
                   <li>Text Color: #FFFFFF</li>
                   <li>Border Radius: 4px 0px 0px 4px</li>
                   <li>Padding: 10px</li>
@@ -248,6 +253,7 @@ import { WfaiPrevNextButtonComponent } from './wfai-prev-next-button.component';
                 <strong>Next Button:</strong>
                 <ul>
                   <li>Background: #FFFFFF</li>
+                  <li>Hover: var(--surface-200) #F3F5F7</li>
                   <li>Text Color: var(--blue-500) #2474BB</li>
                   <li>Border Radius: 0px 4px 4px 0px</li>
                   <li>Padding: 10px</li>
@@ -272,27 +278,34 @@ import { WfaiPrevNextButtonComponent } from './wfai-prev-next-button.component';
               </div>
             </div>
 
-            <h3>Interaction States</h3>
+            <h3>Dropdown Specifications</h3>
             <div class="design-specs">
               <div class="spec-item">
-                <strong>Hover:</strong>
+                <strong>Previous Dropdown:</strong>
                 <ul>
-                  <li>Previous: Background opacity to 90%</li>
-                  <li>Next: Light blue background tint</li>
+                  <li>Width: 168px, Max Height: 135px</li>
+                  <li>Header: "RECENT LOADS" (uppercase)</li>
+                  <li>Shows 10 items max, 3 visible with scroll</li>
+                  <li>Item format: Arrow icon + ID/Title</li>
+                  <li>Clean minimal list design</li>
                 </ul>
               </div>
               <div class="spec-item">
-                <strong>Active:</strong>
+                <strong>Next Dropdown:</strong>
                 <ul>
-                  <li>Slight scale transform (0.98)</li>
-                  <li>Enhanced shadow</li>
+                  <li>Width: 136px</li>
+                  <li>Single item: "Next From Results"</li>
+                  <li>Blue text with arrow icon</li>
+                  <li>Minimal single-option design</li>
                 </ul>
               </div>
               <div class="spec-item">
-                <strong>Disabled:</strong>
+                <strong>Interaction States:</strong>
                 <ul>
-                  <li>Opacity: 0.6</li>
-                  <li>Cursor: not-allowed</li>
+                  <li>Previous Hover: Background #1D5D96</li>
+                  <li>Next Hover: Background #F3F5F7</li>
+                  <li>Active: Scale transform (0.98)</li>
+                  <li>Disabled: Opacity 0.6</li>
                 </ul>
               </div>
             </div>
