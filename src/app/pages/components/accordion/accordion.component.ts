@@ -651,15 +651,26 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
     }
 
     /* When panel is expanded - header connects to content */
-    :host ::ng-deep .p-panel:not(.p-panel-collapsed) .p-panel-header {
+    :host ::ng-deep .p-panel:has(.p-toggleable-content:not([aria-hidden="true"])) .p-panel-header {
       border-bottom: 0;
       border-radius: 6px 6px 0 0;
     }
 
     /* When panel is collapsed - header has full border and rounded corners */
-    :host ::ng-deep .p-panel.p-panel-collapsed .p-panel-header {
+    :host ::ng-deep .p-panel:has(.p-toggleable-content[aria-hidden="true"]) .p-panel-header {
       border-radius: 6px;
-      border: 1px solid var(--surface-border);
+      border: 1px solid var(--surface-border) !important;
+    }
+
+    /* Fallback for browsers that don't support :has() - use data attribute approach */
+    :host ::ng-deep .p-panel[data-collapsed="true"] .p-panel-header {
+      border-radius: 6px;
+      border: 1px solid var(--surface-border) !important;
+    }
+
+    :host ::ng-deep .p-panel[data-collapsed="false"] .p-panel-header {
+      border-bottom: 0;
+      border-radius: 6px 6px 0 0;
     }
 
     :host ::ng-deep .p-panel .p-panel-content {
