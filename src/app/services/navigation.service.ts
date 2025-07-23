@@ -54,6 +54,13 @@ export class NavigationService {
           description: 'Single selection from multiple options',
           route: '/components/radio',
           tags: ['form', 'selection', 'single-choice']
+        },
+        {
+          id: 'prev-next-button',
+          name: 'WFAI Previous/Next Button',
+          description: 'Navigation component for moving between work items with dropdown history',
+          route: '/components/prev-next-button',
+          tags: ['navigation', 'workflow', 'history', 'dropdown', 'wfai']
         }
       ]
     },
