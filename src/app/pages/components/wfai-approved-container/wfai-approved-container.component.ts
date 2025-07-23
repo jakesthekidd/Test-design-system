@@ -614,7 +614,6 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
     .document-panel {
       border-radius: 4px;
       overflow: hidden;
-      background: var(--surface-overlay);
     }
 
     /* Document panel specific styling */
