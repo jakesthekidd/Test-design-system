@@ -192,9 +192,9 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
 &lt;/div&gt;</code></pre>
 
             <h3>Nested Document Panel</h3>
-            <pre><code>&lt;p-panel [toggleable]="true" [collapsed]="doc.collapsed"&gt;
+            <pre><code>&lt;p-panel [toggleable]="true" [collapsed]="document.collapsed"&gt;
   &lt;ng-template pTemplate="header"&gt;
-    &lt;div class="document-header-content" (click)="toggleDocument(doc.id)"&gt;
+    &lt;div class="document-header-content" (click)="toggleDocument(document.id)"&gt;
       &lt;div class="document-header-left"&gt;
         &lt;i class="chevron-icon fa-solid fa-angle-right"&gt;&lt;/i&gt;
         &lt;span class="document-title"&gt;&#123;&#123; document.title &#125;&#125;&lt;/span&gt;
