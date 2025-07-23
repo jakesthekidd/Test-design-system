@@ -327,6 +327,25 @@ export interface WorkItem {
       font-weight: 900;
     }
 
+    /* Fix PrimeNG overlay positioning */
+    ::ng-deep .p-overlaypanel {
+      margin-top: 2px !important;
+      z-index: 1000;
+    }
+
+    ::ng-deep .p-overlaypanel .p-overlaypanel-content {
+      padding: 0 !important;
+      border-radius: 4px;
+    }
+
+    ::ng-deep .p-overlaypanel:before {
+      display: none !important;
+    }
+
+    ::ng-deep .p-overlaypanel:after {
+      display: none !important;
+    }
+
     /* Responsive Design */
     @media (max-width: 768px) {
       .button-text {
