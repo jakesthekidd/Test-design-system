@@ -29,9 +29,9 @@ import { TableModule } from 'primeng/table';
         <p-tabPanel header="Examples">
           <div class="examples-section">
             
-            <h3>Basic Tabs</h3>
+            <h3>Basic Tabs (Default Style)</h3>
             <div class="example-container">
-              <div class="tabs-container">
+              <div class="tabs-container default-tabs">
                 <p-tabView [(activeIndex)]="activeIndex">
                   <p-tabPanel header="Overview">
                     <div class="tab-content">
@@ -140,9 +140,37 @@ import { TableModule } from 'primeng/table';
               </div>
             </div>
 
+            <h3>Underlined Tabs (Simple Variant)</h3>
+            <div class="example-container">
+              <div class="tabs-container underlined-tabs">
+                <p-tabView [(activeIndex)]="underlinedActiveIndex">
+                  <p-tabPanel header="Examples">
+                    <div class="tab-content">
+                      <p>Examples content with underlined tab style</p>
+                    </div>
+                  </p-tabPanel>
+                  <p-tabPanel header="Code">
+                    <div class="tab-content">
+                      <p>Code documentation with clean underlined tabs</p>
+                    </div>
+                  </p-tabPanel>
+                  <p-tabPanel header="API">
+                    <div class="tab-content">
+                      <p>API reference with minimal tab styling</p>
+                    </div>
+                  </p-tabPanel>
+                  <p-tabPanel header="Design">
+                    <div class="tab-content">
+                      <p>Design guidelines with simple tab navigation</p>
+                    </div>
+                  </p-tabPanel>
+                </p-tabView>
+              </div>
+            </div>
+
             <h3>Scrollable Tabs</h3>
             <div class="example-container">
-              <div class="tabs-container">
+              <div class="tabs-container default-tabs">
                 <p-tabView scrollable="true">
                   <p-tabPanel header="Tab 1">
                     <div class="tab-content">
@@ -596,18 +624,18 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
       margin: 1rem 0 0 0;
     }
 
-    /* Custom TabView Styling with Design Tokens */
-    :host ::ng-deep .p-tabview .p-tabview-nav {
+    /* Default Tabs Styling with Design Tokens */
+    :host ::ng-deep .default-tabs .p-tabview .p-tabview-nav {
       background: var(--surface-overlay);
       border: 1px solid var(--surface-border);
       border-radius: 6px 6px 0 0;
     }
 
-    :host ::ng-deep .p-tabview .p-tabview-nav li {
+    :host ::ng-deep .default-tabs .p-tabview .p-tabview-nav li {
       margin-right: 2px;
     }
 
-    :host ::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+    :host ::ng-deep .default-tabs .p-tabview .p-tabview-nav li .p-tabview-nav-link {
       background: transparent;
       border: none;
       color: var(--text-color-secondary);
@@ -618,23 +646,66 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
       transition: all 0.2s ease;
     }
 
-    :host ::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link:hover {
+    :host ::ng-deep .default-tabs .p-tabview .p-tabview-nav li .p-tabview-nav-link:hover {
       background: var(--surface-hover);
       color: var(--text-color);
     }
 
-    :host ::ng-deep .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
-      background: var(--primary-color);
-      color: var(--primary-contrast);
-      border-bottom: 2px solid var(--primary-dark);
+    :host ::ng-deep .default-tabs .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+      background: #164670; /* Primary 900 - darker blue */
+      color: #ffffff; /* White text */
+      border-bottom: none;
     }
 
-    :host ::ng-deep .p-tabview .p-tabview-panels {
+    :host ::ng-deep .default-tabs .p-tabview .p-tabview-panels {
       background: var(--surface-overlay);
       border: 1px solid var(--surface-border);
       border-top: none;
       border-radius: 0 0 6px 6px;
       padding: 1.5rem;
+    }
+
+    /* Underlined Tabs Styling - Simple Variant */
+    :host ::ng-deep .underlined-tabs .p-tabview .p-tabview-nav {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--surface-border);
+      border-radius: 0;
+    }
+
+    :host ::ng-deep .underlined-tabs .p-tabview .p-tabview-nav li {
+      margin-right: 0;
+      margin-bottom: -1px;
+    }
+
+    :host ::ng-deep .underlined-tabs .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: var(--text-color-secondary);
+      padding: 12px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 0;
+      transition: all 0.2s ease;
+    }
+
+    :host ::ng-deep .underlined-tabs .p-tabview .p-tabview-nav li .p-tabview-nav-link:hover {
+      background: transparent;
+      color: var(--text-color);
+      border-bottom-color: var(--surface-border);
+    }
+
+    :host ::ng-deep .underlined-tabs .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+      background: transparent;
+      color: #164670; /* Primary 900 - darker blue */
+      border-bottom: 2px solid #164670; /* Primary 900 underline */
+    }
+
+    :host ::ng-deep .underlined-tabs .p-tabview .p-tabview-panels {
+      background: transparent;
+      border: none;
+      padding: 1.5rem 0;
     }
 
     /* Scrollable tabs styling */
@@ -744,6 +815,7 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
 })
 export class TabsDocComponent {
   activeIndex: number = 0;
+  underlinedActiveIndex: number = 0;
   
   specifications = [
     {
