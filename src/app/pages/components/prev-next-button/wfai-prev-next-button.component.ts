@@ -32,6 +32,8 @@ export interface WorkItem {
           <div class="dropdown-trigger"
                *ngIf="showPreviousDropdown"
                (click)="onPreviousDropdownClick($event)"
+               (mouseenter)="onDropdownMouseEnter('previous')"
+               (mouseleave)="onDropdownMouseLeave('previous')"
                [class.disabled]="disabled || previousItems.length === 0">
             <i class="fas fa-angle-down dropdown-icon"></i>
           </div>
