@@ -44,15 +44,15 @@ npm install &#64;fortawesome/fontawesome-free
             <p>Add these imports to your <code>src/styles.css</code>:</p>
             <div class="code-block">
               <pre><code>/* Design System Imports */
-@import "lara-light-tokens.css";
-@import "primeng/resources/themes/lara-light-blue/theme.css";
-@import "primeng/resources/primeng.css";
-@import "primeicons/primeicons.css";
-@import "lara-light-overrides.css";
+&#64;import "lara-light-tokens.css";
+&#64;import "primeng/resources/themes/lara-light-blue/theme.css";
+&#64;import "primeng/resources/primeng.css";
+&#64;import "primeicons/primeicons.css";
+&#64;import "lara-light-overrides.css";
 
 /* Font Imports */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+&#64;import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+&#64;import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
 body {{ '{' }}
   margin: 0;
