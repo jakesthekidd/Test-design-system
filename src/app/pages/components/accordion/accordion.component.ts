@@ -106,7 +106,7 @@ import { ButtonModule } from 'primeng/button';
                       <div class="support-section">
                         <h4>Contact Support</h4>
                         <ul>
-                          <li>Email: support@example.com</li>
+                          <li>Email: support&#64;example.com</li>
                           <li>Phone: 1-800-555-0123</li>
                           <li>Live chat: Available 24/7</li>
                         </ul>
@@ -960,26 +960,26 @@ export class AccordionDocComponent {
   expandAll(): void {
     // Set all panels to expanded (false = expanded)
     Object.keys(this.panels).forEach(key => {
-      this.panels[key] = false;
+      (this.panels as any)[key] = false;
     });
     Object.keys(this.faq).forEach(key => {
-      this.faq[key] = false;
+      (this.faq as any)[key] = false;
     });
     Object.keys(this.settings).forEach(key => {
-      this.settings[key] = false;
+      (this.settings as any)[key] = false;
     });
   }
 
   collapseAll(): void {
     // Set all panels to collapsed (true = collapsed)
     Object.keys(this.panels).forEach(key => {
-      this.panels[key] = true;
+      (this.panels as any)[key] = true;
     });
     Object.keys(this.faq).forEach(key => {
-      this.faq[key] = true;
+      (this.faq as any)[key] = true;
     });
     Object.keys(this.settings).forEach(key => {
-      this.settings[key] = true;
+      (this.settings as any)[key] = true;
     });
   }
 }
