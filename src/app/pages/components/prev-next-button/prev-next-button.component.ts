@@ -183,6 +183,12 @@ import { WfaiPrevNextButtonComponent } from './wfai-prev-next-button.component';
                     <td>'32px'</td>
                     <td>Fixed height of the button component</td>
                   </tr>
+                  <tr>
+                    <td>showPreviousDropdown</td>
+                    <td>boolean</td>
+                    <td>true</td>
+                    <td>Whether to show the previous dropdown arrow. When false, removes dropdown and divider.</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
