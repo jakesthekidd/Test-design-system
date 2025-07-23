@@ -357,6 +357,7 @@ export class WfaiPrevNextButtonComponent {
   @Input() disabled: boolean = false;
   @Input() width: string = '226px';
   @Input() height: string = '32px';
+  @Input() showPreviousDropdown: boolean = true;
 
   @Output() previousClick = new EventEmitter<void>();
   @Output() nextClick = new EventEmitter<void>();
