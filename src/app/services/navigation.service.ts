@@ -1,0 +1,181 @@
+import { Injectable } from '@angular/core';
+
+export interface ComponentItem {
+  id: string;
+  name: string;
+  description: string;
+  route: string;
+  tags: string[];
+}
+
+export interface NavigationCategory {
+  id: string;
+  name: string;
+  icon: string;
+  description: string;
+  components: ComponentItem[];
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class NavigationService {
+  private categories: NavigationCategory[] = [
+    {
+      id: 'form',
+      name: 'Form',
+      icon: 'fas fa-edit',
+      description: 'Form components for user input and data collection',
+      components: [
+        {
+          id: 'button',
+          name: 'Button',
+          description: 'Interactive buttons with multiple variants and states',
+          route: '/components/button',
+          tags: ['action', 'click', 'submit', 'interactive']
+        },
+        {
+          id: 'input',
+          name: 'Input Text',
+          description: 'Text input fields with validation and styling',
+          route: '/components/input',
+          tags: ['form', 'text', 'input', 'field']
+        },
+        {
+          id: 'checkbox',
+          name: 'Checkbox',
+          description: 'Binary choice input component',
+          route: '/components/checkbox',
+          tags: ['form', 'boolean', 'selection']
+        },
+        {
+          id: 'radio',
+          name: 'Radio Button',
+          description: 'Single selection from multiple options',
+          route: '/components/radio',
+          tags: ['form', 'selection', 'single-choice']
+        }
+      ]
+    },
+    {
+      id: 'data',
+      name: 'Data',
+      icon: 'fas fa-table',
+      description: 'Components for displaying and organizing data',
+      components: [
+        {
+          id: 'table',
+          name: 'Table',
+          description: 'Data table with sorting, filtering, and pagination',
+          route: '/components/table',
+          tags: ['data', 'grid', 'list', 'tabular']
+        },
+        {
+          id: 'card',
+          name: 'Card',
+          description: 'Container for related content and actions',
+          route: '/components/card',
+          tags: ['container', 'content', 'layout']
+        }
+      ]
+    },
+    {
+      id: 'panel',
+      name: 'Panel',
+      icon: 'fas fa-window-maximize',
+      description: 'Layout and container components',
+      components: [
+        {
+          id: 'accordion',
+          name: 'Accordion',
+          description: 'Collapsible content panels',
+          route: '/components/accordion',
+          tags: ['collapse', 'expand', 'content']
+        },
+        {
+          id: 'tabs',
+          name: 'Tabs',
+          description: 'Tabbed interface for organizing content',
+          route: '/components/tabs',
+          tags: ['navigation', 'content', 'organization']
+        }
+      ]
+    },
+    {
+      id: 'overlay',
+      name: 'Overlay',
+      icon: 'fas fa-layer-group',
+      description: 'Overlay and modal components',
+      components: [
+        {
+          id: 'dialog',
+          name: 'Dialog',
+          description: 'Modal dialogs for user interaction',
+          route: '/components/dialog',
+          tags: ['modal', 'popup', 'overlay']
+        },
+        {
+          id: 'tooltip',
+          name: 'Tooltip',
+          description: 'Contextual information overlay',
+          route: '/components/tooltip',
+          tags: ['help', 'information', 'overlay']
+        }
+      ]
+    },
+    {
+      id: 'foundation',
+      name: 'Foundation',
+      icon: 'fas fa-palette',
+      description: 'Design tokens, colors, and typography',
+      components: [
+        {
+          id: 'colors',
+          name: 'Colors',
+          description: 'Color palette and design tokens',
+          route: '/foundation/colors',
+          tags: ['design-tokens', 'palette', 'theming']
+        },
+        {
+          id: 'typography',
+          name: 'Typography',
+          description: 'Font styles, sizes, and text components',
+          route: '/foundation/typography',
+          tags: ['text', 'fonts', 'headings']
+        },
+        {
+          id: 'spacing',
+          name: 'Spacing',
+          description: 'Spacing scale and layout guidelines',
+          route: '/foundation/spacing',
+          tags: ['layout', 'margins', 'padding']
+        }
+      ]
+    }
+  ];
+
+  getCategories(): NavigationCategory[] {
+    return this.categories;
+  }
+
+  getAllComponents(): ComponentItem[] {
+    return this.categories.flatMap(category => category.components);
+  }
+
+  searchComponents(query: string): ComponentItem[] {
+    const lowercaseQuery = query.toLowerCase();
+    return this.getAllComponents().filter(component => 
+      component.name.toLowerCase().includes(lowercaseQuery) ||
+      component.description.toLowerCase().includes(lowercaseQuery) ||
+      component.tags.some(tag => tag.toLowerCase().includes(lowercaseQuery))
+    );
+  }
+
+  getComponentById(id: string): ComponentItem | undefined {
+    return this.getAllComponents().find(component => component.id === id);
+  }
+
+  getCategoryById(id: string): NavigationCategory | undefined {
+    return this.categories.find(category => category.id === id);
+  }
+}
