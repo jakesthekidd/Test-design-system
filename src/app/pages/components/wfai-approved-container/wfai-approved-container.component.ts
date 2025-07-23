@@ -643,15 +643,11 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
 
     /* Selected State for Document Panel - Applied when expanded */
     :host ::ng-deep .document-panel .p-panel[data-collapsed="false"] .p-panel-header {
-      background: var(--surface-overlay) !important;
+      background: #F1FAFE !important;
       border: 1px solid #E2E6EB !important;
+      border-left: 4px solid #72CDF4 !important;
       border-radius: 4px 4px 0 0 !important;
-    }
-
-    /* Selected state styling for header content */
-    :host ::ng-deep .document-panel .p-panel[data-collapsed="false"] .document-header-content {
-      background: rgba(241, 250, 254, 1) !important;
-      border-left: 4px solid rgba(114, 205, 244, 1) !important;
+      border-bottom: 1px solid #C6CCD6 !important;
     }
 
     /* Ensure selected document title has proper color */
