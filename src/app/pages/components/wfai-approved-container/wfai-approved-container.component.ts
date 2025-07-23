@@ -607,15 +607,17 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
       border-radius: 4px;
       border: 1px solid #E2E6EB;
       margin-bottom: 0;
+      padding: 16px;
     }
 
     :host ::ng-deep .document-panel .p-panel[data-collapsed="true"] .p-panel-header {
       border-radius: 4px;
     }
 
+    /* Selected State for Document Panel */
     :host ::ng-deep .document-panel .p-panel[data-collapsed="false"] .p-panel-header {
-      background: #F1FAFE;
-      border-left: 4px solid #72CDF4;
+      background: var(--cyan-50, #F1FAFE);
+      border-left: 4px solid var(--cyan-500, #72CDF4);
       border-bottom: 1px solid #C6CCD6;
       border-radius: 4px 4px 0 0;
     }
@@ -624,6 +626,7 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
       border: 1px solid #E2E6EB;
       border-top: 0;
       border-radius: 0 0 4px 4px;
+      padding: 0;
     }
 
     /* Document table styling */
