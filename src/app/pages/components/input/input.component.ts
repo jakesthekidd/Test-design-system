@@ -92,29 +92,32 @@ import { ButtonModule } from 'primeng/button';
             <h3>Multiple Inputs with Tab Order</h3>
             <div class="example-container">
               <div class="input-group">
-                <p-floatlabel variant="on">
+                <div class="input-wrapper">
+                  <label for="firstNameInput" class="input-label">First Name</label>
                   <input
                     pInputText
                     id="firstNameInput"
                     [(ngModel)]="firstNameValue"
                     autocomplete="given-name"
                     tabindex="0"
+                    placeholder="First name"
                   />
-                  <label for="firstNameInput">First Name</label>
-                </p-floatlabel>
+                </div>
 
-                <p-floatlabel variant="on">
+                <div class="input-wrapper">
+                  <label for="lastNameInput" class="input-label">Last Name</label>
                   <input
                     pInputText
                     id="lastNameInput"
                     [(ngModel)]="lastNameValue"
                     autocomplete="family-name"
                     tabindex="0"
+                    placeholder="Last name"
                   />
-                  <label for="lastNameInput">Last Name</label>
-                </p-floatlabel>
+                </div>
 
-                <p-floatlabel variant="on">
+                <div class="input-wrapper">
+                  <label for="phoneInput" class="input-label">Phone Number</label>
                   <input
                     pInputText
                     id="phoneInput"
@@ -122,9 +125,9 @@ import { ButtonModule } from 'primeng/button';
                     type="tel"
                     autocomplete="tel"
                     tabindex="0"
+                    placeholder="Phone number"
                   />
-                  <label for="phoneInput">Phone Number</label>
-                </p-floatlabel>
+                </div>
               </div>
               <div class="example-output">
                 <small>Full Name: {{ getFullName() }}</small><br>
