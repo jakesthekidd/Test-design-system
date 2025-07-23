@@ -758,7 +758,7 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
       color: #3D3D3D;
       font-size: 14px;
       font-weight: 300;
-      text-align: center;
+      text-align: left;
       background: var(--surface-overlay);
       border-left: 1px solid #E2E6EB;
       height: auto;
