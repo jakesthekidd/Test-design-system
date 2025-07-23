@@ -640,7 +640,7 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
     :host ::ng-deep .p-panel .p-panel-header {
       background: var(--surface-section);
       border: 1px solid var(--surface-border);
-      border-radius: 6px 6px 0 0;
+      border-radius: 6px;
       padding: 1rem;
       cursor: pointer;
       transition: background-color 0.2s;
@@ -650,8 +650,17 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
       background: var(--surface-hover);
     }
 
+    /* Expanded panel header */
     :host ::ng-deep .p-panel.p-panel-toggleable .p-panel-header {
       border-bottom: 0;
+      border-radius: 6px 6px 0 0;
+    }
+
+    /* Collapsed panel header - ensure bottom border is visible */
+    :host ::ng-deep .p-panel.p-panel-toggleable .p-toggleable-content[aria-hidden="true"] + .p-panel-header,
+    :host ::ng-deep .p-panel.p-panel-toggleable:has(.p-toggleable-content[aria-hidden="true"]) .p-panel-header {
+      border-radius: 6px;
+      border-bottom: 1px solid var(--surface-border);
     }
 
     :host ::ng-deep .p-panel .p-panel-content {
