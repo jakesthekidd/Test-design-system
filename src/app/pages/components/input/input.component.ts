@@ -410,14 +410,59 @@ import &#123; FormsModule &#125; from '&#64;angular/forms';
                     <td>Container for label and input field</td>
                   </tr>
                   <tr>
+                    <td>div</td>
+                    <td>input-wrapper float-label</td>
+                    <td>Container for float label variant</td>
+                  </tr>
+                  <tr>
                     <td>label</td>
                     <td>input-label</td>
-                    <td>Accessible label for the input field</td>
+                    <td>Accessible label for standard inputs</td>
+                  </tr>
+                  <tr>
+                    <td>label</td>
+                    <td>float-label-text</td>
+                    <td>Floating label for float label variant</td>
                   </tr>
                   <tr>
                     <td>input</td>
                     <td>pInputText</td>
                     <td>PrimeNG styled input field</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Float Label Requirements</h3>
+            <div class="api-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Property</th>
+                    <th>Value</th>
+                    <th>Purpose</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>placeholder</td>
+                    <td>" " (single space)</td>
+                    <td>Required for CSS :placeholder-shown selector</td>
+                  </tr>
+                  <tr>
+                    <td>input order</td>
+                    <td>Before label</td>
+                    <td>CSS sibling selector dependency</td>
+                  </tr>
+                  <tr>
+                    <td>wrapper class</td>
+                    <td>float-label</td>
+                    <td>Enables float label styling</td>
+                  </tr>
+                  <tr>
+                    <td>label class</td>
+                    <td>float-label-text</td>
+                    <td>Float label specific styling</td>
                   </tr>
                 </tbody>
               </table>
