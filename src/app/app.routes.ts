@@ -35,6 +35,14 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/components/prev-next-button/prev-next-button.component').then(m => m.PrevNextButtonDocComponent)
   },
   {
+    path: 'components/checkbox',
+    loadComponent: () => import('./pages/components/checkbox/checkbox.component').then(m => m.CheckboxDocComponent)
+  },
+  {
+    path: 'components/radio',
+    loadComponent: () => import('./pages/components/radio/radio.component').then(m => m.RadioDocComponent)
+  },
+  {
     path: 'foundation/colors',
     loadComponent: () => import('./pages/foundation/colors/colors.component').then(m => m.ColorsComponent)
   },
