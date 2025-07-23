@@ -43,6 +43,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/components/radio/radio.component').then(m => m.RadioDocComponent)
   },
   {
+    path: 'components/accordion',
+    loadComponent: () => import('./pages/components/accordion/accordion.component').then(m => m.AccordionDocComponent)
+  },
+  {
     path: 'foundation/colors',
     loadComponent: () => import('./pages/foundation/colors/colors.component').then(m => m.ColorsComponent)
   },
