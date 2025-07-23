@@ -55,37 +55,30 @@ export interface WorkItem {
     </div>
 
     <!-- Previous Items Dropdown -->
-    <p-overlayPanel #previousPanel 
-                    [style]="{ 'max-width': '300px' }"
+    <p-overlayPanel #previousPanel
+                    [style]="{ 'width': '168px' }"
                     [dismissable]="true">
-      <div class="dropdown-content">
-        <div class="dropdown-header">Recent Items</div>
-        <div class="dropdown-items" [style.max-height]="'120px'" [style.overflow-y]="'auto'">
-          <div *ngFor="let item of previousItems.slice(0, 10); trackBy: trackByItemId" 
+      <div class="previous-dropdown">
+        <div class="dropdown-header">RECENT LOADS</div>
+        <div class="dropdown-items-container">
+          <div *ngFor="let item of previousItems.slice(0, 10); trackBy: trackByItemId"
                class="dropdown-item"
                (click)="onPreviousItemSelect(item)">
-            <div class="item-title">{{ item.title }}</div>
-            <div class="item-description" *ngIf="item.description">{{ item.description }}</div>
-            <div class="item-type" *ngIf="item.type">{{ item.type }}</div>
+            <i class="fas fa-arrow-right item-arrow"></i>
+            <span class="item-text">{{ item.title || item.id }}</span>
           </div>
         </div>
       </div>
     </p-overlayPanel>
 
     <!-- Next Items Dropdown -->
-    <p-overlayPanel #nextPanel 
-                    [style]="{ 'max-width': '300px' }"
+    <p-overlayPanel #nextPanel
+                    [style]="{ 'width': '136px' }"
                     [dismissable]="true">
-      <div class="dropdown-content">
-        <div class="dropdown-header">Next Items</div>
-        <div class="dropdown-items" [style.max-height]="'120px'" [style.overflow-y]="'auto'">
-          <div *ngFor="let item of nextItems; trackBy: trackByItemId" 
-               class="dropdown-item"
-               (click)="onNextItemSelect(item)">
-            <div class="item-title">{{ item.title }}</div>
-            <div class="item-description" *ngIf="item.description">{{ item.description }}</div>
-            <div class="item-type" *ngIf="item.type">{{ item.type }}</div>
-          </div>
+      <div class="next-dropdown">
+        <div class="next-dropdown-item" (click)="onNextItemSelect({ id: 'next-results', title: 'Next From Results' })">
+          <span class="next-item-text">Next From Results</span>
+          <i class="fas fa-arrow-right next-arrow"></i>
         </div>
       </div>
     </p-overlayPanel>
@@ -121,7 +114,7 @@ export interface WorkItem {
     }
 
     .previous-button:hover:not(.disabled) {
-      background: rgba(36, 116, 187, 0.9);
+      background: var(--blue-700, #1D5D96);
     }
 
     .previous-button:active:not(.disabled) {
@@ -148,7 +141,7 @@ export interface WorkItem {
     }
 
     .next-button:hover:not(.disabled) {
-      background: rgba(36, 116, 187, 0.05);
+      background: var(--surface-200, #F3F5F7);
     }
 
     .next-button:active:not(.disabled) {
@@ -215,8 +208,12 @@ export interface WorkItem {
       transition: all 0.2s ease;
     }
 
-    .dropdown-trigger:hover:not(.disabled) {
-      opacity: 0.8;
+    .previous-button .dropdown-trigger:hover:not(.disabled) {
+      background: var(--blue-700, #1D5D96);
+    }
+
+    .next-button .dropdown-trigger:hover:not(.disabled) {
+      background: var(--surface-200, #F3F5F7);
     }
 
     .dropdown-trigger.disabled {
@@ -238,61 +235,87 @@ export interface WorkItem {
     }
 
     /* Dropdown Styles */
-    .dropdown-content {
-      min-width: 250px;
+    .previous-dropdown {
+      width: 168px;
+      background: #FFF;
+      border-radius: 4px;
+      border: 1px solid var(--silver-100, #EFF2F4);
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     }
 
     .dropdown-header {
-      font-weight: 600;
-      font-size: 0.875rem;
-      color: var(--text-color);
-      padding: 0.5rem 0;
-      border-bottom: 1px solid var(--surface-border);
-      margin-bottom: 0.5rem;
+      padding: 8px;
+      border-bottom: 1px solid var(--silver-100, #EFF2F4);
+      color: var(--support-colors-primary-grey-text, #8D9AAE);
+      font-family: 'Roboto', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
     }
 
-    .dropdown-items {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
+    .dropdown-items-container {
+      max-height: 135px;
+      overflow-y: auto;
     }
 
     .dropdown-item {
-      padding: 0.75rem;
-      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px;
       cursor: pointer;
       transition: background-color 0.2s ease;
-      border: 1px solid transparent;
     }
 
     .dropdown-item:hover {
       background: var(--surface-hover, #f8f9fa);
-      border-color: var(--surface-border);
     }
 
-    .item-title {
-      font-weight: 600;
-      font-size: 0.875rem;
-      color: var(--text-color);
-      margin-bottom: 0.25rem;
+    .item-arrow {
+      color: var(--grey-50, #C6CCD6);
+      font-size: 12px;
+      font-weight: 900;
     }
 
-    .item-description {
-      font-size: 0.75rem;
-      color: var(--text-color-secondary);
-      margin-bottom: 0.25rem;
-      line-height: 1.3;
-    }
-
-    .item-type {
-      font-size: 0.625rem;
-      padding: 0.125rem 0.375rem;
-      background: var(--blue-500, #2474BB);
-      color: white;
-      border-radius: 12px;
-      display: inline-block;
+    .item-text {
+      color: var(--med-black, rgba(58, 58, 58, 1));
+      font-family: 'Roboto', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
       text-transform: uppercase;
-      font-weight: 600;
+    }
+
+    .next-dropdown {
+      background: #FFF;
+      border-radius: 4px;
+      border: 1px solid var(--silver-100, #EFF2F4);
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+
+    .next-dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .next-dropdown-item:hover {
+      background: var(--surface-hover, #f8f9fa);
+    }
+
+    .next-item-text {
+      color: var(--blue-500, #2474BB);
+      font-family: 'Roboto', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .next-arrow {
+      color: var(--blue-500, #2474BB);
+      font-size: 12px;
+      font-weight: 900;
     }
 
     /* Responsive Design */
@@ -300,12 +323,12 @@ export interface WorkItem {
       .button-text {
         display: none;
       }
-      
+
       .wfai-prev-next-button {
         width: auto !important;
         min-width: 80px;
       }
-      
+
       .button-content {
         gap: 4px;
       }
@@ -315,9 +338,13 @@ export interface WorkItem {
       .divider {
         display: none;
       }
-      
-      .dropdown-content {
-        min-width: 200px;
+
+      .previous-dropdown {
+        width: 140px;
+      }
+
+      .next-dropdown {
+        width: 120px;
       }
     }
   `]
