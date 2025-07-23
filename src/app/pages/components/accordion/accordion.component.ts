@@ -1004,4 +1004,16 @@ export class AccordionDocComponent {
       (this.settings as any)[settingKey] = event.collapsed;
     }
   }
+
+  togglePanel(panelKey: string): void {
+    (this.panels as any)[panelKey] = !(this.panels as any)[panelKey];
+  }
+
+  toggleFaq(questionKey: string): void {
+    (this.faq as any)[questionKey] = !(this.faq as any)[questionKey];
+  }
+
+  toggleSettings(settingKey: string): void {
+    (this.settings as any)[settingKey] = !(this.settings as any)[settingKey];
+  }
 }
