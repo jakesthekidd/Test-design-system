@@ -319,10 +319,20 @@ import { WfaiPrevNextButtonComponent } from './wfai-prev-next-button.component';
               <div class="spec-item">
                 <strong>Interaction States:</strong>
                 <ul>
-                  <li>Previous Hover: Background #1D5D96</li>
-                  <li>Next Hover: Background #F3F5F7</li>
+                  <li>Button Hover: Previous #1D5D96, Next #F3F5F7</li>
+                  <li>Dropdown Hover: Blue-700 background (separate zone)</li>
+                  <li>Dropdown Exclusivity: Only one can be open</li>
                   <li>Active: Scale transform (0.98)</li>
                   <li>Disabled: Opacity 0.6</li>
+                </ul>
+              </div>
+              <div class="spec-item">
+                <strong>Variants:</strong>
+                <ul>
+                  <li>Standard: Both Previous and Next dropdowns</li>
+                  <li>No Previous Dropdown: showPreviousDropdown=false</li>
+                  <li>Clean positioning with no offset/nesting</li>
+                  <li>Hover zones: Button vs dropdown triggers</li>
                 </ul>
               </div>
             </div>
