@@ -596,12 +596,15 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
     .document-panels {
       display: flex;
       flex-direction: column;
-      gap: 0;
+      gap: 1px;
+      background: #F3F5F7;
+      padding: 1px 0;
     }
 
     .document-panel {
       border-radius: 4px;
       overflow: hidden;
+      background: var(--surface-overlay);
     }
 
     /* Document panel specific styling */
