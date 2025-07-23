@@ -155,7 +155,8 @@ import { ButtonModule } from 'primeng/button';
             <div class="example-container">
               <form class="form-example">
                 <div class="form-field">
-                  <p-floatlabel variant="on">
+                  <div class="input-wrapper">
+                    <label for="formTitle" class="input-label">Title *</label>
                     <input
                       pInputText
                       id="formTitle"
@@ -164,13 +165,14 @@ import { ButtonModule } from 'primeng/button';
                       autocomplete="off"
                       tabindex="0"
                       required
+                      placeholder="Enter title"
                     />
-                    <label for="formTitle">Title *</label>
-                  </p-floatlabel>
+                  </div>
                 </div>
 
                 <div class="form-field">
-                  <p-floatlabel variant="on">
+                  <div class="input-wrapper">
+                    <label for="formDescription" class="input-label">Description</label>
                     <input
                       pInputText
                       id="formDescription"
@@ -178,13 +180,14 @@ import { ButtonModule } from 'primeng/button';
                       name="description"
                       autocomplete="off"
                       tabindex="0"
+                      placeholder="Enter description"
                     />
-                    <label for="formDescription">Description</label>
-                  </p-floatlabel>
+                  </div>
                 </div>
 
                 <div class="form-field">
-                  <p-floatlabel variant="on">
+                  <div class="input-wrapper">
+                    <label for="formUrl" class="input-label">Website URL</label>
                     <input
                       pInputText
                       id="formUrl"
@@ -193,21 +196,21 @@ import { ButtonModule } from 'primeng/button';
                       type="url"
                       autocomplete="url"
                       tabindex="0"
+                      placeholder="https://example.com"
                     />
-                    <label for="formUrl">Website URL</label>
-                  </p-floatlabel>
+                  </div>
                 </div>
 
                 <div class="form-actions">
-                  <p-button 
-                    label="Submit" 
+                  <p-button
+                    label="Submit"
                     [disabled]="!formData.title"
                     (click)="submitForm()"
                     tabindex="0">
                   </p-button>
-                  <p-button 
-                    label="Clear" 
-                    severity="secondary" 
+                  <p-button
+                    label="Clear"
+                    severity="secondary"
                     (click)="clearForm()"
                     tabindex="0">
                   </p-button>
