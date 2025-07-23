@@ -135,6 +135,93 @@ import { ButtonModule } from 'primeng/button';
               </div>
             </div>
 
+            <h3>Float Label Variant</h3>
+            <div class="example-container">
+              <div class="input-wrapper float-label">
+                <input
+                  pInputText
+                  id="floatLabelInput"
+                  [(ngModel)]="floatLabelValue"
+                  autocomplete="off"
+                  tabindex="0"
+                  placeholder=" "
+                />
+                <label for="floatLabelInput" class="float-label-text">Enter your name</label>
+              </div>
+              <div class="example-output">
+                <small>Value: "{{ floatLabelValue }}"</small>
+              </div>
+            </div>
+
+            <h3>Float Label Email with Validation</h3>
+            <div class="example-container">
+              <div class="input-wrapper float-label">
+                <input
+                  pInputText
+                  id="floatEmailInput"
+                  [(ngModel)]="floatEmailValue"
+                  type="email"
+                  autocomplete="email"
+                  tabindex="0"
+                  placeholder=" "
+                  [class.ng-invalid]="floatEmailValue && !isValidEmail(floatEmailValue)"
+                />
+                <label for="floatEmailInput" class="float-label-text">Email Address</label>
+              </div>
+              <div class="example-output">
+                <small>Value: "{{ floatEmailValue }}"</small>
+                <small *ngIf="floatEmailValue && !isValidEmail(floatEmailValue)" class="error-text">
+                  Please enter a valid email address
+                </small>
+              </div>
+            </div>
+
+            <h3>Float Label Multiple Inputs</h3>
+            <div class="example-container">
+              <div class="input-group">
+                <div class="input-wrapper float-label">
+                  <input
+                    pInputText
+                    id="floatFirstName"
+                    [(ngModel)]="floatFirstNameValue"
+                    autocomplete="given-name"
+                    tabindex="0"
+                    placeholder=" "
+                  />
+                  <label for="floatFirstName" class="float-label-text">First Name</label>
+                </div>
+
+                <div class="input-wrapper float-label">
+                  <input
+                    pInputText
+                    id="floatLastName"
+                    [(ngModel)]="floatLastNameValue"
+                    autocomplete="family-name"
+                    tabindex="0"
+                    placeholder=" "
+                  />
+                  <label for="floatLastName" class="float-label-text">Last Name</label>
+                </div>
+
+                <div class="input-wrapper float-label">
+                  <input
+                    pInputText
+                    id="floatPhone"
+                    [(ngModel)]="floatPhoneValue"
+                    type="tel"
+                    autocomplete="tel"
+                    tabindex="0"
+                    placeholder=" "
+                  />
+                  <label for="floatPhone" class="float-label-text">Phone Number</label>
+                </div>
+              </div>
+              <div class="example-output">
+                <small>Full Name: {{ getFloatFullName() }}</small><br>
+                <small>Phone: {{ floatPhoneValue || 'Not provided' }}</small>
+              </div>
+            </div>
+
             <h3>Disabled State</h3>
             <div class="example-container">
               <div class="input-wrapper">
