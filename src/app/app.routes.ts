@@ -1,0 +1,45 @@
+import { Routes } from '@angular/router';
+
+export const routes: Routes = [
+  {
+    path: '',
+    redirectTo: '/overview',
+    pathMatch: 'full'
+  },
+  {
+    path: 'overview',
+    loadComponent: () => import('./pages/overview/overview.component').then(m => m.OverviewComponent)
+  },
+  {
+    path: 'installation',
+    loadComponent: () => import('./pages/installation/installation.component').then(m => m.InstallationComponent)
+  },
+  {
+    path: 'components/button',
+    loadComponent: () => import('./pages/components/button/button.component').then(m => m.ButtonDocComponent)
+  },
+  {
+    path: 'components/input',
+    loadComponent: () => import('./pages/components/input/input.component').then(m => m.InputDocComponent)
+  },
+  {
+    path: 'components/table',
+    loadComponent: () => import('./pages/components/table/table.component').then(m => m.TableDocComponent)
+  },
+  {
+    path: 'components/card',
+    loadComponent: () => import('./pages/components/card/card.component').then(m => m.CardDocComponent)
+  },
+  {
+    path: 'foundation/colors',
+    loadComponent: () => import('./pages/foundation/colors/colors.component').then(m => m.ColorsComponent)
+  },
+  {
+    path: 'foundation/typography',
+    loadComponent: () => import('./pages/foundation/typography/typography.component').then(m => m.TypographyComponent)
+  },
+  {
+    path: '**',
+    redirectTo: '/overview'
+  }
+];
