@@ -109,7 +109,7 @@ import { TabViewModule } from 'primeng/tabview';
                 <div class="scale-swatch" [style.background-color]="'var(--red-' + color.shade + ')'"></div>
                 <div class="scale-info">
                   <span class="scale-shade">{{ color.shade }}</span>
-                  <span class="scale-value">{{ color.value }}</span>
+                  <span class="scale-value">{{ getActualColorValue('--red-' + color.shade) || color.value }}</span>
                 </div>
               </div>
             </div>
