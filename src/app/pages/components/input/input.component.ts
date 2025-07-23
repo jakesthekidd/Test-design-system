@@ -29,18 +29,19 @@ import { ButtonModule } from 'primeng/button';
         <p-tabPanel header="Examples">
           <div class="examples-section">
             
-            <h3>Basic Float Label (variant="on")</h3>
+            <h3>Basic Input with Label</h3>
             <div class="example-container">
-              <p-floatlabel variant="on">
+              <div class="input-wrapper">
+                <label for="basicInput" class="input-label">Enter your name</label>
                 <input
                   pInputText
                   id="basicInput"
                   [(ngModel)]="basicValue"
                   autocomplete="off"
                   tabindex="0"
+                  placeholder="Enter your name"
                 />
-                <label for="basicInput">Enter your name</label>
-              </p-floatlabel>
+              </div>
               <div class="example-output">
                 <small>Value: "{{ basicValue }}"</small>
               </div>
