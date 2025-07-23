@@ -735,6 +735,12 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
       height: 42px;
     }
 
+    /* Specific styling for certain field expected cells */
+    .document-table td.field-expected:nth-of-type(2) {
+      height: auto;
+      padding: 4px 8px;
+    }
+
     .document-table td:last-child {
       border-right: none;
     }
@@ -755,6 +761,9 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
       text-align: center;
       background: var(--surface-overlay);
       border-left: 1px solid #E2E6EB;
+      height: auto;
+      align-self: start;
+      flex-grow: 0;
     }
 
     .field-evaluated {
@@ -794,6 +803,7 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
       color: #3D3D3D;
       font-size: 14px;
       font-weight: 400;
+      text-align: left;
     }
 
     .range-text {
