@@ -45,7 +45,7 @@ import { ButtonModule } from 'primeng/button';
                     <p>This section contains general information about the product, including basic specifications, availability, and overview details.</p>
                     <ul>
                       <li>Product availability: In stock</li>
-                      <li>Last updated: {{ new Date().toLocaleDateString() }}</li>
+                      <li>Last updated: {{ getCurrentDate() }}</li>
                       <li>Category: Electronics</li>
                     </ul>
                   </div>
