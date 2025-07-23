@@ -631,18 +631,21 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
     /* Document table styling */
     .document-table-container {
       padding: 0;
+      background: var(--surface-overlay);
     }
 
     .document-table {
       width: 100%;
       border-collapse: collapse;
       font-family: 'Roboto', sans-serif;
+      background: var(--surface-overlay);
     }
 
     .document-table td {
       padding: 10px;
-      border-right: 1px solid var(--surface-border);
+      border-right: 1px solid #E2E6EB;
       vertical-align: center;
+      height: 42px;
     }
 
     .document-table td:last-child {
@@ -650,22 +653,26 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
     }
 
     .field-label {
-      width: 120px;
-      color: var(--text-color);
+      width: 121px;
+      color: #3D3D3D;
       font-size: 12px;
       font-weight: 400;
       padding-left: 67px;
+      background: var(--surface-overlay);
     }
 
     .field-expected {
-      color: var(--text-color);
+      color: #3D3D3D;
       font-size: 14px;
       font-weight: 300;
       text-align: center;
+      background: var(--surface-overlay);
+      border-left: 1px solid #E2E6EB;
     }
 
     .field-evaluated {
       padding: 4px 8px;
+      background: var(--surface-overlay);
     }
 
     .evaluated-cell {
