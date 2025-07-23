@@ -274,7 +274,8 @@ import &#123; FormsModule &#125; from '&#64;angular/forms';
             <h3>Form Usage</h3>
             <pre><code>&lt;form&gt;
   &lt;div class="form-field"&gt;
-    &lt;p-floatlabel variant="on"&gt;
+    &lt;div class="input-wrapper"&gt;
+      &lt;label for="title" class="input-label"&gt;Title *&lt;/label&gt;
       &lt;input
         pInputText
         id="title"
@@ -282,9 +283,9 @@ import &#123; FormsModule &#125; from '&#64;angular/forms';
         name="title"
         required
         tabindex="0"
+        placeholder="Enter title"
       /&gt;
-      &lt;label for="title"&gt;Title *&lt;/label&gt;
-    &lt;/p-floatlabel&gt;
+    &lt;/div&gt;
   &lt;/div&gt;
 &lt;/form&gt;</code></pre>
           </div>
