@@ -374,7 +374,7 @@ import { WfaiPrevNextButtonComponent } from './wfai-prev-next-button.component';
     }
 
     .example-container {
-      background: var(--surface-ground);
+      background: var(--blue-500, #2474BB);
       border: 1px solid var(--surface-border);
       border-radius: 6px;
       padding: 2rem;
