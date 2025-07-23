@@ -75,13 +75,13 @@ body {{ '{' }}
             <div class="code-block">
               <pre><code>import {{ '{' }} FigmaButtonComponent {{ '}' }} from './figma-button.component';
 
-@Component({{ '{' }}
+&#64;Component({{ '{' }}
   selector: 'app-test',
   standalone: true,
   imports: [FigmaButtonComponent],
   template: \`
-    &lt;app-figma-button 
-      label="Test Button" 
+    &lt;app-figma-button
+      label="Test Button"
       severity="primary"&gt;
     &lt;/app-figma-button&gt;
   \`
