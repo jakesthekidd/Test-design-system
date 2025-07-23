@@ -72,7 +72,8 @@ import { ButtonModule } from 'primeng/button';
 
             <h3>Password Input</h3>
             <div class="example-container">
-              <p-floatlabel variant="on">
+              <div class="input-wrapper">
+                <label for="passwordInput" class="input-label">Password</label>
                 <input
                   pInputText
                   id="passwordInput"
@@ -80,9 +81,9 @@ import { ButtonModule } from 'primeng/button';
                   type="password"
                   autocomplete="current-password"
                   tabindex="0"
+                  placeholder="Enter your password"
                 />
-                <label for="passwordInput">Password</label>
-              </p-floatlabel>
+              </div>
               <div class="example-output">
                 <small>Value: "{{ passwordValue ? '•'.repeat(passwordValue.length) : '' }}"</small>
               </div>
