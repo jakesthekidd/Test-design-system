@@ -105,6 +105,7 @@ export interface WorkItem {
     .wfai-prev-next-button.disabled {
       opacity: 0.6;
       cursor: not-allowed;
+      box-shadow: none !important;
     }
 
     .previous-button {
@@ -132,6 +133,7 @@ export interface WorkItem {
     .previous-button.disabled {
       cursor: not-allowed;
       opacity: 0.6;
+      box-shadow: none !important;
     }
 
     .next-button {
@@ -159,6 +161,7 @@ export interface WorkItem {
     .next-button.disabled {
       cursor: not-allowed;
       opacity: 0.6;
+      box-shadow: none !important;
     }
 
     .button-content {
@@ -216,13 +219,23 @@ export interface WorkItem {
       transition: all 0.2s ease;
     }
 
-    .dropdown-trigger:hover:not(.disabled) {
+    .previous-button .dropdown-trigger:hover:not(.disabled) {
       background: var(--blue-700, #1D5D96) !important;
       z-index: 1;
     }
 
     .next-button .dropdown-trigger:hover:not(.disabled) {
       background: var(--surface-200, #F3F5F7) !important;
+      z-index: 1;
+    }
+
+    /* Ensure dropdown trigger hover doesn't affect main button */
+    .previous-button:has(.dropdown-trigger:hover) {
+      background: var(--blue-500, #2474BB) !important;
+    }
+
+    .next-button:has(.dropdown-trigger:hover) {
+      background: #FFF !important;
     }
 
     .dropdown-trigger.disabled {
@@ -321,6 +334,7 @@ export interface WorkItem {
       font-family: 'Roboto', sans-serif;
       font-size: 12px;
       font-weight: 500;
+      white-space: nowrap;
     }
 
     .next-arrow {
