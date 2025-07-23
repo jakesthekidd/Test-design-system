@@ -606,16 +606,26 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
 
     /* Document panel specific styling */
     :host ::ng-deep .document-panel .p-panel .p-panel-header {
-      border-radius: 0;
-      border-left: 0;
-      border-right: 0;
-      border-top: 0;
+      border-radius: 4px;
+      border: 1px solid #E2E6EB;
+      margin-bottom: 0;
+    }
+
+    :host ::ng-deep .document-panel .p-panel[data-collapsed="true"] .p-panel-header {
+      border-radius: 4px;
     }
 
     :host ::ng-deep .document-panel .p-panel[data-collapsed="false"] .p-panel-header {
       background: #F1FAFE;
       border-left: 4px solid #72CDF4;
       border-bottom: 1px solid #C6CCD6;
+      border-radius: 4px 4px 0 0;
+    }
+
+    :host ::ng-deep .document-panel .p-panel[data-collapsed="false"] .p-panel-content {
+      border: 1px solid #E2E6EB;
+      border-top: 0;
+      border-radius: 0 0 4px 4px;
     }
 
     /* Document table styling */
