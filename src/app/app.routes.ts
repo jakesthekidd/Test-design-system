@@ -47,6 +47,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/components/accordion/accordion.component').then(m => m.AccordionDocComponent)
   },
   {
+    path: 'components/tabs',
+    loadComponent: () => import('./pages/components/tabs/tabs.component').then(m => m.TabsDocComponent)
+  },
+  {
     path: 'components/wfai-approved-container',
     loadComponent: () => import('./pages/components/wfai-approved-container/wfai-approved-container.component').then(m => m.WFAIApprovedContainerDocComponent)
   },
