@@ -45,8 +45,10 @@ export interface WorkItem {
            [class.disabled]="disabled || nextItems.length === 0"
            (click)="onNextClick()">
         <div class="button-content">
-          <div class="dropdown-trigger" 
+          <div class="dropdown-trigger"
                (click)="onNextDropdownClick($event)"
+               (mouseenter)="onDropdownMouseEnter('next')"
+               (mouseleave)="onDropdownMouseLeave('next')"
                [class.disabled]="disabled || nextItems.length === 0">
             <i class="fas fa-angle-down dropdown-icon"></i>
           </div>
