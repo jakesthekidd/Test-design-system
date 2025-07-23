@@ -57,8 +57,12 @@ export interface WorkItem {
 
     <!-- Previous Items Dropdown -->
     <p-overlayPanel #previousPanel
+                    *ngIf="showPreviousDropdown"
                     [style]="{ 'width': '168px' }"
-                    [dismissable]="true">
+                    [dismissable]="true"
+                    [showCloseIcon]="false"
+                    (onHide)="onDropdownHide()"
+                    [appendTo]="'body'">
       <div class="previous-dropdown">
         <div class="dropdown-header">RECENT LOADS</div>
         <div class="dropdown-items-container">
@@ -75,7 +79,10 @@ export interface WorkItem {
     <!-- Next Items Dropdown -->
     <p-overlayPanel #nextPanel
                     [style]="{ 'width': '136px' }"
-                    [dismissable]="true">
+                    [dismissable]="true"
+                    [showCloseIcon]="false"
+                    (onHide)="onDropdownHide()"
+                    [appendTo]="'body'">
       <div class="next-dropdown">
         <div class="next-dropdown-item" (click)="onNextItemSelect({ id: 'next-results', title: 'Next From Results' })">
           <span class="next-item-text">Next From Results</span>
