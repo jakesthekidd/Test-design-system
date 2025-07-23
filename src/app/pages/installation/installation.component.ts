@@ -35,7 +35,7 @@ import { FigmaButtonComponent } from '../../figma-button.component';
 npm install primeng primeicons
 
 # Install Font Awesome (for icons)
-npm install @fortawesome/fontawesome-free
+npm install &#64;fortawesome/fontawesome-free
 
 # Install Inter font (Google Fonts CDN recommended)</code></pre>
             </div>
