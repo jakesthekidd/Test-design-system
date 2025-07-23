@@ -650,17 +650,16 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
       background: var(--surface-hover);
     }
 
-    /* Expanded panel header */
-    :host ::ng-deep .p-panel.p-panel-toggleable .p-panel-header {
+    /* When panel is expanded - header connects to content */
+    :host ::ng-deep .p-panel:not(.p-panel-collapsed) .p-panel-header {
       border-bottom: 0;
       border-radius: 6px 6px 0 0;
     }
 
-    /* Collapsed panel header - ensure bottom border is visible */
-    :host ::ng-deep .p-panel.p-panel-toggleable .p-toggleable-content[aria-hidden="true"] + .p-panel-header,
-    :host ::ng-deep .p-panel.p-panel-toggleable:has(.p-toggleable-content[aria-hidden="true"]) .p-panel-header {
+    /* When panel is collapsed - header has full border and rounded corners */
+    :host ::ng-deep .p-panel.p-panel-collapsed .p-panel-header {
       border-radius: 6px;
-      border-bottom: 1px solid var(--surface-border);
+      border: 1px solid var(--surface-border);
     }
 
     :host ::ng-deep .p-panel .p-panel-content {
