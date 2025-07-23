@@ -102,7 +102,7 @@ export interface WorkItem {
       display: flex;
       align-items: center;
       border-radius: 4px;
-      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+      box-shadow: none;
       font-family: 'Roboto', sans-serif;
       position: relative;
       transition: all 0.2s ease;
