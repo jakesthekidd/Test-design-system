@@ -802,8 +802,8 @@ export class WFAIApprovedContainerDocComponent {
       collapsed: true,
       data: {
         field: 'Invoice #',
-        expected: 'INV-001234',
-        evaluated: 'INV-001234'
+        expected: '987654321',
+        evaluated: '987654321'
       }
     },
     {
