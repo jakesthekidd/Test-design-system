@@ -406,10 +406,20 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
               <div class="spec-item">
                 <strong>Visual States</strong>
                 <ul>
-                  <li>Default: Gray background with subtle border</li>
-                  <li>Active: Primary color with bottom border</li>
-                  <li>Hover: Light background highlight</li>
+                  <li>Default: Transparent background with secondary text</li>
+                  <li>Active (Default): Dark blue (#164670) background with white text</li>
+                  <li>Active (Underlined): Dark blue (#164670) text with matching underline</li>
+                  <li>Hover: Light background highlight or subtle underline</li>
                   <li>Disabled: Muted colors with reduced opacity</li>
+                </ul>
+              </div>
+              <div class="spec-item">
+                <strong>Tab Variants</strong>
+                <ul>
+                  <li>Default: Rounded tabs with background colors</li>
+                  <li>Underlined: Clean tabs with bottom border indication</li>
+                  <li>Scrollable: Horizontal scrolling for many tabs</li>
+                  <li>Both variants support hover and active states</li>
                 </ul>
               </div>
             </div>
@@ -419,7 +429,8 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
               <div class="spec-item">
                 <strong>Design Tokens Used</strong>
                 <ul>
-                  <li>Primary Color: var(--primary-color)</li>
+                  <li>Primary 900: #164670 (selected state background and underline)</li>
+                  <li>White: #ffffff (selected state text)</li>
                   <li>Surface Colors: var(--surface-overlay), var(--surface-border)</li>
                   <li>Text Colors: var(--text-color), var(--text-color-secondary)</li>
                   <li>Hover State: var(--surface-hover)</li>
