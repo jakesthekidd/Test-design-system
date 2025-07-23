@@ -848,16 +848,59 @@ import &#123; FormsModule &#125; from '&#64;angular/forms';
       border-color: var(--red-500) !important;
     }
 
+    /* Float Label Styles */
+    .input-wrapper.float-label {
+      position: relative;
+      margin-top: 1rem;
+    }
+
+    .float-label-text {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Roboto', sans-serif;
+      font-size: 0.875rem;
+      color: var(--text-color-secondary);
+      pointer-events: none;
+      transition: all 0.2s ease-in-out;
+      background: var(--surface-overlay);
+      padding: 0 0.25rem;
+      z-index: 1;
+    }
+
+    .input-wrapper.float-label input:focus ~ .float-label-text,
+    .input-wrapper.float-label input:not(:placeholder-shown) ~ .float-label-text {
+      top: 0;
+      transform: translateY(-50%);
+      font-size: 0.75rem;
+      color: var(--theme-primary-color);
+      font-weight: 500;
+    }
+
+    .input-wrapper.float-label input:focus {
+      border-color: var(--theme-primary-color);
+      box-shadow: 0 0 0 0.2rem rgba(36, 116, 187, 0.25);
+    }
+
+    .input-wrapper.float-label input.ng-invalid:not(:placeholder-shown) ~ .float-label-text {
+      color: var(--red-500);
+    }
+
+    .input-wrapper.float-label input.ng-invalid:not(:placeholder-shown) {
+      border-color: var(--red-500);
+    }
+
     /* Responsive Design */
     @media (max-width: 768px) {
       .input-group {
         grid-template-columns: 1fr;
       }
-      
+
       .form-actions {
         flex-direction: column;
       }
-      
+
       .design-specs {
         grid-template-columns: 1fr;
       }
