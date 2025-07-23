@@ -61,6 +61,13 @@ export class NavigationService {
           description: 'Navigation component for moving between work items with dropdown history',
           route: '/components/prev-next-button',
           tags: ['navigation', 'workflow', 'history', 'dropdown', 'wfai']
+        },
+        {
+          id: 'wfai-approved-container',
+          name: 'WFAI Approved Container',
+          description: 'Hierarchical container for document approval workflows with nested panels',
+          route: '/components/wfai-approved-container',
+          tags: ['container', 'approval', 'workflow', 'nested', 'documents', 'wfai']
         }
       ]
     },
