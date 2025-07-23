@@ -20,8 +20,8 @@ import { ButtonModule } from 'primeng/button';
       <div class="component-header">
         <h1>Input Text</h1>
         <p class="component-description">
-          Text input field with float label functionality using PrimeNG's FloatLabel component. 
-          Provides a clean, modern interface for text input with accessible labeling.
+          Text input field with PrimeNG styling and accessible labeling.
+          Provides a clean, modern interface for text input with proper label association and form integration.
         </p>
       </div>
 
