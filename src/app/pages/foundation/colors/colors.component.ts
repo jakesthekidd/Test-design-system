@@ -150,7 +150,7 @@ import { TabViewModule } from 'primeng/tabview';
             <div class="code-example">
               <h4>In Angular Component Styles</h4>
               <div class="code-block">
-                <pre><code>@Component({{ '{' }}
+                <pre><code>&#64;Component({{ '{' }}
   // ...
   styles: [\`
     .component {{ '{' }}
