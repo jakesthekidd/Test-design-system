@@ -358,6 +358,19 @@ import &#123; FormsModule &#125; from '&#64;angular/forms';
   &#125;
 &#125;</code></pre>
 
+            <h3>Float Label Usage</h3>
+            <pre><code>&lt;div class="input-wrapper float-label"&gt;
+  &lt;input
+    pInputText
+    id="floatInput"
+    [(ngModel)]="value"
+    autocomplete="off"
+    tabindex="0"
+    placeholder=" "
+  /&gt;
+  &lt;label for="floatInput" class="float-label-text"&gt;Label Text&lt;/label&gt;
+&lt;/div&gt;</code></pre>
+
             <h3>Form Usage</h3>
             <pre><code>&lt;form&gt;
   &lt;div class="form-field"&gt;
