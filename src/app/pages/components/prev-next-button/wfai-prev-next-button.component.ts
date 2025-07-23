@@ -148,7 +148,7 @@ export interface WorkItem {
       flex: 1;
     }
 
-    .next-button:hover:not(.disabled) {
+    .next-button:hover:not(.disabled):not(.dropdown-hover) {
       background: var(--surface-200, #F3F5F7);
     }
 
