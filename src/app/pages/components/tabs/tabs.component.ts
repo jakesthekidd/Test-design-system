@@ -678,45 +678,46 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
 
     /* Underlined Tabs Styling - Simple Variant */
     :host ::ng-deep .underlined-tabs .p-tabview .p-tabview-nav {
-      background: transparent;
-      border: none;
-      border-bottom: 1px solid var(--surface-border);
-      border-radius: 0;
+      background: transparent !important;
+      border: none !important;
+      border-bottom: 1px solid var(--surface-border) !important;
+      border-radius: 0 !important;
     }
 
     :host ::ng-deep .underlined-tabs .p-tabview .p-tabview-nav li {
-      margin-right: 0;
-      margin-bottom: -1px;
+      margin-right: 0 !important;
+      margin-bottom: -1px !important;
     }
 
     :host ::ng-deep .underlined-tabs .p-tabview .p-tabview-nav li .p-tabview-nav-link {
-      background: transparent;
-      border: none;
-      border-bottom: 2px solid transparent;
-      color: var(--text-color-secondary);
-      padding: 12px 16px;
-      font-size: 14px;
-      font-weight: 500;
-      border-radius: 0;
-      transition: all 0.2s ease;
+      background: transparent !important;
+      border: none !important;
+      border-bottom: 2px solid transparent !important;
+      color: var(--text-color-secondary) !important;
+      padding: 12px 16px !important;
+      font-size: 14px !important;
+      font-weight: 500 !important;
+      border-radius: 0 !important;
+      transition: all 0.2s ease !important;
     }
 
     :host ::ng-deep .underlined-tabs .p-tabview .p-tabview-nav li .p-tabview-nav-link:hover {
-      background: transparent;
-      color: var(--text-color);
-      border-bottom-color: var(--surface-border);
+      background: transparent !important;
+      color: var(--text-color) !important;
+      border-bottom-color: var(--surface-border) !important;
     }
 
     :host ::ng-deep .underlined-tabs .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
-      background: transparent;
-      color: #164670; /* Primary 900 - darker blue */
-      border-bottom: 2px solid #164670; /* Primary 900 underline */
+      background: transparent !important;
+      color: #164670 !important; /* Primary 900 - darker blue */
+      border-bottom: 2px solid #164670 !important; /* Primary 900 underline */
+      font-weight: 600 !important;
     }
 
     :host ::ng-deep .underlined-tabs .p-tabview .p-tabview-panels {
-      background: transparent;
-      border: none;
-      padding: 1.5rem 0;
+      background: transparent !important;
+      border: none !important;
+      padding: 1.5rem 0 !important;
     }
 
     /* Scrollable tabs styling */
