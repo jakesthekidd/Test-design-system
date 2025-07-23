@@ -982,4 +982,8 @@ export class AccordionDocComponent {
       (this.settings as any)[key] = true;
     });
   }
+
+  getCurrentDate(): string {
+    return new Date().toLocaleDateString();
+  }
 }
