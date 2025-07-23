@@ -83,7 +83,54 @@ export interface DocumentItem {
                           <div class="document-table-container">
                             <table class="document-table">
                               <tbody>
-                                <tr>
+                                <tr *ngIf="doc.id === 'invoice'">
+                                  <td class="field-label">Total</td>
+                                  <td class="field-expected">
+                                    <div class="field-value-with-range">
+                                      <span class="main-value">$900</span>
+                                      <div class="range-text">
+                                        <span class="range-label">Range:</span>
+                                        <span class="range-value">$800 -$900</span>
+                                      </div>
+                                    </div>
+                                  </td>
+                                  <td class="field-evaluated">
+                                    <div class="evaluated-cell">
+                                      <span>$900</span>
+                                      <i class="fa-solid fa-circle-check check-icon"></i>
+                                    </div>
+                                  </td>
+                                </tr>
+                                <tr *ngIf="doc.id === 'invoice'">
+                                  <td class="field-label">Carrier</td>
+                                  <td class="field-expected">Swift</td>
+                                  <td class="field-evaluated">
+                                    <div class="evaluated-cell">
+                                      <span>Swift</span>
+                                      <i class="fa-solid fa-circle-check check-icon"></i>
+                                    </div>
+                                  </td>
+                                </tr>
+                                <tr *ngIf="doc.id === 'invoice'">
+                                  <td class="field-label">Total</td>
+                                  <td class="field-expected">RTS</td>
+                                  <td class="field-evaluated">
+                                    <div class="evaluated-cell">
+                                      <span>RTS</span>
+                                      <i class="fa-solid fa-circle-check check-icon"></i>
+                                    </div>
+                                  </td>
+                                </tr>
+                                <tr *ngIf="doc.id === 'invoice'">
+                                  <td class="field-label">Total</td>
+                                  <td class="field-expected"></td>
+                                  <td class="field-evaluated">
+                                    <div class="evaluated-cell-invalid">
+                                      <i class="fa-solid fa-not-equal invalid-icon"></i>
+                                    </div>
+                                  </td>
+                                </tr>
+                                <tr *ngIf="doc.id !== 'invoice'">
                                   <td class="field-label">{{ doc.data.field }}</td>
                                   <td class="field-expected">{{ doc.data.expected }}</td>
                                   <td class="field-evaluated">
@@ -848,19 +895,9 @@ export class WFAIApprovedContainerDocComponent {
   
   documents: DocumentItem[] = [
     {
-      id: 'fuel-receipt',
-      title: 'Fuel Receipt',
-      collapsed: false,
-      data: {
-        field: 'Total',
-        expected: '$250.00',
-        evaluated: '$250.00'
-      }
-    },
-    {
       id: 'invoice',
       title: 'Invoice',
-      collapsed: true,
+      collapsed: false,
       data: {
         field: 'Total',
         expected: '$900',
@@ -875,6 +912,16 @@ export class WFAIApprovedContainerDocComponent {
         field: 'BOL #',
         expected: '987654321',
         evaluated: '987654321'
+      }
+    },
+    {
+      id: 'fuel-receipt',
+      title: 'Fuel Receipt',
+      collapsed: true,
+      data: {
+        field: 'Total',
+        expected: '$250.00',
+        evaluated: '$250.00'
       }
     }
   ];
