@@ -336,7 +336,7 @@ export interface WorkItem {
     }
 
     .next-item-text {
-      color: var(--blue-500, #2474BB);
+      color: #2474BB !important;
       font-family: 'Roboto', sans-serif;
       font-size: 12px;
       font-weight: 500;
@@ -344,7 +344,7 @@ export interface WorkItem {
     }
 
     .next-arrow {
-      color: var(--blue-500, #2474BB);
+      color: #2474BB !important;
       font-size: 12px;
       font-weight: 900;
     }
