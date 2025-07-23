@@ -576,7 +576,7 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
     }
 
     .document-title-active {
-      color: #164670;
+      color: #2474BB;
     }
 
     .document-count {
@@ -832,11 +832,11 @@ export class WFAIApprovedContainerDocComponent {
     {
       id: 'fuel-receipt',
       title: 'Fuel Receipt',
-      collapsed: true,
+      collapsed: false,
       data: {
-        field: 'BOL #',
-        expected: '987654321',
-        evaluated: '987654321'
+        field: 'Total',
+        expected: '$250.00',
+        evaluated: '$250.00'
       }
     },
     {
@@ -844,15 +844,15 @@ export class WFAIApprovedContainerDocComponent {
       title: 'Invoice',
       collapsed: true,
       data: {
-        field: 'Invoice #',
-        expected: '987654321',
-        evaluated: '987654321'
+        field: 'Total',
+        expected: '$900',
+        evaluated: '$900'
       }
     },
     {
       id: 'pod',
       title: 'POD',
-      collapsed: false,
+      collapsed: true,
       data: {
         field: 'BOL #',
         expected: '987654321',
