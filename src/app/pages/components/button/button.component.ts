@@ -258,8 +258,8 @@ import { FigmaButtonComponent } from '../../../figma-button.component';
               <div class="spec-item">
                 <h4>Colors</h4>
                 <ul>
-                  <li>Primary: #2474BB</li>
-                  <li>Primary Hover: #1D5D96</li>
+                  <li>Primary: var(--theme-primary-color)</li>
+                  <li>Primary Hover: var(--theme-primary-dark-color)</li>
                   <li>Primary Active: #164670</li>
                   <li>Text: #FFFFFF</li>
                 </ul>
