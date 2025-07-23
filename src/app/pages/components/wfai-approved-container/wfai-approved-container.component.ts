@@ -553,6 +553,15 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
       background: var(--surface-hover) !important;
     }
 
+    /* Prevent hover background on main container when expanded */
+    :host ::ng-deep .wfai-approved-container .p-panel[data-collapsed="false"] .p-panel-header {
+      background: var(--surface-overlay) !important;
+    }
+
+    :host ::ng-deep .wfai-approved-container .p-panel[data-collapsed="false"] .wfai-header-content:hover {
+      background: var(--surface-overlay) !important;
+    }
+
     .header-left,
     .document-header-left {
       display: flex;
