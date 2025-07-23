@@ -172,6 +172,24 @@
   --theme-highlight-background: #E9F1F8;
   --theme-highlight-color: #2068A8;
 
+  /* Common UI Colors */
+  --color-white: #ffffff;
+  --color-transparent: transparent;
+
+  /* UI State Colors */
+  --secondary-hover: #475569;
+  --secondary-active: #334155;
+
+  /* Surface Variants */
+  --surface-zebra: #fcfcfc;
+  --surface-overlay-alpha: rgba(255, 255, 255, 0.9);
+
+  /* Effects */
+  --shadow-subtle: rgba(0, 0, 0, 0.1);
+  --shadow-medium: rgba(0, 0, 0, 0.15);
+  --ripple-light: rgba(255, 255, 255, 0.3);
+  --ripple-dark: rgba(0, 0, 0, 0.1);
+
   /* Text Colors */
   --global-text-color: var(--shade-500);
   --global-text-secondary-color: var(--shade-600);
