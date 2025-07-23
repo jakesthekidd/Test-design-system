@@ -209,10 +209,10 @@ import { ButtonModule } from 'primeng/button';
             <h3>Settings Accordion</h3>
             <div class="example-container">
               <div class="accordion-container">
-                <p-panel header="Account Settings" [toggleable]="true" [collapsed]="settings.account">
+                <p-panel header="Account Settings" [toggleable]="true" [collapsed]="settings.account" (onAfterToggle)="settings.account = $event.collapsed">
                   <ng-template pTemplate="header">
                     <span class="panel-header-content">
-                      <i class="panel-toggle-icon fa-solid" 
+                      <i class="panel-toggle-icon fa-solid"
                          [class.fa-angle-right]="settings.account"
                          [class.fa-angle-down]="!settings.account"></i>
                       <span class="panel-title">Account Settings</span>
@@ -229,10 +229,10 @@ import { ButtonModule } from 'primeng/button';
                   </div>
                 </p-panel>
 
-                <p-panel header="Privacy Settings" [toggleable]="true" [collapsed]="settings.privacy">
+                <p-panel header="Privacy Settings" [toggleable]="true" [collapsed]="settings.privacy" (onAfterToggle)="settings.privacy = $event.collapsed">
                   <ng-template pTemplate="header">
                     <span class="panel-header-content">
-                      <i class="panel-toggle-icon fa-solid" 
+                      <i class="panel-toggle-icon fa-solid"
                          [class.fa-angle-right]="settings.privacy"
                          [class.fa-angle-down]="!settings.privacy"></i>
                       <span class="panel-title">Privacy Settings</span>
@@ -257,10 +257,10 @@ import { ButtonModule } from 'primeng/button';
                   </div>
                 </p-panel>
 
-                <p-panel header="Notification Settings" [toggleable]="true" [collapsed]="settings.notifications">
+                <p-panel header="Notification Settings" [toggleable]="true" [collapsed]="settings.notifications" (onAfterToggle)="settings.notifications = $event.collapsed">
                   <ng-template pTemplate="header">
                     <span class="panel-header-content">
-                      <i class="panel-toggle-icon fa-solid" 
+                      <i class="panel-toggle-icon fa-solid"
                          [class.fa-angle-right]="settings.notifications"
                          [class.fa-angle-down]="!settings.notifications"></i>
                       <span class="panel-title">Notification Settings</span>
