@@ -27,7 +27,7 @@ import { TabViewModule } from 'primeng/tabview';
                 <div class="color-swatch" style="background-color: var(--theme-primary-light-color)"></div>
                 <div class="color-info">
                   <span class="color-name">Primary Light</span>
-                  <span class="color-value">#D3E3F1</span>
+                  <span class="color-value">{{ getActualColorValue('--theme-primary-light-color') || '#D3E3F1' }}</span>
                   <span class="color-var">--theme-primary-light-color</span>
                 </div>
               </div>
