@@ -607,7 +607,8 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
       border-radius: 4px;
       border: 1px solid #E2E6EB;
       margin-bottom: 0;
-      padding: 16px;
+      padding: 0; /* Remove padding since we'll add it to content */
+      min-height: 44px;
     }
 
     :host ::ng-deep .document-panel .p-panel[data-collapsed="true"] .p-panel-header {
