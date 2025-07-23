@@ -605,6 +605,16 @@ import &#123; FormsModule &#125; from '&#64;angular/forms';
                 </ul>
               </div>
               <div class="spec-item">
+                <strong>Float Labels</strong>
+                <ul>
+                  <li>Label starts inside input field</li>
+                  <li>Animates to top when focused or filled</li>
+                  <li>Maintains accessibility with for/id</li>
+                  <li>Smooth transition animations</li>
+                  <li>Space-efficient design</li>
+                </ul>
+              </div>
+              <div class="spec-item">
                 <strong>Input States</strong>
                 <ul>
                   <li>Default: Clean border, placeholder text visible</li>
