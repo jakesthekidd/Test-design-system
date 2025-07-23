@@ -587,18 +587,13 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
     }
 
     .separator {
-      width: 100%;
-      height: 1px;
-      background: #F3F5F7;
-      margin: 0;
+      display: none; /* Remove divider between header and document list */
     }
 
     .document-panels {
       display: flex;
       flex-direction: column;
-      gap: 1px;
-      background: #F3F5F7;
-      padding: 1px 0;
+      gap: 8px; /* 8px vertical spacing between panels */
     }
 
     .document-panel {
