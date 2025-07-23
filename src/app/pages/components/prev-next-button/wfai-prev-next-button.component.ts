@@ -119,7 +119,7 @@ export interface WorkItem {
       align-items: center;
       height: 100%;
       padding: 10px;
-      background: var(--blue-500, #2474BB);
+      background: #2474BB !important;
       border-radius: 4px 0px 0px 4px;
       border: 1px solid #FFF;
       border-right: none;
