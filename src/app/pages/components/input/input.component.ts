@@ -660,8 +660,23 @@ import &#123; FormsModule &#125; from '&#64;angular/forms';
       font-weight: 600;
     }
 
-    /* Float Label Customizations */
-    p-floatlabel {
+    /* Input Wrapper Styles */
+    .input-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      width: 100%;
+    }
+
+    .input-label {
+      font-family: 'Roboto', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-color);
+      margin: 0;
+    }
+
+    .input-wrapper input {
       width: 100%;
     }
 
