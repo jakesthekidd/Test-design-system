@@ -344,7 +344,7 @@ export interface WorkItem {
     }
 
     .next-arrow {
-      color: #2474BB !important;
+      color: var(--theme-primary-color, #2474BB) !important;
       font-size: 12px;
       font-weight: 900;
     }
