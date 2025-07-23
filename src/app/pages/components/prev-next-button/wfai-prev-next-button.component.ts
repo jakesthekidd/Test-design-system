@@ -417,6 +417,10 @@ export class WfaiPrevNextButtonComponent {
   @ViewChild('previousPanel') previousPanel!: OverlayPanel;
   @ViewChild('nextPanel') nextPanel!: OverlayPanel;
 
+  // Hover state tracking
+  previousDropdownHover = false;
+  nextDropdownHover = false;
+
   trackByItemId(index: number, item: WorkItem): string {
     return item.id;
   }
