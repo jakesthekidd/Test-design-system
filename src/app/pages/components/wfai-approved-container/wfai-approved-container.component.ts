@@ -517,12 +517,22 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
     }
 
     /* Header content layout */
-    .wfai-header-content,
-    .document-header-content {
+    .wfai-header-content {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 0; /* Remove extra padding since panel header already has 16px */
+      cursor: pointer;
+      user-select: none;
+      width: 100%;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .document-header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px; /* Add 16px padding to document headers */
       cursor: pointer;
       user-select: none;
       width: 100%;
