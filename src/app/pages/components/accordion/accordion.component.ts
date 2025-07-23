@@ -51,7 +51,7 @@ import { ButtonModule } from 'primeng/button';
                   </div>
                 </p-panel>
 
-                <p-panel header="Technical Specifications" [toggleable]="true" [collapsed]="panels.technical" (onAfterToggle)="onPanelToggle('technical', $event)">
+                <p-panel header="Technical Specifications" [toggleable]="true" [collapsed]="panels.technical" (onAfterToggle)="onPanelToggle('technical', $event)" [attr.data-collapsed]="panels.technical">
                   <ng-template pTemplate="header">
                     <span class="panel-header-content" (click)="togglePanel('technical')">
                       <i class="panel-toggle-icon fa-solid"
@@ -83,7 +83,7 @@ import { ButtonModule } from 'primeng/button';
                   </div>
                 </p-panel>
 
-                <p-panel header="Support & Warranty" [toggleable]="true" [collapsed]="panels.support" (onAfterToggle)="onPanelToggle('support', $event)">
+                <p-panel header="Support & Warranty" [toggleable]="true" [collapsed]="panels.support" (onAfterToggle)="onPanelToggle('support', $event)" [attr.data-collapsed]="panels.support">
                   <ng-template pTemplate="header">
                     <span class="panel-header-content" (click)="togglePanel('support')">
                       <i class="panel-toggle-icon fa-solid"
@@ -120,7 +120,7 @@ import { ButtonModule } from 'primeng/button';
             <h3>FAQ Accordion</h3>
             <div class="example-container">
               <div class="accordion-container">
-                <p-panel header="How do I get started?" [toggleable]="true" [collapsed]="faq.question1" (onAfterToggle)="onFaqToggle('question1', $event)">
+                <p-panel header="How do I get started?" [toggleable]="true" [collapsed]="faq.question1" (onAfterToggle)="onFaqToggle('question1', $event)" [attr.data-collapsed]="faq.question1">
                   <ng-template pTemplate="header">
                     <span class="panel-header-content" (click)="toggleFaq('question1')">
                       <i class="panel-toggle-icon fa-solid"
@@ -140,7 +140,7 @@ import { ButtonModule } from 'primeng/button';
                   </div>
                 </p-panel>
 
-                <p-panel header="What payment methods do you accept?" [toggleable]="true" [collapsed]="faq.question2" (onAfterToggle)="onFaqToggle('question2', $event)">
+                <p-panel header="What payment methods do you accept?" [toggleable]="true" [collapsed]="faq.question2" (onAfterToggle)="onFaqToggle('question2', $event)" [attr.data-collapsed]="faq.question2">
                   <ng-template pTemplate="header">
                     <span class="panel-header-content" (click)="toggleFaq('question2')">
                       <i class="panel-toggle-icon fa-solid"
@@ -161,7 +161,7 @@ import { ButtonModule } from 'primeng/button';
                   </div>
                 </p-panel>
 
-                <p-panel header="Can I cancel my subscription?" [toggleable]="true" [collapsed]="faq.question3" (onAfterToggle)="onFaqToggle('question3', $event)">
+                <p-panel header="Can I cancel my subscription?" [toggleable]="true" [collapsed]="faq.question3" (onAfterToggle)="onFaqToggle('question3', $event)" [attr.data-collapsed]="faq.question3">
                   <ng-template pTemplate="header">
                     <span class="panel-header-content" (click)="toggleFaq('question3')">
                       <i class="panel-toggle-icon fa-solid"
@@ -182,7 +182,7 @@ import { ButtonModule } from 'primeng/button';
                   </div>
                 </p-panel>
 
-                <p-panel header="Is there a mobile app?" [toggleable]="true" [collapsed]="faq.question4" (onAfterToggle)="onFaqToggle('question4', $event)">
+                <p-panel header="Is there a mobile app?" [toggleable]="true" [collapsed]="faq.question4" (onAfterToggle)="onFaqToggle('question4', $event)" [attr.data-collapsed]="faq.question4">
                   <ng-template pTemplate="header">
                     <span class="panel-header-content" (click)="toggleFaq('question4')">
                       <i class="panel-toggle-icon fa-solid"
@@ -209,7 +209,7 @@ import { ButtonModule } from 'primeng/button';
             <h3>Settings Accordion</h3>
             <div class="example-container">
               <div class="accordion-container">
-                <p-panel header="Account Settings" [toggleable]="true" [collapsed]="settings.account" (onAfterToggle)="onSettingsToggle('account', $event)">
+                <p-panel header="Account Settings" [toggleable]="true" [collapsed]="settings.account" (onAfterToggle)="onSettingsToggle('account', $event)" [attr.data-collapsed]="settings.account">
                   <ng-template pTemplate="header">
                     <span class="panel-header-content" (click)="toggleSettings('account')">
                       <i class="panel-toggle-icon fa-solid"
@@ -229,7 +229,7 @@ import { ButtonModule } from 'primeng/button';
                   </div>
                 </p-panel>
 
-                <p-panel header="Privacy Settings" [toggleable]="true" [collapsed]="settings.privacy" (onAfterToggle)="onSettingsToggle('privacy', $event)">
+                <p-panel header="Privacy Settings" [toggleable]="true" [collapsed]="settings.privacy" (onAfterToggle)="onSettingsToggle('privacy', $event)" [attr.data-collapsed]="settings.privacy">
                   <ng-template pTemplate="header">
                     <span class="panel-header-content" (click)="toggleSettings('privacy')">
                       <i class="panel-toggle-icon fa-solid"
@@ -257,7 +257,7 @@ import { ButtonModule } from 'primeng/button';
                   </div>
                 </p-panel>
 
-                <p-panel header="Notification Settings" [toggleable]="true" [collapsed]="settings.notifications" (onAfterToggle)="onSettingsToggle('notifications', $event)">
+                <p-panel header="Notification Settings" [toggleable]="true" [collapsed]="settings.notifications" (onAfterToggle)="onSettingsToggle('notifications', $event)" [attr.data-collapsed]="settings.notifications">
                   <ng-template pTemplate="header">
                     <span class="panel-header-content" (click)="toggleSettings('notifications')">
                       <i class="panel-toggle-icon fa-solid"
