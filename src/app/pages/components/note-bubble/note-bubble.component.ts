@@ -14,6 +14,168 @@ export interface NoteBubbleData {
   isOwnMessage: boolean;
 }
 
+// Standalone reusable component
+@Component({
+  selector: 'app-note-bubble',
+  standalone: true,
+  imports: [CommonModule, AvatarModule, TooltipModule],
+  template: `
+    <div class="bubble-container" 
+         [class.own-message]="noteData.isOwnMessage" 
+         [class.other-message]="!noteData.isOwnMessage">
+      <div class="bubble-content">
+        <div class="bubble-header">
+          <p-avatar 
+            [label]="noteData.authorInitials" 
+            [styleClass]="noteData.isOwnMessage ? 'bubble-avatar own-avatar' : 'bubble-avatar other-avatar'">
+          </p-avatar>
+          <div class="message-details">
+            <div class="header-row">
+              <span class="author-name">{{ noteData.authorName }}</span>
+              <button class="menu-button" pTooltip="Message options" (click)="onMenuClick()">
+                <i class="fa-solid fa-ellipsis-vertical"></i>
+              </button>
+            </div>
+            <div class="message-text">{{ noteData.content }}</div>
+            <div class="timestamp-container" 
+                 [class.own-timestamp]="noteData.isOwnMessage"
+                 [class.other-timestamp]="!noteData.isOwnMessage">
+              <span class="timestamp">{{ noteData.timestamp }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `,
+  styles: [`
+    .bubble-container {
+      display: flex;
+      padding: 16px;
+      align-items: flex-start;
+      gap: 8px;
+      border-radius: 8px;
+      border: 3px solid;
+      background: var(--surface-overlay);
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .bubble-container.other-message {
+      border-color: #EFF2F4;
+      border-radius: 8px 8px 8px 0px;
+    }
+
+    .bubble-container.own-message {
+      border-color: #D3E3F1;
+      border-radius: 8px 8px 0px 8px;
+    }
+
+    .bubble-content {
+      flex: 1;
+    }
+
+    .bubble-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+    }
+
+    :host ::ng-deep .bubble-avatar {
+      width: 24px !important;
+      height: 24px !important;
+      border: 1px solid #FFF;
+      font-size: 10px !important;
+      font-weight: 500 !important;
+    }
+
+    :host ::ng-deep .other-avatar {
+      background-color: #A9B3C2 !important;
+      color: #FFF !important;
+    }
+
+    :host ::ng-deep .own-avatar {
+      background-color: #2474BB !important;
+      color: #FFF !important;
+    }
+
+    .message-details {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+
+    .header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .author-name {
+      color: rgba(58, 58, 58, 1);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .menu-button {
+      background: none;
+      border: none;
+      color: #2068A8;
+      font-size: 16px;
+      cursor: pointer;
+      padding: 2px;
+      border-radius: 2px;
+      transition: background-color 0.2s ease;
+    }
+
+    .menu-button:hover {
+      background-color: var(--surface-hover);
+    }
+
+    .message-text {
+      color: rgba(58, 58, 58, 1);
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.4;
+    }
+
+    .timestamp-container {
+      display: flex;
+      padding: 4px 8px;
+      border-radius: 4px;
+      width: fit-content;
+    }
+
+    .timestamp-container.other-timestamp {
+      background: #EFF2F4;
+    }
+
+    .timestamp-container.own-timestamp {
+      background: #E9F1F8;
+    }
+
+    .timestamp {
+      color: rgba(58, 58, 58, 1);
+      font-size: 13px;
+      font-weight: 300;
+    }
+  `]
+})
+export class NoteBubbleComponent {
+  @Input() noteData!: NoteBubbleData;
+  @Output() menuClick = new EventEmitter<NoteBubbleData>();
+  @Output() noteClick = new EventEmitter<NoteBubbleData>();
+
+  onMenuClick(): void {
+    this.menuClick.emit(this.noteData);
+  }
+
+  onNoteClick(): void {
+    this.noteClick.emit(this.noteData);
+  }
+}
+
 @Component({
   selector: 'app-note-bubble-doc',
   standalone: true,
@@ -49,8 +211,8 @@ export interface NoteBubbleData {
                   <div class="bubble-container other-message">
                     <div class="bubble-content">
                       <div class="bubble-header">
-                        <p-avatar
-                          label="JK"
+                        <p-avatar 
+                          label="JK" 
                           styleClass="bubble-avatar other-avatar">
                         </p-avatar>
                         <div class="message-details">
@@ -77,8 +239,8 @@ export interface NoteBubbleData {
                   <div class="bubble-container own-message">
                     <div class="bubble-content">
                       <div class="bubble-header">
-                        <p-avatar
-                          label="JK"
+                        <p-avatar 
+                          label="JK" 
                           styleClass="bubble-avatar own-avatar">
                         </p-avatar>
                         <div class="message-details">
@@ -108,7 +270,7 @@ export interface NoteBubbleData {
                 <div class="note-bubble" 
                      *ngFor="let note of sampleNotes; let i = index"
                      [class.own-message]="note.isOwnMessage">
-                  <app-note-bubble [noteData]="note"></app-note-bubble>
+                  <app-note-bubble [noteData]="note" (menuClick)="onMenuClick($event)"></app-note-bubble>
                 </div>
               </div>
             </div>
@@ -146,21 +308,20 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
       &lt;div class="bubble-header"&gt;
         &lt;p-avatar 
           [label]="authorInitials" 
-          [styleClass]="isOwnMessage ? 'bubble-avatar own-avatar' : 'bubble-avatar other-avatar'"
-          size="small"&gt;
+          [styleClass]="isOwnMessage ? 'bubble-avatar own-avatar' : 'bubble-avatar other-avatar'"&gt;
         &lt;/p-avatar&gt;
         &lt;div class="message-details"&gt;
           &lt;div class="header-row"&gt;
-            &lt;span class="author-name"&gt;&#123;&#123; noteData.authorName &#125;&#125;&lt;/span&gt;
+            &lt;span class="author-name"&gt;&#123;&#123; authorName &#125;&#125;&lt;/span&gt;
             &lt;button class="menu-button" pTooltip="Message options"&gt;
               &lt;i class="fa-solid fa-ellipsis-vertical"&gt;&lt;/i&gt;
             &lt;/button&gt;
           &lt;/div&gt;
-          &lt;div class="message-text"&gt;&#123;&#123; noteData.content &#125;&#125;&lt;/div&gt;
+          &lt;div class="message-text"&gt;&#123;&#123; content &#125;&#125;&lt;/div&gt;
           &lt;div class="timestamp-container" 
                [class.own-timestamp]="isOwnMessage"
                [class.other-timestamp]="!isOwnMessage"&gt;
-            &lt;span class="timestamp"&gt;&#123;&#123; noteData.timestamp &#125;&#125;&lt;/span&gt;
+            &lt;span class="timestamp"&gt;&#123;&#123; timestamp &#125;&#125;&lt;/span&gt;
           &lt;/div&gt;
         &lt;/div&gt;
       &lt;/div&gt;
@@ -283,12 +444,12 @@ export class NoteBubbleComponent &#123;
                 </thead>
                 <tbody>
                   <tr>
-                    <td>onMenuClick</td>
+                    <td>menuClick</td>
                     <td>noteData: NoteBubbleData</td>
                     <td>Emitted when the three-dot menu is clicked</td>
                   </tr>
                   <tr>
-                    <td>onNoteClick</td>
+                    <td>noteClick</td>
                     <td>noteData: NoteBubbleData</td>
                     <td>Emitted when the note bubble is clicked (for future expand functionality)</td>
                   </tr>
@@ -373,36 +534,6 @@ export class NoteBubbleComponent &#123;
         </p-tabPanel>
       </p-tabView>
     </div>
-
-    <!-- Standalone Note Bubble Component -->
-    <ng-template #noteBubbleTemplate let-noteData="noteData">
-      <div class="bubble-container" 
-           [class.own-message]="noteData.isOwnMessage" 
-           [class.other-message]="!noteData.isOwnMessage">
-        <div class="bubble-content">
-          <div class="bubble-header">
-            <p-avatar 
-              [label]="noteData.authorInitials" 
-              [styleClass]="noteData.isOwnMessage ? 'bubble-avatar own-avatar' : 'bubble-avatar other-avatar'">
-            </p-avatar>
-            <div class="message-details">
-              <div class="header-row">
-                <span class="author-name">{{ noteData.authorName }}</span>
-                <button class="menu-button" pTooltip="Message options" (click)="onMenuClick(noteData)">
-                  <i class="fa-solid fa-ellipsis-vertical"></i>
-                </button>
-              </div>
-              <div class="message-text">{{ noteData.content }}</div>
-              <div class="timestamp-container" 
-                   [class.own-timestamp]="noteData.isOwnMessage"
-                   [class.other-timestamp]="!noteData.isOwnMessage">
-                <span class="timestamp">{{ noteData.timestamp }}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </ng-template>
   `,
   styles: [`
     .component-doc {
@@ -729,168 +860,5 @@ export class NoteBubbleDocComponent {
   onMenuClick(noteData: NoteBubbleData): void {
     console.log('Menu clicked for note:', noteData);
     // Future: Show context menu with edit/delete options
-  }
-}
-
-// Standalone reusable component
-@Component({
-  selector: 'app-note-bubble',
-  standalone: true,
-  imports: [CommonModule, AvatarModule, TooltipModule],
-  template: `
-    <div class="bubble-container" 
-         [class.own-message]="noteData.isOwnMessage" 
-         [class.other-message]="!noteData.isOwnMessage">
-      <div class="bubble-content">
-        <div class="bubble-header">
-          <p-avatar 
-            [label]="noteData.authorInitials" 
-            [styleClass]="noteData.isOwnMessage ? 'bubble-avatar own-avatar' : 'bubble-avatar other-avatar'">
-          </p-avatar>
-          <div class="message-details">
-            <div class="header-row">
-              <span class="author-name">{{ noteData.authorName }}</span>
-              <button class="menu-button" pTooltip="Message options" (click)="onMenuClick()">
-                <i class="fa-solid fa-ellipsis-vertical"></i>
-              </button>
-            </div>
-            <div class="message-text">{{ noteData.content }}</div>
-            <div class="timestamp-container" 
-                 [class.own-timestamp]="noteData.isOwnMessage"
-                 [class.other-timestamp]="!noteData.isOwnMessage">
-              <span class="timestamp">{{ noteData.timestamp }}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  `,
-  styles: [`
-    /* Copy styles from main component */
-    .bubble-container {
-      display: flex;
-      padding: 16px;
-      align-items: flex-start;
-      gap: 8px;
-      border-radius: 8px;
-      border: 3px solid;
-      background: var(--surface-overlay);
-      font-family: 'Roboto', sans-serif;
-    }
-
-    .bubble-container.other-message {
-      border-color: #EFF2F4;
-      border-radius: 8px 8px 8px 0px;
-    }
-
-    .bubble-container.own-message {
-      border-color: #D3E3F1;
-      border-radius: 8px 8px 0px 8px;
-    }
-
-    .bubble-content {
-      flex: 1;
-    }
-
-    .bubble-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      width: 100%;
-    }
-
-    :host ::ng-deep .bubble-avatar {
-      width: 24px !important;
-      height: 24px !important;
-      border: 1px solid #FFF;
-      font-size: 10px !important;
-      font-weight: 500 !important;
-    }
-
-    :host ::ng-deep .other-avatar {
-      background-color: #A9B3C2 !important;
-      color: #FFF !important;
-    }
-
-    :host ::ng-deep .own-avatar {
-      background-color: #2474BB !important;
-      color: #FFF !important;
-    }
-
-    .message-details {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      flex: 1;
-    }
-
-    .header-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-    }
-
-    .author-name {
-      color: rgba(58, 58, 58, 1);
-      font-size: 14px;
-      font-weight: 500;
-    }
-
-    .menu-button {
-      background: none;
-      border: none;
-      color: #2068A8;
-      font-size: 16px;
-      cursor: pointer;
-      padding: 2px;
-      border-radius: 2px;
-      transition: background-color 0.2s ease;
-    }
-
-    .menu-button:hover {
-      background-color: var(--surface-hover);
-    }
-
-    .message-text {
-      color: rgba(58, 58, 58, 1);
-      font-size: 14px;
-      font-weight: 300;
-      line-height: 1.4;
-    }
-
-    .timestamp-container {
-      display: flex;
-      padding: 4px 8px;
-      border-radius: 4px;
-      width: fit-content;
-    }
-
-    .timestamp-container.other-timestamp {
-      background: #EFF2F4;
-    }
-
-    .timestamp-container.own-timestamp {
-      background: #E9F1F8;
-    }
-
-    .timestamp {
-      color: rgba(58, 58, 58, 1);
-      font-size: 13px;
-      font-weight: 300;
-    }
-  `]
-})
-export class NoteBubbleComponent {
-  @Input() noteData!: NoteBubbleData;
-  @Output() menuClick = new EventEmitter<NoteBubbleData>();
-  @Output() noteClick = new EventEmitter<NoteBubbleData>();
-
-  onMenuClick(): void {
-    this.menuClick.emit(this.noteData);
-  }
-
-  onNoteClick(): void {
-    this.noteClick.emit(this.noteData);
   }
 }
