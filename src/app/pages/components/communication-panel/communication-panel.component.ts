@@ -414,7 +414,7 @@ export class CommunicationPanelComponent implements OnInit, OnDestroy, OnChanges
   }
 
   ngAfterViewInit(): void {
-    // Component ready
+    this.setupIntersectionObserver();
   }
 
   ngOnDestroy(): void {
