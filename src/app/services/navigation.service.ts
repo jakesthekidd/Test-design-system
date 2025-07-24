@@ -176,6 +176,13 @@ export class NavigationService {
           description: 'Sticky header component for Message Center with filter tabs and action buttons',
           route: '/components/message-center-header',
           tags: ['header', 'tabs', 'filter', 'message-center', 'sticky', 'communication', 'navigation']
+        },
+        {
+          id: 'communication-panel',
+          name: 'Communication Panel',
+          description: 'Slide-up drawer panel with message feed and filtering for desktop Message Center',
+          route: '/components/communication-panel',
+          tags: ['panel', 'drawer', 'message-center', 'slide-up', 'communication', 'feed', 'desktop']
         }
       ]
     },
