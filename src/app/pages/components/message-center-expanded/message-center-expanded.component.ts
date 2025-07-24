@@ -1025,151 +1025,6 @@ export class MessageCenterExpandedComponent implements OnInit, OnDestroy, AfterV
   };
 }
 
-/**
- * Service to manage expanded window launching
- */
-export class MessageCenterExpandedService {
-  private expandedWindow: Window | null = null;
-
-  /**
-   * Opens the Message Center in an expanded window
-   */
-  openExpandedView(config: MessageCenterExpandedConfig): Promise<Window | null> {
-    return new Promise((resolve) => {
-      if (typeof window === 'undefined') {
-        resolve(null);
-        return;
-      }
-
-      // Calculate window dimensions (70% height, 40% width)
-      const screenWidth = window.screen.width;
-      const screenHeight = window.screen.height;
-      const windowWidth = Math.floor(screenWidth * 0.4);
-      const windowHeight = Math.floor(screenHeight * 0.7);
-
-      // Center the window
-      const left = Math.floor((screenWidth - windowWidth) / 2);
-      const top = Math.floor((screenHeight - windowHeight) / 2);
-
-      const windowFeatures = [
-        `width=${windowWidth}`,
-        `height=${windowHeight}`,
-        `left=${left}`,
-        `top=${top}`,
-        'resizable=yes',
-        'scrollbars=no',
-        'toolbar=no',
-        'menubar=no',
-        'location=no',
-        'status=no'
-      ].join(',');
-
-      // Create window content
-      const windowContent = this.generateWindowContent(config);
-
-      // Open the window
-      this.expandedWindow = window.open('', '_blank', windowFeatures);
-
-      if (this.expandedWindow) {
-        this.expandedWindow.document.write(windowContent);
-        this.expandedWindow.document.close();
-
-        // Set up window close handler
-        this.expandedWindow.addEventListener('beforeunload', () => {
-          this.expandedWindow = null;
-        });
-
-        // Focus the new window
-        this.expandedWindow.focus();
-      }
-
-      resolve(this.expandedWindow);
-    });
-  }
-
-  /**
-   * Closes the expanded window if open
-   */
-  closeExpandedView(): void {
-    if (this.expandedWindow && !this.expandedWindow.closed) {
-      this.expandedWindow.close();
-      this.expandedWindow = null;
-    }
-  }
-
-  /**
-   * Checks if expanded window is currently open
-   */
-  isExpandedViewOpen(): boolean {
-    return this.expandedWindow !== null && !this.expandedWindow.closed;
-  }
-
-  private generateWindowContent(config: MessageCenterExpandedConfig): string {
-    return `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Message Center</title>
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: 'Roboto', -apple-system, sans-serif;
-      background: #ffffff;
-      overflow: hidden;
-      height: 100vh;
-    }
-    
-    #app-root {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .loading-state {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      font-size: 18px;
-      color: #666;
-    }
-  </style>
-</head>
-<body>
-  <div id="app-root">
-    <div class="loading-state">
-      <i class="fas fa-spinner fa-spin" style="margin-right: 8px;"></i>
-      Loading Message Center...
-    </div>
-  </div>
-  
-  <script>
-    // This would be replaced with actual Angular bootstrap code in production
-    // For now, it's a placeholder for the expanded view implementation
-    console.log('Message Center Expanded View initialized');
-    console.log('Config:', ${JSON.stringify(config)});
-    
-    // Simulate loading complete
-    setTimeout(() => {
-      document.querySelector('.loading-state').innerHTML = 
-        '<p>Message Center Expanded View<br><small>Implementation pending Angular bootstrap</small></p>';
-    }, 1000);
-  </script>
-</body>
-</html>
-    `;
-  }
-}
-
 // Documentation Component
 @Component({
   selector: 'app-message-center-expanded-docs',
@@ -1206,82 +1061,13 @@ export class MessageCenterExpandedService {
       </div>
 
       <div class="docs-section">
-        <h2>Architecture Features</h2>
-        <div class="architecture-info">
-          <h3>Current Implementation:</h3>
-          <ul>
-            <li>Complete Message Center replication with all bubble components</li>
-            <li>Filter tabs with unread badge tracking</li>
-            <li>Proper message alignment (Notes: bidirectional, SMS/Email: right-aligned)</li>
-            <li>Custom scroll indicator matching design system</li>
-            <li>Intersection Observer for auto-read tracking</li>
-            <li>Browser window simulation with controls</li>
-          </ul>
-
-          <h3>Compose Architecture (Future-Ready):</h3>
-          <ul>
-            <li><strong>Conditional Rendering:</strong> <code>shouldShowComposeArea</code> flag for lazy loading</li>
-            <li><strong>Area Placeholder:</strong> Complete compose UI structure with disabled state</li>
-            <li><strong>Toolbar Ready:</strong> Rich text formatting buttons (Bold, Italic, Link)</li>
-            <li><strong>Input Area:</strong> Expandable text input with character counting</li>
-            <li><strong>Send Controls:</strong> Character limit display and send button</li>
-            <li><strong>Only in Expanded:</strong> Compose appears only in this view, not in overlay panel</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="docs-section">
-        <h2>Integration Components</h2>
-        <div class="composition-info">
-          <h3>Reused Components:</h3>
-          <ul>
-            <li><strong>NoteBubbleComponent</strong> - Full width integration with proper alignment</li>
-            <li><strong>AutomatedEmailBubbleComponent</strong> - System email messages</li>
-            <li><strong>SmsBubbleComponent</strong> - SMS communication bubbles</li>
-            <li><strong>ManualEmailBubbleComponent</strong> - User-composed emails</li>
-            <li><strong>UploadBubbleComponent</strong> - Document upload confirmations</li>
-          </ul>
-
-          <h3>PrimeNG Modules Required:</h3>
-          <ul>
-            <li><strong>ButtonModule</strong> - Compose and filter buttons</li>
-            <li><strong>CommonModule</strong> - Angular directives</li>
-            <li>All bubble component dependencies (AvatarModule, TooltipModule)</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="docs-section">
-        <h2>Service Integration</h2>
-        <div class="service-info">
-          <h3>MessageCenterExpandedService</h3>
-          <div class="code-example">
-            <pre><code>// Launch expanded view
-const expandedWindow = await this.expandedService.openExpandedView({{
-  messages: this.messages,
-  activeFilter: this.currentFilter,
-  unreadCounts: this.unreadCounts
-}});
-
-// Check if open
-if (this.expandedService.isExpandedViewOpen()) {{
-  console.log('Expanded view is active');
-}}
-
-// Close programmatically
-this.expandedService.closeExpandedView();</code></pre>
-          </div>
-        </div>
-      </div>
-
-      <div class="docs-section">
-        <h2>Demo Controls</h2>
+        <h2>Interactive Demo</h2>
         <div class="demo-controls">
           <button pButton (click)="simulateExpandedView()" class="demo-button">
             Launch Simulated Expanded View
           </button>
           <button pButton (click)="toggleComposeArea()" class="demo-button secondary">
-            {{ showingCompose ? 'Hide' : 'Show' }} Compose Architecture
+            Show Compose Architecture
           </button>
         </div>
 
@@ -1332,39 +1118,8 @@ this.expandedService.closeExpandedView();</code></pre>
             <div class="api-row">
               <div class="api-cell code">unreadCounts</div>
               <div class="api-cell">Object</div>
-              <div class="api-cell">{{ '{' }} notes: 0, emails: 0, sms: 0, all: 0 {{ '}' }}</div>
+              <div class="api-cell">notes: 0, emails: 0, sms: 0, all: 0</div>
               <div class="api-cell">Unread message counts per filter</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="api-section">
-          <h3>Outputs</h3>
-          <div class="api-table">
-            <div class="api-row api-header">
-              <div class="api-cell">Event</div>
-              <div class="api-cell">Type</div>
-              <div class="api-cell">Description</div>
-            </div>
-            <div class="api-row">
-              <div class="api-cell code">windowClosed</div>
-              <div class="api-cell">EventEmitter&lt;void&gt;</div>
-              <div class="api-cell">Emitted when window is closed</div>
-            </div>
-            <div class="api-row">
-              <div class="api-cell code">filterChanged</div>
-              <div class="api-cell">EventEmitter&lt;FilterType&gt;</div>
-              <div class="api-cell">Emitted when filter is changed</div>
-            </div>
-            <div class="api-row">
-              <div class="api-cell code">composeEmail</div>
-              <div class="api-cell">EventEmitter&lt;void&gt;</div>
-              <div class="api-cell">Emitted when compose is activated</div>
-            </div>
-            <div class="api-row">
-              <div class="api-cell code">messageClicked</div>
-              <div class="api-cell">EventEmitter&lt;CommunicationMessage&gt;</div>
-              <div class="api-cell">Emitted when a message is clicked</div>
             </div>
           </div>
         </div>
@@ -1429,35 +1184,6 @@ this.expandedService.closeExpandedView();</code></pre>
       margin: 0;
       color: var(--text-color-secondary);
       font-size: 0.9rem;
-    }
-
-    .architecture-info, .composition-info, .service-info {
-      background: var(--surface-50);
-      padding: 1.5rem;
-      border-radius: 4px;
-      border-left: 4px solid var(--primary-color);
-    }
-
-    .architecture-info h3, .composition-info h3, .service-info h3 {
-      margin-top: 0;
-      margin-bottom: 1rem;
-      color: var(--primary-color);
-    }
-
-    .code-example {
-      background: var(--surface-card);
-      border: 1px solid var(--surface-border);
-      border-radius: 4px;
-      padding: 1rem;
-      overflow-x: auto;
-      margin: 1rem 0;
-    }
-
-    .code-example pre {
-      margin: 0;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.9rem;
-      line-height: 1.5;
     }
 
     .demo-controls {
