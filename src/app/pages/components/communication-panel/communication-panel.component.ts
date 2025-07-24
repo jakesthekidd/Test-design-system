@@ -284,17 +284,31 @@ export interface CommunicationPanelConfig {
 
     .message-item {
       flex-shrink: 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* Note Messages - Full width with directional alignment */
+    .message-item.note-message {
       padding: 0 16px;
     }
 
-    .message-item.own-message {
-      padding-left: 48px;
-      padding-right: 16px;
+    .message-item.note-own {
+      display: flex;
+      justify-content: flex-end;
     }
 
-    .message-item.automated-message {
-      padding-left: 16px;
-      padding-right: 48px;
+    .message-item.note-other {
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    /* Outbound Messages (SMS, Emails) - Right aligned */
+    .message-item.outbound-message {
+      display: flex;
+      justify-content: flex-end;
+      padding-left: 48px;
+      padding-right: 16px;
     }
 
     /* Empty State */
