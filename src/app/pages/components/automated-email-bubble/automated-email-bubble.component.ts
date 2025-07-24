@@ -175,7 +175,7 @@ export interface AutomatedEmailData {
     }
 
     /* Responsive Design */
-    @media (max-width: 768px) {
+    &#64;media (max-width: 768px) {
       .email-bubble-container {
         padding: 12px;
         max-width: 100%;
