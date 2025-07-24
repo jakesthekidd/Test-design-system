@@ -98,7 +98,15 @@ import { Subscription } from 'rxjs';
                 Filter: {{currentState.activeFilter}} |
                 Unread: {{currentState.unreadCounts?.all || 0}} |
                 Messages: {{currentState.messages?.length || 0}} |
+                Window Open: {{currentState.isOpen}} |
                 Last Updated: {{formatTimestamp(currentState.lastUpdated)}}
+              </small>
+            </div>
+
+            <div class="debug-note" *ngIf="isWindowOpen()">
+              <small>
+                <i class="fas fa-bug"></i>
+                <strong>Debug:</strong> Check browser console for window initialization logs and error details.
               </small>
             </div>
           </div>
@@ -342,6 +350,27 @@ import { Subscription } from 'rxjs';
       line-height: 1.4;
     }
 
+    .debug-note {
+      margin-top: 0.75rem;
+      padding: 0.5rem;
+      background: var(--surface-200, #E8E8E8);
+      border-radius: 4px;
+      border-left: 3px solid var(--orange-500, #FF9800);
+    }
+
+    .debug-note small {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--text-color, #3D3D3D);
+      font-family: monospace;
+    }
+
+    .debug-note i {
+      color: var(--orange-600, #F57C00);
+    }
+
     @media (max-width: 768px) {
       .message-center-expanded {
         padding: 1rem;
@@ -493,10 +522,13 @@ export class MessageCenterExpandedComponent implements OnInit, OnDestroy {
 
           <h3>Technical Implementation:</h3>
           <ul class="tech-details">
-            <li><strong>Dynamic HTML Generation:</strong> WindowLauncherService creates complete Angular shell</li>
+            <li><strong>Dynamic HTML Generation:</strong> WindowLauncherService creates complete application shell</li>
+            <li><strong>Bundle Loading:</strong> Main app JavaScript bundles loaded in separate window context</li>
             <li><strong>Style Injection:</strong> All design tokens and component styles automatically loaded</li>
+            <li><strong>Error Handling:</strong> Comprehensive error catching with fallback states</li>
             <li><strong>Message Data:</strong> MessageDataService provides identical sample data to both contexts</li>
             <li><strong>Event Handling:</strong> Filter changes, message clicks, and compose actions work normally</li>
+            <li><strong>State Synchronization:</strong> Real-time state sync via postMessage + BroadcastChannel</li>
             <li><strong>Responsive Design:</strong> Window resizing and mobile breakpoints maintained</li>
           </ul>
         </div>
