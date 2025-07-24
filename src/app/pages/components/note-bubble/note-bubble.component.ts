@@ -71,7 +71,9 @@ export interface NoteBubbleData {
       border: 3px solid;
       background: var(--surface-overlay);
       font-family: 'Roboto', sans-serif;
-      max-width: 70%;
+      max-width: 85%;
+      min-width: 300px;
+      flex: 0 1 auto;
     }
 
     .bubble-container.other-message {
