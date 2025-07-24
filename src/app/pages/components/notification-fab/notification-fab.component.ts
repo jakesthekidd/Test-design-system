@@ -17,7 +17,6 @@ export interface NotificationFabConfig {
   template: `
     <div class="notification-fab-container">
       <button
-        pButton
         type="button"
         [class]="getButtonClasses()"
         [attr.aria-label]="ariaLabel"
@@ -26,8 +25,8 @@ export interface NotificationFabConfig {
         (mouseleave)="isHovered = false"
       >
         <i [class]="icon" [class.icon-hover]="isHovered"></i>
-        <span 
-          *ngIf="hasNotification" 
+        <span
+          *ngIf="hasNotification"
           class="notification-badge"
           [class.badge-hover]="isHovered"
         >
