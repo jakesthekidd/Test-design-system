@@ -105,10 +105,11 @@ export interface CommunicationPanelConfig {
             <div class="message-list" #messageFeed>
               <ng-container *ngFor="let message of filteredMessages; trackBy: trackMessage">
                 <!-- Note Bubble -->
-                <div 
-                  *ngIf="message.type === 'note'" 
-                  class="message-item"
-                  [class.own-message]="message.data.isOwnMessage"
+                <div
+                  *ngIf="message.type === 'note'"
+                  class="message-item note-message"
+                  [class.note-own]="message.data.isOwnMessage"
+                  [class.note-other]="!message.data.isOwnMessage"
                 >
                   <app-note-bubble
                     [noteData]="message.data"
@@ -117,9 +118,9 @@ export interface CommunicationPanelConfig {
                 </div>
 
                 <!-- Automated Email Bubble -->
-                <div 
-                  *ngIf="message.type === 'automated-email'" 
-                  class="message-item automated-message"
+                <div
+                  *ngIf="message.type === 'automated-email'"
+                  class="message-item outbound-message"
                 >
                   <app-automated-email-bubble
                     [emailData]="message.data"
@@ -128,9 +129,9 @@ export interface CommunicationPanelConfig {
                 </div>
 
                 <!-- SMS Bubble -->
-                <div 
-                  *ngIf="message.type === 'sms'" 
-                  class="message-item automated-message"
+                <div
+                  *ngIf="message.type === 'sms'"
+                  class="message-item outbound-message"
                 >
                   <app-sms-bubble
                     [smsData]="message.data"
@@ -139,9 +140,9 @@ export interface CommunicationPanelConfig {
                 </div>
 
                 <!-- Manual Email Bubble -->
-                <div 
-                  *ngIf="message.type === 'manual-email'" 
-                  class="message-item own-message"
+                <div
+                  *ngIf="message.type === 'manual-email'"
+                  class="message-item outbound-message"
                 >
                   <app-manual-email-bubble
                     [emailData]="message.data"
@@ -150,9 +151,9 @@ export interface CommunicationPanelConfig {
                 </div>
 
                 <!-- Upload Bubble -->
-                <div 
-                  *ngIf="message.type === 'upload'" 
-                  class="message-item own-message"
+                <div
+                  *ngIf="message.type === 'upload'"
+                  class="message-item outbound-message"
                 >
                   <app-upload-bubble
                     [uploadData]="message.data"
