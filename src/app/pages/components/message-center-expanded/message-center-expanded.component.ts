@@ -76,7 +76,32 @@ import { Subscription } from 'rxjs';
             <li>✅ Identical message data and state</li>
             <li>✅ Full filter functionality</li>
             <li>✅ Cross-window communication</li>
+            <li>✅ Real-time state synchronization</li>
+            <li>✅ Persistent state across browser sessions</li>
           </ul>
+
+          <div class="state-demo">
+            <h4>State Management Demo:</h4>
+            <div class="demo-actions">
+              <button class="demo-btn" (click)="demonstrateStateSync()">
+                <i class="fas fa-sync-alt"></i>
+                Test State Sync
+              </button>
+              <button class="demo-btn" (click)="markAllMessagesRead()">
+                <i class="fas fa-check-double"></i>
+                Mark All Read
+              </button>
+            </div>
+            <div class="state-info" *ngIf="currentState">
+              <small>
+                <strong>Current State:</strong>
+                Filter: {{currentState.activeFilter}} |
+                Unread: {{currentState.unreadCounts?.all || 0}} |
+                Messages: {{currentState.messages?.length || 0}} |
+                Last Updated: {{formatTimestamp(currentState.lastUpdated)}}
+              </small>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -259,6 +284,64 @@ import { Subscription } from 'rxjs';
       color: var(--text-color-secondary, #8D9AAE);
     }
 
+    .state-demo {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background: var(--surface-100, #F0F0F0);
+      border-radius: 6px;
+      border: 1px solid var(--surface-border, #E2E6EB);
+    }
+
+    .state-demo h4 {
+      margin: 0 0 1rem 0;
+      color: var(--text-color, #3D3D3D);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .demo-actions {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .demo-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: var(--primary-color, #2474BB);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .demo-btn:hover {
+      background: var(--primary-600, #2068A8);
+    }
+
+    .demo-btn i {
+      font-size: 0.8rem;
+    }
+
+    .state-info {
+      padding: 0.75rem;
+      background: var(--surface-0, #ffffff);
+      border-radius: 4px;
+      border: 1px solid var(--surface-border, #E2E6EB);
+      font-family: monospace;
+    }
+
+    .state-info small {
+      font-size: 0.75rem;
+      color: var(--text-color-secondary, #8D9AAE);
+      line-height: 1.4;
+    }
+
     @media (max-width: 768px) {
       .message-center-expanded {
         padding: 1rem;
@@ -277,6 +360,7 @@ import { Subscription } from 'rxjs';
 })
 export class MessageCenterExpandedComponent implements OnInit, OnDestroy {
   private stateSubscription: Subscription = new Subscription();
+  currentState: any = null;
 
   constructor(
     private messageWindowService: MessageCenterWindowService,
@@ -287,11 +371,39 @@ export class MessageCenterExpandedComponent implements OnInit, OnDestroy {
     // Subscribe to state changes to update UI
     this.stateSubscription = this.stateService.state$.subscribe(state => {
       console.log('MessageCenter state updated:', state);
+      this.currentState = state;
     });
+
+    // Initialize current state
+    this.currentState = this.stateService.getCurrentState();
   }
 
   ngOnDestroy(): void {
     this.stateSubscription.unsubscribe();
+  }
+
+  demonstrateStateSync(): void {
+    // Change filter to demonstrate state sync
+    const filters = ['all', 'notes', 'emails', 'sms'] as const;
+    const currentIndex = filters.indexOf(this.currentState?.activeFilter || 'all');
+    const nextFilter = filters[(currentIndex + 1) % filters.length];
+
+    this.stateService.changeFilter(nextFilter);
+    console.log('Filter changed to demonstrate state sync:', nextFilter);
+  }
+
+  markAllMessagesRead(): void {
+    this.stateService.getCurrentState().messages.forEach(message => {
+      if (!message.isRead) {
+        this.stateService.markMessageAsRead(message.id);
+      }
+    });
+    console.log('All messages marked as read');
+  }
+
+  formatTimestamp(timestamp: number): string {
+    if (!timestamp) return 'N/A';
+    return new Date(timestamp).toLocaleTimeString();
   }
 
   async launchWindow(): Promise<void> {
