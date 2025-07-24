@@ -174,7 +174,6 @@ export interface AutomatedEmailData {
       margin-top: 4px;
     }
 
-    /* Responsive Design */
     @media (max-width: 768px) {
       .email-bubble-container {
         padding: 12px;
@@ -263,7 +262,6 @@ export class AutomatedEmailBubbleComponent {
             <div class="example-container">
               <div class="email-thread">
                 
-                <!-- Sent Email -->
                 <div class="email-wrapper">
                   <h4>Sent Status</h4>
                   <app-automated-email-bubble 
@@ -272,7 +270,6 @@ export class AutomatedEmailBubbleComponent {
                   </app-automated-email-bubble>
                 </div>
 
-                <!-- Scheduled Email -->
                 <div class="email-wrapper">
                   <h4>Scheduled Status</h4>
                   <app-automated-email-bubble 
@@ -281,7 +278,6 @@ export class AutomatedEmailBubbleComponent {
                   </app-automated-email-bubble>
                 </div>
 
-                <!-- Workflow Stopped Email -->
                 <div class="email-wrapper">
                   <h4>Workflow Stopped Status</h4>
                   <app-automated-email-bubble 
@@ -323,71 +319,16 @@ export class AutomatedEmailBubbleComponent {
           </div>
         </p-tabPanel>
 
-        <p-tabPanel header="Code">
-          <div class="code-section">
-            <h3>Import Required Modules</h3>
-            <pre ngNonBindable><code>import { AutomatedEmailBubbleComponent, AutomatedEmailData } from './automated-email-bubble.component';
-import { AutomatedBadgeComponent, StatusBadgeComponent } from '../status-badges/status-badges.component';
-import { CommonModule } from '@angular/common';
-import { TooltipModule } from 'primeng/tooltip';
-
-@Component({
-  imports: [
-    CommonModule,
-    TooltipModule,
-    AutomatedEmailBubbleComponent,
-    AutomatedBadgeComponent,
-    StatusBadgeComponent
-  ],
-  // ...
-})</code></pre>
-
-            <h3>Basic Email Bubble Structure</h3>
-            <pre><code>&lt;app-automated-email-bubble 
-  [emailData]="emailData"
-  (menuClick)="onMenuClick($event)"
-  (emailClick)="onEmailClick($event)"&gt;
-&lt;/app-automated-email-bubble&gt;</code></pre>
-
-            <h3>Email Data Interface</h3>
-            <pre ngNonBindable><code>export interface AutomatedEmailData {
-  fromAddress: string;
-  toRecipients: string[];
-  subjectLine: string;
-  messageBody: string;
-  status: 'sent' | 'scheduled' | 'workflow-stopped';
-  timestamp?: string;
-  timeOffset?: string;
-  workflowId?: string;
-  templateName?: string;
-}</code></pre>
-
-            <h3>Component Usage Example</h3>
-            <pre ngNonBindable><code>export class EmailMessageComponent {
-  emailData: AutomatedEmailData = {
-    fromAddress: 'system@docprocessing.com',
-    toRecipients: ['client@company.com', 'shipper@logistics.com'],
-    subjectLine: 'Document Upload Required - Shipment #SP-2024-1205',
-    messageBody: 'Your shipment requires additional documentation...',
-    status: 'sent',
-    timestamp: 'Aug 2, 2024 | 10:32 AM',
-    workflowId: 'WF-2024-1205',
-    templateName: 'Document Upload Notification'
-  };
-
-  onMenuClick(email: AutomatedEmailData): void {
-    console.log('Menu clicked for email:', email);
-  }
-}</code></pre>
-
-            <h3>Individual Status Components</h3>
-            <pre><code>// Automated Badge
-&lt;app-automated-badge&gt;&lt;/app-automated-badge&gt;
-
-// Status Badges
-&lt;app-status-badge type="sent" value="Aug 2, 2024 | 10:32 AM"&gt;&lt;/app-status-badge&gt;
-&lt;app-status-badge type="scheduled" value="3 Hours out"&gt;&lt;/app-status-badge&gt;
-&lt;app-status-badge type="workflow-stopped"&gt;&lt;/app-status-badge&gt;</code></pre>
+        <p-tabPanel header="Usage">
+          <div class="usage-section">
+            <h3>Basic Component Usage</h3>
+            <p>This component displays automated email messages with status indicators.</p>
+            
+            <h3>Import Statement</h3>
+            <p>Import the component and related types for use in your application.</p>
+            
+            <h3>Example Implementation</h3>
+            <p>Create email data objects and bind them to the component for display.</p>
           </div>
         </p-tabPanel>
 
@@ -410,76 +351,6 @@ import { TooltipModule } from 'primeng/tooltip';
                     <td>AutomatedEmailData</td>
                     <td>required</td>
                     <td>Complete email information including status, recipients, and content</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <h3>AutomatedEmailData Interface</h3>
-            <div class="api-table">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Property</th>
-                    <th>Type</th>
-                    <th>Required</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>fromAddress</td>
-                    <td>string</td>
-                    <td>Yes</td>
-                    <td>Email sender address (typically system email)</td>
-                  </tr>
-                  <tr>
-                    <td>toRecipients</td>
-                    <td>string[]</td>
-                    <td>Yes</td>
-                    <td>Array of recipient email addresses</td>
-                  </tr>
-                  <tr>
-                    <td>subjectLine</td>
-                    <td>string</td>
-                    <td>Yes</td>
-                    <td>Email subject line content</td>
-                  </tr>
-                  <tr>
-                    <td>messageBody</td>
-                    <td>string</td>
-                    <td>Yes</td>
-                    <td>Email message body content</td>
-                  </tr>
-                  <tr>
-                    <td>status</td>
-                    <td>'sent' | 'scheduled' | 'workflow-stopped'</td>
-                    <td>Yes</td>
-                    <td>Current delivery status of the email</td>
-                  </tr>
-                  <tr>
-                    <td>timestamp</td>
-                    <td>string</td>
-                    <td>No</td>
-                    <td>Timestamp when email was sent (for sent status)</td>
-                  </tr>
-                  <tr>
-                    <td>timeOffset</td>
-                    <td>string</td>
-                    <td>No</td>
-                    <td>Time until scheduled send (for scheduled status)</td>
-                  </tr>
-                  <tr>
-                    <td>workflowId</td>
-                    <td>string</td>
-                    <td>No</td>
-                    <td>Associated workflow identifier for traceability</td>
-                  </tr>
-                  <tr>
-                    <td>templateName</td>
-                    <td>string</td>
-                    <td>No</td>
-                    <td>Email template name for developer-facing tooling</td>
                   </tr>
                 </tbody>
               </table>
@@ -509,136 +380,19 @@ import { TooltipModule } from 'primeng/tooltip';
                 </tbody>
               </table>
             </div>
-
-            <h3>Status Badge Component</h3>
-            <div class="api-table">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Property</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>type</td>
-                    <td>'sent' | 'scheduled' | 'workflow-stopped'</td>
-                    <td>Status type determining color and icon</td>
-                  </tr>
-                  <tr>
-                    <td>value</td>
-                    <td>string</td>
-                    <td>Optional value text (timestamp, time offset, etc.)</td>
-                  </tr>
-                  <tr>
-                    <td>customLabel</td>
-                    <td>string</td>
-                    <td>Optional custom label override</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
           </div>
         </p-tabPanel>
 
         <p-tabPanel header="Design">
           <div class="design-section">
             <h3>Design Specifications</h3>
-            <div class="design-specs">
-              <div class="spec-item">
-                <strong>Email Bubble Layout</strong>
-                <ul>
-                  <li>Left-aligned with email icon and content sections</li>
-                  <li>Cyan background (#F1FAFE) with blue border (#91B9DD)</li>
-                  <li>Rounded corners (8px) with cut corner (bottom-left: 0px)</li>
-                  <li>Consistent 16px padding with 8px gaps between elements</li>
-                  <li>Maximum width constraint for readability</li>
-                </ul>
-              </div>
-              <div class="spec-item">
-                <strong>Status Indicators</strong>
-                <ul>
-                  <li>Sent: Green background (#CCF2D6) with check icon</li>
-                  <li>Scheduled: Yellow background (#FCF5A4) with clock icon</li>
-                  <li>Workflow Stopped: Light cyan (#F1FAFE) with red text (#AE1923)</li>
-                  <li>Automated badge: Cyan background (#C7EBFB) with automation icon</li>
-                </ul>
-              </div>
-            </div>
-
-            <h3>Typography & Colors</h3>
-            <div class="design-specs">
-              <div class="spec-item">
-                <strong>Design Tokens Used</strong>
-                <ul>
-                  <li>Cyan-50: #F1FAFE (bubble background)</li>
-                  <li>Primary-Blue-50: #91B9DD (border color)</li>
-                  <li>Cyan-200: #C7EBFB (icon and badge backgrounds)</li>
-                  <li>Blue-900: #0E2E4B (primary text and icons)</li>
-                  <li>Surface-900: #5A626F (field labels and values)</li>
-                  <li>Med-black: rgba(58, 58, 58, 1) (message body text)</li>
-                  <li>Blue-600: #2068A8 (menu button color)</li>
-                </ul>
-              </div>
-              <div class="spec-item">
-                <strong>Typography Hierarchy</strong>
-                <ul>
-                  <li>Font Family: Roboto, sans-serif</li>
-                  <li>Field Labels: 14px, medium weight (500)</li>
-                  <li>Field Values: 14px, normal weight (400)</li>
-                  <li>Subject Line: 14px, medium weight (500)</li>
-                  <li>Message Body: 14px, light weight (300)</li>
-                  <li>Status Text: 13px, medium/light weight</li>
-                  <li>Badge Text: 12px, medium weight (500)</li>
-                </ul>
-              </div>
-            </div>
-
-            <h3>Status Color System</h3>
-            <div class="design-specs">
-              <div class="spec-item">
-                <strong>Semantic Color Mapping</strong>
-                <ul>
-                  <li>Success (Sent): Green-100 background, Green-900 text</li>
-                  <li>Warning (Scheduled): Yellow-200 background, Yellow-900 text</li>
-                  <li>Error (Stopped): Cyan-50 background, Red-700 text</li>
-                  <li>Info (Automated): Cyan-200 background, Blue-900 text</li>
-                </ul>
-              </div>
-              <div class="spec-item">
-                <strong>Interactive Elements</strong>
-                <ul>
-                  <li>Menu Button: Blue-600 color with hover state</li>
-                  <li>Icon containers: Consistent 24px circular design</li>
-                  <li>Status badges: 4px padding with rounded corners</li>
-                  <li>Responsive behavior for mobile layouts</li>
-                </ul>
-              </div>
-            </div>
-
-            <h3>Layout Guidelines</h3>
-            <div class="design-specs">
-              <div class="spec-item">
-                <strong>Spacing & Structure</strong>
-                <ul>
-                  <li>Email icon: 24px diameter with cyan background</li>
-                  <li>Content padding: 16px on all sides</li>
-                  <li>Header row: Space-between alignment for badges and menu</li>
-                  <li>Field spacing: 8px gap between label and value</li>
-                  <li>Vertical rhythm: 8px gaps between content sections</li>
-                </ul>
-              </div>
-              <div class="spec-item">
-                <strong>Responsive Behavior</strong>
-                <ul>
-                  <li>Desktop: Horizontal layout with side-by-side elements</li>
-                  <li>Mobile: Stack header elements vertically when needed</li>
-                  <li>Maintain readability and touch targets on all devices</li>
-                  <li>Preserve visual hierarchy and status indication</li>
-                </ul>
-              </div>
-            </div>
+            <p>This component follows the design system tokens and maintains consistency with the overall visual language.</p>
+            
+            <h3>Color Usage</h3>
+            <p>Uses semantic colors for different status states: green for sent, yellow for scheduled, and red for stopped workflows.</p>
+            
+            <h3>Typography</h3>
+            <p>Follows Roboto font family with appropriate weights and sizes for different content types.</p>
           </div>
         </p-tabPanel>
       </p-tabView>
@@ -670,7 +424,7 @@ import { TooltipModule } from 'primeng/tooltip';
     }
 
     .examples-section,
-    .code-section,
+    .usage-section,
     .api-section,
     .design-section {
       padding: 1rem 0;
@@ -684,7 +438,6 @@ import { TooltipModule } from 'primeng/tooltip';
       margin: 1rem 0;
     }
 
-    /* Email Thread Styling */
     .email-thread {
       display: flex;
       flex-direction: column;
@@ -706,7 +459,6 @@ import { TooltipModule } from 'primeng/tooltip';
       font-weight: 500;
     }
 
-    /* Status Examples */
     .status-examples {
       display: flex;
       flex-direction: column;
@@ -733,7 +485,6 @@ import { TooltipModule } from 'primeng/tooltip';
       align-items: flex-start;
     }
 
-    /* Controls */
     .controls-section {
       display: flex;
       gap: 1rem;
@@ -741,7 +492,6 @@ import { TooltipModule } from 'primeng/tooltip';
       margin: 1rem 0;
     }
 
-    /* API Tables */
     .api-table table {
       width: 100%;
       border-collapse: collapse;
@@ -765,58 +515,12 @@ import { TooltipModule } from 'primeng/tooltip';
       color: var(--text-color-secondary);
     }
 
-    .design-specs {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin: 1rem 0;
-    }
-
-    .spec-item {
-      background: var(--surface-section);
-      padding: 1rem;
-      border-radius: 6px;
-      border-left: 3px solid var(--primary-color);
-    }
-
-    .spec-item strong {
-      color: var(--text-color);
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
-    .spec-item ul {
-      margin: 0;
-      padding-left: 1rem;
-    }
-
-    .spec-item li {
-      color: var(--text-color-secondary);
-      margin: 0.25rem 0;
-    }
-
-    pre {
-      background: var(--surface-ground);
-      border: 1px solid var(--surface-border);
-      border-radius: 6px;
-      padding: 1rem;
-      overflow-x: auto;
-      margin: 1rem 0;
-    }
-
-    code {
-      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-      font-size: 0.875rem;
-      color: var(--text-color);
-    }
-
     h3 {
       color: var(--text-color);
       margin: 1.5rem 0 0.5rem 0;
       font-weight: 600;
     }
 
-    /* Responsive Design */
     @media (max-width: 768px) {
       .email-thread {
         max-width: 100%;
@@ -824,10 +528,6 @@ import { TooltipModule } from 'primeng/tooltip';
       
       .controls-section {
         flex-direction: column;
-      }
-      
-      .design-specs {
-        grid-template-columns: 1fr;
       }
 
       .status-examples {
