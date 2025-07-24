@@ -464,9 +464,17 @@ export class CommunicationPanelComponent implements OnInit, OnDestroy, OnChanges
     // Mark as read if unread
     if (!message.isRead) {
       message.isRead = true;
+
+      // Immediate UI updates
       this.updateUnreadCounts();
-      this.updateFilterTabs(); // Force tab update
+      this.updateFilterTabs();
+
+      // Log for debugging
+      console.log(`Message ${message.id} marked as read. Type: ${message.type}`);
+      console.log('Updated unread counts:', this.unreadCounts);
     }
+
+    // Always emit the click event
     this.messageClicked.emit(message);
   }
 
