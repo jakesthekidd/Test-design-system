@@ -547,7 +547,7 @@ export class CommunicationPanelComponent implements OnInit, OnDestroy, OnChanges
 
   private updateUnreadCounts(): void {
     const counts = { notes: 0, emails: 0, sms: 0, all: 0 };
-    
+
     this.messages.forEach(message => {
       if (!message.isRead) {
         counts.all++;
@@ -566,8 +566,18 @@ export class CommunicationPanelComponent implements OnInit, OnDestroy, OnChanges
       }
     });
 
-    this.unreadCounts = counts;
-    this.updateFilterTabs();
+    // Only update if counts have changed
+    const hasChanged = Object.keys(counts).some(key =>
+      this.unreadCounts[key as FilterType] !== counts[key as FilterType]
+    );
+
+    if (hasChanged) {
+      this.unreadCounts = { ...counts };
+      this.updateFilterTabs();
+
+      // Emit the updated counts to parent component
+      console.log('Unread counts updated:', this.unreadCounts);
+    }
   }
 
   private scrollToBottom(): void {
