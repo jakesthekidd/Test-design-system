@@ -345,12 +345,42 @@ export class MessageCenterExpandedComponent {
       </div>
 
       <div class="docs-section">
-        <h2>Features</h2>
-        <ul>
+        <h2>CommunicationPanel Integration</h2>
+        <div class="integration-info">
+          <p><strong>The MessageCenterExpanded component renders the existing CommunicationPanel inside a new browser window without any modifications to the original component.</strong></p>
+
+          <h3>Integration Features:</h3>
+          <ul class="feature-list">
+            <li>✅ <strong>Unmodified CommunicationPanel</strong> - Uses the exact same component from the main app</li>
+            <li>✅ <strong>Identical State & Data</strong> - Same message data, filters, and behavior as main app</li>
+            <li>✅ <strong>Independent Angular Instance</strong> - Separate Zone.js context and change detection</li>
+            <li>✅ <strong>Cross-Window Communication</strong> - Parent-child messaging for state sync</li>
+            <li>✅ <strong>Complete Message Feed</strong> - All bubble components render identically</li>
+            <li>✅ <strong>Filter Functionality</strong> - Notes, Emails, SMS, All filters work as expected</li>
+            <li>✅ <strong>Compose Architecture</strong> - Ready for email composition features</li>
+            <li>✅ <strong>Multi-Monitor Support</strong> - Draggable to secondary screens</li>
+          </ul>
+
+          <h3>Technical Implementation:</h3>
+          <ul class="tech-details">
+            <li><strong>Dynamic HTML Generation:</strong> WindowLauncherService creates complete Angular shell</li>
+            <li><strong>Style Injection:</strong> All design tokens and component styles automatically loaded</li>
+            <li><strong>Message Data:</strong> MessageDataService provides identical sample data to both contexts</li>
+            <li><strong>Event Handling:</strong> Filter changes, message clicks, and compose actions work normally</li>
+            <li><strong>Responsive Design:</strong> Window resizing and mobile breakpoints maintained</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="docs-section">
+        <h2>Window Management Features</h2>
+        <ul class="feature-list">
           <li>Opens in separate browser window using window.open()</li>
-          <li>Reuses existing CommunicationPanel component</li>
-          <li>Draggable to secondary monitors</li>
-          <li>Independent messaging experience</li>
+          <li>Reuses existing CommunicationPanel component without modification</li>
+          <li>Draggable to secondary monitors for multi-screen workflows</li>
+          <li>Independent messaging experience with cross-window state sync</li>
+          <li>Keyboard shortcuts (ESC, Ctrl/Cmd+W) to close window</li>
+          <li>Preset configurations (Default, Compose, Notifications)</li>
         </ul>
       </div>
     </div>
@@ -386,6 +416,47 @@ export class MessageCenterExpandedComponent {
       border-radius: 8px;
       padding: 2rem;
       background: var(--surface-card);
+    }
+
+    .integration-info {
+      background: var(--surface-50, #F7F8F9);
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid var(--primary-color, #2474BB);
+      margin-bottom: 2rem;
+    }
+
+    .integration-info h3 {
+      color: var(--primary-color, #2474BB);
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .integration-info h3:first-of-type {
+      margin-top: 1rem;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .feature-list li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--surface-border, #E2E6EB);
+      font-size: 0.95rem;
+    }
+
+    .tech-details {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+    }
+
+    .tech-details li {
+      margin-bottom: 0.75rem;
+      line-height: 1.6;
+      font-size: 0.9rem;
+      color: var(--text-color-secondary, #8D9AAE);
     }
 
     ul {
