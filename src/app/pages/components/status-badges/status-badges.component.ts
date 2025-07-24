@@ -355,7 +355,8 @@ export type BadgeType = 'automated' | 'manual';
 export class MyComponent {
   status: StatusType = 'sent';
   timestamp: string = new Date().toLocaleString();
-}</code></pre>
+}
+            </code></pre>
           </div>
         </p-tabPanel>
 
