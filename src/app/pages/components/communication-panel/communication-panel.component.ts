@@ -292,9 +292,12 @@ export interface CommunicationPanelConfig {
       gap: 12px;
       background: var(--surface-0, #ffffff);
       min-height: 0;
+      max-height: 100%;
       overscroll-behavior: contain;
       touch-action: pan-y;
       -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+      position: relative;
     }
 
     .message-item {
