@@ -1013,7 +1013,7 @@ export class CommunicationPanelDocsComponent {
       id: '1',
       type: 'note',
       timestamp: new Date('2024-08-01T09:00:00'),
-      isRead: true,
+      isRead: false,
       data: {
         author: 'Jake Cummings',
         content: 'A BOL document is like the passport for a shipment; it tells you everything you need to know about where it\'s coming from, where it\'s going, and what\'s inside.',
@@ -1022,10 +1022,10 @@ export class CommunicationPanelDocsComponent {
       }
     },
     {
-      id: '2', 
+      id: '2',
       type: 'sms',
       timestamp: new Date('2024-08-01T11:00:00'),
-      isRead: true,
+      isRead: false,
       data: {
         toRecipients: ['+1 (999) 999-9999'],
         messageBody: 'Your shipment requires additional documentation. Please upload the required BOL document using the secure link below within 24 hours to avoid delays.',
@@ -1035,7 +1035,7 @@ export class CommunicationPanelDocsComponent {
     },
     {
       id: '3',
-      type: 'automated-email', 
+      type: 'automated-email',
       timestamp: new Date('2024-08-02T10:32:00'),
       isRead: false,
       data: {
