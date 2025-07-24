@@ -348,10 +348,7 @@ export class WindowLauncherService {
     </div>
   </div>
 
-  <!-- Load the actual Angular application bundles from the main app -->
-  <script src="${this.baseUrl}/runtime.js"></script>
-  <script src="${this.baseUrl}/polyfills.js"></script>
-  <script src="${this.baseUrl}/main.js"></script>
+  <!-- No additional bundle loading needed for simple implementation -->
 
   <!-- Window Configuration -->
   <script>
@@ -427,18 +424,7 @@ export class WindowLauncherService {
   <script>
     console.log('Starting MessageCenter application for ${config.componentName}...');
 
-    // Wait for main app bundles to load before initializing
-    function waitForAngular() {
-      return new Promise((resolve) => {
-        // Check if Angular is available
-        if (typeof ng !== 'undefined' || typeof window.ng !== 'undefined') {
-          resolve(true);
-        } else {
-          // Wait for Angular to load
-          setTimeout(() => waitForAngular().then(resolve), 100);
-        }
-      });
-    }
+    // Simple initialization without external dependencies
 
     // Render the CommunicationPanel structure
     function renderCommunicationPanel() {
@@ -639,7 +625,7 @@ export class WindowLauncherService {
     };
 
     // Initialize the application
-    async function initializeApp() {
+    function initializeApp() {
       console.log('Initializing CommunicationPanel in window...');
       console.log('Document ready state:', document.readyState);
       console.log('Available elements:', {
@@ -1060,9 +1046,19 @@ export class WindowLauncherService {
 
         console.log('CommunicationPanel initialized successfully');
 
-        // Show the application
+        // Show the application immediately
+        console.log('Showing application...');
         if (window.showApp) {
           window.showApp();
+        } else {
+          // Fallback: manually show the app if showApp function not available
+          const loading = document.getElementById('loading');
+          const error = document.getElementById('error');
+          const app = document.getElementById('angular-app');
+
+          if (loading) loading.style.display = 'none';
+          if (error) error.style.display = 'none';
+          if (app) app.style.display = 'block';
         }
 
         // Notify parent of successful initialization
@@ -1093,11 +1089,15 @@ export class WindowLauncherService {
       }
     }
 
-    // Initialize when DOM is ready
+    // Initialize immediately when DOM is ready
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initializeApp);
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM loaded, initializing...');
+        setTimeout(initializeApp, 100); // Small delay to ensure DOM is fully ready
+      });
     } else {
-      initializeApp();
+      console.log('DOM already ready, initializing immediately...');
+      setTimeout(initializeApp, 100); // Small delay to ensure everything is loaded
     }
 
     // Global error handler
