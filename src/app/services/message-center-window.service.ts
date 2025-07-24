@@ -20,7 +20,8 @@ export class MessageCenterWindowService {
 
   constructor(
     private windowLauncher: WindowLauncherService,
-    private stateService: MessageCenterStateService
+    private stateService: MessageCenterStateService,
+    private messageDataService: MessageDataService
   ) {
     this.setupMessageHandling();
   }
