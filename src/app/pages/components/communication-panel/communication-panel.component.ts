@@ -1006,7 +1006,7 @@ export class CommunicationPanelDocsComponent {
   samplePanelOpen = false;
   currentFilter: FilterType = 'all';
   actionLog: string[] = [];
-  sampleUnreadCounts = { notes: 1, emails: 2, sms: 0, all: 3 };
+  sampleUnreadCounts = { notes: 2, emails: 2, sms: 1, all: 5 };
 
   sampleMessages: CommunicationMessage[] = [
     {
