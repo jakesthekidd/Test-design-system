@@ -20,9 +20,10 @@ export interface NoteBubbleData {
   standalone: true,
   imports: [CommonModule, AvatarModule, TooltipModule],
   template: `
-    <div class="bubble-container" 
-         [class.own-message]="noteData.isOwnMessage" 
-         [class.other-message]="!noteData.isOwnMessage">
+    <div class="bubble-container"
+         [class.own-message]="noteData.isOwnMessage"
+         [class.other-message]="!noteData.isOwnMessage"
+         [attr.data-own]="noteData.isOwnMessage">
       <div class="bubble-content">
         <div class="bubble-header">
           <p-avatar 
