@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { WindowLauncherService, AngularShellConfig, WindowConfig } from './window-launcher.service';
+import { MessageCenterStateService } from './message-center-state.service';
 
 export interface MessageCenterWindowConfig {
   width?: number;
@@ -16,7 +17,12 @@ export interface MessageCenterWindowConfig {
 export class MessageCenterWindowService {
   private readonly WINDOW_ID = 'message-center-expanded';
 
-  constructor(private windowLauncher: WindowLauncherService) {}
+  constructor(
+    private windowLauncher: WindowLauncherService,
+    private stateService: MessageCenterStateService
+  ) {
+    this.setupMessageHandling();
+  }
 
   /**
    * Opens the Message Center in a new window with CommunicationPanel
@@ -149,7 +155,7 @@ export class MessageCenterWindowService {
           height: Math.floor(window.screen.height * 0.8)
         };
         break;
-      
+
       case 'notifications':
         config = {
           title: 'Message Center - Notifications',
@@ -158,7 +164,7 @@ export class MessageCenterWindowService {
           height: Math.floor(window.screen.height * 0.6)
         };
         break;
-      
+
       default: // 'default'
         config = {
           title: 'Message Center',
@@ -167,5 +173,90 @@ export class MessageCenterWindowService {
     }
 
     return this.openMessageCenter(config);
+  }
+
+  /**
+   * Setup message handling between parent and child windows
+   */
+  private setupMessageHandling(): void {
+    // Listen for messages from any MessageCenter windows
+    window.addEventListener('message', (event) => {
+      // Only handle messages from our windows
+      if (event.origin === window.location.origin) {
+        this.handleWindowMessage(event);
+      }
+    });
+  }
+
+  /**
+   * Handle messages from MessageCenter windows
+   */
+  private handleWindowMessage(event: MessageEvent): void {
+    const data = event.data;
+
+    if (!data || typeof data !== 'object') {
+      return;
+    }
+
+    console.log('Message from MessageCenter window:', data);
+
+    switch (data.type) {
+      case 'ANGULAR_READY':
+        this.handleWindowReady(event.source as Window);
+        break;
+
+      case 'FILTER_CHANGED':
+        this.stateService.changeFilter(data.payload.filter);
+        break;
+
+      case 'MESSAGE_CLICKED':
+        if (data.payload.message) {
+          this.stateService.markMessageAsRead(data.payload.message.id);
+        }
+        break;
+
+      case 'WINDOW_CLOSING':
+        this.handleWindowClosing(event.source as Window);
+        break;
+
+      default:
+        // Forward unknown messages to state service
+        this.stateService.handleWindowMessage(event);
+    }
+  }
+
+  /**
+   * Handle when a window is ready to receive state
+   */
+  private handleWindowReady(windowRef: Window): void {
+    // Register the window with state service
+    const windowId = this.WINDOW_ID;
+    this.stateService.registerWindow(windowId, windowRef);
+
+    console.log('MessageCenter window ready and registered');
+  }
+
+  /**
+   * Handle when a window is closing
+   */
+  private handleWindowClosing(windowRef: Window): void {
+    const windowId = this.WINDOW_ID;
+    this.stateService.unregisterWindow(windowId);
+
+    console.log('MessageCenter window closing and unregistered');
+  }
+
+  /**
+   * Get current state for external access
+   */
+  getCurrentState() {
+    return this.stateService.getCurrentState();
+  }
+
+  /**
+   * Get state observable for external subscriptions
+   */
+  getState$() {
+    return this.stateService.state$;
   }
 }

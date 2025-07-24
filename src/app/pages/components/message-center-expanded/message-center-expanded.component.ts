@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MessageCenterWindowService } from '../../../services/message-center-window.service';
+import { MessageCenterStateService } from '../../../services/message-center-state.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-message-center-expanded',
@@ -273,8 +275,24 @@ import { MessageCenterWindowService } from '../../../services/message-center-win
     }
   `]
 })
-export class MessageCenterExpandedComponent {
-  constructor(private messageWindowService: MessageCenterWindowService) {}
+export class MessageCenterExpandedComponent implements OnInit, OnDestroy {
+  private stateSubscription: Subscription = new Subscription();
+
+  constructor(
+    private messageWindowService: MessageCenterWindowService,
+    private stateService: MessageCenterStateService
+  ) {}
+
+  ngOnInit(): void {
+    // Subscribe to state changes to update UI
+    this.stateSubscription = this.stateService.state$.subscribe(state => {
+      console.log('MessageCenter state updated:', state);
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.stateSubscription.unsubscribe();
+  }
 
   async launchWindow(): Promise<void> {
     try {

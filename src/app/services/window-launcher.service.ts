@@ -592,6 +592,12 @@ export class WindowLauncherService {
     window.setActiveFilter = function(filter) {
       console.log('Filter changed to:', filter);
 
+      // Update local state
+      if (window.messageCenterState) {
+        window.messageCenterState.activeFilter = filter;
+        window.messageCenterState.lastUpdated = Date.now();
+      }
+
       // Update active tab
       document.querySelectorAll('.filter-tab').forEach(tab => {
         tab.classList.remove('active');
@@ -606,11 +612,15 @@ export class WindowLauncherService {
         composeBtn.style.display = 'none';
       }
 
-      // Notify parent
+      // Notify parent of state change
       if (window.opener) {
         window.opener.postMessage({
           type: 'FILTER_CHANGED',
-          payload: { filter }
+          payload: {
+            filter,
+            activeFilter: filter
+          },
+          timestamp: Date.now()
         }, '*');
       }
     };
@@ -947,11 +957,26 @@ export class WindowLauncherService {
     }
 
     function setupCommunication() {
+      // Store current state
+      window.messageCenterState = {
+        activeFilter: 'all',
+        messages: [],
+        unreadCounts: { notes: 0, emails: 0, sms: 0, all: 0 },
+        isOpen: true,
+        lastUpdated: Date.now()
+      };
+
       // Listen for messages from parent
       window.addEventListener('message', (event) => {
         console.log('Message received from parent:', event.data);
 
         switch (event.data.type) {
+          case 'STATE_UPDATE':
+            if (event.data.payload) {
+              window.messageCenterState = { ...window.messageCenterState, ...event.data.payload };
+              updateUIFromState();
+            }
+            break;
           case 'UPDATE_CONFIG':
             console.log('Config update received:', event.data.payload);
             break;
@@ -962,6 +987,34 @@ export class WindowLauncherService {
             console.log('Unknown message from parent:', event.data.type);
         }
       });
+
+      // Function to update UI based on current state
+      window.updateUIFromState = function() {
+        const state = window.messageCenterState;
+        if (state.activeFilter) {
+          setActiveFilter(state.activeFilter);
+        }
+        // Update unread counts in UI
+        updateUnreadCounts(state.unreadCounts || { notes: 0, emails: 0, sms: 0, all: 0 });
+      };
+
+      // Function to update unread count displays
+      window.updateUnreadCounts = function(counts) {
+        const badges = {
+          'all': document.querySelector('[data-filter="all"] .tab-badge'),
+          'notes': document.querySelector('[data-filter="notes"] .tab-badge'),
+          'emails': document.querySelector('[data-filter="emails"] .tab-badge'),
+          'sms': document.querySelector('[data-filter="sms"] .tab-badge')
+        };
+
+        Object.keys(badges).forEach(filter => {
+          const badge = badges[filter];
+          if (badge && counts[filter]) {
+            badge.textContent = counts[filter].toString();
+            badge.style.display = counts[filter] > 0 ? 'flex' : 'none';
+          }
+        });
+      };
 
       // Notify parent that Angular is ready
       setTimeout(() => {
