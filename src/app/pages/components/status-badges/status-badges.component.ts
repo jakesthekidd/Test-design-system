@@ -303,15 +303,15 @@ export class MenuButtonComponent {
         <p-tabPanel header="Code">
           <div class="code-section">
             <h3>Import Components</h3>
-            <pre><code>import &#123;
+            <pre><code>import {{ '{' }}
   AutomatedBadgeComponent,
   StatusBadgeComponent,
   EmailIconComponent,
   MenuButtonComponent,
   StatusType
-&#125; from '../status-badges/status-badges.component';
+{{ '}' }} from '../status-badges/status-badges.component';
 
-@Component(&#123;
+@Component({{ '{' }}
   imports: [
     AutomatedBadgeComponent,
     StatusBadgeComponent,
@@ -319,7 +319,7 @@ export class MenuButtonComponent {
     MenuButtonComponent
   ],
   // ...
-&#125;)</code></pre>
+{{ '}' }})</code></pre>
 
             <h3>Basic Usage</h3>
             <pre><code>// Automated Badge
