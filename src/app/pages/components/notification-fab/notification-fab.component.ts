@@ -11,7 +11,7 @@ export interface NotificationFabConfig {
 @Component({
   selector: 'app-notification-fab',
   standalone: true,
-  imports: [CommonModule, ButtonModule, BadgeModule],
+  imports: [CommonModule],
   template: `
     <div class="notification-fab-container">
       <button
