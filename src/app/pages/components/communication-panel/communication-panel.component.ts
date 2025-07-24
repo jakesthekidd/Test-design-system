@@ -598,9 +598,60 @@ export class CommunicationPanelComponent implements OnInit, OnDestroy, OnChanges
     <div class="docs-container">
       <h1>CommunicationPanel Component</h1>
       <p class="component-description">
-        A slide-up drawer panel that displays a filtered feed of communication messages. 
-        Integrates with the NotificationFAB and provides full message center functionality.
+        A slide-up drawer panel that displays a filtered feed of communication messages.
+        Integrates with the NotificationFAB and provides full message center functionality with proper scroll containment and message alignment.
       </p>
+
+      <div class="docs-section">
+        <h2>PrimeNG Components Used</h2>
+        <ul class="primeng-components">
+          <li><strong>ButtonModule</strong> - Used for compose button and filter button</li>
+          <li><strong>OverlayPanelModule</strong> - Panel overlay structure</li>
+          <li><strong>BadgeModule</strong> - Tab notification badges (via MessageCenterHeader)</li>
+          <li><strong>ScrollPanelModule</strong> - Custom scroll behavior with containment</li>
+        </ul>
+      </div>
+
+      <div class="docs-section">
+        <h2>Component Composition</h2>
+        <div class="composition-info">
+          <h3>Integrated Components:</h3>
+          <ul>
+            <li><strong>MessageCenterHeaderComponent</strong> - Sticky header with tabs and actions</li>
+            <li><strong>NoteBubbleComponent</strong> - Internal notes with sender-based alignment</li>
+            <li><strong>AutomatedEmailBubbleComponent</strong> - System-generated email messages</li>
+            <li><strong>SmsBubbleComponent</strong> - SMS communication bubbles</li>
+            <li><strong>ManualEmailBubbleComponent</strong> - User-composed email messages</li>
+            <li><strong>UploadBubbleComponent</strong> - Document upload confirmations</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="docs-section">
+        <h2>Implementation Notes</h2>
+        <div class="implementation-notes">
+          <h3>Scroll Behavior:</h3>
+          <ul>
+            <li>Uses <code>overscroll-behavior: contain</code> to prevent background page scroll</li>
+            <li>Body scroll is locked when panel is open using <code>overflow: hidden</code></li>
+            <li>Touch-friendly scrolling with <code>-webkit-overflow-scrolling: touch</code></li>
+          </ul>
+
+          <h3>Message Alignment Logic:</h3>
+          <ul>
+            <li><strong>Notes:</strong> Left-aligned for other users, right-aligned for current user</li>
+            <li><strong>SMS/Emails:</strong> Right-aligned (outbound messages only)</li>
+            <li><strong>Full Width:</strong> Notes take full available width for proper alignment</li>
+          </ul>
+
+          <h3>Unread State Management:</h3>
+          <ul>
+            <li>Messages marked as read when clicked</li>
+            <li>Badge counts automatically update on filter tabs</li>
+            <li>Supports visibility tracking for auto-read behavior</li>
+          </ul>
+        </div>
+      </div>
 
       <div class="docs-section">
         <h2>Interactive Demo</h2>
