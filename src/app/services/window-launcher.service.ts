@@ -619,13 +619,9 @@ export class WindowLauncherService {
             font-family: 'Font Awesome 5 Free';
             font-weight: 900;
           }
-        .communication-panel-container {
-          height: 100vh;
-          display: flex;
-          flex-direction: column;
-          background: var(--surface-0, #ffffff);
-          font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        }
+        \`;
+        document.head.appendChild(style);
+        console.log('Styles added successfully');
 
         /* Message Center Header Styles */
         .message-center-header {
