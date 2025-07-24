@@ -1112,8 +1112,17 @@ export class WindowLauncherService {
       if (window.opener) {
         window.opener.postMessage({
           type: 'WINDOW_CLOSING',
-          componentName: '${config.componentName}'
+          componentName: '${config.componentName}',
+          timestamp: Date.now()
         }, '*');
+      }
+    });
+
+    // Cleanup on window close
+    window.addEventListener('unload', () => {
+      if (window.messageCenterState) {
+        window.messageCenterState.isOpen = false;
+        window.messageCenterState.lastUpdated = Date.now();
       }
     });
   </script>
