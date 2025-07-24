@@ -557,18 +557,12 @@ export class WindowLauncherService {
         window.messageCenterState.lastUpdated = Date.now();
       }
 
-      // Update active tab
-      document.querySelectorAll('.filter-tab').forEach(tab => {
-        tab.classList.remove('active');
-      });
-      document.querySelector(\`[data-filter="\${filter}"]\`).classList.add('active');
-
-      // Show/hide compose button for emails
-      const composeBtn = document.getElementById('composeBtn');
-      if (filter === 'emails') {
-        composeBtn.style.display = 'flex';
-      } else {
-        composeBtn.style.display = 'none';
+      // Re-render content with new filter
+      if (window.messageCenterData && window.messageCenterData.messages) {
+        const container = document.getElementById('component-root');
+        if (container) {
+          container.innerHTML = renderCommunicationPanel();
+        }
       }
 
       // Notify parent of state change
