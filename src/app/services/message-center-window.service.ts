@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { WindowLauncherService, AngularShellConfig, WindowConfig } from './window-launcher.service';
 import { MessageCenterStateService } from './message-center-state.service';
+import { MessageDataService } from './message-data.service';
 
 export interface MessageCenterWindowConfig {
   width?: number;
