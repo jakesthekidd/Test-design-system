@@ -623,6 +623,41 @@ export class CommunicationPanelComponent implements OnInit, OnDestroy, OnChanges
       document.body.style.paddingRight = '';
     }
   }
+
+  private setupIntersectionObserver(): void {
+    if (!this.messageFeedRef || typeof window === 'undefined') return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const messageElement = entry.target as HTMLElement;
+          const messageId = messageElement.dataset['messageId'];
+          if (messageId) {
+            this.markMessageAsViewed(messageId);
+          }
+        }
+      });
+    }, {
+      root: this.messageFeedRef.nativeElement,
+      rootMargin: '0px',
+      threshold: 0.7 // Message is 70% visible
+    });
+
+    // Observe all message items
+    setTimeout(() => {
+      const messageElements = this.messageFeedRef.nativeElement.querySelectorAll('.message-item');
+      messageElements.forEach((element: Element) => observer.observe(element));
+    }, 100);
+  }
+
+  private markMessageAsViewed(messageId: string): void {
+    const message = this.messages.find(m => m.id === messageId);
+    if (message && !message.isRead) {
+      message.isRead = true;
+      this.updateUnreadCounts();
+      this.updateFilterTabs();
+    }
+  }
 }
 
 // Documentation Component  
