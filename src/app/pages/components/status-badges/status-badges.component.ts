@@ -303,15 +303,15 @@ export class MenuButtonComponent {
         <p-tabPanel header="Code">
           <div class="code-section">
             <h3>Import Components</h3>
-            <pre><code>import {{ '{' }}
+            <pre ngNonBindable><code>import {
   AutomatedBadgeComponent,
   StatusBadgeComponent,
   EmailIconComponent,
   MenuButtonComponent,
   StatusType
-{{ '}' }} from '../status-badges/status-badges.component';
+} from '../status-badges/status-badges.component';
 
-@Component({{ '{' }}
+@Component({
   imports: [
     AutomatedBadgeComponent,
     StatusBadgeComponent,
@@ -319,7 +319,7 @@ export class MenuButtonComponent {
     MenuButtonComponent
   ],
   // ...
-{{ '}' }})</code></pre>
+})</code></pre>
 
             <h3>Basic Usage</h3>
             <pre><code>// Automated Badge
