@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MessageCenterWindowService } from '../../../services/message-center-window.service';
 
 @Component({
   selector: 'app-message-center-expanded',
@@ -7,19 +8,273 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   template: `
     <div class="message-center-expanded">
-      <!-- Component implementation will go here -->
-      <h2>MessageCenterExpanded Component</h2>
-      <p>This component will launch in a separate browser window.</p>
+      <div class="window-controls">
+        <h3>Message Center Window Controls</h3>
+        <div class="control-buttons">
+          <button
+            class="launch-btn"
+            (click)="launchWindow()"
+            [disabled]="isWindowOpen()">
+            <i class="fas fa-external-link-alt"></i>
+            Launch in New Window
+          </button>
+
+          <button
+            class="close-btn"
+            (click)="closeWindow()"
+            [disabled]="!isWindowOpen()">
+            <i class="fas fa-times"></i>
+            Close Window
+          </button>
+
+          <button
+            class="refresh-btn"
+            (click)="refreshWindow()"
+            [disabled]="!isWindowOpen()">
+            <i class="fas fa-sync-alt"></i>
+            Refresh
+          </button>
+        </div>
+      </div>
+
+      <div class="preset-controls">
+        <h4>Quick Launch Presets</h4>
+        <div class="preset-buttons">
+          <button class="preset-btn" (click)="launchPreset('default')">
+            <i class="fas fa-comment"></i>
+            Default View
+          </button>
+          <button class="preset-btn" (click)="launchPreset('compose')">
+            <i class="fas fa-pen"></i>
+            Compose Mode
+          </button>
+          <button class="preset-btn" (click)="launchPreset('notifications')">
+            <i class="fas fa-bell"></i>
+            Notifications
+          </button>
+        </div>
+      </div>
+
+      <div class="window-status">
+        <div class="status-indicator">
+          <span class="status-dot" [class.active]="isWindowOpen()"></span>
+          <span class="status-text">
+            {{ isWindowOpen() ? 'Window is open' : 'Window is closed' }}
+          </span>
+        </div>
+      </div>
     </div>
   `,
   styles: [`
     .message-center-expanded {
+      padding: 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .window-controls {
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      border: 1px solid var(--surface-border, #E2E6EB);
+      border-radius: 8px;
+      background: var(--surface-card, #ffffff);
+    }
+
+    .window-controls h3 {
+      margin: 0 0 1rem 0;
+      color: var(--text-color, #3D3D3D);
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+
+    .control-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .control-buttons button {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.25rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .launch-btn {
+      background: var(--primary-color, #2474BB);
+      color: white;
+    }
+
+    .launch-btn:hover:not(:disabled) {
+      background: var(--primary-600, #2068A8);
+    }
+
+    .close-btn {
+      background: var(--red-500, #DA1F2C);
+      color: white;
+    }
+
+    .close-btn:hover:not(:disabled) {
+      background: var(--red-600, #C41E3A);
+    }
+
+    .refresh-btn {
+      background: var(--surface-400, #E2E6EB);
+      color: var(--text-color, #3D3D3D);
+    }
+
+    .refresh-btn:hover:not(:disabled) {
+      background: var(--surface-500, #C6CCD6);
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .preset-controls {
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      border: 1px solid var(--surface-border, #E2E6EB);
+      border-radius: 8px;
+      background: var(--surface-50, #F7F8F9);
+    }
+
+    .preset-controls h4 {
+      margin: 0 0 1rem 0;
+      color: var(--text-color, #3D3D3D);
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .preset-buttons {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .preset-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--surface-border, #E2E6EB);
+      border-radius: 6px;
+      background: white;
+      color: var(--text-color, #3D3D3D);
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .preset-btn:hover {
+      background: var(--surface-100, #F7F8F9);
+      border-color: var(--primary-color, #2474BB);
+    }
+
+    .window-status {
       padding: 1rem;
+      border-radius: 6px;
+      background: var(--surface-100, #F7F8F9);
+    }
+
+    .status-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .status-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--surface-400, #E2E6EB);
+      transition: background-color 0.2s ease;
+    }
+
+    .status-dot.active {
+      background: var(--green-500, #22C55E);
+      box-shadow: 0 0 8px rgba(34, 197, 94, 0.3);
+    }
+
+    .status-text {
+      font-size: 0.9rem;
+      color: var(--text-color-secondary, #8D9AAE);
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      .message-center-expanded {
+        padding: 1rem;
+      }
+
+      .control-buttons, .preset-buttons {
+        flex-direction: column;
+      }
+
+      .control-buttons button, .preset-btn {
+        width: 100%;
+        justify-content: center;
+      }
     }
   `]
 })
 export class MessageCenterExpandedComponent {
-  // Component implementation will go here
+  constructor(private messageWindowService: MessageCenterWindowService) {}
+
+  async launchWindow(): Promise<void> {
+    try {
+      const window = await this.messageWindowService.openMessageCenter();
+      if (window) {
+        console.log('Message Center window launched successfully');
+      } else {
+        console.error('Failed to launch Message Center window');
+      }
+    } catch (error) {
+      console.error('Error launching Message Center window:', error);
+    }
+  }
+
+  closeWindow(): void {
+    const success = this.messageWindowService.closeMessageCenter();
+    if (success) {
+      console.log('Message Center window closed successfully');
+    } else {
+      console.warn('No Message Center window to close or close failed');
+    }
+  }
+
+  refreshWindow(): void {
+    const success = this.messageWindowService.refreshMessageFeed();
+    if (success) {
+      console.log('Message Center window refreshed');
+    } else {
+      console.warn('Failed to refresh Message Center window');
+    }
+  }
+
+  async launchPreset(preset: 'default' | 'compose' | 'notifications'): Promise<void> {
+    try {
+      const window = await this.messageWindowService.openWithPreset(preset);
+      if (window) {
+        console.log(`Message Center window launched with preset: ${preset}`);
+      } else {
+        console.error(`Failed to launch Message Center window with preset: ${preset}`);
+      }
+    } catch (error) {
+      console.error(`Error launching Message Center window with preset ${preset}:`, error);
+    }
+  }
+
+  isWindowOpen(): boolean {
+    return this.messageWindowService.isMessageCenterOpen();
+  }
 }
 
 // Documentation Component for Design System
