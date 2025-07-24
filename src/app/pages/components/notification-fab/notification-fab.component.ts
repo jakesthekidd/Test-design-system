@@ -156,7 +156,7 @@ export interface NotificationFabConfig {
 export class NotificationFabComponent {
   @Input() hasNotification: boolean = false;
   @Input() notificationCount?: number;
-  @Input() icon: string = 'pi pi-comments';
+  @Input() icon: string = 'fas fa-comment';
   @Input() ariaLabel: string = 'Open Message Center';
 
   @Output() clicked = new EventEmitter<void>();
