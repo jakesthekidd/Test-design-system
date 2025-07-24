@@ -148,6 +148,13 @@ export class NavigationService {
           description: 'Automated SMS message display with delivery status tracking and indigo styling',
           route: '/components/sms-bubble',
           tags: ['sms', 'messaging', 'automation', 'status', 'workflow', 'communication']
+        },
+        {
+          id: 'manual-email-bubble',
+          name: 'Manual Email Bubble',
+          description: 'User-composed email messages with author identification and sent/failed status tracking',
+          route: '/components/manual-email-bubble',
+          tags: ['email', 'manual', 'user', 'status', 'failed', 'communication', 'messaging']
         }
       ]
     },
