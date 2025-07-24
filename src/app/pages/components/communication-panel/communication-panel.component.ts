@@ -188,6 +188,7 @@ export interface CommunicationPanelConfig {
 
     .communication-panel-overlay.panel-open {
       pointer-events: auto;
+      overflow: hidden;
     }
 
     .communication-panel {
