@@ -216,9 +216,12 @@ export interface CommunicationPanelConfig {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 16px 16px 16px;
+      padding: 12px 16px;
       border-bottom: 1px solid var(--surface-border, #E2E6EB);
       background: var(--surface-0, #ffffff);
+      flex-shrink: 0;
+      min-height: 56px;
+      box-sizing: border-box;
     }
 
     .filter-button {
