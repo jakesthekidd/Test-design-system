@@ -276,11 +276,15 @@ export interface CommunicationPanelConfig {
       flex: 1;
       padding: 12px 0;
       overflow-y: auto;
+      overflow-x: hidden;
       display: flex;
       flex-direction: column;
       gap: 12px;
       background: var(--surface-0, #ffffff);
       min-height: 0;
+      overscroll-behavior: contain;
+      touch-action: pan-y;
+      -webkit-overflow-scrolling: touch;
     }
 
     .message-item {
