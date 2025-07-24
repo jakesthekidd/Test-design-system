@@ -377,7 +377,7 @@ export interface CommunicationPanelConfig {
     }
   `]
 })
-export class CommunicationPanelComponent implements OnInit, OnDestroy, AfterViewInit {
+export class CommunicationPanelComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit {
   @ViewChild('messageFeed', { static: false }) messageFeedRef!: ElementRef;
   @Input() isOpen: boolean = false;
   @Input() messages: CommunicationMessage[] = [];
