@@ -586,6 +586,17 @@ export class NoteBubbleComponent &#123;
 
     .note-bubble {
       width: 100%;
+      display: flex;
+    }
+
+    /* Left align other users' messages */
+    .note-bubble:not(.own-message) {
+      justify-content: flex-start;
+    }
+
+    /* Right align own messages */
+    .note-bubble.own-message {
+      justify-content: flex-end;
     }
 
     /* Bubble Container */
@@ -598,6 +609,7 @@ export class NoteBubbleComponent &#123;
       border: 3px solid;
       background: var(--surface-overlay);
       font-family: 'Roboto', sans-serif;
+      max-width: 70%;
     }
 
     .bubble-container.other-message {
