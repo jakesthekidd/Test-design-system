@@ -134,6 +134,13 @@ export class NavigationService {
           description: 'System-triggered email communications with delivery status tracking',
           route: '/components/automated-email-bubble',
           tags: ['email', 'automation', 'status', 'workflow', 'communication', 'messaging']
+        },
+        {
+          id: 'status-badges',
+          name: 'Status Badges',
+          description: 'Reusable status indicators for communication types including SMS and email',
+          route: '/components/status-badges',
+          tags: ['status', 'badges', 'indicators', 'automation', 'communication']
         }
       ]
     },
