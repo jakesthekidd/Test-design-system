@@ -54,6 +54,13 @@
   --cyan-50: #F1FAFE;
   --cyan-200: #C7EBFB;
 
+  /* Indigo Colors */
+  --indigo-50: #F7F7FE;
+  --indigo-100: #DADAFC;
+  --indigo-200: #BCBDF9;
+  --indigo-500: #6366F1;
+  --indigo-900: #282960;
+
   /* Additional Design Tokens */
   --primary-blue-50: #91B9DD;
   --surface-900: #5A626F;
