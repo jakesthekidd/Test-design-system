@@ -274,25 +274,28 @@ export interface CommunicationPanelConfig {
 
     .message-list {
       flex: 1;
-      padding: 16px 0;
+      padding: 12px 0;
       overflow-y: auto;
-      max-height: 605px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 12px;
       background: var(--surface-0, #ffffff);
+      min-height: 0;
     }
 
     .message-item {
       flex-shrink: 0;
+      padding: 0 16px;
     }
 
     .message-item.own-message {
-      padding: 0 16px 0 48px;
+      padding-left: 48px;
+      padding-right: 16px;
     }
 
     .message-item.automated-message {
-      padding: 0 48px 0 16px;
+      padding-left: 16px;
+      padding-right: 48px;
     }
 
     /* Empty State */
