@@ -418,7 +418,7 @@ export class CommunicationPanelComponent implements OnInit, OnDestroy, OnChanges
   }
 
   ngOnDestroy(): void {
-    // Cleanup if needed
+    this.unlockBodyScroll();
   }
 
   get shouldShowComposeButton(): boolean {
