@@ -378,7 +378,8 @@ import { TooltipModule } from 'primeng/tooltip';
   onMenuClick(email: AutomatedEmailData): void {
     console.log('Menu clicked for email:', email);
   }
-}</code></pre>
+}
+            </code></pre>
 
             <h3>Individual Status Components</h3>
             <pre><code>// Automated Badge
