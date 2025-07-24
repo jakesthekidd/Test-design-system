@@ -169,6 +169,13 @@ export class NavigationService {
           description: 'Floating action button for global Message Center access with notification badges',
           route: '/components/notification-fab',
           tags: ['fab', 'floating', 'notification', 'badge', 'message-center', 'button', 'communication']
+        },
+        {
+          id: 'message-center-header',
+          name: 'Message Center Header',
+          description: 'Sticky header component for Message Center with filter tabs and action buttons',
+          route: '/components/message-center-header',
+          tags: ['header', 'tabs', 'filter', 'message-center', 'sticky', 'communication', 'navigation']
         }
       ]
     },
