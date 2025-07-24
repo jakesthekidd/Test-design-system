@@ -749,9 +749,11 @@ export class CommunicationPanelComponent implements OnInit, OnDestroy, OnChanges
       <div class="docs-section">
         <h2>Implementation Notes</h2>
         <div class="implementation-notes">
-          <h3>Scroll Behavior:</h3>
+          <h3>Scroll Behavior Fixes:</h3>
           <ul>
-            <li>Uses <code>overscroll-behavior: contain</code> to prevent background page scroll</li>
+            <li>Enhanced <code>overscroll-behavior: contain</code> with proper event handling</li>
+            <li>Added <code>scroll-behavior: smooth</code> and <code>position: relative</code></li>
+            <li>Improved wheel and touch event propagation to prevent background scroll</li>
             <li>Body scroll is locked when panel is open using <code>overflow: hidden</code></li>
             <li>Touch-friendly scrolling with <code>-webkit-overflow-scrolling: touch</code></li>
           </ul>
@@ -760,14 +762,26 @@ export class CommunicationPanelComponent implements OnInit, OnDestroy, OnChanges
           <ul>
             <li><strong>Notes:</strong> Left-aligned for other users, right-aligned for current user</li>
             <li><strong>SMS/Emails:</strong> Right-aligned (outbound messages only)</li>
-            <li><strong>Full Width:</strong> Notes take full available width for proper alignment</li>
+            <li><strong>Full Width:</strong> Notes take 100% available width with <code>box-sizing: border-box</code></li>
+            <li><strong>Text Alignment:</strong> Added <code>text-align: left/right</code> for proper content flow</li>
           </ul>
 
           <h3>Unread State Management:</h3>
           <ul>
-            <li>Messages marked as read when clicked</li>
-            <li>Badge counts automatically update on filter tabs</li>
-            <li>Supports visibility tracking for auto-read behavior</li>
+            <li>Messages marked as read when clicked with immediate UI updates</li>
+            <li>Badge counts automatically update with forced change detection</li>
+            <li>Intersection Observer with 80% visibility threshold and 1.5s delay</li>
+            <li>Supports both manual click and automatic visibility tracking</li>
+            <li>Debug logging for tracking read state changes</li>
+          </ul>
+
+          <h3>PrimeNG Modules Required:</h3>
+          <ul>
+            <li><strong>ButtonModule</strong> - Compose and action buttons</li>
+            <li><strong>AvatarModule</strong> - User initials in NoteBubbleComponent</li>
+            <li><strong>TooltipModule</strong> - Menu button tooltips in messages</li>
+            <li><strong>CommonModule</strong> - Structural directives (*ngFor, *ngIf)</li>
+            <li><strong>OverlayPanelModule</strong> - Panel overlay architecture</li>
           </ul>
         </div>
       </div>
