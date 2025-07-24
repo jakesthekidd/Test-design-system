@@ -448,11 +448,156 @@ export class WindowLauncherService {
 
     // Simple placeholder content that will definitely render
     function renderCommunicationPanel() {
-      console.log('renderCommunicationPanel called with data:', {
-        hasData: !!(window.messageCenterData && window.messageCenterData.messages),
+      const hasData = !!(window.messageCenterData && window.messageCenterData.messages && window.messageCenterData.messages.length > 0);
+      const activeFilter = (window.messageCenterState && window.messageCenterState.activeFilter) || 'all';
+      const retryCount = window.renderRetryCount || 0;
+
+      console.log('renderCommunicationPanel called:', {
+        hasData,
         messageCount: window.messageCenterData?.messages?.length || 0,
-        activeFilter: window.messageCenterState?.activeFilter || 'none'
+        activeFilter,
+        retryCount,
+        messageCenterData: window.messageCenterData,
+        messageCenterState: window.messageCenterState
       });
+
+      if (hasData) {
+        console.log('✅ Rendering with actual data');
+        return renderActualContent();
+      } else {
+        console.log('❌ No data available, showing loading state', { retryCount });
+
+        // Retry logic - max 3 attempts
+        if (retryCount < 3) {
+          window.renderRetryCount = retryCount + 1;
+          setTimeout(() => {
+            console.log(\`Retry attempt \${window.renderRetryCount}/3 - re-rendering...\`);
+            const container = document.getElementById('component-root');
+            if (container) {
+              container.innerHTML = renderCommunicationPanel();
+            }
+          }, 1000); // Wait 1 second between retries
+        }
+
+        return renderLoadingState(retryCount);
+      }
+    }
+
+    function renderActualContent() {
+      const messages = window.messageCenterData.messages;
+      const unreadCounts = window.messageCenterData.unreadCounts || { all: 0, notes: 0, emails: 0, sms: 0 };
+      const activeFilter = (window.messageCenterState && window.messageCenterState.activeFilter) || 'all';
+
+      // Filter messages based on active filter
+      const filteredMessages = messages.filter(msg => {
+        switch (activeFilter) {
+          case 'notes': return msg.type === 'note';
+          case 'emails': return msg.type === 'automated-email' || msg.type === 'manual-email';
+          case 'sms': return msg.type === 'sms';
+          default: return true; // 'all'
+        }
+      });
+
+      const messagesList = filteredMessages.map(msg => {
+        const timestamp = new Date(msg.timestamp).toLocaleTimeString();
+        const isUnread = !msg.isRead;
+
+        let icon, bgColor, title, content;
+
+        switch (msg.type) {
+          case 'note':
+            icon = '📝';
+            bgColor = '#f9f9f9';
+            title = msg.data.author;
+            content = msg.data.content;
+            break;
+          case 'automated-email':
+          case 'manual-email':
+            icon = '📧';
+            bgColor = '#e3f2fd';
+            title = msg.data.subjectLine || 'Email';
+            content = msg.data.messageBody;
+            break;
+          case 'sms':
+            icon = '💬';
+            bgColor = '#f3e5f5';
+            title = \`SMS to \${msg.data.toRecipients ? msg.data.toRecipients.join(', ') : 'Unknown'}\`;
+            content = msg.data.messageBody;
+            break;
+          case 'upload':
+            icon = '📎';
+            bgColor = '#e8f5e8';
+            title = \`File: \${msg.data.filename}\`;
+            content = \`Uploaded by \${msg.data.uploader}\`;
+            break;
+          default:
+            icon = '💬';
+            bgColor = '#f0f0f0';
+            title = 'Message';
+            content = 'Unknown type';
+        }
+
+        return \`
+          <div style="background: \${bgColor}; padding: 15px; margin-bottom: 15px; border-radius: 8px; \${isUnread ? 'border-left: 4px solid #FF9800;' : ''}">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+              <div style="width: 32px; height: 32px; background: #2474BB; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px;">\${icon}</div>
+              <div style="flex: 1;">
+                <strong>\${title}\${isUnread ? ' 🔵' : ''}</strong>
+                <div style="font-size: 12px; color: #666;">\${timestamp}</div>
+              </div>
+            </div>
+            <p style="margin: 0; color: #333;">\${content}</p>
+          </div>
+        \`;
+      }).join('');
+
+      return \`
+        <div style="padding: 20px; font-family: Arial, sans-serif;">
+          <div style="background: #2474BB; color: white; padding: 15px; margin-bottom: 20px; border-radius: 8px;">
+            <h2 style="margin: 0; display: flex; align-items: center; gap: 10px;">
+              📬 Message Center - Expanded View
+            </h2>
+          </div>
+
+          <div style="display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;">
+            <button onclick="setActiveFilter('all')" style="background: \${activeFilter === 'all' ? '#2474BB' : '#f0f0f0'}; color: \${activeFilter === 'all' ? 'white' : '#333'}; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
+              All (\${unreadCounts.all})
+            </button>
+            <button onclick="setActiveFilter('notes')" style="background: \${activeFilter === 'notes' ? '#2474BB' : '#f0f0f0'}; color: \${activeFilter === 'notes' ? 'white' : '#333'}; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
+              Notes (\${unreadCounts.notes})
+            </button>
+            <button onclick="setActiveFilter('emails')" style="background: \${activeFilter === 'emails' ? '#2474BB' : '#f0f0f0'}; color: \${activeFilter === 'emails' ? 'white' : '#333'}; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
+              Emails (\${unreadCounts.emails})
+            </button>
+            <button onclick="setActiveFilter('sms')" style="background: \${activeFilter === 'sms' ? '#2474BB' : '#f0f0f0'}; color: \${activeFilter === 'sms' ? 'white' : '#333'}; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
+              SMS (\${unreadCounts.sms})
+            </button>
+          </div>
+
+          <div style="background: white; border: 1px solid #ddd; border-radius: 8px; padding: 20px; max-height: 60vh; overflow-y: auto;">
+            <h3 style="margin-top: 0; color: #2474BB;">Messages (\${filteredMessages.length} of \${messages.length} shown)</h3>
+            \${messagesList || '<p style="text-align: center; color: #999; padding: 40px;">No messages found for current filter.</p>'}
+          </div>
+
+          <div style="margin-top: 20px; padding: 15px; background: #e8f5e8; border-radius: 8px;">
+            <h4 style="margin-top: 0; color: #2474BB;">✅ Real Data Loaded Successfully</h4>
+            <p style="margin: 5px 0; font-size: 14px;">Total: \${messages.length} messages | Filter: \${activeFilter} | Showing: \${filteredMessages.length}</p>
+          </div>
+
+          <div style="margin-top: 15px; text-align: center;">
+            <button onclick="window.close()" style="background: #da1f2c; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">
+              Close Window
+            </button>
+          </div>
+        </div>
+      \`;
+    }
+
+    function renderLoadingState(retryCount) {
+      const maxRetries = 3;
+      const isRetrying = retryCount > 0 && retryCount < maxRetries;
+      const hasExceededRetries = retryCount >= maxRetries;
+
       return \`
         <div style="padding: 20px; font-family: Arial, sans-serif;">
           <div style="background: #2474BB; color: white; padding: 15px; margin-bottom: 20px; border-radius: 8px;">
