@@ -61,15 +61,25 @@ export class WindowLauncherService {
       this.openWindows.set(windowId, newWindow);
 
       // Generate and inject HTML content
+      console.log('Generating HTML content for window...');
       const htmlContent = this.generateAngularShell(shellConfig);
+      console.log('HTML content generated, writing to window...');
       newWindow.document.write(htmlContent);
       newWindow.document.close();
+      console.log('HTML content written to window');
 
       // Set up event handlers
       this.setupWindowEventHandlers(windowId, newWindow);
 
       // Focus the new window
       newWindow.focus();
+
+      // Check if window is accessible
+      console.log('Window state:', {
+        closed: newWindow.closed,
+        location: newWindow.location.href,
+        readyState: newWindow.document.readyState
+      });
 
       console.log(`Angular window '${windowId}' opened successfully`);
       return newWindow;
