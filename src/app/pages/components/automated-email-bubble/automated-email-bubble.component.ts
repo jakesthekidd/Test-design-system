@@ -360,8 +360,7 @@ import { TooltipModule } from 'primeng/tooltip';
   timeOffset?: string;
   workflowId?: string;
   templateName?: string;
-}
-            </code></pre>
+}</code></pre>
 
             <h3>Component Usage Example</h3>
             <pre ngNonBindable><code>export class EmailMessageComponent {
