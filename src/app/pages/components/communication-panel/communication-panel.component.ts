@@ -541,16 +541,43 @@ export class CommunicationPanelComponent implements OnInit, OnDestroy, AfterView
     this.updateFilterTabs();
   }
 
+  private setupScrollTracking(): void {
+    if (this.messageFeedRef) {
+      const messageList = this.messageFeedRef.nativeElement.querySelector('.message-list');
+      if (messageList) {
+        messageList.addEventListener('scroll', () => {
+          this.updateScrollIndicator(messageList);
+        });
+      }
+    }
+  }
+
+  private updateScrollIndicator(scrollElement: HTMLElement): void {
+    const scrollHeight = scrollElement.scrollHeight;
+    const clientHeight = scrollElement.clientHeight;
+    const scrollTop = scrollElement.scrollTop;
+
+    if (scrollHeight <= clientHeight) {
+      this.scrollThumbHeight = 100;
+      this.scrollThumbTop = 0;
+      return;
+    }
+
+    this.scrollThumbHeight = (clientHeight / scrollHeight) * 100;
+    this.scrollThumbTop = (scrollTop / (scrollHeight - clientHeight)) * (100 - this.scrollThumbHeight);
+  }
+
   private scrollToBottom(): void {
     // Check if there are unread messages
     const hasUnreadMessages = this.messages.some(m => !m.isRead);
-    
+
     if (!hasUnreadMessages) {
       // Scroll to bottom if all messages are read
       setTimeout(() => {
         const messageList = document.querySelector('.message-list');
         if (messageList) {
           messageList.scrollTop = messageList.scrollHeight;
+          this.updateScrollIndicator(messageList as HTMLElement);
         }
       }, 100);
     } else {
