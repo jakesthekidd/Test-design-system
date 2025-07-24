@@ -200,28 +200,40 @@ export class MessageCenterWindowService {
 
     console.log('Message from MessageCenter window:', data);
 
-    switch (data.type) {
-      case 'ANGULAR_READY':
-        this.handleWindowReady(event.source as Window);
-        break;
+    try {
+      switch (data.type) {
+        case 'ANGULAR_READY':
+        case 'COMPONENT_LOADED':
+          this.handleWindowReady(event.source as Window);
+          break;
 
-      case 'FILTER_CHANGED':
-        this.stateService.changeFilter(data.payload.filter);
-        break;
+        case 'FILTER_CHANGED':
+          if (data.payload && data.payload.filter) {
+            this.stateService.changeFilter(data.payload.filter);
+          }
+          break;
 
-      case 'MESSAGE_CLICKED':
-        if (data.payload.message) {
-          this.stateService.markMessageAsRead(data.payload.message.id);
-        }
-        break;
+        case 'MESSAGE_CLICKED':
+          if (data.payload && data.payload.message) {
+            this.stateService.markMessageAsRead(data.payload.message.id);
+          }
+          break;
 
-      case 'WINDOW_CLOSING':
-        this.handleWindowClosing(event.source as Window);
-        break;
+        case 'WINDOW_CLOSING':
+          this.handleWindowClosing(event.source as Window);
+          break;
 
-      default:
-        // Forward unknown messages to state service
-        this.stateService.handleWindowMessage(event);
+        case 'ERROR':
+          console.error('Error from MessageCenter window:', data.error);
+          // You could show a notification to the user here
+          break;
+
+        default:
+          // Forward unknown messages to state service
+          this.stateService.handleWindowMessage(event);
+      }
+    } catch (error) {
+      console.error('Error handling window message:', error, data);
     }
   }
 
