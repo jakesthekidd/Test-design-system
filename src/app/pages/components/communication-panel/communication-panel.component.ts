@@ -302,7 +302,7 @@ export interface CommunicationPanelConfig {
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 3rem 2rem;
+      padding: 2rem 1rem;
       color: var(--text-color-secondary, #6B7280);
     }
 
