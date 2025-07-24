@@ -115,6 +115,7 @@ export interface CommunicationPanelConfig {
                   class="message-item note-message"
                   [class.note-own]="message.data.isOwnMessage"
                   [class.note-other]="!message.data.isOwnMessage"
+                  [attr.data-message-id]="message.id"
                 >
                   <app-note-bubble
                     [noteData]="message.data"
@@ -126,6 +127,7 @@ export interface CommunicationPanelConfig {
                 <div
                   *ngIf="message.type === 'automated-email'"
                   class="message-item outbound-message"
+                  [attr.data-message-id]="message.id"
                 >
                   <app-automated-email-bubble
                     [emailData]="message.data"
@@ -137,6 +139,7 @@ export interface CommunicationPanelConfig {
                 <div
                   *ngIf="message.type === 'sms'"
                   class="message-item outbound-message"
+                  [attr.data-message-id]="message.id"
                 >
                   <app-sms-bubble
                     [smsData]="message.data"
@@ -148,6 +151,7 @@ export interface CommunicationPanelConfig {
                 <div
                   *ngIf="message.type === 'manual-email'"
                   class="message-item outbound-message"
+                  [attr.data-message-id]="message.id"
                 >
                   <app-manual-email-bubble
                     [emailData]="message.data"
@@ -159,6 +163,7 @@ export interface CommunicationPanelConfig {
                 <div
                   *ngIf="message.type === 'upload'"
                   class="message-item outbound-message"
+                  [attr.data-message-id]="message.id"
                 >
                   <app-upload-bubble
                     [uploadData]="message.data"
