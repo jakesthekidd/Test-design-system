@@ -421,12 +421,12 @@ export class MessageCenterHeaderComponent {
           <div class="code-example">
             <pre><code>type FilterType = 'notes' | 'emails' | 'sms' | 'all';
 
-interface FilterTab {
+interface FilterTab {{ '{' }}
   id: FilterType;
   label: string;
   icon: string;
   notificationCount?: number;
-}</code></pre>
+{{ '}' }}</code></pre>
           </div>
         </div>
       </div>
