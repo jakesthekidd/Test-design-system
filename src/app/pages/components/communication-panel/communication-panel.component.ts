@@ -261,10 +261,10 @@ export interface CommunicationPanelConfig {
 
     /* Message Feed */
     .message-feed {
-      display: flex;
       flex: 1;
       position: relative;
       min-height: 0;
+      overflow: hidden;
     }
 
     .message-list {
