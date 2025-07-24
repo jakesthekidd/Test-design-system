@@ -260,8 +260,8 @@ export class NotificationFabComponent {
             <div class="api-row">
               <div class="api-cell code">icon</div>
               <div class="api-cell">string</div>
-              <div class="api-cell">'pi pi-comments'</div>
-              <div class="api-cell">PrimeNG icon class for the button</div>
+              <div class="api-cell">'fas fa-comment'</div>
+              <div class="api-cell">FontAwesome icon class for the button</div>
             </div>
             <div class="api-row">
               <div class="api-cell code">ariaLabel</div>
