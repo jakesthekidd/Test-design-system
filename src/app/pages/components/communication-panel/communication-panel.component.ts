@@ -873,6 +873,28 @@ export class CommunicationPanelComponent implements OnInit, OnDestroy, OnChanges
       margin-right: 0.5rem;
     }
 
+    .primeng-components {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .primeng-components li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--surface-border);
+    }
+
+    .composition-info, .implementation-notes {
+      background: var(--surface-50);
+      padding: 1rem;
+      border-radius: 4px;
+      border-left: 4px solid var(--primary-color);
+    }
+
+    .composition-info h3, .implementation-notes h3 {
+      margin-top: 0;
+      color: var(--primary-color);
+    }
+
     .action-log {
       margin-top: 2rem;
       padding: 1rem;
