@@ -91,6 +91,10 @@ import { Subscription } from 'rxjs';
                 <i class="fas fa-check-double"></i>
                 Mark All Read
               </button>
+              <button class="demo-btn debug" (click)="debugWindowLaunch()">
+                <i class="fas fa-bug"></i>
+                Debug Launch
+              </button>
             </div>
             <div class="state-info" *ngIf="currentState">
               <small>
@@ -332,6 +336,14 @@ import { Subscription } from 'rxjs';
       background: var(--primary-600, #2068A8);
     }
 
+    .demo-btn.debug {
+      background: var(--orange-500, #FF9800);
+    }
+
+    .demo-btn.debug:hover {
+      background: var(--orange-600, #F57C00);
+    }
+
     .demo-btn i {
       font-size: 0.8rem;
     }
@@ -433,6 +445,31 @@ export class MessageCenterExpandedComponent implements OnInit, OnDestroy {
   formatTimestamp(timestamp: number): string {
     if (!timestamp) return 'N/A';
     return new Date(timestamp).toLocaleTimeString();
+  }
+
+  debugWindowLaunch(): void {
+    console.log('=== DEBUG: Testing Window Launch ===');
+    console.log('Current state:', this.currentState);
+    console.log('Is window open:', this.isWindowOpen());
+
+    // Test basic window.open
+    console.log('Testing basic window.open...');
+    const testWindow = window.open('about:blank', 'test', 'width=400,height=300');
+    if (testWindow) {
+      console.log('✅ Basic window.open works');
+      testWindow.document.write('<h1>Test Window</h1><p>This is a test. Close this window.</p>');
+      setTimeout(() => testWindow.close(), 3000);
+    } else {
+      console.error('❌ Basic window.open failed - popup blocker?');
+    }
+
+    // Test MessageCenter launch with detailed logging
+    console.log('Testing MessageCenter launch...');
+    this.launchWindow().then(() => {
+      console.log('Launch attempt completed');
+    }).catch(error => {
+      console.error('Launch attempt failed:', error);
+    });
   }
 
   async launchWindow(): Promise<void> {
