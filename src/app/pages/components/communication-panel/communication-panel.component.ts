@@ -656,21 +656,26 @@ export class CommunicationPanelComponent implements OnInit, OnDestroy, OnChanges
           const messageElement = entry.target as HTMLElement;
           const messageId = messageElement.dataset['messageId'];
           if (messageId) {
-            this.markMessageAsViewed(messageId);
+            // Add delay to simulate reading time
+            setTimeout(() => {
+              this.markMessageAsViewed(messageId);
+            }, 1500);
           }
         }
       });
     }, {
       root: this.messageFeedRef.nativeElement,
       rootMargin: '0px',
-      threshold: 0.7 // Message is 70% visible
+      threshold: 0.8 // Message is 80% visible
     });
 
-    // Observe all message items
+    // Observe all message items with better timing
     setTimeout(() => {
-      const messageElements = this.messageFeedRef.nativeElement.querySelectorAll('.message-item');
-      messageElements.forEach((element: Element) => observer.observe(element));
-    }, 100);
+      if (this.messageFeedRef?.nativeElement) {
+        const messageElements = this.messageFeedRef.nativeElement.querySelectorAll('.message-item');
+        messageElements.forEach((element: Element) => observer.observe(element));
+      }
+    }, 200);
   }
 
   private markMessageAsViewed(messageId: string): void {
@@ -679,6 +684,8 @@ export class CommunicationPanelComponent implements OnInit, OnDestroy, OnChanges
       message.isRead = true;
       this.updateUnreadCounts();
       this.updateFilterTabs();
+
+      console.log(`Message ${messageId} auto-marked as viewed`);
     }
   }
 }
