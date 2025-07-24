@@ -79,6 +79,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/components/notification-fab/notification-fab.component').then(m => m.NotificationFabDocsComponent)
   },
   {
+    path: 'components/message-center-header',
+    loadComponent: () => import('./pages/components/message-center-header/message-center-header.component').then(m => m.MessageCenterHeaderDocsComponent)
+  },
+  {
     path: 'components/wfai-approved-container',
     loadComponent: () => import('./pages/components/wfai-approved-container/wfai-approved-container.component').then(m => m.WFAIApprovedContainerDocComponent)
   },
