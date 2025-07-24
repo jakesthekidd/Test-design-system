@@ -1046,6 +1046,96 @@ export class CommunicationPanelDocsComponent {
         status: 'sent',
         timestamp: '2024-08-02T10:32:00'
       }
+    },
+    {
+      id: '4',
+      type: 'note',
+      timestamp: new Date('2024-08-02T11:15:00'),
+      isRead: true,
+      data: {
+        author: 'Sarah Mitchell',
+        content: 'I\'ve reviewed the documentation and everything looks good to proceed. The carrier has confirmed pickup for tomorrow morning.',
+        timestamp: '2024-08-02T11:15:00',
+        isOwnMessage: true
+      }
+    },
+    {
+      id: '5',
+      type: 'upload',
+      timestamp: new Date('2024-08-02T11:23:00'),
+      isRead: false,
+      data: {
+        uploader: 'driver@carrier.com',
+        filename: 'BOL_12345.pdf',
+        uploadMethod: 'upload-link',
+        status: 'uploaded',
+        timestamp: '2024-08-02T11:23:00'
+      }
+    },
+    {
+      id: '6',
+      type: 'manual-email',
+      timestamp: new Date('2024-08-02T12:30:00'),
+      isRead: false,
+      data: {
+        fromUser: 'operations@company.com',
+        toRecipients: ['client@business.com'],
+        subjectLine: 'Shipment Update - Delivery Confirmed',
+        messageBody: 'Your shipment has been successfully delivered. Thank you for choosing our services!',
+        status: 'sent',
+        timestamp: '2024-08-02T12:30:00'
+      }
+    },
+    {
+      id: '7',
+      type: 'automated-email',
+      timestamp: new Date('2024-08-02T13:45:00'),
+      isRead: true,
+      data: {
+        fromAddress: 'notifications@logistics.com',
+        toRecipients: ['warehouse@company.com'],
+        subjectLine: 'Workflow Stopped - Manual Review Required',
+        messageBody: 'The automated processing workflow has been stopped due to missing documentation. Please review and take appropriate action.',
+        status: 'workflow-stopped',
+        timestamp: '2024-08-02T13:45:00'
+      }
+    },
+    {
+      id: '8',
+      type: 'sms',
+      timestamp: new Date('2024-08-02T14:20:00'),
+      isRead: true,
+      data: {
+        toRecipients: ['+1 (555) 123-4567'],
+        messageBody: 'Delivery attempt failed. Customer not available. Will retry tomorrow between 9 AM - 5 PM.',
+        status: 'workflow-stopped',
+        timestamp: '2024-08-02T14:20:00'
+      }
+    },
+    {
+      id: '9',
+      type: 'note',
+      timestamp: new Date('2024-08-02T15:10:00'),
+      isRead: false,
+      data: {
+        author: 'Mike Chen',
+        content: 'Customer called to reschedule delivery. Updated delivery window to Aug 3rd, 10 AM - 2 PM. Driver has been notified.',
+        timestamp: '2024-08-02T15:10:00',
+        isOwnMessage: false
+      }
+    },
+    {
+      id: '10',
+      type: 'upload',
+      timestamp: new Date('2024-08-02T16:00:00'),
+      isRead: true,
+      data: {
+        uploader: 'client@business.com',
+        filename: 'Delivery_Authorization.pdf',
+        uploadMethod: 'platform',
+        status: 'uploaded',
+        timestamp: '2024-08-02T16:00:00'
+      }
     }
   ];
 
