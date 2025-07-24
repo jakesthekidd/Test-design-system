@@ -127,6 +127,13 @@ export class NavigationService {
           description: 'Message bubbles for threaded conversations and internal notes',
           route: '/components/note-bubble',
           tags: ['messaging', 'chat', 'notes', 'conversation', 'bubble']
+        },
+        {
+          id: 'automated-email-bubble',
+          name: 'Automated Email Bubble',
+          description: 'System-triggered email communications with delivery status tracking',
+          route: '/components/automated-email-bubble',
+          tags: ['email', 'automation', 'status', 'workflow', 'communication', 'messaging']
         }
       ]
     },
