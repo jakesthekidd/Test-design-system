@@ -668,7 +668,7 @@ export class MyComponent {
     }
 
     /* Responsive Design */
-    &#64;media (max-width: 768px) {
+    @media (max-width: 768px) {
       .badge-examples {
         flex-direction: column;
         align-items: flex-start;
