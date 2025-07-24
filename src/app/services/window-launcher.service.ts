@@ -528,7 +528,7 @@ export class WindowLauncherService {
           </div>
 
           <div style="margin-top: 20px; padding: 15px; background: #f0f8ff; border-radius: 8px;">
-            <h4 style="margin-top: 0; color: #2474BB;">✅ MessageCenter Expanded Features Working:</h4>
+            <h4 style="margin-top: 0; color: #2474BB;">��� MessageCenter Expanded Features Working:</h4>
             <ul style="margin: 0; padding-left: 20px;">
               <li>Independent window with CommunicationPanel content</li>
               <li>Filter tabs for Notes, Emails, SMS, All</li>
@@ -623,116 +623,8 @@ export class WindowLauncherService {
         document.head.appendChild(style);
         console.log('Styles added successfully');
 
-
-
-        .message-item.outbound-message {
-          display: flex;
-          justify-content: flex-end;
-          padding-left: 48px;
-          padding-right: 16px;
-        }
-
-        /* Message Bubble Styles */
-        .note-bubble, .sms-bubble, .email-bubble, .upload-bubble {
-          background: var(--surface-card, #ffffff);
-          border: 1px solid var(--surface-border, #E2E6EB);
-          border-radius: 8px;
-          padding: 12px;
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-          max-width: 400px;
-        }
-
-        .note-bubble.own {
-          background: var(--primary-50, #E3F2FD);
-          border-color: var(--primary-200, #90CAF9);
-        }
-
-        .note-header, .sms-header, .email-header, .upload-header {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          margin-bottom: 8px;
-        }
-
-        .author-avatar {
-          width: 32px;
-          height: 32px;
-          border-radius: 50%;
-          background: var(--primary-color, #2474BB);
-          color: white;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 12px;
-          font-weight: 600;
-        }
-
-        .author-details, .sms-details, .email-details, .upload-details {
-          flex: 1;
-        }
-
-        .author-name, .sms-recipient, .email-subject, .upload-filename {
-          display: block;
-          font-weight: 600;
-          color: var(--text-color, #3D3D3D);
-          font-size: 13px;
-        }
-
-        .note-timestamp, .sms-timestamp, .email-timestamp, .upload-timestamp {
-          display: block;
-          font-size: 11px;
-          color: var(--text-color-secondary, #8D9AAE);
-        }
-
-        .note-content, .sms-content, .email-content {
-          color: var(--text-color, #3D3D3D);
-          font-size: 14px;
-          line-height: 1.4;
-        }
-
-        .sms-icon, .email-icon, .upload-icon {
-          width: 32px;
-          height: 32px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 14px;
-        }
-
-        .sms-icon {
-          background: var(--indigo-100, #E8EAF6);
-          color: var(--indigo-600, #3F51B5);
-        }
-
-        .email-icon {
-          background: var(--blue-100, #E3F2FD);
-          color: var(--blue-600, #1976D2);
-        }
-
-        .upload-icon {
-          background: var(--green-100, #E8F5E8);
-          color: var(--green-600, #4CAF50);
-        }
-
-        .sms-status, .email-status, .upload-status {
-          font-size: 16px;
-        }
-
-        .sms-status.sent, .email-status.sent, .upload-status.uploaded {
-          color: var(--green-500, #4CAF50);
-        }
-
-        .email-recipients, .upload-meta {
-          font-size: 12px;
-          color: var(--text-color-secondary, #8D9AAE);
-          margin-bottom: 8px;
-        }
-      \`;
-      document.head.appendChild(style);
-
-      // Setup communication
-      setupCommunication();
+        // Setup communication
+        setupCommunication();
 
       console.log('CommunicationPanel initialized successfully');
     }
