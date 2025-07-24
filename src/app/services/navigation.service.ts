@@ -116,6 +116,21 @@ export class NavigationService {
       ]
     },
     {
+      id: 'communication',
+      name: 'Communication',
+      icon: 'fas fa-comments',
+      description: 'Messaging and communication components',
+      components: [
+        {
+          id: 'note-bubble',
+          name: 'Note Bubble',
+          description: 'Message bubbles for threaded conversations and internal notes',
+          route: '/components/note-bubble',
+          tags: ['messaging', 'chat', 'notes', 'conversation', 'bubble']
+        }
+      ]
+    },
+    {
       id: 'overlay',
       name: 'Overlay',
       icon: 'fas fa-layer-group',
