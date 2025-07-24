@@ -199,13 +199,14 @@ export interface CommunicationPanelConfig {
       bottom: 0;
       right: 24px;
       width: 538px;
-      max-height: 747px;
+      height: 747px;
       background: var(--surface-0, #ffffff);
       border-radius: 8px 8px 0 0;
       box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
       display: flex;
       flex-direction: column;
       z-index: 1001;
+      overflow: hidden;
     }
 
     .panel-content {
