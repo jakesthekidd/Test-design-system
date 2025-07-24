@@ -363,22 +363,22 @@ import {{ '{' }} TooltipModule {{ '}' }} from 'primeng/tooltip';
 {{ '}' }}</code></pre>
 
             <h3>Component Usage Example</h3>
-            <pre><code>export class EmailMessageComponent &#123;
-  emailData: AutomatedEmailData = &#123;
-    fromAddress: 'system@docprocessing.com',
-    toRecipients: ['client@company.com', 'shipper@logistics.com'],
+            <pre><code>export class EmailMessageComponent {{ '{' }}
+  emailData: AutomatedEmailData = {{ '{' }}
+    fromAddress: 'system&#64;docprocessing.com',
+    toRecipients: ['client&#64;company.com', 'shipper&#64;logistics.com'],
     subjectLine: 'Document Upload Required - Shipment #SP-2024-1205',
     messageBody: 'Your shipment requires additional documentation...',
     status: 'sent',
     timestamp: 'Aug 2, 2024 | 10:32 AM',
     workflowId: 'WF-2024-1205',
     templateName: 'Document Upload Notification'
-  &#125;;
-  
-  onMenuClick(email: AutomatedEmailData): void &#123;
+  {{ '}' }};
+
+  onMenuClick(email: AutomatedEmailData): void {{ '{' }}
     console.log('Menu clicked for email:', email);
-  &#125;
-&#125;</code></pre>
+  {{ '}' }}
+{{ '}' }}</code></pre>
 
             <h3>Individual Status Components</h3>
             <pre><code>// Automated Badge
