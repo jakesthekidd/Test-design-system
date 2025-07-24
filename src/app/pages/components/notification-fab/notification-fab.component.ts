@@ -225,7 +225,7 @@ export class NotificationFabComponent {
             <app-notification-fab
               [hasNotification]="true"
               [notificationCount]="12"
-              icon="pi pi-bell"
+              icon="fas fa-bell"
               ariaLabel="Open Notifications"
               (clicked)="onFabClick('Custom Icon')"
             />
