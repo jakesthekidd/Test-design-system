@@ -251,7 +251,7 @@ export class MenuButtonComponent {
       <p-tabView>
         <p-tabPanel header="Examples">
           <div class="examples-section">
-
+            
             <h3>Automated Badge</h3>
             <div class="example-container">
               <div class="badge-examples">
@@ -300,62 +300,16 @@ export class MenuButtonComponent {
           </div>
         </p-tabPanel>
 
-        <p-tabPanel header="Code">
-          <div class="code-section">
-            <h3>Import Components</h3>
-            <pre ngNonBindable><code>import {
-  AutomatedBadgeComponent,
-  StatusBadgeComponent,
-  EmailIconComponent,
-  MenuButtonComponent,
-  StatusType
-} from '../status-badges/status-badges.component';
-
-@Component({
-  imports: [
-    AutomatedBadgeComponent,
-    StatusBadgeComponent,
-    EmailIconComponent,
-    MenuButtonComponent
-  ],
-  // ...
-})</code></pre>
-
+        <p-tabPanel header="Usage">
+          <div class="usage-section">
             <h3>Basic Usage</h3>
-            <pre><code>// Automated Badge
-&lt;app-automated-badge&gt;&lt;/app-automated-badge&gt;
-
-// Status Badges
-&lt;app-status-badge type="sent" value="Aug 2, 2024 | 10:32 AM"&gt;&lt;/app-status-badge&gt;
-&lt;app-status-badge type="scheduled" value="3 Hours out"&gt;&lt;/app-status-badge&gt;
-&lt;app-status-badge type="workflow-stopped"&gt;&lt;/app-status-badge&gt;
-
-// Supporting Icons
-&lt;app-email-icon&gt;&lt;/app-email-icon&gt;
-&lt;app-menu-button&gt;&lt;/app-menu-button&gt;</code></pre>
-
-            <h3>Custom Labels</h3>
-            <pre><code>&lt;app-status-badge
-  type="sent"
-  customLabel="Delivered"
-  value="Just now"&gt;
-&lt;/app-status-badge&gt;
-
-&lt;app-status-badge
-  type="scheduled"
-  customLabel="Queued"
-  value="5 minutes"&gt;
-&lt;/app-status-badge&gt;</code></pre>
-
-            <h3>TypeScript Types</h3>
-            <pre ngNonBindable><code>export type StatusType = 'sent' | 'scheduled' | 'workflow-stopped';
-export type BadgeType = 'automated' | 'manual';
-
-// Usage in component
-export class MyComponent {
-  status: StatusType = 'sent';
-  timestamp: string = new Date().toLocaleString();
-}</code></pre>
+            <p>Import the components and use them in your templates with appropriate properties.</p>
+            
+            <h3>Component Types</h3>
+            <p>Four main components: AutomatedBadge, StatusBadge, EmailIcon, and MenuButton.</p>
+            
+            <h3>Customization</h3>
+            <p>Status badges support custom labels and values for different use cases.</p>
           </div>
         </p-tabPanel>
 
@@ -428,112 +382,19 @@ export class MyComponent {
                 </tbody>
               </table>
             </div>
-
-            <h3>Other Components</h3>
-            <div class="api-table">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Component</th>
-                    <th>Props</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>AutomatedBadgeComponent</td>
-                    <td>None</td>
-                    <td>Displays automation icon with "Automated" label</td>
-                  </tr>
-                  <tr>
-                    <td>EmailIconComponent</td>
-                    <td>None</td>
-                    <td>Circular email icon for message identification</td>
-                  </tr>
-                  <tr>
-                    <td>MenuButtonComponent</td>
-                    <td>None</td>
-                    <td>Three-dot menu button for message actions</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
           </div>
         </p-tabPanel>
 
         <p-tabPanel header="Design">
           <div class="design-section">
             <h3>Design System Integration</h3>
-            <div class="design-specs">
-              <div class="spec-item">
-                <strong>Color Token Usage</strong>
-                <ul>
-                  <li>Green-100 (#CCF2D6): Success/Sent state background</li>
-                  <li>Green-900 (#004C13): Success/Sent state text</li>
-                  <li>Yellow-200 (#FCF5A4): Warning/Scheduled state background</li>
-                  <li>Yellow-900 (#635C0B): Warning/Scheduled state text</li>
-                  <li>Cyan-50 (#F1FAFE): Neutral background for stopped state</li>
-                  <li>Red-700 (#AE1923): Error/Stopped state text</li>
-                  <li>Cyan-200 (#C7EBFB): Automation badge background</li>
-                  <li>Blue-900 (#0E2E4B): Automation badge text and icons</li>
-                </ul>
-              </div>
-              <div class="spec-item">
-                <strong>Typography Standards</strong>
-                <ul>
-                  <li>Font Family: Roboto, sans-serif throughout</li>
-                  <li>Badge Text: 12px, medium weight (500)</li>
-                  <li>Status Label: 13px, medium weight (500)</li>
-                  <li>Status Value: 13px, light weight (300)</li>
-                  <li>Icon Size: 13px for status icons, 12px for email icon</li>
-                </ul>
-              </div>
-            </div>
-
-            <h3>Semantic Color Mapping</h3>
-            <div class="design-specs">
-              <div class="spec-item">
-                <strong>Status State Colors</strong>
-                <ul>
-                  <li>Success (Sent): Green palette for positive completion</li>
-                  <li>Warning (Scheduled): Yellow palette for pending action</li>
-                  <li>Error (Stopped): Red text on neutral background for problems</li>
-                  <li>Info (Automated): Blue palette for system-generated content</li>
-                </ul>
-              </div>
-              <div class="spec-item">
-                <strong>Accessibility Considerations</strong>
-                <ul>
-                  <li>High contrast ratios for all text/background combinations</li>
-                  <li>Icons supplement color coding for colorblind users</li>
-                  <li>Semantic HTML structure for screen readers</li>
-                  <li>Consistent hover states for interactive elements</li>
-                </ul>
-              </div>
-            </div>
-
-            <h3>Layout Specifications</h3>
-            <div class="design-specs">
-              <div class="spec-item">
-                <strong>Spacing & Sizing</strong>
-                <ul>
-                  <li>Badge Padding: 4px horizontal, 8px vertical</li>
-                  <li>Border Radius: 27px for automated badge, 4px for status badges</li>
-                  <li>Icon Containers: 24px diameter for email icon</li>
-                  <li>Internal Gaps: 5-10px between icons and text</li>
-                  <li>Minimum Touch Target: 44px for interactive elements</li>
-                </ul>
-              </div>
-              <div class="spec-item">
-                <strong>Component Composition</strong>
-                <ul>
-                  <li>Badges designed for horizontal layout in headers</li>
-                  <li>Flexible width based on content length</li>
-                  <li>Consistent vertical alignment across different badges</li>
-                  <li>Responsive behavior for mobile layouts</li>
-                </ul>
-              </div>
-            </div>
+            <p>Components use design tokens for consistent colors and typography across the application.</p>
+            
+            <h3>Color Tokens</h3>
+            <p>Semantic color mapping ensures accessibility and consistency.</p>
+            
+            <h3>Typography</h3>
+            <p>Roboto font family with appropriate weights and sizes.</p>
           </div>
         </p-tabPanel>
       </p-tabView>
@@ -565,7 +426,7 @@ export class MyComponent {
     }
 
     .examples-section,
-    .code-section,
+    .usage-section,
     .api-section,
     .design-section {
       padding: 1rem 0;
@@ -616,66 +477,16 @@ export class MyComponent {
       color: var(--text-color-secondary);
     }
 
-    .design-specs {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin: 1rem 0;
-    }
-
-    .spec-item {
-      background: var(--surface-section);
-      padding: 1rem;
-      border-radius: 6px;
-      border-left: 3px solid var(--primary-color);
-    }
-
-    .spec-item strong {
-      color: var(--text-color);
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
-    .spec-item ul {
-      margin: 0;
-      padding-left: 1rem;
-    }
-
-    .spec-item li {
-      color: var(--text-color-secondary);
-      margin: 0.25rem 0;
-    }
-
-    pre {
-      background: var(--surface-ground);
-      border: 1px solid var(--surface-border);
-      border-radius: 6px;
-      padding: 1rem;
-      overflow-x: auto;
-      margin: 1rem 0;
-    }
-
-    code {
-      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-      font-size: 0.875rem;
-      color: var(--text-color);
-    }
-
     h3 {
       color: var(--text-color);
       margin: 1.5rem 0 0.5rem 0;
       font-weight: 600;
     }
 
-    /* Responsive Design */
     @media (max-width: 768px) {
       .badge-examples {
         flex-direction: column;
         align-items: flex-start;
-      }
-
-      .design-specs {
-        grid-template-columns: 1fr;
       }
     }
   `]
