@@ -364,9 +364,15 @@ export class WindowLauncherService {
 
     // Function to show error state
     window.showError = function(message) {
-      document.getElementById('loading').style.display = 'none';
-      document.getElementById('angular-app').style.display = 'none';
-      document.getElementById('error').style.display = 'flex';
+      console.error('Showing error state:', message);
+
+      const loading = document.getElementById('loading');
+      const app = document.getElementById('angular-app');
+      const error = document.getElementById('error');
+
+      if (loading) loading.style.display = 'none';
+      if (app) app.style.display = 'none';
+      if (error) error.style.display = 'flex';
 
       const errorMsg = document.querySelector('.error-message');
       if (errorMsg && message) {
@@ -376,9 +382,15 @@ export class WindowLauncherService {
 
     // Function to show application
     window.showApp = function() {
-      document.getElementById('loading').style.display = 'none';
-      document.getElementById('error').style.display = 'none';
-      document.getElementById('angular-app').style.display = 'block';
+      console.log('Showing application');
+
+      const loading = document.getElementById('loading');
+      const error = document.getElementById('error');
+      const app = document.getElementById('angular-app');
+
+      if (loading) loading.style.display = 'none';
+      if (error) error.style.display = 'none';
+      if (app) app.style.display = 'block';
 
       window.messageCenterConfig.ready = true;
 
@@ -386,7 +398,8 @@ export class WindowLauncherService {
       if (window.opener) {
         window.opener.postMessage({
           type: 'ANGULAR_READY',
-          componentName: '${config.componentName}'
+          componentName: '${config.componentName}',
+          timestamp: Date.now()
         }, '*');
       }
     };
@@ -395,14 +408,19 @@ export class WindowLauncherService {
     document.addEventListener('keydown', (event) => {
       // ESC to close
       if (event.key === 'Escape') {
+        console.log('ESC pressed - closing window');
         window.close();
       }
       // Ctrl/Cmd + W to close
       if ((event.ctrlKey || event.metaKey) && event.key === 'w') {
+        console.log('Ctrl/Cmd+W pressed - closing window');
         event.preventDefault();
         window.close();
       }
     });
+
+    // Log that configuration is ready
+    console.log('Window configuration loaded:', window.messageCenterConfig);
   </script>
 
   <!-- MessageCenter Application Script -->
@@ -623,16 +641,21 @@ export class WindowLauncherService {
     // Initialize the application
     async function initializeApp() {
       console.log('Initializing CommunicationPanel in window...');
+      console.log('Document ready state:', document.readyState);
+      console.log('Available elements:', {
+        loading: !!document.getElementById('loading'),
+        app: !!document.getElementById('angular-app'),
+        error: !!document.getElementById('error'),
+        componentRoot: !!document.getElementById('component-root')
+      });
 
       try {
-        // Wait for Angular bundles to load (if needed)
-        // await waitForAngular();
-
         const container = document.getElementById('component-root');
         if (!container) {
           throw new Error('Component root container not found');
         }
 
+        console.log('Rendering CommunicationPanel...');
         container.innerHTML = renderCommunicationPanel();
 
       // Setup styles for the CommunicationPanel
