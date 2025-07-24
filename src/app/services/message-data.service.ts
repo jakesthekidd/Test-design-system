@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { CommunicationMessage } from '../pages/components/communication-panel/communication-panel.component';
 import { FilterType } from '../pages/components/message-center-header/message-center-header.component';
+import { MessageCenterStateService } from './message-center-state.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class MessageDataService {
   public messages$ = this.messagesSubject.asObservable();
   public unreadCounts$ = this.unreadCountsSubject.asObservable();
 
-  constructor() {
+  constructor(private stateService: MessageCenterStateService) {
     this.initializeData();
   }
 
@@ -42,13 +43,19 @@ export class MessageDataService {
   updateMessage(messageId: string, updates: Partial<CommunicationMessage>): void {
     const messages = this.messagesSubject.value;
     const messageIndex = messages.findIndex(m => m.id === messageId);
-    
+
     if (messageIndex !== -1) {
       const updatedMessages = [...messages];
       updatedMessages[messageIndex] = { ...updatedMessages[messageIndex], ...updates };
-      
+
       this.messagesSubject.next(updatedMessages);
       this.updateUnreadCounts();
+
+      // Sync with state service
+      this.stateService.updateState({
+        messages: updatedMessages,
+        unreadCounts: this.unreadCountsSubject.value
+      });
     }
   }
 
@@ -58,9 +65,15 @@ export class MessageDataService {
   addMessage(message: CommunicationMessage): void {
     const messages = this.messagesSubject.value;
     const updatedMessages = [...messages, message];
-    
+
     this.messagesSubject.next(updatedMessages);
     this.updateUnreadCounts();
+
+    // Sync with state service
+    this.stateService.updateState({
+      messages: updatedMessages,
+      unreadCounts: this.unreadCountsSubject.value
+    });
   }
 
   /**
@@ -69,9 +82,15 @@ export class MessageDataService {
   markAllAsRead(): void {
     const messages = this.messagesSubject.value;
     const updatedMessages = messages.map(m => ({ ...m, isRead: true }));
-    
+
     this.messagesSubject.next(updatedMessages);
     this.updateUnreadCounts();
+
+    // Sync with state service
+    this.stateService.updateState({
+      messages: updatedMessages,
+      unreadCounts: this.unreadCountsSubject.value
+    });
   }
 
   /**
@@ -211,6 +230,12 @@ export class MessageDataService {
 
     this.messagesSubject.next(sampleMessages);
     this.updateUnreadCounts();
+
+    // Initialize state service with sample data
+    this.stateService.updateState({
+      messages: sampleMessages,
+      unreadCounts: this.unreadCountsSubject.value
+    });
   }
 
   /**
