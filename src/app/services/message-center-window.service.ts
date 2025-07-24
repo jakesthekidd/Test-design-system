@@ -52,14 +52,23 @@ export class MessageCenterWindowService {
       );
 
       if (windowRef) {
-        // Send initial configuration to the window
+        // Send initial configuration and actual message data to the window
         setTimeout(() => {
+          const currentMessages = this.messageDataService.getMessages();
+          const currentCounts = this.messageDataService.getUnreadCounts();
+
           this.sendConfigToWindow({
             initialFilter: config.initialFilter || 'all',
-            unreadCount: config.unreadCount || 0,
+            unreadCount: config.unreadCount || currentCounts.all,
             componentType: 'MessageCenterExpanded',
-            messages: [], // Will be loaded by MessageDataService in the window
+            messages: currentMessages, // Send actual mock data
+            unreadCounts: currentCounts,
             title: config.title || 'Message Center'
+          });
+
+          console.log('Sent message data to window:', {
+            messagesCount: currentMessages.length,
+            unreadCounts: currentCounts
           });
         }, 2000); // Wait for window to be ready
       }
