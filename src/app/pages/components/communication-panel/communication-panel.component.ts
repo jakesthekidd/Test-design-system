@@ -452,6 +452,7 @@ export class CommunicationPanelComponent implements OnInit, OnDestroy, OnChanges
     if (!message.isRead) {
       message.isRead = true;
       this.updateUnreadCounts();
+      this.updateFilterTabs(); // Force tab update
     }
     this.messageClicked.emit(message);
   }
