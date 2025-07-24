@@ -348,25 +348,10 @@ export class WindowLauncherService {
     </div>
   </div>
 
-  <!-- Zone.js (Independent instance) -->
-  <script src="https://cdn.jsdelivr.net/npm/zone.js@0.14.0/dist/zone.min.js"></script>
-
-  <!-- RxJS -->
-  <script src="https://cdn.jsdelivr.net/npm/rxjs@7.8.0/dist/bundles/rxjs.umd.min.js"></script>
-
-  <!-- Angular Core Libraries -->
-  <script type="importmap">
-  {
-    "imports": {
-      "@angular/core": "https://cdn.jsdelivr.net/npm/@angular/core@17.3.0/+esm",
-      "@angular/common": "https://cdn.jsdelivr.net/npm/@angular/common@17.3.0/+esm",
-      "@angular/platform-browser": "https://cdn.jsdelivr.net/npm/@angular/platform-browser@17.3.0/+esm",
-      "@angular/platform-browser/animations": "https://cdn.jsdelivr.net/npm/@angular/platform-browser@17.3.0/animations/+esm",
-      "rxjs": "https://cdn.jsdelivr.net/npm/rxjs@7.8.0/+esm",
-      "rxjs/operators": "https://cdn.jsdelivr.net/npm/rxjs@7.8.0/operators/+esm"
-    }
-  }
-  </script>
+  <!-- Load the actual Angular application bundles from the main app -->
+  <script src="${this.baseUrl}/runtime.js"></script>
+  <script src="${this.baseUrl}/polyfills.js"></script>
+  <script src="${this.baseUrl}/main.js"></script>
 
   <!-- Window Configuration -->
   <script>
@@ -420,14 +405,24 @@ export class WindowLauncherService {
     });
   </script>
 
-  <!-- Angular Bootstrap Script -->
-  <script type="module">
-    // Note: This simulates module imports. In a real implementation, you would load the actual compiled components
-    // For this demonstration, we'll create a simplified version that shows the CommunicationPanel structure
+  <!-- MessageCenter Application Script -->
+  <script>
+    console.log('Starting MessageCenter application for ${config.componentName}...');
 
-    console.log('Starting Angular bootstrap for ${config.componentName}...');
+    // Wait for main app bundles to load before initializing
+    function waitForAngular() {
+      return new Promise((resolve) => {
+        // Check if Angular is available
+        if (typeof ng !== 'undefined' || typeof window.ng !== 'undefined') {
+          resolve(true);
+        } else {
+          // Wait for Angular to load
+          setTimeout(() => waitForAngular().then(resolve), 100);
+        }
+      });
+    }
 
-    // Simulate the CommunicationPanel rendering
+    // Render the CommunicationPanel structure
     function renderCommunicationPanel() {
       return \`
         <div class="communication-panel-container">
@@ -626,11 +621,19 @@ export class WindowLauncherService {
     };
 
     // Initialize the application
-    function initializeApp() {
+    async function initializeApp() {
       console.log('Initializing CommunicationPanel in window...');
 
-      const container = document.getElementById('component-root');
-      container.innerHTML = renderCommunicationPanel();
+      try {
+        // Wait for Angular bundles to load (if needed)
+        // await waitForAngular();
+
+        const container = document.getElementById('component-root');
+        if (!container) {
+          throw new Error('Component root container not found');
+        }
+
+        container.innerHTML = renderCommunicationPanel();
 
       // Setup styles for the CommunicationPanel
       const style = document.createElement('style');
@@ -1029,6 +1032,44 @@ export class WindowLauncherService {
       }, 100);
     }
 
+        // Setup communication after successful initialization
+        setupCommunication();
+
+        console.log('CommunicationPanel initialized successfully');
+
+        // Show the application
+        if (window.showApp) {
+          window.showApp();
+        }
+
+        // Notify parent of successful initialization
+        if (window.opener) {
+          window.opener.postMessage({
+            type: 'COMPONENT_LOADED',
+            componentName: '${config.componentName}',
+            timestamp: Date.now()
+          }, '*');
+        }
+
+      } catch (error) {
+        console.error('Error initializing MessageCenter window:', error);
+
+        // Show error state
+        if (window.showError) {
+          window.showError('Failed to initialize: ' + error.message);
+        }
+
+        // Notify parent of error
+        if (window.opener) {
+          window.opener.postMessage({
+            type: 'ERROR',
+            error: error.message,
+            timestamp: Date.now()
+          }, '*');
+        }
+      }
+    }
+
     // Initialize when DOM is ready
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initializeApp);
@@ -1036,38 +1077,41 @@ export class WindowLauncherService {
       initializeApp();
     }
 
-    // Simulate successful bootstrap
-    setTimeout(() => {
-      console.log('MessageCenter Window Angular app bootstrapped successfully');
+    // Global error handler
+    window.addEventListener('error', (event) => {
+      console.error('Uncaught error in MessageCenter window:', event.error);
 
-      // Hide loading, show app
-      if (window.showApp) {
-        window.showApp();
-      }
-
-      // Notify parent
-      if (window.opener) {
-        window.opener.postMessage({
-          type: 'COMPONENT_LOADED',
-          componentName: '${config.componentName}'
-        }, '*');
-      }
-
-    }, 1000);
-
-    // Handle any errors
-    window.addEventListener('error', (error) => {
-      console.error('Error in Message Center Window:', error);
       if (window.showError) {
-        window.showError('Application error: ' + error.message);
+        window.showError('Application error: ' + (event.error?.message || 'Unknown error'));
       }
 
       if (window.opener) {
         window.opener.postMessage({
           type: 'ERROR',
-          error: error.message
+          error: event.error?.message || 'Unknown error',
+          timestamp: Date.now()
         }, '*');
       }
+    });
+
+    // Handle unhandled promise rejections
+    window.addEventListener('unhandledrejection', (event) => {
+      console.error('Unhandled promise rejection in MessageCenter window:', event.reason);
+
+      if (window.showError) {
+        window.showError('Promise error: ' + (event.reason?.message || 'Unknown promise error'));
+      }
+
+      if (window.opener) {
+        window.opener.postMessage({
+          type: 'ERROR',
+          error: event.reason?.message || 'Unknown promise error',
+          timestamp: Date.now()
+        }, '*');
+      }
+
+      // Prevent the default browser error handling
+      event.preventDefault();
     });
 
     // Bootstrap the application
