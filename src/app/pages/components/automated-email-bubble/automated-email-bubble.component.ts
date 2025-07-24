@@ -817,7 +817,7 @@ import { TooltipModule } from 'primeng/tooltip';
     }
 
     /* Responsive Design */
-    @media (max-width: 768px) {
+    &#64;media (max-width: 768px) {
       .email-thread {
         max-width: 100%;
       }
