@@ -101,8 +101,8 @@ export interface CommunicationPanelConfig {
           </div>
 
           <!-- Message Feed -->
-          <div class="message-feed" #messageFeed>
-            <div class="message-list">
+          <div class="message-feed">
+            <div class="message-list" #messageFeed>
               <ng-container *ngFor="let message of filteredMessages; trackBy: trackMessage">
                 <!-- Note Bubble -->
                 <div 
