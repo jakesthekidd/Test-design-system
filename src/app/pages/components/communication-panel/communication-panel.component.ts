@@ -367,8 +367,6 @@ export class CommunicationPanelComponent implements OnInit, OnDestroy, AfterView
 
   filteredMessages: CommunicationMessage[] = [];
   filterTabs: FilterTab[] = [];
-  scrollThumbHeight: number = 100;
-  scrollThumbTop: number = 0;
 
   ngOnInit(): void {
     this.updateFilterTabs();
