@@ -41,14 +41,15 @@ export interface NotificationFabConfig {
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      z-index: 1000;
     }
 
     .fab-button {
-      width: 56px;
-      height: 56px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
       border: none;
-      background: var(--surface-0, #ffffff);
+      background: #ffffff;
       box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
       display: flex;
       align-items: center;
@@ -56,18 +57,20 @@ export interface NotificationFabConfig {
       cursor: pointer;
       transition: all 0.2s ease-in-out;
       position: relative;
+      outline: none;
     }
 
     .fab-button:hover,
     .fab-button.hover-state {
-      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
-      transform: translateY(-1px);
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+      transform: translateY(-2px);
     }
 
     .fab-button i {
       color: var(--blue-900, #0E2E4B);
       font-size: 24px;
       transition: font-size 0.2s ease-in-out;
+      line-height: 1;
     }
 
     .fab-button i.icon-hover {
@@ -76,22 +79,22 @@ export interface NotificationFabConfig {
 
     .notification-badge {
       position: absolute;
-      top: -8px;
-      right: -8px;
+      top: -2px;
+      right: -2px;
       background: var(--status-alert, #DA1F2C);
-      color: var(--surface-0, #ffffff);
-      border-radius: 10px;
+      color: #ffffff;
+      border-radius: 50%;
       min-width: 20px;
       height: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: 'Inter', sans-serif;
-      font-size: 12px;
+      font-size: 16px;
       font-weight: 500;
-      padding: 2px 6px;
       transition: all 0.2s ease-in-out;
       z-index: 1;
+      box-sizing: border-box;
     }
 
     .notification-badge.badge-hover {
@@ -103,6 +106,22 @@ export interface NotificationFabConfig {
       width: 12px;
       height: 12px;
       padding: 0;
+    }
+
+    /* Remove PrimeNG button overrides */
+    .fab-button.p-button {
+      background: #ffffff !important;
+      border: none !important;
+      color: var(--blue-900, #0E2E4B) !important;
+    }
+
+    .fab-button.p-button:hover {
+      background: #ffffff !important;
+      border: none !important;
+    }
+
+    .fab-button.p-button:focus {
+      box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15), 0 0 0 2px var(--primary-500, #3B82F6) !important;
     }
 
     /* Mobile responsiveness */
@@ -121,23 +140,18 @@ export interface NotificationFabConfig {
       }
 
       .notification-badge {
-        font-size: 11px;
+        font-size: 14px;
         min-width: 18px;
         height: 18px;
-        top: -6px;
-        right: -6px;
+        top: -1px;
+        right: -1px;
       }
-    }
 
-    /* Focus styles for accessibility */
-    .fab-button:focus {
-      outline: 2px solid var(--primary-500, #3B82F6);
-      outline-offset: 2px;
-    }
-
-    /* Ensure proper z-index for floating */
-    .notification-fab-container {
-      z-index: 1000;
+      .notification-badge:empty {
+        min-width: 10px;
+        width: 10px;
+        height: 10px;
+      }
     }
   `]
 })
