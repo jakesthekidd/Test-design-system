@@ -55,6 +55,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/components/note-bubble/note-bubble.component').then(m => m.NoteBubbleDocComponent)
   },
   {
+    path: 'components/automated-email-bubble',
+    loadComponent: () => import('./pages/components/automated-email-bubble/automated-email-bubble.component').then(m => m.AutomatedEmailBubbleDocComponent)
+  },
+  {
     path: 'components/wfai-approved-container',
     loadComponent: () => import('./pages/components/wfai-approved-container/wfai-approved-container.component').then(m => m.WFAIApprovedContainerDocComponent)
   },
