@@ -326,12 +326,12 @@ export class AutomatedEmailBubbleComponent {
         <p-tabPanel header="Code">
           <div class="code-section">
             <h3>Import Required Modules</h3>
-            <pre><code>import {{ '{' }} AutomatedEmailBubbleComponent, AutomatedEmailData {{ '}' }} from './automated-email-bubble.component';
-import {{ '{' }} AutomatedBadgeComponent, StatusBadgeComponent {{ '}' }} from '../status-badges/status-badges.component';
-import {{ '{' }} CommonModule {{ '}' }} from '@angular/common';
-import {{ '{' }} TooltipModule {{ '}' }} from 'primeng/tooltip';
+            <pre ngNonBindable><code>import { AutomatedEmailBubbleComponent, AutomatedEmailData } from './automated-email-bubble.component';
+import { AutomatedBadgeComponent, StatusBadgeComponent } from '../status-badges/status-badges.component';
+import { CommonModule } from '@angular/common';
+import { TooltipModule } from 'primeng/tooltip';
 
-@Component({{ '{' }}
+@Component({
   imports: [
     CommonModule,
     TooltipModule,
@@ -340,7 +340,7 @@ import {{ '{' }} TooltipModule {{ '}' }} from 'primeng/tooltip';
     StatusBadgeComponent
   ],
   // ...
-{{ '}' }})</code></pre>
+})</code></pre>
 
             <h3>Basic Email Bubble Structure</h3>
             <pre><code>&lt;app-automated-email-bubble 
