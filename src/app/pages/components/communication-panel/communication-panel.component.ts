@@ -309,16 +309,20 @@ export interface CommunicationPanelConfig {
     /* Note Messages - Full width with directional alignment */
     .message-item.note-message {
       padding: 0 16px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .message-item.note-own {
       display: flex;
       justify-content: flex-end;
+      text-align: right;
     }
 
     .message-item.note-other {
       display: flex;
       justify-content: flex-start;
+      text-align: left;
     }
 
     /* Outbound Messages (SMS, Emails) - Right aligned */
@@ -327,6 +331,7 @@ export interface CommunicationPanelConfig {
       justify-content: flex-end;
       padding-left: 48px;
       padding-right: 16px;
+      text-align: right;
     }
 
     /* Empty State */
