@@ -1114,40 +1114,7 @@ export class WindowLauncherService {
       event.preventDefault();
     });
 
-    // Bootstrap the application
-    bootstrapApplication(WindowRootComponent, {
-      providers: [
-        importProvidersFrom(BrowserAnimationsModule)
-      ]
-    }).then(appRef => {
-      console.log('Message Center Window Angular app bootstrapped successfully');
 
-      // Hide loading, show app
-      if (window.showApp) {
-        window.showApp();
-      }
-
-      // Notify parent
-      if (window.opener) {
-        window.opener.postMessage({
-          type: 'COMPONENT_LOADED',
-          componentName: '${config.componentName}'
-        }, '*');
-      }
-
-    }).catch(error => {
-      console.error('Error bootstrapping Message Center Window:', error);
-      if (window.showError) {
-        window.showError('Failed to bootstrap Angular: ' + error.message);
-      }
-
-      if (window.opener) {
-        window.opener.postMessage({
-          type: 'ERROR',
-          error: error.message
-        }, '*');
-      }
-    });
   </script>
 
   <!-- Handle window close -->
