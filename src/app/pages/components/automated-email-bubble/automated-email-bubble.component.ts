@@ -350,7 +350,7 @@ import { TooltipModule } from 'primeng/tooltip';
 &lt;/app-automated-email-bubble&gt;</code></pre>
 
             <h3>Email Data Interface</h3>
-            <pre><code>export interface AutomatedEmailData {{ '{' }}
+            <pre ngNonBindable><code>export interface AutomatedEmailData {
   fromAddress: string;
   toRecipients: string[];
   subjectLine: string;
@@ -360,7 +360,7 @@ import { TooltipModule } from 'primeng/tooltip';
   timeOffset?: string;
   workflowId?: string;
   templateName?: string;
-{{ '}' }}</code></pre>
+}</code></pre>
 
             <h3>Component Usage Example</h3>
             <pre><code>export class EmailMessageComponent {{ '{' }}
