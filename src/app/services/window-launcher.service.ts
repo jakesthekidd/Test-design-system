@@ -646,6 +646,22 @@ export class WindowLauncherService {
             break;
           case 'UPDATE_CONFIG':
             console.log('Config update received:', event.data.payload);
+            // Store the message data for rendering
+            if (event.data.payload.messages && event.data.payload.messages.length > 0) {
+              window.messageCenterData = event.data.payload;
+              console.log('Received message data:', window.messageCenterData.messages.length, 'messages');
+
+              // Update state with actual data
+              window.messageCenterState.messages = event.data.payload.messages;
+              window.messageCenterState.unreadCounts = event.data.payload.unreadCounts || window.messageCenterState.unreadCounts;
+
+              // Re-render with actual data
+              const container = document.getElementById('component-root');
+              if (container) {
+                container.innerHTML = renderCommunicationPanel();
+                console.log('Re-rendered content with actual message data');
+              }
+            }
             break;
           case 'UPDATE_FILTER':
             setActiveFilter(event.data.payload.filter);
