@@ -402,6 +402,10 @@ export class CommunicationPanelComponent implements OnInit, OnDestroy, AfterView
     this.updateFilteredMessages();
   }
 
+  ngAfterViewInit(): void {
+    this.setupScrollTracking();
+  }
+
   ngOnDestroy(): void {
     // Cleanup if needed
   }
