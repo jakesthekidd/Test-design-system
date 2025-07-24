@@ -374,7 +374,7 @@ export class CommunicationPanelComponent implements OnInit, OnDestroy, AfterView
   }
 
   ngAfterViewInit(): void {
-    this.setupScrollTracking();
+    // Component ready
   }
 
   ngOnDestroy(): void {
