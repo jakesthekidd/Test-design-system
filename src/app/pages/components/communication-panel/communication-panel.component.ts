@@ -102,7 +102,12 @@ export interface CommunicationPanelConfig {
 
           <!-- Message Feed -->
           <div class="message-feed">
-            <div class="message-list" #messageFeed>
+            <div
+              class="message-list"
+              #messageFeed
+              (wheel)="onMessageListScroll($event)"
+              (touchmove)="onMessageListTouch($event)"
+            >
               <ng-container *ngFor="let message of filteredMessages; trackBy: trackMessage">
                 <!-- Note Bubble -->
                 <div
