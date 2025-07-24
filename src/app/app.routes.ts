@@ -75,6 +75,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/components/upload-bubble/upload-bubble.component').then(m => m.UploadBubbleDocComponent)
   },
   {
+    path: 'components/notification-fab',
+    loadComponent: () => import('./pages/components/notification-fab/notification-fab.component').then(m => m.NotificationFabDocsComponent)
+  },
+  {
     path: 'components/wfai-approved-container',
     loadComponent: () => import('./pages/components/wfai-approved-container/wfai-approved-container.component').then(m => m.WFAIApprovedContainerDocComponent)
   },
