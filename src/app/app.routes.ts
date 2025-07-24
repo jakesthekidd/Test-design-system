@@ -83,6 +83,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/components/message-center-header/message-center-header.component').then(m => m.MessageCenterHeaderDocsComponent)
   },
   {
+    path: 'components/communication-panel',
+    loadComponent: () => import('./pages/components/communication-panel/communication-panel.component').then(m => m.CommunicationPanelDocsComponent)
+  },
+  {
     path: 'components/wfai-approved-container',
     loadComponent: () => import('./pages/components/wfai-approved-container/wfai-approved-container.component').then(m => m.WFAIApprovedContainerDocComponent)
   },
