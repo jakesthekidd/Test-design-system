@@ -35,11 +35,27 @@
 
   /* Semantic Colors */
   --green-50: #F0FDF4;
+  --green-100: #CCF2D6;
   --green-500: #22C55E;
+  --green-900: #004C13;
   --red-50: #FEF2F2;
   --red-500: #EF4444;
+  --red-700: #AE1923;
   --orange-50: #FFF7ED;
   --orange-500: #F97316;
   --blue-50: #EFF6FF;
   --blue-500: #2474BB;
+  --blue-600: #2068A8;
+  --blue-900: #0E2E4B;
+  --yellow-200: #FCF5A4;
+  --yellow-900: #635C0B;
+
+  /* Cyan Colors */
+  --cyan-50: #F1FAFE;
+  --cyan-200: #C7EBFB;
+
+  /* Additional Design Tokens */
+  --primary-blue-50: #91B9DD;
+  --surface-900: #5A626F;
+  --med-black: rgba(58, 58, 58, 1);
 }
