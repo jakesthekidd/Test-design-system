@@ -325,19 +325,27 @@ export interface CommunicationPanelConfig {
         right: 12px;
         left: 12px;
         width: auto;
-        max-height: 80vh;
+        height: 80vh;
+        max-height: 600px;
       }
 
       .secondary-header {
-        padding: 0 12px 12px 12px;
+        padding: 8px 12px;
+        min-height: 48px;
+      }
+
+      .message-item {
+        padding: 0 12px;
       }
 
       .message-item.own-message {
-        padding: 0 12px 0 36px;
+        padding-left: 36px;
+        padding-right: 12px;
       }
 
       .message-item.automated-message {
-        padding: 0 36px 0 12px;
+        padding-left: 12px;
+        padding-right: 36px;
       }
     }
 
