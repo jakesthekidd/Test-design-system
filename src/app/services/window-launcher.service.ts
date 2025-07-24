@@ -448,6 +448,11 @@ export class WindowLauncherService {
 
     // Simple placeholder content that will definitely render
     function renderCommunicationPanel() {
+      console.log('renderCommunicationPanel called with data:', {
+        hasData: !!(window.messageCenterData && window.messageCenterData.messages),
+        messageCount: window.messageCenterData?.messages?.length || 0,
+        activeFilter: window.messageCenterState?.activeFilter || 'none'
+      });
       return \`
         <div style="padding: 20px; font-family: Arial, sans-serif;">
           <div style="background: #2474BB; color: white; padding: 15px; margin-bottom: 20px; border-radius: 8px;">
