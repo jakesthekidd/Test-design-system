@@ -30,7 +30,7 @@ export class MessageCenterWindowService {
     };
 
     const shellConfig: AngularShellConfig = {
-      componentName: 'CommunicationPanel',
+      componentName: 'MessageCenterExpanded',
       windowTitle: 'Message Center - Expanded View',
       additionalStyles: [],
       additionalScripts: []
