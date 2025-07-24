@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TabViewModule } from 'primeng/tabview';
 
 export type StatusType = 'sent' | 'scheduled' | 'workflow-stopped';
 export type BadgeType = 'automated' | 'manual';
