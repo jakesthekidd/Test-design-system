@@ -176,7 +176,7 @@ export class NotificationFabComponent {
 @Component({
   selector: 'app-notification-fab-docs',
   standalone: true,
-  imports: [CommonModule, NotificationFabComponent, ButtonModule],
+  imports: [CommonModule, NotificationFabComponent],
   template: `
     <div class="docs-container">
       <h1>NotificationFab Component</h1>
