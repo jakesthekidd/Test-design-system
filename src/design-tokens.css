@@ -68,4 +68,7 @@
   --primary-blue-50: #91B9DD;
   --surface-900: #5A626F;
   --med-black: rgba(58, 58, 58, 1);
+
+  /* Status Colors */
+  --status-alert: #DA1F2C;
 }
