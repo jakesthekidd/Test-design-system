@@ -983,6 +983,40 @@ export class WindowLauncherService {
       initializeApp();
     }
 
+    // Simulate successful bootstrap
+    setTimeout(() => {
+      console.log('MessageCenter Window Angular app bootstrapped successfully');
+
+      // Hide loading, show app
+      if (window.showApp) {
+        window.showApp();
+      }
+
+      // Notify parent
+      if (window.opener) {
+        window.opener.postMessage({
+          type: 'COMPONENT_LOADED',
+          componentName: '${config.componentName}'
+        }, '*');
+      }
+
+    }, 1000);
+
+    // Handle any errors
+    window.addEventListener('error', (error) => {
+      console.error('Error in Message Center Window:', error);
+      if (window.showError) {
+        window.showError('Application error: ' + error.message);
+      }
+
+      if (window.opener) {
+        window.opener.postMessage({
+          type: 'ERROR',
+          error: error.message
+        }, '*');
+      }
+    });
+
     // Bootstrap the application
     bootstrapApplication(WindowRootComponent, {
       providers: [

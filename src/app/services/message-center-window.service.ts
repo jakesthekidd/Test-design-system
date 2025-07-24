@@ -49,9 +49,11 @@ export class MessageCenterWindowService {
           this.sendConfigToWindow({
             initialFilter: config.initialFilter || 'all',
             unreadCount: config.unreadCount || 0,
-            componentType: 'CommunicationPanel'
+            componentType: 'MessageCenterExpanded',
+            messages: [], // Will be loaded by MessageDataService in the window
+            title: config.title || 'Message Center'
           });
-        }, 3000); // Wait for Angular to be ready
+        }, 2000); // Wait for window to be ready
       }
 
       return windowRef;
