@@ -80,7 +80,7 @@ export interface NotificationFabConfig {
       top: -8px;
       right: -8px;
       background: var(--status-alert, #DA1F2C);
-      color: var(--surface-0, #EAF8FD);
+      color: var(--surface-0, #ffffff);
       border-radius: 10px;
       min-width: 20px;
       height: 20px;
@@ -92,6 +92,7 @@ export interface NotificationFabConfig {
       font-weight: 500;
       padding: 2px 6px;
       transition: all 0.2s ease-in-out;
+      z-index: 1;
     }
 
     .notification-badge.badge-hover {
