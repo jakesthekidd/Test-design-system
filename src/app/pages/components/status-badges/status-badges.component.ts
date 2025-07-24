@@ -352,10 +352,10 @@ export class MenuButtonComponent {
 export type BadgeType = 'automated' | 'manual';
 
 // Usage in component
-export class MyComponent &#123;
+export class MyComponent {{ '{' }}
   status: StatusType = 'sent';
   timestamp: string = new Date().toLocaleString();
-&#125;</code></pre>
+{{ '}' }}</code></pre>
           </div>
         </p-tabPanel>
 
