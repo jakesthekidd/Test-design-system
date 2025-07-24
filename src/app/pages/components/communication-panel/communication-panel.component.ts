@@ -314,33 +314,7 @@ export interface CommunicationPanelConfig {
       margin: 0;
     }
 
-    /* Scroll Indicator */
-    .scroll-indicator {
-      width: 16px;
-      padding: 16px 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: var(--surface-0, #ffffff);
-      flex-shrink: 0;
-    }
 
-    .scroll-track {
-      width: 4px;
-      height: 100%;
-      background: var(--secondary-blue-25, #DCF2FC);
-      border-radius: 16px;
-      position: relative;
-    }
-
-    .scroll-thumb {
-      width: 4px;
-      background: var(--primary-color, #2474BB);
-      border-radius: 16px;
-      position: absolute;
-      left: 0;
-      transition: all 0.1s ease-out;
-    }
 
     /* Mobile Responsive */
     @media (max-width: 768px) {
