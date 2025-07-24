@@ -418,6 +418,16 @@ export class WindowLauncherService {
 
     // Log that configuration is ready
     console.log('Window configuration loaded:', window.messageCenterConfig);
+
+    // Fallback timeout to show app if initialization takes too long
+    setTimeout(function() {
+      if (!window.messageCenterConfig.ready) {
+        console.warn('Application taking too long to load, showing fallback...');
+        if (window.showApp) {
+          window.showApp();
+        }
+      }
+    }, 5000); // 5 second timeout
   </script>
 
   <!-- MessageCenter Application Script -->
@@ -1099,6 +1109,14 @@ export class WindowLauncherService {
       console.log('DOM already ready, initializing immediately...');
       setTimeout(initializeApp, 100); // Small delay to ensure everything is loaded
     }
+
+    // Also try immediate initialization as backup
+    setTimeout(function() {
+      console.log('Backup initialization attempt...');
+      if (!window.messageCenterConfig.ready) {
+        initializeApp();
+      }
+    }, 1000);
 
     // Global error handler
     window.addEventListener('error', (event) => {
