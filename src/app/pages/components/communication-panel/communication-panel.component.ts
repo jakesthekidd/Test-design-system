@@ -404,6 +404,15 @@ export class CommunicationPanelComponent implements OnInit, OnDestroy, AfterView
     this.updateFilteredMessages();
   }
 
+  ngOnChanges(): void {
+    if (this.isOpen) {
+      this.lockBodyScroll();
+    } else {
+      this.unlockBodyScroll();
+    }
+    this.updateFilteredMessages();
+  }
+
   ngAfterViewInit(): void {
     // Component ready
   }
