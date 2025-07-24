@@ -168,12 +168,7 @@ export interface CommunicationPanelConfig {
               </div>
             </div>
 
-            <!-- Scroll Indicator -->
-            <div class="scroll-indicator">
-              <div class="scroll-track">
-                <div class="scroll-thumb" [style.height.%]="scrollThumbHeight" [style.top.%]="scrollThumbTop"></div>
-              </div>
-            </div>
+
           </div>
         </div>
       </div>
