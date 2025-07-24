@@ -348,14 +348,14 @@ export class MenuButtonComponent {
 &lt;/app-status-badge&gt;</code></pre>
 
             <h3>TypeScript Types</h3>
-            <pre><code>export type StatusType = 'sent' | 'scheduled' | 'workflow-stopped';
+            <pre ngNonBindable><code>export type StatusType = 'sent' | 'scheduled' | 'workflow-stopped';
 export type BadgeType = 'automated' | 'manual';
 
 // Usage in component
-export class MyComponent {{ '{' }}
+export class MyComponent {
   status: StatusType = 'sent';
   timestamp: string = new Date().toLocaleString();
-{{ '}' }}</code></pre>
+}</code></pre>
           </div>
         </p-tabPanel>
 
