@@ -496,31 +496,34 @@ export class CommunicationPanelComponent implements OnInit, OnDestroy, OnChanges
 
   private updateFilterTabs(): void {
     this.filterTabs = [
-      { 
-        id: 'notes', 
-        label: 'Notes', 
+      {
+        id: 'notes',
+        label: 'Notes',
         icon: 'fas fa-sticky-note',
-        notificationCount: this.unreadCounts.notes > 0 ? this.unreadCounts.notes : undefined
+        notificationCount: this.unreadCounts.notes || undefined
       },
-      { 
-        id: 'emails', 
-        label: 'Emails', 
+      {
+        id: 'emails',
+        label: 'Emails',
         icon: 'fas fa-envelope',
-        notificationCount: this.unreadCounts.emails > 0 ? this.unreadCounts.emails : undefined
+        notificationCount: this.unreadCounts.emails || undefined
       },
-      { 
-        id: 'sms', 
-        label: 'SMS', 
+      {
+        id: 'sms',
+        label: 'SMS',
         icon: 'fas fa-comment',
-        notificationCount: this.unreadCounts.sms > 0 ? this.unreadCounts.sms : undefined
+        notificationCount: this.unreadCounts.sms || undefined
       },
-      { 
-        id: 'all', 
-        label: 'All', 
+      {
+        id: 'all',
+        label: 'All',
         icon: 'fas fa-layer-group',
-        notificationCount: this.unreadCounts.all > 0 ? this.unreadCounts.all : undefined
+        notificationCount: this.unreadCounts.all || undefined
       }
     ];
+
+    // Force change detection
+    this.filterTabs = [...this.filterTabs];
   }
 
   private updateFilteredMessages(): void {
