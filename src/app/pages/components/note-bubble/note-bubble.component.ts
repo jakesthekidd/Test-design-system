@@ -23,7 +23,8 @@ export interface NoteBubbleData {
     TabViewModule,
     AvatarModule,
     ButtonModule,
-    TooltipModule
+    TooltipModule,
+    NoteBubbleComponent
   ],
   template: `
     <div class="component-doc">
@@ -48,10 +49,9 @@ export interface NoteBubbleData {
                   <div class="bubble-container other-message">
                     <div class="bubble-content">
                       <div class="bubble-header">
-                        <p-avatar 
-                          label="JK" 
-                          styleClass="bubble-avatar other-avatar"
-                          size="small">
+                        <p-avatar
+                          label="JK"
+                          styleClass="bubble-avatar other-avatar">
                         </p-avatar>
                         <div class="message-details">
                           <div class="header-row">
@@ -77,10 +77,9 @@ export interface NoteBubbleData {
                   <div class="bubble-container own-message">
                     <div class="bubble-content">
                       <div class="bubble-header">
-                        <p-avatar 
-                          label="JK" 
-                          styleClass="bubble-avatar own-avatar"
-                          size="small">
+                        <p-avatar
+                          label="JK"
+                          styleClass="bubble-avatar own-avatar">
                         </p-avatar>
                         <div class="message-details">
                           <div class="header-row">
@@ -152,16 +151,16 @@ import &#123; CommonModule &#125; from '&#64;angular/common';
         &lt;/p-avatar&gt;
         &lt;div class="message-details"&gt;
           &lt;div class="header-row"&gt;
-            &lt;span class="author-name"&gt;&#123;&#123; authorName &#125;&#125;&lt;/span&gt;
+            &lt;span class="author-name"&gt;&#123;&#123; noteData.authorName &#125;&#125;&lt;/span&gt;
             &lt;button class="menu-button" pTooltip="Message options"&gt;
               &lt;i class="fa-solid fa-ellipsis-vertical"&gt;&lt;/i&gt;
             &lt;/button&gt;
           &lt;/div&gt;
-          &lt;div class="message-text"&gt;&#123;&#123; content &#125;&#125;&lt;/div&gt;
+          &lt;div class="message-text"&gt;&#123;&#123; noteData.content &#125;&#125;&lt;/div&gt;
           &lt;div class="timestamp-container" 
                [class.own-timestamp]="isOwnMessage"
                [class.other-timestamp]="!isOwnMessage"&gt;
-            &lt;span class="timestamp"&gt;&#123;&#123; timestamp &#125;&#125;&lt;/span&gt;
+            &lt;span class="timestamp"&gt;&#123;&#123; noteData.timestamp &#125;&#125;&lt;/span&gt;
           &lt;/div&gt;
         &lt;/div&gt;
       &lt;/div&gt;
@@ -384,8 +383,7 @@ export class NoteBubbleComponent &#123;
           <div class="bubble-header">
             <p-avatar 
               [label]="noteData.authorInitials" 
-              [styleClass]="noteData.isOwnMessage ? 'bubble-avatar own-avatar' : 'bubble-avatar other-avatar'"
-              size="small">
+              [styleClass]="noteData.isOwnMessage ? 'bubble-avatar own-avatar' : 'bubble-avatar other-avatar'">
             </p-avatar>
             <div class="message-details">
               <div class="header-row">
@@ -747,8 +745,7 @@ export class NoteBubbleDocComponent {
         <div class="bubble-header">
           <p-avatar 
             [label]="noteData.authorInitials" 
-            [styleClass]="noteData.isOwnMessage ? 'bubble-avatar own-avatar' : 'bubble-avatar other-avatar'"
-            size="small">
+            [styleClass]="noteData.isOwnMessage ? 'bubble-avatar own-avatar' : 'bubble-avatar other-avatar'">
           </p-avatar>
           <div class="message-details">
             <div class="header-row">
