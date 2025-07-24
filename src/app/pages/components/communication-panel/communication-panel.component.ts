@@ -462,6 +462,23 @@ export class CommunicationPanelComponent implements OnInit, OnDestroy, OnChanges
     }
   }
 
+  onMessageListScroll(event: WheelEvent): void {
+    const element = event.currentTarget as HTMLElement;
+    const atTop = element.scrollTop === 0;
+    const atBottom = element.scrollTop + element.clientHeight >= element.scrollHeight;
+
+    // Prevent background scroll when at scroll boundaries
+    if ((atTop && event.deltaY < 0) || (atBottom && event.deltaY > 0)) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  }
+
+  onMessageListTouch(event: TouchEvent): void {
+    // Allow natural touch scrolling within the message list
+    event.stopPropagation();
+  }
+
   trackMessage(index: number, message: CommunicationMessage): string {
     return message.id;
   }
