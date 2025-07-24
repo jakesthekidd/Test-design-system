@@ -422,347 +422,565 @@ export class WindowLauncherService {
 
   <!-- Angular Bootstrap Script -->
   <script type="module">
-    import { bootstrapApplication } from '@angular/platform-browser';
-    import { Component, importProvidersFrom } from '@angular/core';
-    import { CommonModule } from '@angular/common';
-    import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+    // Note: This simulates module imports. In a real implementation, you would load the actual compiled components
+    // For this demonstration, we'll create a simplified version that shows the CommunicationPanel structure
 
     console.log('Starting Angular bootstrap for ${config.componentName}...');
 
-    @Component({
-      selector: 'app-window-root',
-      standalone: true,
-      imports: [CommonModule],
-      template: \`
-        <div class="message-center-window">
-          <div class="window-header">
-            <div class="header-content">
-              <div class="title-section">
-                <i class="fas fa-comment"></i>
-                <h1>Message Center Expanded</h1>
+    // Simulate the CommunicationPanel rendering
+    function renderCommunicationPanel() {
+      return \`
+        <div class="communication-panel-container">
+          <!-- Message Center Header -->
+          <div class="message-center-header">
+            <div class="header-section">
+              <div class="header-title">
+                <i class="fas fa-comment header-icon"></i>
+                <h3 class="title-text">Message Center</h3>
               </div>
-              <button class="close-btn" (click)="closeWindow()">
-                <i class="fas fa-times"></i>
-              </button>
+              <div class="header-actions">
+                <button class="action-button close-button" onclick="window.close()">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="filter-tabs-section">
+              <div class="filter-tabs">
+                <button class="filter-tab active" data-filter="all" onclick="setActiveFilter('all')">
+                  <i class="fas fa-layer-group tab-icon"></i>
+                  <span class="tab-label">All</span>
+                  <span class="tab-badge">5</span>
+                </button>
+                <button class="filter-tab" data-filter="notes" onclick="setActiveFilter('notes')">
+                  <i class="fas fa-sticky-note tab-icon"></i>
+                  <span class="tab-label">Notes</span>
+                  <span class="tab-badge">2</span>
+                </button>
+                <button class="filter-tab" data-filter="emails" onclick="setActiveFilter('emails')">
+                  <i class="fas fa-envelope tab-icon"></i>
+                  <span class="tab-label">Emails</span>
+                  <span class="tab-badge">2</span>
+                </button>
+                <button class="filter-tab" data-filter="sms" onclick="setActiveFilter('sms')">
+                  <i class="fas fa-comment tab-icon"></i>
+                  <span class="tab-label">SMS</span>
+                  <span class="tab-badge">1</span>
+                </button>
+              </div>
             </div>
           </div>
 
-          <div class="window-content">
-            <div class="filter-tabs">
-              <button
-                class="tab"
-                [class.active]="activeFilter === 'all'"
-                (click)="setFilter('all')">
-                <i class="fas fa-layer-group"></i>
-                All
-              </button>
-              <button
-                class="tab"
-                [class.active]="activeFilter === 'notes'"
-                (click)="setFilter('notes')">
-                <i class="fas fa-sticky-note"></i>
-                Notes
-              </button>
-              <button
-                class="tab"
-                [class.active]="activeFilter === 'emails'"
-                (click)="setFilter('emails')">
-                <i class="fas fa-envelope"></i>
-                Emails
-              </button>
-              <button
-                class="tab"
-                [class.active]="activeFilter === 'sms'"
-                (click)="setFilter('sms')">
-                <i class="fas fa-comment"></i>
-                SMS
-              </button>
-            </div>
+          <!-- Secondary Header -->
+          <div class="secondary-header">
+            <button class="filter-button">
+              <i class="fas fa-filter"></i>
+            </button>
+            <button class="compose-button" style="display: none;" id="composeBtn">
+              <i class="fas fa-pen"></i>
+              <span>Compose</span>
+            </button>
+          </div>
 
-            <div class="message-area">
-              <div class="empty-state">
-                <i class="fas fa-comment-dots"></i>
-                <h3>MessageCenter Expanded</h3>
-                <p>Independent Angular application running in separate window</p>
-                <div class="features">
-                  <div class="feature">
-                    <i class="fas fa-check text-success"></i>
-                    <span>Independent Zone.js Context</span>
+          <!-- Message Feed -->
+          <div class="message-feed">
+            <div class="message-list" id="messageList">
+              <!-- Sample messages will be populated here -->
+              <div class="message-item note-message note-other">
+                <div class="note-bubble">
+                  <div class="note-header">
+                    <div class="note-author-info">
+                      <div class="author-avatar">JC</div>
+                      <div class="author-details">
+                        <span class="author-name">Jake Cummings</span>
+                        <span class="note-timestamp">9:00 AM</span>
+                      </div>
+                    </div>
                   </div>
-                  <div class="feature">
-                    <i class="fas fa-check text-success"></i>
-                    <span>Dynamic Angular Bootstrap</span>
-                  </div>
-                  <div class="feature">
-                    <i class="fas fa-check text-success"></i>
-                    <span>Cross-Window Communication</span>
-                  </div>
-                  <div class="feature">
-                    <i class="fas fa-check text-success"></i>
-                    <span>Active Filter: {{activeFilter}}</span>
+                  <div class="note-content">
+                    A BOL document is like the passport for a shipment; it tells you everything you need to know about where it's coming from, where it's going, and what's inside.
                   </div>
                 </div>
-                <div class="window-info">
-                  <small>Window ID: message-center-expanded</small><br>
-                  <small>Bootstrap Time: {{bootstrapTime}}</small>
+              </div>
+
+              <div class="message-item outbound-message">
+                <div class="sms-bubble">
+                  <div class="sms-header">
+                    <div class="sms-icon">
+                      <i class="fas fa-comment"></i>
+                    </div>
+                    <div class="sms-details">
+                      <span class="sms-recipient">+1 (999) 999-9999</span>
+                      <span class="sms-timestamp">11:00 AM</span>
+                    </div>
+                    <div class="sms-status sent">
+                      <i class="fas fa-check-circle"></i>
+                    </div>
+                  </div>
+                  <div class="sms-content">
+                    Your shipment requires additional documentation. Please upload the required BOL document using the secure link below within 24 hours to avoid delays.
+                  </div>
+                </div>
+              </div>
+
+              <div class="message-item outbound-message">
+                <div class="email-bubble automated">
+                  <div class="email-header">
+                    <div class="email-icon">
+                      <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="email-details">
+                      <span class="email-subject">Document Upload Required - Shipment #SP-2024-1205</span>
+                      <span class="email-timestamp">10:32 AM</span>
+                    </div>
+                    <div class="email-status sent">
+                      <i class="fas fa-paper-plane"></i>
+                    </div>
+                  </div>
+                  <div class="email-recipients">
+                    <span class="email-to">To: client@company.com, shipper@logistics.com</span>
+                  </div>
+                  <div class="email-content">
+                    Your shipment requires additional documentation. Please upload the required BOL document using the secure link below within 24 hours to avoid delays.
+                  </div>
+                </div>
+              </div>
+
+              <div class="message-item note-message note-own">
+                <div class="note-bubble own">
+                  <div class="note-header">
+                    <div class="note-author-info">
+                      <div class="author-avatar">SM</div>
+                      <div class="author-details">
+                        <span class="author-name">Sarah Mitchell</span>
+                        <span class="note-timestamp">11:15 AM</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="note-content">
+                    I've reviewed the documentation and everything looks good to proceed. The carrier has confirmed pickup for tomorrow morning.
+                  </div>
+                </div>
+              </div>
+
+              <div class="message-item outbound-message">
+                <div class="upload-bubble">
+                  <div class="upload-header">
+                    <div class="upload-icon">
+                      <i class="fas fa-upload"></i>
+                    </div>
+                    <div class="upload-details">
+                      <span class="upload-filename">BOL_12345.pdf</span>
+                      <span class="upload-timestamp">11:23 AM</span>
+                    </div>
+                    <div class="upload-status uploaded">
+                      <i class="fas fa-check-circle"></i>
+                    </div>
+                  </div>
+                  <div class="upload-meta">
+                    <span class="upload-method">Uploaded via secure link by driver@carrier.com</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      \`,
-      styles: [\`
-        .message-center-window {
+      \`;
+    }
+
+    // Global functions for interaction
+    window.setActiveFilter = function(filter) {
+      console.log('Filter changed to:', filter);
+
+      // Update active tab
+      document.querySelectorAll('.filter-tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      document.querySelector(\`[data-filter="\${filter}"]\`).classList.add('active');
+
+      // Show/hide compose button for emails
+      const composeBtn = document.getElementById('composeBtn');
+      if (filter === 'emails') {
+        composeBtn.style.display = 'flex';
+      } else {
+        composeBtn.style.display = 'none';
+      }
+
+      // Notify parent
+      if (window.opener) {
+        window.opener.postMessage({
+          type: 'FILTER_CHANGED',
+          payload: { filter }
+        }, '*');
+      }
+    };
+
+    // Initialize the application
+    function initializeApp() {
+      console.log('Initializing CommunicationPanel in window...');
+
+      const container = document.getElementById('component-root');
+      container.innerHTML = renderCommunicationPanel();
+
+      // Setup styles for the CommunicationPanel
+      const style = document.createElement('style');
+      style.textContent = \`
+        .communication-panel-container {
           height: 100vh;
           display: flex;
           flex-direction: column;
-          background: var(--surface-ground, #ffffff);
+          background: var(--surface-0, #ffffff);
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
 
-        .window-header {
-          background: var(--surface-card, #ffffff);
-          border-bottom: 1px solid var(--surface-border, #E2E6EB);
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        /* Message Center Header Styles */
+        .message-center-header {
+          background: var(--surface-0, #ffffff);
+          border-radius: 8px 8px 0 0;
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+          position: sticky;
+          top: 0;
+          z-index: 100;
         }
 
-        .header-content {
+        .header-section {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 16px 24px;
+          padding: 16px;
+          background: var(--surface-100, #F7F8F9);
+          border-radius: 8px 8px 0 0;
         }
 
-        .title-section {
+        .header-title {
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: 9px;
         }
 
-        .title-section i {
-          color: var(--primary-color, #2474BB);
-          font-size: 20px;
+        .header-icon {
+          color: var(--blue-900, #0E2E4B);
+          font-size: 21px;
         }
 
-        .title-section h1 {
-          color: var(--text-color, #3D3D3D);
-          font-size: 18px;
-          font-weight: 600;
+        .title-text {
+          color: var(--blue-900, #0E2E4B);
+          font-size: 16px;
+          font-weight: 500;
           margin: 0;
         }
 
-        .close-btn {
-          background: none;
-          border: 1px solid var(--surface-border, #E2E6EB);
-          border-radius: 4px;
-          color: var(--text-color-secondary, #8D9AAE);
+        .action-button {
+          background: transparent;
+          border: none;
+          color: var(--blue-900, #0E2E4B);
           cursor: pointer;
-          padding: 8px 12px;
-          font-size: 14px;
-          transition: all 0.2s ease;
+          padding: 4px;
+          border-radius: 4px;
+          transition: color 0.2s ease;
         }
 
-        .close-btn:hover {
-          background: var(--red-500, #DA1F2C);
-          color: white;
-          border-color: var(--red-500, #DA1F2C);
+        .action-button:hover {
+          color: var(--primary-color, #2474BB);
         }
 
-        .window-content {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          overflow: hidden;
+        .action-button i {
+          font-size: 21px;
+        }
+
+        .filter-tabs-section {
+          padding: 16px 24px;
+          background: var(--surface-0, #ffffff);
+          border-bottom: 1px solid var(--surface-border, #C6CCD6);
         }
 
         .filter-tabs {
           display: flex;
+          align-items: center;
           gap: 16px;
-          padding: 16px 24px;
-          background: var(--surface-50, #F7F8F9);
-          border-bottom: 1px solid var(--surface-border, #E2E6EB);
         }
 
-        .tab {
+        .filter-tab {
           display: flex;
+          padding: 4px 8px;
           align-items: center;
-          gap: 8px;
-          padding: 8px 16px;
+          gap: 10px;
+          border-radius: 6px;
           border: none;
           background: transparent;
-          border-radius: 6px;
           cursor: pointer;
-          color: var(--text-color-secondary, #8D9AAE);
-          font-size: 14px;
-          font-weight: 500;
           transition: all 0.2s ease;
         }
 
-        .tab:hover {
-          background: var(--surface-100, #F0F0F0);
+        .filter-tab:hover {
+          background: var(--surface-hover, #F6F9FC);
         }
 
-        .tab.active {
-          background: var(--primary-color, #2474BB);
-          color: white;
+        .filter-tab.active {
+          background: var(--surface-ground, #EFF2F4);
+          box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.10);
         }
 
-        .tab i {
+        .tab-icon {
           font-size: 12px;
+          color: var(--surface-700, #8D9AAE);
+          transition: color 0.2s ease;
         }
 
-        .message-area {
-          flex: 1;
+        .filter-tab.active .tab-icon {
+          color: var(--text-color, #3D3D3D);
+        }
+
+        .tab-label {
+          font-size: 14px;
+          font-weight: 500;
+          color: var(--surface-700, #8D9AAE);
+          transition: color 0.2s ease;
+        }
+
+        .filter-tab.active .tab-label {
+          color: var(--text-color, #3D3D3D);
+        }
+
+        .tab-badge {
+          width: 12px;
+          height: 12px;
+          background: var(--status-alert, #DA1F2C);
+          color: white;
+          border-radius: 50%;
+          font-size: 10px;
+          font-weight: 500;
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 2rem;
-          background: var(--surface-ground, #ffffff);
         }
 
-        .empty-state {
-          text-align: center;
-          max-width: 500px;
+        /* Secondary Header */
+        .secondary-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 12px 16px;
+          border-bottom: 1px solid var(--surface-border, #E2E6EB);
+          background: var(--surface-0, #ffffff);
         }
 
-        .empty-state > i {
-          font-size: 4rem;
+        .filter-button {
+          background: transparent;
+          border: none;
+          color: var(--of-black-70, #777);
+          font-size: 24px;
+          cursor: pointer;
+          padding: 4px;
+          border-radius: 4px;
+          transition: color 0.2s ease;
+        }
+
+        .filter-button:hover {
           color: var(--primary-color, #2474BB);
-          opacity: 0.3;
-          margin-bottom: 1.5rem;
         }
 
-        .empty-state h3 {
-          color: var(--text-color, #3D3D3D);
-          font-size: 1.5rem;
-          font-weight: 600;
-          margin: 0 0 1rem 0;
+        .compose-button {
+          background: var(--primary-color, #2474BB);
+          color: white;
+          border: none;
+          padding: 10px 16px;
+          border-radius: 4px;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 14px;
+          cursor: pointer;
+          transition: background-color 0.2s ease;
         }
 
-        .empty-state p {
-          color: var(--text-color-secondary, #8D9AAE);
-          font-size: 1rem;
-          margin: 0 0 2rem 0;
-          line-height: 1.6;
+        .compose-button:hover {
+          background: var(--primary-dark, #1D5D96);
         }
 
-        .features {
+        /* Message Feed */
+        .message-feed {
+          flex: 1;
+          overflow: hidden;
+        }
+
+        .message-list {
+          height: 100%;
+          padding: 12px 0;
+          overflow-y: auto;
           display: flex;
           flex-direction: column;
           gap: 12px;
-          align-items: flex-start;
-          text-align: left;
-          margin-bottom: 2rem;
+          background: var(--surface-0, #ffffff);
         }
 
-        .feature {
+        .message-item {
+          flex-shrink: 0;
+          width: 100%;
+          box-sizing: border-box;
+        }
+
+        .message-item.note-message {
+          padding: 0 16px;
+        }
+
+        .message-item.note-own {
+          display: flex;
+          justify-content: flex-end;
+        }
+
+        .message-item.note-other {
+          display: flex;
+          justify-content: flex-start;
+        }
+
+        .message-item.outbound-message {
+          display: flex;
+          justify-content: flex-end;
+          padding-left: 48px;
+          padding-right: 16px;
+        }
+
+        /* Message Bubble Styles */
+        .note-bubble, .sms-bubble, .email-bubble, .upload-bubble {
+          background: var(--surface-card, #ffffff);
+          border: 1px solid var(--surface-border, #E2E6EB);
+          border-radius: 8px;
+          padding: 12px;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+          max-width: 400px;
+        }
+
+        .note-bubble.own {
+          background: var(--primary-50, #E3F2FD);
+          border-color: var(--primary-200, #90CAF9);
+        }
+
+        .note-header, .sms-header, .email-header, .upload-header {
           display: flex;
           align-items: center;
-          gap: 12px;
-          padding: 8px 0;
+          gap: 8px;
+          margin-bottom: 8px;
         }
 
-        .feature i {
-          font-size: 16px;
-          width: 20px;
-        }
-
-        .text-success {
-          color: var(--green-500, #22C55E);
-        }
-
-        .feature span {
-          color: var(--text-color, #3D3D3D);
-          font-size: 14px;
-          font-weight: 500;
-        }
-
-        .window-info {
-          padding: 1rem;
-          background: var(--surface-50, #F7F8F9);
-          border-radius: 6px;
-          font-family: monospace;
+        .author-avatar {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          background: var(--primary-color, #2474BB);
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           font-size: 12px;
+          font-weight: 600;
+        }
+
+        .author-details, .sms-details, .email-details, .upload-details {
+          flex: 1;
+        }
+
+        .author-name, .sms-recipient, .email-subject, .upload-filename {
+          display: block;
+          font-weight: 600;
+          color: var(--text-color, #3D3D3D);
+          font-size: 13px;
+        }
+
+        .note-timestamp, .sms-timestamp, .email-timestamp, .upload-timestamp {
+          display: block;
+          font-size: 11px;
           color: var(--text-color-secondary, #8D9AAE);
         }
 
-        @media (max-width: 600px) {
-          .header-content {
-            padding: 12px 16px;
-          }
-
-          .filter-tabs {
-            flex-wrap: wrap;
-            gap: 8px;
-            padding: 12px 16px;
-          }
-
-          .empty-state {
-            padding: 1rem;
-          }
+        .note-content, .sms-content, .email-content {
+          color: var(--text-color, #3D3D3D);
+          font-size: 14px;
+          line-height: 1.4;
         }
-      \`]
-    })
-    class WindowRootComponent {
-      activeFilter = 'all';
-      bootstrapTime = new Date().toLocaleTimeString();
 
-      ngOnInit() {
-        console.log('MessageCenter Window Component initialized');
-        this.setupCommunication();
-        this.loadConfiguration();
-      }
-
-      setFilter(filter) {
-        this.activeFilter = filter;
-        this.notifyParent('FILTER_CHANGED', { filter });
-      }
-
-      closeWindow() {
-        window.close();
-      }
-
-      setupCommunication() {
-        // Listen for messages from parent
-        window.addEventListener('message', (event) => {
-          this.handleParentMessage(event.data);
-        });
-
-        // Notify parent that Angular is ready
-        setTimeout(() => {
-          this.notifyParent('ANGULAR_READY', {
-            componentName: '${config.componentName}',
-            activeFilter: this.activeFilter,
-            bootstrapTime: this.bootstrapTime
-          });
-        }, 100);
-      }
-
-      loadConfiguration() {
-        if (window.messageCenterConfig) {
-          // Load any initial configuration
-          console.log('Loaded config:', window.messageCenterConfig);
+        .sms-icon, .email-icon, .upload-icon {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 14px;
         }
-      }
 
-      handleParentMessage(data) {
-        switch (data.type) {
+        .sms-icon {
+          background: var(--indigo-100, #E8EAF6);
+          color: var(--indigo-600, #3F51B5);
+        }
+
+        .email-icon {
+          background: var(--blue-100, #E3F2FD);
+          color: var(--blue-600, #1976D2);
+        }
+
+        .upload-icon {
+          background: var(--green-100, #E8F5E8);
+          color: var(--green-600, #4CAF50);
+        }
+
+        .sms-status, .email-status, .upload-status {
+          font-size: 16px;
+        }
+
+        .sms-status.sent, .email-status.sent, .upload-status.uploaded {
+          color: var(--green-500, #4CAF50);
+        }
+
+        .email-recipients, .upload-meta {
+          font-size: 12px;
+          color: var(--text-color-secondary, #8D9AAE);
+          margin-bottom: 8px;
+        }
+      \`;
+      document.head.appendChild(style);
+
+      // Setup communication
+      setupCommunication();
+
+      console.log('CommunicationPanel initialized successfully');
+    }
+
+    function setupCommunication() {
+      // Listen for messages from parent
+      window.addEventListener('message', (event) => {
+        console.log('Message received from parent:', event.data);
+
+        switch (event.data.type) {
           case 'UPDATE_CONFIG':
-            console.log('Config update received:', data.payload);
+            console.log('Config update received:', event.data.payload);
             break;
           case 'UPDATE_FILTER':
-            this.activeFilter = data.payload.filter;
+            setActiveFilter(event.data.payload.filter);
             break;
           default:
-            console.log('Unknown message from parent:', data.type);
+            console.log('Unknown message from parent:', event.data.type);
         }
-      }
+      });
 
-      notifyParent(type, payload = {}) {
+      // Notify parent that Angular is ready
+      setTimeout(() => {
         if (window.opener) {
-          window.opener.postMessage({ type, payload }, '*');
+          window.opener.postMessage({
+            type: 'ANGULAR_READY',
+            componentName: '${config.componentName}',
+            activeFilter: 'all',
+            timestamp: new Date().toISOString()
+          }, '*');
         }
-      }
+      }, 100);
+    }
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initializeApp);
+    } else {
+      initializeApp();
     }
 
     // Bootstrap the application
