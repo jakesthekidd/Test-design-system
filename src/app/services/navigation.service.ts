@@ -183,6 +183,13 @@ export class NavigationService {
           description: 'Slide-up drawer panel with message feed and filtering for desktop Message Center',
           route: '/components/communication-panel',
           tags: ['panel', 'drawer', 'message-center', 'slide-up', 'communication', 'feed', 'desktop']
+        },
+        {
+          id: 'message-center-expanded',
+          name: 'Message Center Expanded',
+          description: 'Expanded window view of Message Center with Compose architecture for detached workflows',
+          route: '/components/message-center-expanded',
+          tags: ['expanded', 'window', 'message-center', 'compose', 'detached', 'communication', 'workflow']
         }
       ]
     },
