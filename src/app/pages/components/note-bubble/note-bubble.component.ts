@@ -48,6 +48,19 @@ export interface NoteBubbleData {
     </div>
   `,
   styles: [`
+    :host {
+      display: flex;
+      width: 100%;
+    }
+
+    :host(:not([data-own="true"])) {
+      justify-content: flex-start;
+    }
+
+    :host([data-own="true"]) {
+      justify-content: flex-end;
+    }
+
     .bubble-container {
       display: flex;
       padding: 16px;
@@ -57,6 +70,7 @@ export interface NoteBubbleData {
       border: 3px solid;
       background: var(--surface-overlay);
       font-family: 'Roboto', sans-serif;
+      max-width: 70%;
     }
 
     .bubble-container.other-message {
