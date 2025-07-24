@@ -295,7 +295,7 @@ export class NotificationFabComponent {
           <pre><code>&lt;app-notification-fab
   [hasNotification]="true"
   [notificationCount]="3"
-  icon="pi pi-comments"
+  icon="fas fa-comment"
   ariaLabel="Open Message Center"
   (clicked)="openMessageCenter()"
 /&gt;</code></pre>
