@@ -141,6 +141,13 @@ export class NavigationService {
           description: 'Reusable status indicators for communication types including SMS and email',
           route: '/components/status-badges',
           tags: ['status', 'badges', 'indicators', 'automation', 'communication']
+        },
+        {
+          id: 'sms-bubble',
+          name: 'SMS Bubble',
+          description: 'Automated SMS message display with delivery status tracking and indigo styling',
+          route: '/components/sms-bubble',
+          tags: ['sms', 'messaging', 'automation', 'status', 'workflow', 'communication']
         }
       ]
     },
