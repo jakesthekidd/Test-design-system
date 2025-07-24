@@ -162,6 +162,13 @@ export class NavigationService {
           description: 'Document upload confirmations with method tracking and uploader identification',
           route: '/components/upload-bubble',
           tags: ['upload', 'documents', 'files', 'confirmation', 'communication', 'workflow']
+        },
+        {
+          id: 'notification-fab',
+          name: 'Notification FAB',
+          description: 'Floating action button for global Message Center access with notification badges',
+          route: '/components/notification-fab',
+          tags: ['fab', 'floating', 'notification', 'badge', 'message-center', 'button', 'communication']
         }
       ]
     },
