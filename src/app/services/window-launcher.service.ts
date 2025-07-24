@@ -702,9 +702,6 @@ export class WindowLauncherService {
       }, 100);
     }
 
-        // Setup communication after successful initialization
-        setupCommunication();
-
         console.log('CommunicationPanel initialized successfully');
 
         // Show the application immediately
