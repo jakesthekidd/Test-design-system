@@ -62,6 +62,20 @@ import { MessageCenterWindowService } from '../../../services/message-center-win
             {{ isWindowOpen() ? 'Window is open' : 'Window is closed' }}
           </span>
         </div>
+
+        <div class="status-details" *ngIf="isWindowOpen()">
+          <p class="status-note">
+            <i class="fas fa-info-circle"></i>
+            The CommunicationPanel is now running in a separate window with:
+          </p>
+          <ul class="status-features">
+            <li>✅ Independent Angular application instance</li>
+            <li>✅ Separate Zone.js context</li>
+            <li>✅ Identical message data and state</li>
+            <li>✅ Full filter functionality</li>
+            <li>✅ Cross-window communication</li>
+          </ul>
+        </div>
       </div>
     </div>
   `,
@@ -207,6 +221,40 @@ import { MessageCenterWindowService } from '../../../services/message-center-win
       font-size: 0.9rem;
       color: var(--text-color-secondary, #8D9AAE);
       font-weight: 500;
+    }
+
+    .status-details {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: var(--surface-50, #F7F8F9);
+      border-radius: 6px;
+      border-left: 4px solid var(--green-500, #22C55E);
+    }
+
+    .status-note {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0 0 1rem 0;
+      font-size: 0.9rem;
+      color: var(--text-color, #3D3D3D);
+      font-weight: 500;
+    }
+
+    .status-note i {
+      color: var(--green-500, #22C55E);
+    }
+
+    .status-features {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .status-features li {
+      padding: 0.25rem 0;
+      font-size: 0.85rem;
+      color: var(--text-color-secondary, #8D9AAE);
     }
 
     @media (max-width: 768px) {
