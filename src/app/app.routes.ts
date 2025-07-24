@@ -51,6 +51,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/components/tabs/tabs.component').then(m => m.TabsDocComponent)
   },
   {
+    path: 'components/note-bubble',
+    loadComponent: () => import('./pages/components/note-bubble/note-bubble.component').then(m => m.NoteBubbleDocComponent)
+  },
+  {
     path: 'components/wfai-approved-container',
     loadComponent: () => import('./pages/components/wfai-approved-container/wfai-approved-container.component').then(m => m.WFAIApprovedContainerDocComponent)
   },
