@@ -155,6 +155,13 @@ export class NavigationService {
           description: 'User-composed email messages with author identification and sent/failed status tracking',
           route: '/components/manual-email-bubble',
           tags: ['email', 'manual', 'user', 'status', 'failed', 'communication', 'messaging']
+        },
+        {
+          id: 'upload-bubble',
+          name: 'Upload Bubble',
+          description: 'Document upload confirmations with method tracking and uploader identification',
+          route: '/components/upload-bubble',
+          tags: ['upload', 'documents', 'files', 'confirmation', 'communication', 'workflow']
         }
       ]
     },
