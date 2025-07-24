@@ -1,7 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ButtonModule } from 'primeng/button';
-import { BadgeModule } from 'primeng/badge';
 
 export interface NotificationFabConfig {
   hasNotification: boolean;
