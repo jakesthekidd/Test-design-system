@@ -354,18 +354,13 @@ export interface CommunicationPanelConfig {
         min-height: 48px;
       }
 
-      .message-item {
+      .message-item.note-message {
         padding: 0 12px;
       }
 
-      .message-item.own-message {
+      .message-item.outbound-message {
         padding-left: 36px;
         padding-right: 12px;
-      }
-
-      .message-item.automated-message {
-        padding-left: 12px;
-        padding-right: 36px;
       }
     }
 
