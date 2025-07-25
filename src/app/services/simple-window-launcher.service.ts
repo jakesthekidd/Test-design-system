@@ -238,6 +238,8 @@ export class SimpleWindowLauncherService {
   <title>Message Center - Expanded View</title>
   <!-- FontAwesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <!-- Component Injection Styles -->
+  ${this.componentInjectionService.generateComponentStyles()}
   <style>
     :root {
       /* Design System Variables */
