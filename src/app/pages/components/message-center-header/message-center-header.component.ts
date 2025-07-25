@@ -272,7 +272,7 @@ export interface MessageCenterHeaderConfig {
     }
   `]
 })
-export class MessageCenterHeaderComponent {
+export class MessageCenterHeaderComponent implements OnInit, OnDestroy {
   @Input() title: string = 'Message Center';
   @Input() showOpenInTab: boolean = true;
   @Input() activeFilter: FilterType = 'notes';
@@ -287,6 +287,23 @@ export class MessageCenterHeaderComponent {
   @Output() openInFullView = new EventEmitter<void>();
   @Output() filterChanged = new EventEmitter<FilterType>();
 
+  private acknowledgmentSubscription?: Subscription;
+
+  constructor(private tabAcknowledgmentService: TabAcknowledgmentService) {}
+
+  ngOnInit(): void {
+    // Subscribe to acknowledgment changes to trigger change detection
+    this.acknowledgmentSubscription = this.tabAcknowledgmentService.acknowledgedTabs$.subscribe(() => {
+      // Trigger change detection when acknowledgments change
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.acknowledgmentSubscription) {
+      this.acknowledgmentSubscription.unsubscribe();
+    }
+  }
+
   onClose(): void {
     this.closePanel.emit();
   }
@@ -297,7 +314,19 @@ export class MessageCenterHeaderComponent {
 
   onFilterChange(filter: FilterType): void {
     this.activeFilter = filter;
+
+    // Acknowledge the tab when clicked (dismiss badge for session)
+    this.tabAcknowledgmentService.acknowledgeTab(filter);
+
     this.filterChanged.emit(filter);
+  }
+
+  /**
+   * Determine if badge should be shown for a tab
+   */
+  shouldShowTabBadge(tab: FilterTab): boolean {
+    const unreadCount = tab.originalUnreadCount || tab.notificationCount || 0;
+    return this.tabAcknowledgmentService.shouldShowBadge(tab.id, unreadCount);
   }
 }
 
