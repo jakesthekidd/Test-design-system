@@ -1087,7 +1087,7 @@ export class SimpleWindowLauncherService {
         hour: '2-digit',
         minute: '2-digit',
         hour12: true
-      }).replace(',', ' |');
+      });
 
       return \`
         <div class="message-item-wrapper \${isOwn ? 'own-message-wrapper' : 'other-message-wrapper'}">
@@ -1126,7 +1126,7 @@ export class SimpleWindowLauncherService {
         hour: '2-digit',
         minute: '2-digit',
         hour12: true
-      }).replace(',', ' |');
+      });
 
       return \`
         <div class="message-item-wrapper outbound-message-wrapper">
@@ -1182,7 +1182,7 @@ export class SimpleWindowLauncherService {
         hour: '2-digit',
         minute: '2-digit',
         hour12: true
-      }).replace(',', ' |');
+      });
 
       const statusIcon = data.status === 'workflow-stopped' ? 'clipboard-check' : 'check';
       const statusLabel = data.status === 'workflow-stopped' ? 'Workflow Stopped' : 'Sent';
@@ -1247,7 +1247,7 @@ export class SimpleWindowLauncherService {
         hour: '2-digit',
         minute: '2-digit',
         hour12: true
-      }).replace(',', ' |');
+      });
 
       const isFailed = data.status === 'failed';
       const statusIcon = isFailed ? 'triangle-exclamation' : 'check';
@@ -1311,7 +1311,7 @@ export class SimpleWindowLauncherService {
         hour: '2-digit',
         minute: '2-digit',
         hour12: true
-      }).replace(',', ' |');
+      });
 
       return \`
         <div class="message-item-wrapper upload-message-wrapper">
