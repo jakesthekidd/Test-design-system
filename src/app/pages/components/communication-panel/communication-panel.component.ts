@@ -558,40 +558,7 @@ export class CommunicationPanelComponent implements OnInit, OnDestroy, OnChanges
     this.filteredMessages.sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime());
   }
 
-  private updateUnreadCounts(): void {
-    const counts = { notes: 0, emails: 0, sms: 0, all: 0 };
 
-    this.messages.forEach(message => {
-      if (!message.isRead) {
-        counts.all++;
-        switch (message.type) {
-          case 'note':
-            counts.notes++;
-            break;
-          case 'automated-email':
-          case 'manual-email':
-            counts.emails++;
-            break;
-          case 'sms':
-            counts.sms++;
-            break;
-        }
-      }
-    });
-
-    // Only update if counts have changed
-    const hasChanged = Object.keys(counts).some(key =>
-      this.unreadCounts[key as FilterType] !== counts[key as FilterType]
-    );
-
-    if (hasChanged) {
-      this.unreadCounts = { ...counts };
-      this.updateFilterTabs();
-
-      // Emit the updated counts to parent component
-      console.log('Unread counts updated:', this.unreadCounts);
-    }
-  }
 
   private scrollToBottom(): void {
     // Check if there are unread messages
