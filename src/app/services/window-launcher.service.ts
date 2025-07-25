@@ -750,15 +750,15 @@ export class WindowLauncherService {
         }
 
         return \`
-          <div style="background: \${bgColor}; padding: 15px; margin-bottom: 15px; border-radius: 8px; \${isUnread ? 'border-left: 4px solid #FF9800;' : ''}">
-            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-              <div style="width: 32px; height: 32px; background: #2474BB; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px;">\${icon}</div>
-              <div style="flex: 1;">
-                <strong>\${title}\${isUnread ? ' 🔵' : ''}</strong>
-                <div style="font-size: 12px; color: #666;">\${timestamp}</div>
+          <div class="message-item \${isUnread ? 'unread' : ''}" style="background: \${bgColor};">
+            <div class="message-meta">
+              <div class="message-avatar" style="background: var(--primary-color, #2474BB);">\${icon}</div>
+              <div class="message-details">
+                <div class="message-author">\${title}\${isUnread ? ' 🔵' : ''}</div>
+                <div class="message-time">\${timestamp}</div>
               </div>
             </div>
-            <p style="margin: 0; color: #333;">\${content}</p>
+            <p class="message-content">\${content}</p>
           </div>
         \`;
       }).join('');
