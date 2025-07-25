@@ -11,6 +11,7 @@ export interface FilterTab {
   label: string;
   icon: string;
   notificationCount?: number;
+  originalUnreadCount?: number; // Store original count before acknowledgment
 }
 
 export interface MessageCenterHeaderConfig {
