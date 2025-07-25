@@ -321,11 +321,11 @@ import { SimpleWindowLauncherService } from '../../../services/simple-window-lau
         padding: 1rem;
       }
 
-      .control-buttons, .preset-buttons {
+      .control-buttons {
         flex-direction: column;
       }
 
-      .control-buttons button, .preset-btn {
+      .control-buttons button {
         width: 100%;
         justify-content: center;
       }
