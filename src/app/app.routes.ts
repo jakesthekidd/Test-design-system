@@ -95,6 +95,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/components/wfai-approved-container/wfai-approved-container.component').then(m => m.WFAIApprovedContainerDocComponent)
   },
   {
+    path: 'communication-demo',
+    loadComponent: () => import('./pages/communication-demo/communication-demo.component').then(m => m.CommunicationDemoComponent)
+  },
+  {
     path: 'foundation/colors',
     loadComponent: () => import('./pages/foundation/colors/colors.component').then(m => m.ColorsComponent)
   },
