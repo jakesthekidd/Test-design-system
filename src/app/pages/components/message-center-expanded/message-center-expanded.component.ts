@@ -1,8 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MessageCenterWindowService } from '../../../services/message-center-window.service';
-import { MessageCenterStateService } from '../../../services/message-center-state.service';
-import { Subscription } from 'rxjs';
+import { SimpleWindowLauncherService } from '../../../services/simple-window-launcher.service';
 
 @Component({
   selector: 'app-message-center-expanded',
