@@ -534,14 +534,29 @@ export class CommunicationDemoComponent implements OnInit, OnDestroy {
     // Wait for initial data to load, then set some messages as unread for demo
     setTimeout(() => {
       if (this.messages.length > 0) {
-        // Set some messages as unread for demonstration
+        // Set messages as unread across different categories for demonstration
+        // Notes (message 0 and 8 are notes)
         this.messageDataService.updateMessage(this.messages[0].id, { isRead: false });
-        this.messageDataService.updateMessage(this.messages[1].id, { isRead: false });
-        this.messageDataService.updateMessage(this.messages[2].id, { isRead: false });
         if (this.messages[8]) {
           this.messageDataService.updateMessage(this.messages[8].id, { isRead: false });
         }
-        this.logAction('Demo initialized with unread messages');
+
+        // SMS (message 1 and 7 are SMS)
+        this.messageDataService.updateMessage(this.messages[1].id, { isRead: false });
+        if (this.messages[7]) {
+          this.messageDataService.updateMessage(this.messages[7].id, { isRead: false });
+        }
+
+        // Emails (messages 2, 5, 6 are emails)
+        this.messageDataService.updateMessage(this.messages[2].id, { isRead: false });
+        if (this.messages[5]) {
+          this.messageDataService.updateMessage(this.messages[5].id, { isRead: false });
+        }
+        if (this.messages[6]) {
+          this.messageDataService.updateMessage(this.messages[6].id, { isRead: false });
+        }
+
+        this.logAction('Demo initialized with unread messages across all categories');
       }
     }, 200);
   }
