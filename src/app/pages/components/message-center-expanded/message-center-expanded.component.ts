@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ButtonModule } from 'primeng/button';
 import { SimpleWindowLauncherService } from '../../../services/simple-window-launcher.service';
 
 @Component({
@@ -36,8 +37,6 @@ import { SimpleWindowLauncherService } from '../../../services/simple-window-lau
           </button>
         </div>
       </div>
-
-
 
       <div class="window-status">
         <div class="status-indicator">
@@ -162,8 +161,6 @@ import { SimpleWindowLauncherService } from '../../../services/simple-window-lau
       cursor: not-allowed;
     }
 
-
-
     .window-status {
       padding: 1rem;
       border-radius: 6px;
@@ -281,20 +278,6 @@ import { SimpleWindowLauncherService } from '../../../services/simple-window-lau
       font-size: 0.8rem;
     }
 
-    .state-info {
-      padding: 0.75rem;
-      background: var(--surface-0, #ffffff);
-      border-radius: 4px;
-      border: 1px solid var(--surface-border, #E2E6EB);
-      font-family: monospace;
-    }
-
-    .state-info small {
-      font-size: 0.75rem;
-      color: var(--text-color-secondary, #8D9AAE);
-      line-height: 1.4;
-    }
-
     .debug-note {
       margin-top: 0.75rem;
       padding: 0.5rem;
@@ -406,62 +389,270 @@ export class MessageCenterExpandedComponent implements OnInit, OnDestroy {
 @Component({
   selector: 'app-message-center-expanded-docs',
   standalone: true,
-  imports: [CommonModule, MessageCenterExpandedComponent],
+  imports: [CommonModule, MessageCenterExpandedComponent, ButtonModule],
   template: `
     <div class="docs-container">
       <h1>MessageCenterExpanded Component</h1>
       <p class="component-description">
-        A component that launches the Message Center in a separate browser window for multi-monitor workflows.
+        A window-based Message Center component that launches the complete communication interface in a separate browser window. 
+        Designed for multi-monitor workflows and enhanced productivity with detached messaging interface.
       </p>
 
       <div class="docs-section">
-        <h2>Component Preview</h2>
-        <div class="preview-container">
+        <h2>Interactive Demo</h2>
+        <div class="demo-container">
           <app-message-center-expanded></app-message-center-expanded>
         </div>
       </div>
 
       <div class="docs-section">
-        <h2>CommunicationPanel Integration</h2>
-        <div class="integration-info">
-          <p><strong>The MessageCenterExpanded component renders the existing CommunicationPanel inside a new browser window without any modifications to the original component.</strong></p>
-
-          <h3>Integration Features:</h3>
-          <ul class="feature-list">
-            <li>✅ <strong>Unmodified CommunicationPanel</strong> - Uses the exact same component from the main app</li>
-            <li>✅ <strong>Identical State & Data</strong> - Same message data, filters, and behavior as main app</li>
-            <li>✅ <strong>Independent Angular Instance</strong> - Separate Zone.js context and change detection</li>
-            <li>✅ <strong>Cross-Window Communication</strong> - Parent-child messaging for state sync</li>
-            <li>✅ <strong>Complete Message Feed</strong> - All bubble components render identically</li>
-            <li>✅ <strong>Filter Functionality</strong> - Notes, Emails, SMS, All filters work as expected</li>
-            <li>✅ <strong>Compose Architecture</strong> - Ready for email composition features</li>
-            <li>✅ <strong>Multi-Monitor Support</strong> - Draggable to secondary screens</li>
-          </ul>
-
-          <h3>Technical Implementation:</h3>
-          <ul class="tech-details">
-            <li><strong>Dynamic HTML Generation:</strong> WindowLauncherService creates complete application shell</li>
-            <li><strong>Bundle Loading:</strong> Main app JavaScript bundles loaded in separate window context</li>
-            <li><strong>Style Injection:</strong> All design tokens and component styles automatically loaded</li>
-            <li><strong>Error Handling:</strong> Comprehensive error catching with fallback states</li>
-            <li><strong>Message Data:</strong> MessageDataService provides identical sample data to both contexts</li>
-            <li><strong>Event Handling:</strong> Filter changes, message clicks, and compose actions work normally</li>
-            <li><strong>State Synchronization:</strong> Real-time state sync via postMessage + BroadcastChannel</li>
-            <li><strong>Responsive Design:</strong> Window resizing and mobile breakpoints maintained</li>
-          </ul>
+        <h2>Features & Capabilities</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-external-link-alt"></i>
+            </div>
+            <h3>Detached Window</h3>
+            <p>Opens in separate browser window that can be moved to secondary monitors for multi-screen workflows.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-sync-alt"></i>
+            </div>
+            <h3>State Synchronization</h3>
+            <p>Real-time message state sync between main app and expanded window via postMessage communication.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-comments"></i>
+            </div>
+            <h3>Full Message Center</h3>
+            <p>Complete feature parity with the main CommunicationPanel including all bubble types and filtering.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h3>Responsive Design</h3>
+            <p>Maintains responsive behavior and design system consistency in the detached window environment.</p>
+          </div>
         </div>
       </div>
 
       <div class="docs-section">
-        <h2>Window Management Features</h2>
-        <ul class="feature-list">
-          <li>Opens in separate browser window using window.open()</li>
-          <li>Reuses existing CommunicationPanel component without modification</li>
-          <li>Draggable to secondary monitors for multi-screen workflows</li>
-          <li>Independent messaging experience with cross-window state sync</li>
-          <li>Keyboard shortcuts (ESC, Ctrl/Cmd+W) to close window</li>
-          <li>Preset configurations (Default, Compose, Notifications)</li>
+        <h2>Technical Architecture</h2>
+        <div class="architecture-info">
+          <h3>Window Management</h3>
+          <div class="architecture-item">
+            <h4>SimpleWindowLauncherService</h4>
+            <p>Manages window lifecycle, HTML generation, and parent-child communication via postMessage API.</p>
+            <div class="code-example">
+              <pre><code>// Window creation with proper dimensions and features
+const features = [
+  'width=' + windowWidth,
+  'height=' + windowHeight,
+  'left=' + left,
+  'top=' + top,
+  'resizable=yes',
+  'scrollbars=yes'
+].join(',');
+
+this.openWindow = window.open('about:blank', 'message-center-expanded', features);</code></pre>
+            </div>
+          </div>
+
+          <h3>State Management</h3>
+          <div class="architecture-item">
+            <h4>MessageDataService Integration</h4>
+            <p>Uses centralized message data service to ensure consistency between main app and expanded window.</p>
+            <div class="tech-points">
+              <ul>
+                <li>Shared CommunicationMessage interface</li>
+                <li>Real-time unread count synchronization</li>
+                <li>Identical filtering and sorting logic</li>
+                <li>Cross-window message state updates</li>
+              </ul>
+            </div>
+          </div>
+
+          <h3>Component Rendering</h3>
+          <div class="architecture-item">
+            <h4>Vanilla JavaScript Implementation</h4>
+            <p>Uses plain HTML/CSS/JS in the child window for optimal performance and CSP compliance.</p>
+            <div class="tech-points">
+              <ul>
+                <li>Exact CSS replication of Angular components</li>
+                <li>Message bubble rendering with full fidelity</li>
+                <li>Interactive filter tabs and compose functionality</li>
+                <li>FontAwesome icons and design tokens integration</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="docs-section">
+        <h2>API Reference</h2>
+        
+        <div class="api-section">
+          <h3>Methods</h3>
+          <div class="api-table">
+            <div class="api-row api-header">
+              <div class="api-cell">Method</div>
+              <div class="api-cell">Return Type</div>
+              <div class="api-cell">Description</div>
+            </div>
+            <div class="api-row">
+              <div class="api-cell code">launchWindow()</div>
+              <div class="api-cell">void</div>
+              <div class="api-cell">Opens the Message Center in a new browser window</div>
+            </div>
+            <div class="api-row">
+              <div class="api-cell code">closeWindow()</div>
+              <div class="api-cell">void</div>
+              <div class="api-cell">Closes the expanded Message Center window</div>
+            </div>
+            <div class="api-row">
+              <div class="api-cell code">refreshWindow()</div>
+              <div class="api-cell">void</div>
+              <div class="api-cell">Refreshes the window by closing and reopening</div>
+            </div>
+            <div class="api-row">
+              <div class="api-cell code">isWindowOpen()</div>
+              <div class="api-cell">boolean</div>
+              <div class="api-cell">Returns whether the window is currently open</div>
+            </div>
+            <div class="api-row">
+              <div class="api-cell code">debugWindowLaunch()</div>
+              <div class="api-cell">void</div>
+              <div class="api-cell">Tests window opening capability and popup blocker status</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="api-section">
+          <h3>Dependencies</h3>
+          <div class="api-table">
+            <div class="api-row api-header">
+              <div class="api-cell">Service</div>
+              <div class="api-cell">Purpose</div>
+              <div class="api-cell">Description</div>
+            </div>
+            <div class="api-row">
+              <div class="api-cell code">SimpleWindowLauncherService</div>
+              <div class="api-cell">Window Management</div>
+              <div class="api-cell">Handles window lifecycle and postMessage communication</div>
+            </div>
+            <div class="api-row">
+              <div class="api-cell code">MessageDataService</div>
+              <div class="api-cell">Data Management</div>
+              <div class="api-cell">Provides message data and state synchronization</div>
+            </div>
+            <div class="api-row">
+              <div class="api-cell code">MessageCenterStateService</div>
+              <div class="api-cell">State Sync</div>
+              <div class="api-cell">Manages cross-window state synchronization</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="docs-section">
+        <h2>Usage Examples</h2>
+        
+        <div class="example-group">
+          <h3>Basic Implementation</h3>
+          <div class="code-example">
+            <pre><code>&lt;app-message-center-expanded&gt;&lt;/app-message-center-expanded&gt;</code></pre>
+          </div>
+        </div>
+
+        <div class="example-group">
+          <h3>Programmatic Control</h3>
+          <div class="code-example">
+            <pre><code>import { SimpleWindowLauncherService } from './services/simple-window-launcher.service';
+
+export class MyComponent {
+  constructor(private windowLauncher: SimpleWindowLauncherService) {}
+  
+  openMessageCenter(): void {
+    this.windowLauncher.openMessageCenterWindow();
+  }
+  
+  closeMessageCenter(): void {
+    this.windowLauncher.closeWindow();
+  }
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="example-group">
+          <h3>Integration with CommunicationPanel</h3>
+          <div class="code-example">
+            <pre><code>&lt;app-communication-panel
+  [isOpen]="isPanelOpen"
+  [messages]="messages"
+  (openInFullView)="openExpandedWindow()"
+&gt;&lt;/app-communication-panel&gt;
+
+&lt;app-message-center-expanded&gt;&lt;/app-message-center-expanded&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="docs-section">
+        <h2>Design Guidelines</h2>
+        <ul class="design-guidelines">
+          <li>Use as an enhancement to the main CommunicationPanel, not a replacement</li>
+          <li>Ideal for users with multiple monitors or large screen setups</li>
+          <li>Window positioning should be configurable for user preferences</li>
+          <li>Maintain consistent state synchronization between main app and window</li>
+          <li>Provide clear visual feedback when window is open/closed</li>
+          <li>Handle popup blocker scenarios gracefully with user guidance</li>
+          <li>Ensure keyboard shortcuts work consistently in both contexts</li>
+          <li>Consider window close events and cleanup to prevent memory leaks</li>
         </ul>
+      </div>
+
+      <div class="docs-section">
+        <h2>Browser Compatibility</h2>
+        <div class="compatibility-info">
+          <div class="compatibility-item">
+            <h4>✅ Fully Supported</h4>
+            <ul>
+              <li>Chrome 70+</li>
+              <li>Firefox 65+</li>
+              <li>Safari 13+</li>
+              <li>Edge 79+</li>
+            </ul>
+          </div>
+          
+          <div class="compatibility-item">
+            <h4>⚠️ Considerations</h4>
+            <ul>
+              <li>Popup blockers may prevent window opening</li>
+              <li>Some corporate environments restrict window.open()</li>
+              <li>Mobile browsers may not support detached windows</li>
+              <li>Screen size limitations on smaller displays</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="docs-section">
+        <h2>Performance Considerations</h2>
+        <div class="performance-info">
+          <ul>
+            <li><strong>Memory Usage:</strong> Each window maintains its own JavaScript context</li>
+            <li><strong>State Sync:</strong> PostMessage communication is lightweight but frequent</li>
+            <li><strong>Rendering:</strong> Vanilla JS implementation is optimized for performance</li>
+            <li><strong>Cleanup:</strong> Proper window closure prevents memory leaks</li>
+            <li><strong>Data Transfer:</strong> Efficient JSON serialization for message passing</li>
+          </ul>
+        </div>
       </div>
     </div>
   `,
@@ -491,62 +682,260 @@ export class MessageCenterExpandedComponent implements OnInit, OnDestroy {
       margin-bottom: 1.5rem;
     }
 
-    .preview-container {
+    .demo-container {
       border: 1px solid var(--surface-border);
       border-radius: 8px;
       padding: 2rem;
       background: var(--surface-card);
     }
 
-    .integration-info {
-      background: var(--surface-50, #F7F8F9);
-      padding: 1.5rem;
-      border-radius: 8px;
-      border-left: 4px solid var(--primary-color, #2474BB);
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
       margin-bottom: 2rem;
     }
 
-    .integration-info h3 {
-      color: var(--primary-color, #2474BB);
-      margin-top: 1.5rem;
+    .feature-card {
+      padding: 1.5rem;
+      background: var(--surface-card);
+      border: 1px solid var(--surface-border);
+      border-radius: 8px;
+      text-align: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 1rem;
+      background: var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .feature-icon i {
+      font-size: 1.5rem;
+    }
+
+    .feature-card h3 {
+      margin: 0 0 0.5rem 0;
+      color: var(--text-color);
+      font-size: 1.1rem;
+    }
+
+    .feature-card p {
+      margin: 0;
+      color: var(--text-color-secondary);
+      line-height: 1.5;
+      font-size: 0.9rem;
+    }
+
+    .architecture-info {
+      background: var(--surface-50);
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid var(--primary-color);
+    }
+
+    .architecture-info h3 {
+      color: var(--primary-color);
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+
+    .architecture-item {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background: var(--surface-card);
+      border-radius: 6px;
+      border: 1px solid var(--surface-border);
+    }
+
+    .architecture-item h4 {
+      margin: 0 0 0.5rem 0;
+      color: var(--text-color);
+      font-size: 1rem;
+    }
+
+    .architecture-item p {
+      margin: 0 0 1rem 0;
+      color: var(--text-color-secondary);
+      line-height: 1.5;
+    }
+
+    .tech-points ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .tech-points li {
+      padding: 0.25rem 0;
+      color: var(--text-color-secondary);
+      font-size: 0.9rem;
+    }
+
+    .tech-points li:before {
+      content: "▶";
+      color: var(--primary-color);
+      margin-right: 0.5rem;
+      font-size: 0.8rem;
+    }
+
+    .api-section {
+      margin-bottom: 2rem;
+    }
+
+    .api-section h3 {
+      color: var(--text-color);
       margin-bottom: 1rem;
     }
 
-    .integration-info h3:first-of-type {
-      margin-top: 1rem;
+    .api-table {
+      display: grid;
+      grid-template-columns: 1fr 1fr 2fr;
+      gap: 1px;
+      background: var(--surface-border);
+      border-radius: 4px;
+      overflow: hidden;
     }
 
-    .feature-list {
+    .api-row {
+      display: contents;
+    }
+
+    .api-cell {
+      padding: 0.75rem;
+      background: var(--surface-card);
+    }
+
+    .api-header .api-cell {
+      background: var(--surface-100);
+      font-weight: 600;
+      color: var(--text-color);
+    }
+
+    .code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--primary-color);
+    }
+
+    .example-group {
+      margin-bottom: 2rem;
+    }
+
+    .example-group h3 {
+      color: var(--text-color);
+      margin-bottom: 1rem;
+    }
+
+    .code-example {
+      background: var(--surface-50);
+      border: 1px solid var(--surface-border);
+      border-radius: 4px;
+      padding: 1rem;
+      overflow-x: auto;
+    }
+
+    .code-example pre {
+      margin: 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: var(--text-color);
+    }
+
+    .design-guidelines {
       list-style: none;
       padding: 0;
     }
 
-    .feature-list li {
+    .design-guidelines li {
       padding: 0.5rem 0;
-      border-bottom: 1px solid var(--surface-border, #E2E6EB);
-      font-size: 0.95rem;
+      border-bottom: 1px solid var(--surface-border);
     }
 
-    .tech-details {
+    .design-guidelines li:before {
+      content: "✓";
+      color: var(--green-500);
+      font-weight: bold;
+      margin-right: 0.5rem;
+    }
+
+    .compatibility-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .compatibility-item {
+      padding: 1rem;
+      background: var(--surface-card);
+      border: 1px solid var(--surface-border);
+      border-radius: 6px;
+    }
+
+    .compatibility-item h4 {
+      margin: 0 0 0.75rem 0;
+      color: var(--text-color);
+    }
+
+    .compatibility-item ul {
       list-style-type: disc;
       padding-left: 1.5rem;
+      margin: 0;
     }
 
-    .tech-details li {
-      margin-bottom: 0.75rem;
-      line-height: 1.6;
+    .compatibility-item li {
+      margin-bottom: 0.25rem;
       font-size: 0.9rem;
-      color: var(--text-color-secondary, #8D9AAE);
+      color: var(--text-color-secondary);
     }
 
-    ul {
-      list-style-type: disc;
-      padding-left: 1.5rem;
+    .performance-info ul {
+      list-style: none;
+      padding: 0;
     }
 
-    li {
+    .performance-info li {
+      padding: 0.75rem;
       margin-bottom: 0.5rem;
-      line-height: 1.6;
+      background: var(--surface-card);
+      border: 1px solid var(--surface-border);
+      border-radius: 4px;
+      border-left: 4px solid var(--primary-color);
+    }
+
+    .performance-info strong {
+      color: var(--primary-color);
+    }
+
+    @media (max-width: 768px) {
+      .docs-container {
+        padding: 1rem;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .api-table {
+        grid-template-columns: 1fr;
+      }
+
+      .compatibility-info {
+        grid-template-columns: 1fr;
+      }
     }
   `]
 })
