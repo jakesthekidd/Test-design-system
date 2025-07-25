@@ -764,40 +764,38 @@ export class WindowLauncherService {
       }).join('');
 
       return \`
-        <div style="padding: 20px; font-family: Arial, sans-serif;">
-          <div style="background: #2474BB; color: white; padding: 15px; margin-bottom: 20px; border-radius: 8px;">
-            <h2 style="margin: 0; display: flex; align-items: center; gap: 10px;">
-              📬 Message Center - Expanded View
-            </h2>
+        <div class="message-center-content">
+          <div class="message-header">
+            <h2>📬 Message Center - Expanded View</h2>
           </div>
 
-          <div style="display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;" id="filter-buttons">
-            <button data-filter="all" style="background: \${activeFilter === 'all' ? '#2474BB' : '#f0f0f0'}; color: \${activeFilter === 'all' ? 'white' : '#333'}; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
+          <div class="filter-buttons" id="filter-buttons">
+            <button data-filter="all" class="filter-btn \${activeFilter === 'all' ? 'active' : ''}">
               All (\${unreadCounts.all})
             </button>
-            <button data-filter="notes" style="background: \${activeFilter === 'notes' ? '#2474BB' : '#f0f0f0'}; color: \${activeFilter === 'notes' ? 'white' : '#333'}; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
+            <button data-filter="notes" class="filter-btn \${activeFilter === 'notes' ? 'active' : ''}">
               Notes (\${unreadCounts.notes})
             </button>
-            <button data-filter="emails" style="background: \${activeFilter === 'emails' ? '#2474BB' : '#f0f0f0'}; color: \${activeFilter === 'emails' ? 'white' : '#333'}; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
+            <button data-filter="emails" class="filter-btn \${activeFilter === 'emails' ? 'active' : ''}">
               Emails (\${unreadCounts.emails})
             </button>
-            <button data-filter="sms" style="background: \${activeFilter === 'sms' ? '#2474BB' : '#f0f0f0'}; color: \${activeFilter === 'sms' ? 'white' : '#333'}; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
+            <button data-filter="sms" class="filter-btn \${activeFilter === 'sms' ? 'active' : ''}">
               SMS (\${unreadCounts.sms})
             </button>
           </div>
 
-          <div style="background: white; border: 1px solid #ddd; border-radius: 8px; padding: 20px; max-height: 60vh; overflow-y: auto;">
-            <h3 style="margin-top: 0; color: #2474BB;">Messages (\${filteredMessages.length} of \${messages.length} shown)</h3>
-            \${messagesList || '<p style="text-align: center; color: #999; padding: 40px;">No messages found for current filter.</p>'}
+          <div class="messages-container" style="max-height: 60vh; overflow-y: auto;">
+            <h3 style="margin-top: 0; color: var(--primary-color, #2474BB);">Messages (\${filteredMessages.length} of \${messages.length} shown)</h3>
+            \${messagesList || '<p style="text-align: center; color: var(--text-color-secondary, #8D9AAE); padding: 40px;">No messages found for current filter.</p>'}
           </div>
 
-          <div style="margin-top: 20px; padding: 15px; background: #e8f5e8; border-radius: 8px;">
-            <h4 style="margin-top: 0; color: #2474BB;">✅ Real Data Loaded Successfully</h4>
-            <p style="margin: 5px 0; font-size: 14px;">Total: \${messages.length} messages | Filter: \${activeFilter} | Showing: \${filteredMessages.length}</p>
+          <div style="margin-top: 20px; padding: 15px; background: var(--surface-100, #EFF2F4); border-radius: 8px; border: 1px solid var(--surface-border, #E2E6EB);">
+            <h4 style="margin-top: 0; color: var(--primary-color, #2474BB);">✅ Real Data Loaded Successfully</h4>
+            <p style="margin: 5px 0; font-size: 14px; color: var(--text-color-secondary, #8D9AAE);">Total: \${messages.length} messages | Filter: \${activeFilter} | Showing: \${filteredMessages.length}</p>
           </div>
 
           <div style="margin-top: 15px; text-align: center;">
-            <button id="close-window-btn" style="background: #da1f2c; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">
+            <button id="close-window-btn" class="close-btn">
               Close Window
             </button>
           </div>
