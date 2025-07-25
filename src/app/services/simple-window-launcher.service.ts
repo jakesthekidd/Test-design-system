@@ -1471,9 +1471,9 @@ export class SimpleWindowLauncherService {
       container.innerHTML = messagesHtml;
     }
 
-    // Update tab badges with unread counts
+    // Update tab badges with live unread counts
     function updateTabBadges() {
-      const counts = calculateUnreadCounts();
+      const counts = getCurrentUnreadCounts();
 
       // Update badges
       const allBadge = document.getElementById('all-badge');
@@ -1481,17 +1481,25 @@ export class SimpleWindowLauncherService {
       const emailsBadge = document.getElementById('emails-badge');
       const smsBadge = document.getElementById('sms-badge');
 
-      allBadge.textContent = counts.all;
-      allBadge.style.display = counts.all > 0 ? 'flex' : 'none';
+      if (allBadge) {
+        allBadge.textContent = counts.all;
+        allBadge.style.display = counts.all > 0 ? 'flex' : 'none';
+      }
 
-      notesBadge.textContent = counts.notes;
-      notesBadge.style.display = counts.notes > 0 ? 'flex' : 'none';
+      if (notesBadge) {
+        notesBadge.textContent = counts.notes;
+        notesBadge.style.display = counts.notes > 0 ? 'flex' : 'none';
+      }
 
-      emailsBadge.textContent = counts.emails;
-      emailsBadge.style.display = counts.emails > 0 ? 'flex' : 'none';
+      if (emailsBadge) {
+        emailsBadge.textContent = counts.emails;
+        emailsBadge.style.display = counts.emails > 0 ? 'flex' : 'none';
+      }
 
-      smsBadge.textContent = counts.sms;
-      smsBadge.style.display = counts.sms > 0 ? 'flex' : 'none';
+      if (smsBadge) {
+        smsBadge.textContent = counts.sms;
+        smsBadge.style.display = counts.sms > 0 ? 'flex' : 'none';
+      }
     }
 
     // Handle filter changes
