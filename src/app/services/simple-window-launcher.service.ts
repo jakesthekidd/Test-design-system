@@ -1123,6 +1123,7 @@ export class SimpleWindowLauncherService {
     let messages = ${JSON.stringify(messages)};
     let unreadCounts = ${JSON.stringify(unreadCounts)};
     let activeFilter = 'all';
+    let acknowledgedTabs = new Set(); // Track acknowledged tabs in this session
 
     // Set up postMessage communication with parent window
     function setupParentCommunication() {
