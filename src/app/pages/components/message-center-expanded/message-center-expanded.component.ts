@@ -573,19 +573,19 @@ this.openWindow = window.open('about:blank', 'message-center-expanded', features
         <div class="example-group">
           <h3>Programmatic Control</h3>
           <div class="code-example">
-            <pre><code>import { SimpleWindowLauncherService } from './services/simple-window-launcher.service';
+            <pre><code>import &#123; SimpleWindowLauncherService &#125; from './services/simple-window-launcher.service';
 
-export class MyComponent {{ '{' }}
-  constructor(private windowLauncher: SimpleWindowLauncherService) {{ '{' }}{{ '}' }}
+export class MyComponent &#123;
+  constructor(private windowLauncher: SimpleWindowLauncherService) &#123;&#125;
 
-  openMessageCenter(): void {{ '{' }}
+  openMessageCenter(): void &#123;
     this.windowLauncher.openMessageCenterWindow();
-  {{ '}' }}
+  &#125;
 
-  closeMessageCenter(): void {{ '{' }}
+  closeMessageCenter(): void &#123;
     this.windowLauncher.closeWindow();
-  {{ '}' }}
-{{ '}' }}</code></pre>
+  &#125;
+&#125;</code></pre>
           </div>
         </div>
 
