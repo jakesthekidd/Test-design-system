@@ -1537,12 +1537,27 @@ export class SimpleWindowLauncherService {
       console.log('Filter changed to:', filter);
     }
 
+    // Enhanced compose button handler
+    function handleComposeEmail() {
+      sendToParent({
+        type: 'COMPOSE_EMAIL'
+      });
+    }
+
     // Set up event listeners
     document.querySelectorAll('.filter-tab').forEach(tab => {
       tab.addEventListener('click', function() {
         const filter = this.dataset.filter;
         setFilter(filter);
       });
+    });
+
+    // Add event listener for compose button
+    document.addEventListener('DOMContentLoaded', function() {
+      const composeBtn = document.getElementById('compose-btn');
+      if (composeBtn) {
+        composeBtn.addEventListener('click', handleComposeEmail);
+      }
     });
 
     // Keyboard shortcuts
@@ -1552,13 +1567,14 @@ export class SimpleWindowLauncherService {
       }
     });
 
-    // Initial render
-    renderMessages();
-    updateTabBadges();
+    // Initialize communication and display
+    setupParentCommunication();
 
-    console.log('Message Center expanded window initialized successfully');
-    console.log('Mock data loaded:', messages.length, 'messages');
-    console.log('Unread counts:', calculateUnreadCounts());
+    // Initial render with current data
+    updateDisplay();
+
+    console.log('Message Center expanded window initialized with live data sync');
+    console.log('Initial data loaded:', messages.length, 'messages');
   </script>
 </body>
 </html>`;
