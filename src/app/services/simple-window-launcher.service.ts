@@ -944,24 +944,7 @@ export class SimpleWindowLauncherService {
       line-height: 16px;
     }
 
-    .close-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #dc3545;
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 500;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-      z-index: 1000;
-    }
 
-    .close-btn:hover {
-      background: #c82333;
-    }
   </style>
 </head>
 <body>
@@ -983,11 +966,6 @@ export class SimpleWindowLauncherService {
       <!-- Filter Tabs Section -->
       <div class="filter-tabs-section">
         <div class="filter-tabs" id="filter-tabs">
-          <button class="filter-tab active" data-filter="all">
-            <i class="fas fa-list tab-icon"></i>
-            <span class="tab-label">All</span>
-            <span class="tab-badge" id="all-badge">0</span>
-          </button>
           <button class="filter-tab" data-filter="notes">
             <i class="fas fa-sticky-note tab-icon"></i>
             <span class="tab-label">Notes</span>
@@ -1002,6 +980,11 @@ export class SimpleWindowLauncherService {
             <i class="fas fa-comment-sms tab-icon"></i>
             <span class="tab-label">SMS</span>
             <span class="tab-badge" id="sms-badge" style="display: none;">0</span>
+          </button>
+          <button class="filter-tab active" data-filter="all">
+            <i class="fas fa-list tab-icon"></i>
+            <span class="tab-label">All</span>
+            <span class="tab-badge" id="all-badge">0</span>
           </button>
         </div>
       </div>
@@ -1028,8 +1011,6 @@ export class SimpleWindowLauncherService {
       </div>
     </div>
   </div>
-
-  <button class="close-btn" onclick="window.close()">Close Window</button>
 
   <script>
     // Mock data with exact CommunicationMessage structure
