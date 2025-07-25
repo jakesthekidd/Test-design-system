@@ -1426,7 +1426,7 @@ export class SimpleWindowLauncherService {
       const statusClass = isFailed ? 'failed' : 'sent';
 
       return \`
-        <div class="message-item-wrapper outbound-message-wrapper">
+        <div class="message-item-wrapper outbound-message-wrapper" data-message-id="\${message.id}">
           <div class="manual-email-bubble-container \${isFailed ? 'failed-state' : ''}">
             <div class="email-bubble-content">
               <div class="bubble-header">
