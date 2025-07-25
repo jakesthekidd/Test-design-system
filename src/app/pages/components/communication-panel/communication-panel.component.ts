@@ -408,6 +408,7 @@ export class CommunicationPanelComponent implements OnInit, OnDestroy, OnChanges
   @Output() composeEmail = new EventEmitter<void>();
   @Output() messageClicked = new EventEmitter<CommunicationMessage>();
   @Output() filterClicked = new EventEmitter<void>();
+  @Output() filterTabClicked = new EventEmitter<{ filter: FilterType, messages: CommunicationMessage[] }>();
 
   filteredMessages: CommunicationMessage[] = [];
   filterTabs: FilterTab[] = [];
