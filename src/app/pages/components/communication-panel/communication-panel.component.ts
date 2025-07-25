@@ -461,6 +461,7 @@ export class CommunicationPanelComponent implements OnInit, OnDestroy, OnChanges
   }
 
   onMessageClick(message: CommunicationMessage): void {
+    console.log('CommunicationPanel: Message clicked', message.id, 'isRead:', message.isRead);
     // Always emit the click event first
     this.messageClicked.emit(message);
   }
