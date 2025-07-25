@@ -1558,6 +1558,9 @@ export class SimpleWindowLauncherService {
       }).join('');
 
       container.innerHTML = messagesHtml;
+
+      // Set up click event listeners for message interactions
+      setupComponentEventListeners();
     }
 
     // Update tab badges with live unread counts
