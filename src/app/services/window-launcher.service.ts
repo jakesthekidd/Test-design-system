@@ -843,6 +843,7 @@ export class WindowLauncherService {
               const container = document.getElementById('component-root');
               if (container) {
                 container.innerHTML = renderCommunicationPanel();
+                setupEventListeners(); // Re-setup event listeners after data update
                 console.log('Re-rendered content with actual message data');
               }
             }
