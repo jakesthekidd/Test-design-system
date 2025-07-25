@@ -1485,7 +1485,7 @@ export class SimpleWindowLauncherService {
       });
 
       return \`
-        <div class="message-item-wrapper upload-message-wrapper">
+        <div class="message-item-wrapper upload-message-wrapper" data-message-id="\${message.id}">
           <div class="upload-bubble-container">
             <div class="upload-bubble-content">
               <div class="bubble-header">
