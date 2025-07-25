@@ -162,45 +162,7 @@ import { SimpleWindowLauncherService } from '../../../services/simple-window-lau
       cursor: not-allowed;
     }
 
-    .preset-controls {
-      margin-bottom: 2rem;
-      padding: 1.5rem;
-      border: 1px solid var(--surface-border, #E2E6EB);
-      border-radius: 8px;
-      background: var(--surface-50, #F7F8F9);
-    }
 
-    .preset-controls h4 {
-      margin: 0 0 1rem 0;
-      color: var(--text-color, #3D3D3D);
-      font-size: 1rem;
-      font-weight: 500;
-    }
-
-    .preset-buttons {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-
-    .preset-btn {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem 1rem;
-      border: 1px solid var(--surface-border, #E2E6EB);
-      border-radius: 6px;
-      background: white;
-      color: var(--text-color, #3D3D3D);
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .preset-btn:hover {
-      background: var(--surface-100, #F7F8F9);
-      border-color: var(--primary-color, #2474BB);
-    }
 
     .window-status {
       padding: 1rem;
