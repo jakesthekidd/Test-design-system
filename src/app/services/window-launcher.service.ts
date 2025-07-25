@@ -585,7 +585,7 @@ export class WindowLauncherService {
           </div>
 
           <div style="margin-top: 15px; text-align: center;">
-            <button onclick="window.close()" style="background: #da1f2c; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">
+            <button id="close-window-btn" style="background: #da1f2c; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">
               Close Window
             </button>
           </div>
@@ -689,7 +689,7 @@ export class WindowLauncherService {
           </div>
 
           <div style="margin-top: 15px; text-align: center;">
-            <button onclick="window.close()" style="background: #da1f2c; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">
+            <button id="close-window-btn" style="background: #da1f2c; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">
               Close Window
             </button>
           </div>
