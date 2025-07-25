@@ -1177,6 +1177,10 @@ export class SimpleWindowLauncherService {
 
     // Enhanced message click handler
     function handleMessageClick(messageId, messageType) {
+      // Mark message as read when clicked
+      markMessageAsRead(messageId);
+
+      // Also send click event for any additional handling
       sendToParent({
         type: 'MESSAGE_CLICKED',
         payload: { messageId, messageType }
