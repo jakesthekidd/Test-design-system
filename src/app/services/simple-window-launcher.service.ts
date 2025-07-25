@@ -1157,6 +1157,10 @@ export class SimpleWindowLauncherService {
           unreadCounts = data.payload.unreadCounts;
           updateTabBadges();
           break;
+        case 'TAB_ACKNOWLEDGMENTS_UPDATED':
+          acknowledgedTabs = new Set(data.payload.acknowledgedTabs);
+          updateTabBadges();
+          break;
         default:
           console.log('Unknown message from parent:', data);
       }
