@@ -404,31 +404,37 @@ export class SimpleWindowLauncherService {
       gap: 16px;
     }
 
-    /* Message Item Styles */
-    .message-item {
+    /* Message Item Wrapper Styles - exact component alignment */
+    .message-item-wrapper {
       display: flex;
       width: 100%;
     }
 
-    .message-item.note-message.note-other {
+    .message-item-wrapper.other-message-wrapper {
       justify-content: flex-start;
       padding-right: 48px;
       padding-left: 16px;
     }
 
-    .message-item.note-message.note-own {
+    .message-item-wrapper.own-message-wrapper {
       justify-content: flex-end;
       padding-left: 48px;
       padding-right: 16px;
     }
 
-    .message-item.outbound-message {
+    .message-item-wrapper.outbound-message-wrapper {
       justify-content: flex-end;
       padding-left: 48px;
       padding-right: 16px;
     }
 
-    /* Note Bubble Styles */
+    .message-item-wrapper.upload-message-wrapper {
+      justify-content: flex-start;
+      padding-right: 48px;
+      padding-left: 16px;
+    }
+
+    /* Note Bubble Styles - exact NoteBubbleComponent styles */
     .bubble-container {
       display: flex;
       padding: 16px;
@@ -436,7 +442,7 @@ export class SimpleWindowLauncherService {
       gap: 8px;
       border-radius: 8px;
       border: 3px solid;
-      background: var(--surface-overlay);
+      background: var(--surface-overlay, #FFF);
       font-family: 'Roboto', sans-serif;
       width: 100%;
       max-width: 100%;
@@ -467,25 +473,26 @@ export class SimpleWindowLauncherService {
     }
 
     .bubble-avatar {
-      width: 40px;
-      height: 40px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
+      border: 1px solid #FFF;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 600;
-      font-size: 14px;
+      font-weight: 500;
+      font-size: 10px;
       flex-shrink: 0;
     }
 
     .other-avatar {
-      background: #EFF2F4;
-      color: #3D3D3D;
+      background-color: #A9B3C2;
+      color: #FFF;
     }
 
     .own-avatar {
-      background: #D3E3F1;
-      color: #3D3D3D;
+      background-color: #2474BB;
+      color: #FFF;
     }
 
     .message-details {
@@ -497,128 +504,352 @@ export class SimpleWindowLauncherService {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 8px;
+      width: 100%;
     }
 
     .author-name {
-      font-weight: 500;
+      color: rgba(58, 58, 58, 1);
       font-size: 14px;
-      color: var(--text-color);
+      font-weight: 500;
     }
 
     .menu-button {
-      background: transparent;
+      background: none;
       border: none;
-      color: var(--surface-700);
+      color: #2068A8;
+      font-size: 16px;
       cursor: pointer;
-      padding: 4px;
+      padding: 2px;
+      border-radius: 2px;
+      transition: background-color 0.2s ease;
+    }
+
+    .menu-button:hover {
+      background-color: var(--surface-hover, #F6F9FC);
     }
 
     .message-text {
-      color: var(--text-color);
+      color: rgba(58, 58, 58, 1);
       font-size: 14px;
+      font-weight: 300;
       line-height: 1.4;
-      margin-bottom: 8px;
     }
 
     .timestamp-container {
       display: flex;
+      padding: 4px 8px;
+      border-radius: 4px;
+      width: fit-content;
+    }
+
+    .timestamp-container.other-timestamp {
+      background: #EFF2F4;
+    }
+
+    .timestamp-container.own-timestamp {
+      background: #E9F1F8;
     }
 
     .timestamp {
-      font-size: 12px;
-      color: var(--surface-700);
+      color: rgba(58, 58, 58, 1);
+      font-size: 13px;
+      font-weight: 300;
     }
 
-    /* Outbound Message Styles */
-    .outbound-bubble {
-      background: #E3F2FD;
-      border: 1px solid #BBDEFB;
-      border-radius: 8px;
-      padding: 16px;
-      width: 100%;
-      font-family: 'Roboto', sans-serif;
-    }
-
-    .outbound-header {
+    /* SMS Bubble Styles - exact SmsBubbleComponent styles */
+    .sms-bubble-container {
       display: flex;
+      padding: 16px;
       align-items: center;
       gap: 8px;
-      margin-bottom: 12px;
+      align-self: stretch;
+      border-radius: 8px 8px 0px 8px;
+      border: 1px solid #BCBDF9;
+      background: #F7F7FE;
+      font-family: 'Roboto', sans-serif;
+      max-width: 600px;
+      width: 100%;
     }
 
-    .outbound-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      color: white;
-    }
-
-    .sms-icon {
-      background: #9C27B0;
-    }
-
-    .email-icon {
-      background: #1976D2;
-    }
-
-    .upload-icon {
-      background: #4CAF50;
-    }
-
-    .outbound-details {
+    .sms-bubble-content {
       flex: 1;
     }
 
-    .outbound-title {
-      font-weight: 500;
-      font-size: 14px;
-      color: var(--text-color);
-      margin-bottom: 4px;
+    .sms-icon {
+      display: flex;
+      width: 24px;
+      height: 24px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 30px;
+      background: #DADAFC;
+      color: #6366F1;
     }
 
-    .outbound-subtitle {
+    .sms-icon i {
       font-size: 12px;
-      color: var(--surface-700);
+      font-weight: 400;
     }
 
-    .outbound-content {
-      color: var(--text-color);
+    .sms-automated-badge {
+      display: flex;
+      padding: 4px 8px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      border-radius: 27px;
+      background: #DADAFC;
+      color: #282960;
+      font-family: 'Roboto', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: normal;
+      width: fit-content;
+    }
+
+    .sms-automated-badge svg {
+      width: 17.5px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    /* Email Bubble Styles - exact AutomatedEmailBubbleComponent styles */
+    .email-bubble-container {
+      display: flex;
+      padding: 16px;
+      align-items: center;
+      gap: 8px;
+      align-self: stretch;
+      border-radius: 8px 8px 0px 8px;
+      border: 1px solid #91B9DD;
+      background: #F1FAFE;
+      font-family: 'Roboto', sans-serif;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .email-bubble-content {
+      flex: 1;
+    }
+
+    .email-icon {
+      display: flex;
+      width: 24px;
+      height: 24px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 30px;
+      background: #C7EBFB;
+      color: #0E2E4B;
+    }
+
+    .email-icon i {
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .automated-badge {
+      display: flex;
+      padding: 4px 8px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      border-radius: 27px;
+      background: #C7EBFB;
+      color: #0E2E4B;
+      font-family: 'Roboto', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: normal;
+      width: fit-content;
+    }
+
+    .automated-badge svg {
+      width: 17.5px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    /* Upload Bubble Styles - exact UploadBubbleComponent styles */
+    .upload-bubble-container {
+      display: flex;
+      padding: 16px;
+      align-items: center;
+      gap: 8px;
+      align-self: stretch;
+      border-radius: 8px 8px 8px 0px;
+      border: 1px solid #00BF30;
+      background: #E5F9EA;
+      font-family: 'Roboto', sans-serif;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .upload-bubble-content {
+      flex: 1;
+    }
+
+    .upload-icon {
+      display: flex;
+      width: 24px;
+      height: 24px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      border-radius: 105px;
+      background: #004C13;
+      color: #FFF;
+    }
+
+    .upload-icon i {
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .upload-method-badge {
+      display: flex;
+      padding: 4px 8px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      border-radius: 27px;
+      background: #004C13;
+      color: #FFF;
+      font-family: 'Roboto', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: normal;
+      width: fit-content;
+    }
+
+    .upload-status-badge {
+      display: flex;
+      padding: 4px 8px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      border-radius: 4px;
+      background: #004C13;
+      color: #E5F9EA;
+      font-family: 'Roboto', sans-serif;
+      width: fit-content;
+    }
+
+    /* Shared Badge and Status Styles */
+    .badge-section {
+      display: flex;
+    }
+
+    .status-and-menu {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .status-badge {
+      display: flex;
+      padding: 4px 8px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      border-radius: 4px;
+      width: fit-content;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .status-content {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      align-self: stretch;
+    }
+
+    .status-label {
+      font-size: 13px;
+      font-weight: 500;
+      line-height: normal;
+    }
+
+    .status-value {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: normal;
+    }
+
+    .status-badge.sent {
+      background: #CCF2D6;
+      color: #004C13;
+    }
+
+    .status-badge.workflow-stopped {
+      background: #F1FAFE;
+      color: #AE1923;
+    }
+
+    .status-badge i {
+      font-size: 13px;
+    }
+
+    /* Field Styles */
+    .sms-field, .email-field, .upload-field {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .field-label {
+      color: #5A626F;
       font-size: 14px;
-      line-height: 1.4;
+      font-weight: 300;
+      line-height: 20px;
+      min-width: fit-content;
     }
 
-    .status-tag {
-      background: #4CAF50;
-      color: white;
-      padding: 2px 8px;
-      border-radius: 12px;
-      font-size: 10px;
+    .field-value {
+      color: #5A626F;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: normal;
+    }
+
+    .phone-number {
+      font-weight: 700;
+    }
+
+    .uploader-name, .file-name {
+      color: rgba(58, 58, 58, 1);
+      font-size: 15px;
+      font-weight: 700;
+      line-height: normal;
+    }
+
+    .subject-line {
+      color: #0E2E4B;
+      font-size: 14px;
       font-weight: 500;
-      text-transform: uppercase;
-      margin-left: 8px;
+      line-height: 20px;
+      margin-top: 4px;
     }
 
-    .status-tag.sent {
-      background: #4CAF50;
+    .message-body {
+      align-self: stretch;
+      color: rgba(58, 58, 58, 1);
+      font-size: 14px;
+      font-weight: 300;
+      line-height: normal;
+      margin-top: 4px;
     }
 
-    .status-tag.uploaded {
-      background: #4CAF50;
-    }
-
-    .new-badge {
-      background: var(--status-alert);
-      color: white;
-      padding: 2px 6px;
-      border-radius: 12px;
-      font-size: 10px;
-      font-weight: 500;
-      margin-left: 8px;
+    .upload-method {
+      height: 16px;
+      align-self: stretch;
+      color: rgba(58, 58, 58, 1);
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 16px;
     }
 
     .close-btn {
