@@ -523,7 +523,26 @@ export class CommunicationDemoComponent implements OnInit, OnDestroy {
       }
     });
 
+    // Initialize demo with some unread messages
+    this.initializeDemoState();
+
     this.logAction('Communication demo initialized');
+  }
+
+  private initializeDemoState(): void {
+    // Wait for initial data to load, then set some messages as unread for demo
+    setTimeout(() => {
+      if (this.messages.length > 0) {
+        // Set some messages as unread for demonstration
+        this.messageDataService.updateMessage(this.messages[0].id, { isRead: false });
+        this.messageDataService.updateMessage(this.messages[1].id, { isRead: false });
+        this.messageDataService.updateMessage(this.messages[2].id, { isRead: false });
+        if (this.messages[8]) {
+          this.messageDataService.updateMessage(this.messages[8].id, { isRead: false });
+        }
+        this.logAction('Demo initialized with unread messages');
+      }
+    }, 200);
   }
 
   ngOnDestroy(): void {
