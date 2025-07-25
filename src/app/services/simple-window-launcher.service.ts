@@ -53,15 +53,20 @@ export class SimpleWindowLauncherService {
         return false;
       }
 
-      // Generate and write HTML content
-      const htmlContent = this.generateWindowHTML();
+      // Generate and write HTML content with live data
+      const currentMessages = this.messageDataService.getMessages();
+      const currentUnreadCounts = this.messageDataService.getUnreadCounts();
+      const htmlContent = this.generateWindowHTML(currentMessages, currentUnreadCounts);
       this.openWindow.document.write(htmlContent);
       this.openWindow.document.close();
 
       // Focus the new window
       this.openWindow.focus();
 
-      console.log('Message Center window opened successfully');
+      // Set up data synchronization
+      this.setupDataSync();
+
+      console.log('Message Center window opened successfully with live data');
       return true;
 
     } catch (error) {
