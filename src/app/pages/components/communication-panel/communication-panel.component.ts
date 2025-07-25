@@ -602,6 +602,10 @@ export class CommunicationPanelComponent implements OnInit, OnDestroy, OnChanges
   }
 
   private setupIntersectionObserver(): void {
+    // Temporarily disabled to debug manual click behavior
+    console.log('Intersection observer disabled for debugging');
+    return;
+
     if (!this.messageFeedRef || typeof window === 'undefined') return;
 
     const observer = new IntersectionObserver((entries) => {
