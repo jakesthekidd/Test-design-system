@@ -1155,6 +1155,38 @@ export class SimpleWindowLauncherService {
       });
     }
 
+    // Component injection flag
+    let useComponentInjection = true;
+
+    // Request component HTML for a message
+    function requestComponentHTML(message) {
+      return new Promise((resolve) => {
+        const requestId = Date.now() + Math.random();
+
+        // Set up one-time listener for response
+        const handleResponse = (event) => {
+          if (event.data.type === 'COMPONENT_HTML_RESPONSE' && event.data.requestId === requestId) {
+            window.removeEventListener('message', handleResponse);
+            resolve(event.data.html);
+          }
+        };
+        window.addEventListener('message', handleResponse);
+
+        // Request component HTML from parent
+        sendToParent({
+          type: 'REQUEST_COMPONENT_HTML',
+          requestId: requestId,
+          payload: { message }
+        });
+
+        // Timeout fallback
+        setTimeout(() => {
+          window.removeEventListener('message', handleResponse);
+          resolve(null);
+        }, 1000);
+      });
+    }
+
     // Filter mapping - match the exact behavior of CommunicationPanel
     function getFilteredMessages() {
       switch (activeFilter) {
