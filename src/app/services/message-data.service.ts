@@ -41,12 +41,18 @@ export class MessageDataService {
    * Updates a message (e.g., mark as read)
    */
   updateMessage(messageId: string, updates: Partial<CommunicationMessage>): void {
+    console.log('MessageDataService: Updating message', messageId, 'with updates:', updates);
     const messages = this.messagesSubject.value;
     const messageIndex = messages.findIndex(m => m.id === messageId);
 
     if (messageIndex !== -1) {
+      const currentMessage = messages[messageIndex];
+      console.log('MessageDataService: Found message', messageId, 'current isRead:', currentMessage.isRead);
+
       const updatedMessages = [...messages];
       updatedMessages[messageIndex] = { ...updatedMessages[messageIndex], ...updates };
+
+      console.log('MessageDataService: Updated message', messageId, 'new isRead:', updatedMessages[messageIndex].isRead);
 
       this.messagesSubject.next(updatedMessages);
       this.updateUnreadCounts();
@@ -56,6 +62,10 @@ export class MessageDataService {
         messages: updatedMessages,
         unreadCounts: this.unreadCountsSubject.value
       });
+
+      console.log('MessageDataService: Update complete, new unread counts:', this.unreadCountsSubject.value);
+    } else {
+      console.warn('MessageDataService: Message not found:', messageId);
     }
   }
 
