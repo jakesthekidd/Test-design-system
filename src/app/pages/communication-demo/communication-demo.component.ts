@@ -500,7 +500,8 @@ export class CommunicationDemoComponent implements OnInit, OnDestroy {
   constructor(
     private messageDataService: MessageDataService,
     private stateService: MessageCenterStateService,
-    private windowLauncher: SimpleWindowLauncherService
+    private windowLauncher: SimpleWindowLauncherService,
+    private tabAcknowledgmentService: TabAcknowledgmentService
   ) {}
 
   ngOnInit(): void {
