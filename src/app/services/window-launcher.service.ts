@@ -347,16 +347,9 @@ export class WindowLauncherService {
 
   ${this.generateAdditionalStyles(config.additionalStyles)}
 
-  <!-- Loading Styles -->
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #ffffff;
-      overflow: hidden;
-    }
-
+  <!-- Component Specific Styles -->
+  <style type="text/css">
+    /* Loading States */
     .loading-container {
       display: flex;
       flex-direction: column;
@@ -364,12 +357,13 @@ export class WindowLauncherService {
       justify-content: center;
       height: 100vh;
       gap: 16px;
-      background: #ffffff;
+      background: var(--surface-card, #ffffff);
+      padding: 2rem;
     }
 
     .loading-spinner {
       font-size: 24px;
-      color: #2474BB;
+      color: var(--primary-color, #2474BB);
       animation: spin 1s linear infinite;
     }
 
@@ -380,24 +374,27 @@ export class WindowLauncherService {
 
     .loading-text {
       font-size: 16px;
-      color: #8D9AAE;
+      color: var(--text-color-secondary, #8D9AAE);
       font-weight: 500;
     }
 
     .loading-subtitle {
       font-size: 14px;
-      color: #A9B3C2;
+      color: var(--surface-500, #A9B3C2);
       text-align: center;
       max-width: 300px;
       line-height: 1.4;
     }
 
+    /* Application Container */
     #angular-app {
       display: none;
       height: 100vh;
       width: 100vw;
+      overflow: auto;
     }
 
+    /* Error States */
     .error-container {
       display: none;
       flex-direction: column;
@@ -407,24 +404,144 @@ export class WindowLauncherService {
       gap: 16px;
       padding: 2rem;
       text-align: center;
-      background: #ffffff;
+      background: var(--surface-card, #ffffff);
     }
 
     .error-icon {
       font-size: 48px;
-      color: #DA1F2C;
+      color: var(--red-500, #DA1F2C);
     }
 
     .error-title {
       font-size: 20px;
       font-weight: 500;
-      color: #3D3D3D;
+      color: var(--text-color, #3D3D3D);
     }
 
     .error-message {
       font-size: 14px;
-      color: #8D9AAE;
+      color: var(--text-color-secondary, #8D9AAE);
       line-height: 1.4;
+    }
+
+    /* Component Content Styles */
+    .message-center-content {
+      padding: 20px;
+      background: var(--surface-ground, #EFF2F4);
+      min-height: 100vh;
+    }
+
+    .message-header {
+      background: var(--primary-color, #2474BB);
+      color: white;
+      padding: 15px 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .message-header h2 {
+      margin: 0;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .filter-buttons {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      border: 1px solid var(--surface-border, #E2E6EB);
+    }
+
+    .filter-btn.active {
+      background: var(--primary-color, #2474BB);
+      color: white;
+      border-color: var(--primary-color, #2474BB);
+    }
+
+    .filter-btn:not(.active) {
+      background: var(--surface-card, #ffffff);
+      color: var(--text-color, #3D3D3D);
+    }
+
+    .messages-container {
+      background: var(--surface-card, #ffffff);
+      border: 1px solid var(--surface-border, #E2E6EB);
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .message-item {
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border-left: 4px solid transparent;
+    }
+
+    .message-item.unread {
+      border-left-color: var(--orange-500, #FF9800);
+    }
+
+    .message-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .message-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .message-details {
+      flex: 1;
+    }
+
+    .message-author {
+      font-weight: 600;
+      color: var(--text-color, #3D3D3D);
+      font-size: 0.9rem;
+    }
+
+    .message-time {
+      font-size: 0.75rem;
+      color: var(--text-color-secondary, #8D9AAE);
+    }
+
+    .message-content {
+      color: var(--text-color, #3D3D3D);
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    .close-btn {
+      background: var(--red-500, #DA1F2C);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: 500;
+      transition: background-color 0.2s ease;
+    }
+
+    .close-btn:hover {
+      background: var(--red-600, #C41E3A);
     }
   </style>
 </head>
