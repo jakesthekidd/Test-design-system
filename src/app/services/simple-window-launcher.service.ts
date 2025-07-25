@@ -1502,7 +1502,7 @@ export class SimpleWindowLauncherService {
       }
     }
 
-    // Handle filter changes
+    // Handle filter changes with parent notification
     function setFilter(filter) {
       activeFilter = filter;
 
@@ -1510,18 +1510,29 @@ export class SimpleWindowLauncherService {
       document.querySelectorAll('.filter-tab').forEach(tab => {
         tab.classList.remove('active');
       });
-      document.querySelector(\`[data-filter="\${filter}"]\`).classList.add('active');
+      const targetTab = document.querySelector(\`[data-filter="\${filter}"]\`);
+      if (targetTab) {
+        targetTab.classList.add('active');
+      }
 
       // Show/hide compose button for emails
       const composeBtn = document.getElementById('compose-btn');
-      if (filter === 'emails') {
-        composeBtn.style.display = 'flex';
-      } else {
-        composeBtn.style.display = 'none';
+      if (composeBtn) {
+        if (filter === 'emails') {
+          composeBtn.style.display = 'flex';
+        } else {
+          composeBtn.style.display = 'none';
+        }
       }
 
       // Re-render messages
       renderMessages();
+
+      // Notify parent of filter change
+      sendToParent({
+        type: 'FILTER_CHANGED',
+        payload: { filter }
+      });
 
       console.log('Filter changed to:', filter);
     }
