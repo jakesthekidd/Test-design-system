@@ -12,6 +12,7 @@ import { FilterType } from '../components/message-center-header/message-center-h
 import { MessageDataService } from '../../services/message-data.service';
 import { MessageCenterStateService } from '../../services/message-center-state.service';
 import { SimpleWindowLauncherService } from '../../services/simple-window-launcher.service';
+import { TabAcknowledgmentService } from '../../services/tab-acknowledgment.service';
 
 @Component({
   selector: 'app-communication-demo',
