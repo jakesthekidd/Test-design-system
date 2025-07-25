@@ -1261,7 +1261,7 @@ export class SimpleWindowLauncherService {
       });
 
       return \`
-        <div class="message-item-wrapper \${isOwn ? 'own-message-wrapper' : 'other-message-wrapper'}">
+        <div class="message-item-wrapper \${isOwn ? 'own-message-wrapper' : 'other-message-wrapper'}" data-message-id="\${message.id}">
           <div class="bubble-container \${isOwn ? 'own-message' : 'other-message'}">
             <div class="bubble-content">
               <div class="bubble-header">
