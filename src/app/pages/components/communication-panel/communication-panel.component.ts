@@ -451,6 +451,29 @@ export class CommunicationPanelComponent implements OnInit, OnDestroy, OnChanges
     this.activeFilter = filter;
     this.updateFilteredMessages();
     this.filterChanged.emit(filter);
+
+    // Emit messages that should be marked as read for this filter
+    const unreadMessagesInFilter = this.messages.filter(message => {
+      if (!message.isRead) {
+        switch (filter) {
+          case 'notes':
+            return message.type === 'note';
+          case 'emails':
+            return message.type === 'automated-email' || message.type === 'manual-email';
+          case 'sms':
+            return message.type === 'sms';
+          case 'all':
+            return true;
+          default:
+            return false;
+        }
+      }
+      return false;
+    });
+
+    if (unreadMessagesInFilter.length > 0) {
+      this.filterTabClicked.emit({ filter, messages: unreadMessagesInFilter });
+    }
   }
 
   onComposeClick(): void {
