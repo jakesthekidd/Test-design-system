@@ -1,10 +1,20 @@
 import { Injectable } from '@angular/core';
+import { MessageDataService } from './message-data.service';
+import { CommunicationMessage } from '../pages/components/communication-panel/communication-panel.component';
+import { FilterType } from '../pages/components/message-center-header/message-center-header.component';
+import { Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SimpleWindowLauncherService {
   private openWindow: Window | null = null;
+  private messageSubscription: Subscription | null = null;
+  private unreadCountsSubscription: Subscription | null = null;
+
+  constructor(private messageDataService: MessageDataService) {
+    this.setupMessageListener();
+  }
 
   openMessageCenterWindow(): boolean {
     try {
