@@ -709,58 +709,258 @@ export class SimpleWindowLauncherService {
   <button class="close-btn" onclick="window.close()">Close Window</button>
 
   <script>
-    // Mock data
+    // Mock data with exact CommunicationMessage structure
     const messages = ${JSON.stringify(mockMessages)};
     let activeFilter = 'all';
 
+    // Filter mapping - match the exact behavior of CommunicationPanel
+    function getFilteredMessages() {
+      switch (activeFilter) {
+        case 'notes':
+          return messages.filter(msg => msg.type === 'note');
+        case 'emails':
+          return messages.filter(msg => msg.type === 'automated-email' || msg.type === 'manual-email');
+        case 'sms':
+          return messages.filter(msg => msg.type === 'sms');
+        case 'all':
+        default:
+          return messages;
+      }
+    }
+
+    // Calculate unread counts by type
+    function calculateUnreadCounts() {
+      const counts = { all: 0, notes: 0, emails: 0, sms: 0 };
+
+      messages.forEach(msg => {
+        if (!msg.isRead) {
+          counts.all++;
+          switch (msg.type) {
+            case 'note':
+              counts.notes++;
+              break;
+            case 'automated-email':
+            case 'manual-email':
+              counts.emails++;
+              break;
+            case 'sms':
+              counts.sms++;
+              break;
+          }
+        }
+      });
+
+      return counts;
+    }
+
+    // Render a note message
+    function renderNoteMessage(message) {
+      const data = message.data;
+      const isOwn = data.isOwnMessage;
+      const timestamp = new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+      return \`
+        <div class="message-item note-message \${isOwn ? 'note-own' : 'note-other'}">
+          <div class="bubble-container \${isOwn ? 'own-message' : 'other-message'}">
+            <div class="bubble-content">
+              <div class="bubble-header">
+                <div class="bubble-avatar \${isOwn ? 'own-avatar' : 'other-avatar'}">
+                  \${data.authorInitials || data.author.split(' ').map(n => n[0]).join('')}
+                </div>
+                <div class="message-details">
+                  <div class="header-row">
+                    <span class="author-name">\${data.authorName || data.author}</span>
+                    <button class="menu-button">
+                      <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </button>
+                  </div>
+                  <div class="message-text">\${data.content}</div>
+                  <div class="timestamp-container">
+                    <span class="timestamp">\${timestamp}</span>
+                    \${!message.isRead ? '<span class="new-badge">NEW</span>' : ''}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      \`;
+    }
+
+    // Render an SMS message
+    function renderSmsMessage(message) {
+      const data = message.data;
+      const timestamp = new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+      return \`
+        <div class="message-item outbound-message">
+          <div class="outbound-bubble">
+            <div class="outbound-header">
+              <div class="outbound-icon sms-icon">
+                <i class="fas fa-comment"></i>
+              </div>
+              <div class="outbound-details">
+                <div class="outbound-title">SMS to \${data.toRecipients.join(', ')}</div>
+                <div class="outbound-subtitle">\${timestamp}</div>
+              </div>
+              <span class="status-tag \${data.status}">\${data.status}</span>
+              \${!message.isRead ? '<span class="new-badge">NEW</span>' : ''}
+            </div>
+            <div class="outbound-content">\${data.messageBody}</div>
+          </div>
+        </div>
+      \`;
+    }
+
+    // Render an automated email message
+    function renderAutomatedEmailMessage(message) {
+      const data = message.data;
+      const timestamp = new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+      return \`
+        <div class="message-item outbound-message">
+          <div class="outbound-bubble">
+            <div class="outbound-header">
+              <div class="outbound-icon email-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="outbound-details">
+                <div class="outbound-title">\${data.subjectLine}</div>
+                <div class="outbound-subtitle">To: \${data.toRecipients.join(', ')} • \${timestamp}</div>
+              </div>
+              <span class="status-tag \${data.status}">\${data.status}</span>
+              \${!message.isRead ? '<span class="new-badge">NEW</span>' : ''}
+            </div>
+            <div class="outbound-content">\${data.messageBody}</div>
+          </div>
+        </div>
+      \`;
+    }
+
+    // Render a manual email message
+    function renderManualEmailMessage(message) {
+      const data = message.data;
+      const timestamp = new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+      return \`
+        <div class="message-item outbound-message">
+          <div class="outbound-bubble">
+            <div class="outbound-header">
+              <div class="outbound-icon email-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="outbound-details">
+                <div class="outbound-title">\${data.subjectLine}</div>
+                <div class="outbound-subtitle">From: \${data.fromUser} • \${timestamp}</div>
+              </div>
+              <span class="status-tag \${data.status}">\${data.status}</span>
+              \${!message.isRead ? '<span class="new-badge">NEW</span>' : ''}
+            </div>
+            <div class="outbound-content">\${data.messageBody}</div>
+          </div>
+        </div>
+      \`;
+    }
+
+    // Render an upload message
+    function renderUploadMessage(message) {
+      const data = message.data;
+      const timestamp = new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+      return \`
+        <div class="message-item outbound-message">
+          <div class="outbound-bubble">
+            <div class="outbound-header">
+              <div class="outbound-icon upload-icon">
+                <i class="fas fa-upload"></i>
+              </div>
+              <div class="outbound-details">
+                <div class="outbound-title">File Upload: \${data.filename}</div>
+                <div class="outbound-subtitle">Uploaded by \${data.uploader} • \${timestamp}</div>
+              </div>
+              <span class="status-tag \${data.status}">\${data.status}</span>
+              \${!message.isRead ? '<span class="new-badge">NEW</span>' : ''}
+            </div>
+            <div class="outbound-content">Uploaded via \${data.uploadMethod}</div>
+          </div>
+        </div>
+      \`;
+    }
+
     // Render messages
     function renderMessages() {
-      const container = document.getElementById('messages-list');
-      const filteredMessages = messages.filter(msg => 
-        activeFilter === 'all' || msg.type === activeFilter
-      );
+      const container = document.getElementById('message-list');
+      const filteredMessages = getFilteredMessages();
 
       if (filteredMessages.length === 0) {
-        container.innerHTML = '<p style="text-align: center; color: #666; padding: 40px;">No messages found for this filter.</p>';
+        container.innerHTML = '<div style="text-align: center; color: var(--surface-700); padding: 40px; font-style: italic;">No messages found for this filter.</div>';
         return;
       }
 
-      container.innerHTML = filteredMessages.map(msg => \`
-        <div class="message-item \${msg.type} \${msg.isUnread ? 'unread' : ''}">
-          <div class="message-header">
-            <span class="message-author">
-              \${msg.author}
-              \${msg.isUnread ? '<span class="unread-badge">NEW</span>' : ''}
-            </span>
-            <span class="message-timestamp">\${msg.timestamp}</span>
-          </div>
-          <div class="message-content">\${msg.content}</div>
-        </div>
-      \`).join('');
+      const messagesHtml = filteredMessages.map(message => {
+        switch (message.type) {
+          case 'note':
+            return renderNoteMessage(message);
+          case 'sms':
+            return renderSmsMessage(message);
+          case 'automated-email':
+            return renderAutomatedEmailMessage(message);
+          case 'manual-email':
+            return renderManualEmailMessage(message);
+          case 'upload':
+            return renderUploadMessage(message);
+          default:
+            return '<div>Unknown message type</div>';
+        }
+      }).join('');
 
-      updateStats(filteredMessages.length);
+      container.innerHTML = messagesHtml;
     }
 
-    // Update statistics
-    function updateStats(visibleCount) {
-      const unreadCount = messages.filter(msg => msg.isUnread).length;
-      const statsEl = document.getElementById('stats');
-      statsEl.textContent = \`Showing \${visibleCount} of \${messages.length} messages • \${unreadCount} unread\`;
+    // Update tab badges with unread counts
+    function updateTabBadges() {
+      const counts = calculateUnreadCounts();
+
+      // Update badges
+      const allBadge = document.getElementById('all-badge');
+      const notesBadge = document.getElementById('notes-badge');
+      const emailsBadge = document.getElementById('emails-badge');
+      const smsBadge = document.getElementById('sms-badge');
+
+      allBadge.textContent = counts.all;
+      allBadge.style.display = counts.all > 0 ? 'flex' : 'none';
+
+      notesBadge.textContent = counts.notes;
+      notesBadge.style.display = counts.notes > 0 ? 'flex' : 'none';
+
+      emailsBadge.textContent = counts.emails;
+      emailsBadge.style.display = counts.emails > 0 ? 'flex' : 'none';
+
+      smsBadge.textContent = counts.sms;
+      smsBadge.style.display = counts.sms > 0 ? 'flex' : 'none';
     }
 
     // Handle filter changes
     function setFilter(filter) {
       activeFilter = filter;
-      
+
       // Update active tab
       document.querySelectorAll('.filter-tab').forEach(tab => {
         tab.classList.remove('active');
       });
       document.querySelector(\`[data-filter="\${filter}"]\`).classList.add('active');
-      
+
+      // Show/hide compose button for emails
+      const composeBtn = document.getElementById('compose-btn');
+      if (filter === 'emails') {
+        composeBtn.style.display = 'flex';
+      } else {
+        composeBtn.style.display = 'none';
+      }
+
       // Re-render messages
       renderMessages();
-      
+
       console.log('Filter changed to:', filter);
     }
 
@@ -781,9 +981,11 @@ export class SimpleWindowLauncherService {
 
     // Initial render
     renderMessages();
-    
+    updateTabBadges();
+
     console.log('Message Center expanded window initialized successfully');
     console.log('Mock data loaded:', messages.length, 'messages');
+    console.log('Unread counts:', calculateUnreadCounts());
   </script>
 </body>
 </html>`;
