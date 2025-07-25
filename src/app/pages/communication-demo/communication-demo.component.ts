@@ -678,11 +678,14 @@ export class CommunicationDemoComponent implements OnInit, OnDestroy {
     // Reset messages to initial state
     this.messageDataService.markAllAsRead();
 
+    // Reset tab acknowledgments for fresh demo
+    this.tabAcknowledgmentService.resetAcknowledgments();
+
     // Reinitialize demo state
     this.initializeDemoState();
 
     this.actionLog = [];
-    this.logAction('Demo reset to initial state');
+    this.logAction('Demo reset to initial state with fresh badge visibility');
   }
 
   addSampleMessage(): void {
