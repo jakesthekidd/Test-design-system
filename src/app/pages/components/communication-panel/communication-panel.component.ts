@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter, OnInit, OnDestroy, OnChanges, V
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { TabAcknowledgmentService } from '../../../services/tab-acknowledgment.service';
 
 // Import existing components
 import { MessageCenterHeaderComponent, FilterType, FilterTab } from '../message-center-header/message-center-header.component';
