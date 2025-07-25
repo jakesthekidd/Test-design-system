@@ -475,6 +475,7 @@ export class WindowLauncherService {
             const container = document.getElementById('component-root');
             if (container) {
               container.innerHTML = renderCommunicationPanel();
+              setupEventListeners(); // Re-setup event listeners after retry
             }
           }, 1000); // Wait 1 second between retries
         }
