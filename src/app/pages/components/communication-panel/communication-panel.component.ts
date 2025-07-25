@@ -532,30 +532,51 @@ export class CommunicationPanelComponent implements OnInit, OnDestroy, OnChanges
   }
 
   private updateFilterTabs(): void {
+    // Check for newly increased unread counts and reset acknowledgments
+    const previousCounts = this.filterTabs.reduce((acc, tab) => {
+      acc[tab.id] = tab.originalUnreadCount || 0;
+      return acc;
+    }, {} as { [key in FilterType]: number });
+
+    // Reset acknowledgment for tabs that have new unread messages
+    Object.keys(this.unreadCounts).forEach(filterType => {
+      const filter = filterType as FilterType;
+      const currentCount = this.unreadCounts[filter] || 0;
+      const previousCount = previousCounts[filter] || 0;
+
+      if (currentCount > previousCount) {
+        this.tabAcknowledgmentService.resetTabAcknowledgment(filter);
+      }
+    });
+
     this.filterTabs = [
       {
         id: 'notes',
         label: 'Notes',
         icon: 'fas fa-sticky-note',
-        notificationCount: this.unreadCounts.notes || undefined
+        notificationCount: this.unreadCounts.notes || undefined,
+        originalUnreadCount: this.unreadCounts.notes || 0
       },
       {
         id: 'emails',
         label: 'Emails',
         icon: 'fas fa-envelope',
-        notificationCount: this.unreadCounts.emails || undefined
+        notificationCount: this.unreadCounts.emails || undefined,
+        originalUnreadCount: this.unreadCounts.emails || 0
       },
       {
         id: 'sms',
         label: 'SMS',
         icon: 'fas fa-comment',
-        notificationCount: this.unreadCounts.sms || undefined
+        notificationCount: this.unreadCounts.sms || undefined,
+        originalUnreadCount: this.unreadCounts.sms || 0
       },
       {
         id: 'all',
         label: 'All',
         icon: 'fas fa-layer-group',
-        notificationCount: this.unreadCounts.all || undefined
+        notificationCount: this.unreadCounts.all || undefined,
+        originalUnreadCount: this.unreadCounts.all || 0
       }
     ];
 
