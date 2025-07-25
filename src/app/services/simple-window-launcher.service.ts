@@ -1360,7 +1360,7 @@ export class SimpleWindowLauncherService {
       const statusClass = data.status === 'workflow-stopped' ? 'workflow-stopped' : 'sent';
 
       return \`
-        <div class="message-item-wrapper outbound-message-wrapper">
+        <div class="message-item-wrapper outbound-message-wrapper" data-message-id="\${message.id}">
           <div class="email-bubble-container">
             <div class="email-bubble-content">
               <div class="bubble-header">
