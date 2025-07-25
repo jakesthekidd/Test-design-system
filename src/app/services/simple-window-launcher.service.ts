@@ -738,6 +738,98 @@ export class SimpleWindowLauncherService {
       width: fit-content;
     }
 
+    /* Manual Email Bubble Styles - exact ManualEmailBubbleComponent styles */
+    .manual-email-bubble-container {
+      display: flex;
+      padding: 16px;
+      align-items: center;
+      gap: 8px;
+      align-self: stretch;
+      border-radius: 8px 8px 0px 8px;
+      border: 1px solid #91B9DD;
+      background: #F1FAFE;
+      font-family: 'Roboto', sans-serif;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .manual-email-bubble-container.failed-state {
+      background: #FBE9EA;
+    }
+
+    .manual-email-icon {
+      display: flex;
+      width: 24px;
+      height: 24px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 30px;
+      background: #C7EBFB;
+      color: #0E2E4B;
+    }
+
+    .manual-email-icon.failed-state {
+      background: #F8D2D5;
+      color: #570C12;
+    }
+
+    .manual-email-icon i {
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .user-badge {
+      display: flex;
+      padding: 4px 8px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      border-radius: 27px;
+      background: #C7EBFB;
+      color: #0E2E4B;
+      font-family: 'Roboto', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: normal;
+      width: fit-content;
+    }
+
+    .user-badge.failed-state {
+      background: #F8D2D5;
+      color: #570C12;
+    }
+
+    .user-badge i {
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .manual-email-status-badge {
+      display: flex;
+      padding: 4px 8px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      border-radius: 4px;
+      width: fit-content;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .manual-email-status-badge.sent {
+      background: #CCF2D6;
+      color: #004C13;
+    }
+
+    .manual-email-status-badge.failed {
+      background: #F8D2D5;
+      color: #570C12;
+    }
+
+    .manual-subject {
+      color: #174A78;
+    }
+
     /* Shared Badge and Status Styles */
     .badge-section {
       display: flex;
@@ -1145,26 +1237,65 @@ export class SimpleWindowLauncherService {
       \`;
     }
 
-    // Render a manual email message
+    // Render a manual email message using exact ManualEmailBubbleComponent structure
     function renderManualEmailMessage(message) {
       const data = message.data;
-      const timestamp = new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const timestamp = new Date(message.timestamp).toLocaleString([], {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+      }).replace(',', ' |');
+
+      const isFailed = data.status === 'failed';
+      const statusIcon = isFailed ? 'triangle-exclamation' : 'check';
+      const statusLabel = isFailed ? 'Failed' : 'Sent';
+      const statusClass = isFailed ? 'failed' : 'sent';
 
       return \`
-        <div class="message-item outbound-message">
-          <div class="outbound-bubble">
-            <div class="outbound-header">
-              <div class="outbound-icon email-icon">
-                <i class="fas fa-envelope"></i>
+        <div class="message-item-wrapper outbound-message-wrapper">
+          <div class="manual-email-bubble-container \${isFailed ? 'failed-state' : ''}">
+            <div class="email-bubble-content">
+              <div class="bubble-header">
+                <div class="manual-email-icon \${isFailed ? 'failed-state' : ''}">
+                  <i class="fa-solid fa-envelope"></i>
+                </div>
+                <div class="message-details">
+                  <div class="header-row">
+                    <div class="badge-section">
+                      <div class="user-badge \${isFailed ? 'failed-state' : ''}">
+                        <i class="fa-solid fa-user"></i>
+                        <span>\${data.authorName || data.fromUser}</span>
+                      </div>
+                    </div>
+                    <div class="status-and-menu">
+                      <div class="manual-email-status-badge \${statusClass}">
+                        <div class="status-content">
+                          <i class="fa-solid fa-\${statusIcon}"></i>
+                          <span class="status-label">\${statusLabel}:</span>
+                          <span class="status-value">\${timestamp}</span>
+                        </div>
+                      </div>
+                      <button class="menu-button">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="email-field">
+                    <span class="field-label">From:</span>
+                    <span class="field-value">\${data.fromAddress || data.fromUser}</span>
+                  </div>
+                  <div class="email-field">
+                    <span class="field-label">To:</span>
+                    <span class="field-value">\${data.toRecipients.join(', ')}</span>
+                  </div>
+                  <div class="subject-line manual-subject">\${data.subjectLine}</div>
+                  <div class="message-body">\${data.messageBody}</div>
+                </div>
               </div>
-              <div class="outbound-details">
-                <div class="outbound-title">\${data.subjectLine}</div>
-                <div class="outbound-subtitle">From: \${data.fromUser} • \${timestamp}</div>
-              </div>
-              <span class="status-tag \${data.status}">\${data.status}</span>
-              \${!message.isRead ? '<span class="new-badge">NEW</span>' : ''}
             </div>
-            <div class="outbound-content">\${data.messageBody}</div>
           </div>
         </div>
       \`;
@@ -1250,6 +1381,8 @@ export class SimpleWindowLauncherService {
             return renderManualEmailMessage(message);
           case 'upload':
             return renderUploadMessage(message);
+          case 'manual-email':
+            return renderManualEmailMessage(message);
           default:
             return '<div>Unknown message type</div>';
         }
