@@ -17,6 +17,7 @@ export class SimpleWindowLauncherService {
   constructor(
     private messageDataService: MessageDataService,
     private componentInjectionService: ComponentInjectionService,
+    private tabAcknowledgmentService: TabAcknowledgmentService,
     private injector: Injector,
     private environmentInjector: EnvironmentInjector
   ) {
