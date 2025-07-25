@@ -80,7 +80,18 @@ export class SimpleWindowLauncherService {
       try {
         this.openWindow.close();
         this.openWindow = null;
-        console.log('Message Center window closed');
+
+        // Clean up subscriptions
+        if (this.messageSubscription) {
+          this.messageSubscription.unsubscribe();
+          this.messageSubscription = null;
+        }
+        if (this.unreadCountsSubscription) {
+          this.unreadCountsSubscription.unsubscribe();
+          this.unreadCountsSubscription = null;
+        }
+
+        console.log('Message Center window closed and subscriptions cleaned up');
         return true;
       } catch (error) {
         console.error('Error closing window:', error);
