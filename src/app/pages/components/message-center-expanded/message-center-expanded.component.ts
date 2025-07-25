@@ -575,17 +575,17 @@ this.openWindow = window.open('about:blank', 'message-center-expanded', features
           <div class="code-example">
             <pre><code>import { SimpleWindowLauncherService } from './services/simple-window-launcher.service';
 
-export class MyComponent {
-  constructor(private windowLauncher: SimpleWindowLauncherService) {}
-  
-  openMessageCenter(): void {
+export class MyComponent {{ '{' }}
+  constructor(private windowLauncher: SimpleWindowLauncherService) {{ '{' }}{{ '}' }}
+
+  openMessageCenter(): void {{ '{' }}
     this.windowLauncher.openMessageCenterWindow();
-  }
-  
-  closeMessageCenter(): void {
+  {{ '}' }}
+
+  closeMessageCenter(): void {{ '{' }}
     this.windowLauncher.closeWindow();
-  }
-}</code></pre>
+  {{ '}' }}
+{{ '}' }}</code></pre>
           </div>
         </div>
 
