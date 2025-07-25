@@ -37,23 +37,7 @@ import { SimpleWindowLauncherService } from '../../../services/simple-window-lau
         </div>
       </div>
 
-      <div class="preset-controls">
-        <h4>Quick Launch Presets</h4>
-        <div class="preset-buttons">
-          <button class="preset-btn" (click)="launchPreset('default')">
-            <i class="fas fa-comment"></i>
-            Default View
-          </button>
-          <button class="preset-btn" (click)="launchPreset('compose')">
-            <i class="fas fa-pen"></i>
-            Compose Mode
-          </button>
-          <button class="preset-btn" (click)="launchPreset('notifications')">
-            <i class="fas fa-bell"></i>
-            Notifications
-          </button>
-        </div>
-      </div>
+
 
       <div class="window-status">
         <div class="status-indicator">
