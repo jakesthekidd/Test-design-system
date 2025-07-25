@@ -753,14 +753,21 @@ export class SimpleWindowLauncherService {
       return counts;
     }
 
-    // Render a note message
+    // Render a note message using exact NoteBubbleComponent structure
     function renderNoteMessage(message) {
       const data = message.data;
       const isOwn = data.isOwnMessage;
-      const timestamp = new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const timestamp = new Date(message.timestamp).toLocaleString([], {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+      }).replace(',', ' |');
 
       return \`
-        <div class="message-item note-message \${isOwn ? 'note-own' : 'note-other'}">
+        <div class="message-item-wrapper \${isOwn ? 'own-message-wrapper' : 'other-message-wrapper'}">
           <div class="bubble-container \${isOwn ? 'own-message' : 'other-message'}">
             <div class="bubble-content">
               <div class="bubble-header">
@@ -775,9 +782,8 @@ export class SimpleWindowLauncherService {
                     </button>
                   </div>
                   <div class="message-text">\${data.content}</div>
-                  <div class="timestamp-container">
+                  <div class="timestamp-container \${isOwn ? 'own-timestamp' : 'other-timestamp'}">
                     <span class="timestamp">\${timestamp}</span>
-                    \${!message.isRead ? '<span class="new-badge">NEW</span>' : ''}
                   </div>
                 </div>
               </div>
@@ -787,51 +793,122 @@ export class SimpleWindowLauncherService {
       \`;
     }
 
-    // Render an SMS message
+    // Render an SMS message using exact SmsBubbleComponent structure
     function renderSmsMessage(message) {
       const data = message.data;
-      const timestamp = new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const timestamp = new Date(message.timestamp).toLocaleString([], {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+      }).replace(',', ' |');
 
       return \`
-        <div class="message-item outbound-message">
-          <div class="outbound-bubble">
-            <div class="outbound-header">
-              <div class="outbound-icon sms-icon">
-                <i class="fas fa-comment"></i>
+        <div class="message-item-wrapper outbound-message-wrapper">
+          <div class="sms-bubble-container">
+            <div class="sms-bubble-content">
+              <div class="bubble-header">
+                <div class="sms-icon">
+                  <i class="fa-solid fa-message"></i>
+                </div>
+                <div class="message-details">
+                  <div class="header-row">
+                    <div class="badge-section">
+                      <div class="sms-automated-badge">
+                        <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8.75 0.5C9.23398 0.5 9.625 0.891016 9.625 1.375V3.125H12.9062C13.9945 3.125 14.875 4.00547 14.875 5.09375V12.5312C14.875 13.6195 13.9945 14.5 12.9062 14.5H4.59375C3.50547 14.5 2.625 13.6195 2.625 12.5312V5.09375C2.625 4.00547 3.50547 3.125 4.59375 3.125H7.875V1.375C7.875 0.891016 8.26602 0.5 8.75 0.5ZM5.6875 11C5.44687 11 5.25 11.1969 5.25 11.4375C5.25 11.6781 5.44687 11.875 5.6875 11.875H6.5625C6.80313 11.875 7 11.6781 7 11.4375C7 11.1969 6.80313 11 6.5625 11H5.6875ZM8.3125 11C8.07187 11 7.875 11.1969 7.875 11.4375C7.875 11.6781 8.07187 11.875 8.3125 11.875H9.1875C9.42813 11.875 9.625 11.6781 9.625 11.4375C9.625 11.1969 9.42813 11 9.1875 11H8.3125ZM10.9375 11C10.6969 11 10.5 11.1969 10.5 11.4375C10.5 11.6781 10.6969 11.875 10.9375 11.875H11.8125C12.0531 11.875 12.25 11.6781 12.25 11.4375C12.25 11.1969 12.0531 11 11.8125 11H10.9375ZM7.21875 7.5C7.21875 7.20992 7.10352 6.93172 6.8984 6.7266C6.69328 6.52148 6.41508 6.40625 6.125 6.40625C5.83492 6.40625 5.55672 6.52148 5.3516 6.7266C5.14648 6.93172 5.03125 7.20992 5.03125 7.5C5.03125 7.79008 5.14648 8.06828 5.3516 8.2734C5.55672 8.47852 5.83492 8.59375 6.125 8.59375C6.41508 8.59375 6.69328 8.47852 6.8984 8.2734C7.10352 8.06828 7.21875 7.79008 7.21875 7.5ZM11.375 8.59375C11.6651 8.59375 11.9433 8.47852 12.1484 8.2734C12.3535 8.06828 12.4688 7.79008 12.4688 7.5C12.4688 7.20992 12.3535 6.93172 12.1484 6.7266C11.9433 6.52148 11.6651 6.40625 11.375 6.40625C11.0849 6.40625 10.8067 6.52148 10.6016 6.7266C10.3965 6.93172 10.2812 7.20992 10.2812 7.5C10.2812 7.79008 10.3965 8.06828 10.6016 8.2734C10.8067 8.47852 11.0849 8.59375 11.375 8.59375ZM1.3125 6.625H1.75V11.875H1.3125C0.587891 11.875 0 11.2871 0 10.5625V7.9375C0 7.21289 0.587891 6.625 1.3125 6.625ZM16.1875 6.625C16.9121 6.625 17.5 7.21289 17.5 7.9375V10.5625C17.5 11.2871 16.9121 11.875 16.1875 11.875H15.75V6.625H16.1875Z" fill="currentColor"/>
+                        </svg>
+                        <span>Automated</span>
+                      </div>
+                    </div>
+                    <div class="status-and-menu">
+                      <div class="status-badge sent">
+                        <div class="status-content">
+                          <i class="fa-solid fa-check"></i>
+                          <span class="status-label">Sent:</span>
+                          <span class="status-value">\${timestamp}</span>
+                        </div>
+                      </div>
+                      <button class="menu-button">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="sms-field">
+                    <span class="field-label">To:</span>
+                    <span class="field-value phone-number">\${data.toRecipients ? data.toRecipients.join(', ') : '+1 (999) 999-9999'}</span>
+                  </div>
+                  <div class="message-body">\${data.messageBody}</div>
+                </div>
               </div>
-              <div class="outbound-details">
-                <div class="outbound-title">SMS to \${data.toRecipients.join(', ')}</div>
-                <div class="outbound-subtitle">\${timestamp}</div>
-              </div>
-              <span class="status-tag \${data.status}">\${data.status}</span>
-              \${!message.isRead ? '<span class="new-badge">NEW</span>' : ''}
             </div>
-            <div class="outbound-content">\${data.messageBody}</div>
           </div>
         </div>
       \`;
     }
 
-    // Render an automated email message
+    // Render an automated email message using exact AutomatedEmailBubbleComponent structure
     function renderAutomatedEmailMessage(message) {
       const data = message.data;
-      const timestamp = new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const timestamp = new Date(message.timestamp).toLocaleString([], {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+      }).replace(',', ' |');
+
+      const statusIcon = data.status === 'workflow-stopped' ? 'clipboard-check' : 'check';
+      const statusLabel = data.status === 'workflow-stopped' ? 'Workflow Stopped' : 'Sent';
+      const statusClass = data.status === 'workflow-stopped' ? 'workflow-stopped' : 'sent';
 
       return \`
-        <div class="message-item outbound-message">
-          <div class="outbound-bubble">
-            <div class="outbound-header">
-              <div class="outbound-icon email-icon">
-                <i class="fas fa-envelope"></i>
+        <div class="message-item-wrapper outbound-message-wrapper">
+          <div class="email-bubble-container">
+            <div class="email-bubble-content">
+              <div class="bubble-header">
+                <div class="email-icon">
+                  <i class="fa-solid fa-envelope"></i>
+                </div>
+                <div class="message-details">
+                  <div class="header-row">
+                    <div class="badge-section">
+                      <div class="automated-badge">
+                        <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8.75 0.5C9.23398 0.5 9.625 0.891016 9.625 1.375V3.125H12.9062C13.9945 3.125 14.875 4.00547 14.875 5.09375V12.5312C14.875 13.6195 13.9945 14.5 12.9062 14.5H4.59375C3.50547 14.5 2.625 13.6195 2.625 12.5312V5.09375C2.625 4.00547 3.50547 3.125 4.59375 3.125H7.875V1.375C7.875 0.891016 8.26602 0.5 8.75 0.5ZM5.6875 11C5.44687 11 5.25 11.1969 5.25 11.4375C5.25 11.6781 5.44687 11.875 5.6875 11.875H6.5625C6.80313 11.875 7 11.6781 7 11.4375C7 11.1969 6.80313 11 6.5625 11H5.6875ZM8.3125 11C8.07187 11 7.875 11.1969 7.875 11.4375C7.875 11.6781 8.07187 11.875 8.3125 11.875H9.1875C9.42813 11.875 9.625 11.6781 9.625 11.4375C9.625 11.1969 9.42813 11 9.1875 11H8.3125ZM10.9375 11C10.6969 11 10.5 11.1969 10.5 11.4375C10.5 11.6781 10.6969 11.875 10.9375 11.875H11.8125C12.0531 11.875 12.25 11.6781 12.25 11.4375C12.25 11.1969 12.0531 11 11.8125 11H10.9375ZM7.21875 7.5C7.21875 7.20992 7.10352 6.93172 6.8984 6.7266C6.69328 6.52148 6.41508 6.40625 6.125 6.40625C5.83492 6.40625 5.55672 6.52148 5.3516 6.7266C5.14648 6.93172 5.03125 7.20992 5.03125 7.5C5.03125 7.79008 5.14648 8.06828 5.3516 8.2734C5.55672 8.47852 5.83492 8.59375 6.125 8.59375C6.41508 8.59375 6.69328 8.47852 6.8984 8.2734C7.10352 8.06828 7.21875 7.79008 7.21875 7.5ZM11.375 8.59375C11.6651 8.59375 11.9433 8.47852 12.1484 8.2734C12.3535 8.06828 12.4688 7.79008 12.4688 7.5C12.4688 7.20992 12.3535 6.93172 12.1484 6.7266C11.9433 6.52148 11.6651 6.40625 11.375 6.40625C11.0849 6.40625 10.8067 6.52148 10.6016 6.7266C10.3965 6.93172 10.2812 7.20992 10.2812 7.5C10.2812 7.79008 10.3965 8.06828 10.6016 8.2734C10.8067 8.47852 11.0849 8.59375 11.375 8.59375ZM1.3125 6.625H1.75V11.875H1.3125C0.587891 11.875 0 11.2871 0 10.5625V7.9375C0 7.21289 0.587891 6.625 1.3125 6.625ZM16.1875 6.625C16.9121 6.625 17.5 7.21289 17.5 7.9375V10.5625C17.5 11.2871 16.9121 11.875 16.1875 11.875H15.75V6.625H16.1875Z" fill="currentColor"/>
+                        </svg>
+                        <span>Automated</span>
+                      </div>
+                    </div>
+                    <div class="status-and-menu">
+                      <div class="status-badge \${statusClass}">
+                        <div class="status-content">
+                          <i class="fa-solid fa-\${statusIcon}"></i>
+                          <span class="status-label">\${statusLabel}:</span>
+                          \${data.status !== 'workflow-stopped' ? \`<span class="status-value">\${timestamp}</span>\` : ''}
+                        </div>
+                      </div>
+                      <button class="menu-button">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="email-field">
+                    <span class="field-label">From:</span>
+                    <span class="field-value">\${data.fromAddress}</span>
+                  </div>
+                  <div class="email-field">
+                    <span class="field-label">To:</span>
+                    <span class="field-value">\${data.toRecipients.join(', ')}</span>
+                  </div>
+                  <div class="subject-line">\${data.subjectLine}</div>
+                  <div class="message-body">\${data.messageBody}</div>
+                </div>
               </div>
-              <div class="outbound-details">
-                <div class="outbound-title">\${data.subjectLine}</div>
-                <div class="outbound-subtitle">To: \${data.toRecipients.join(', ')} • \${timestamp}</div>
-              </div>
-              <span class="status-tag \${data.status}">\${data.status}</span>
-              \${!message.isRead ? '<span class="new-badge">NEW</span>' : ''}
             </div>
-            <div class="outbound-content">\${data.messageBody}</div>
           </div>
         </div>
       \`;
@@ -862,26 +939,59 @@ export class SimpleWindowLauncherService {
       \`;
     }
 
-    // Render an upload message
+    // Render an upload message using exact UploadBubbleComponent structure
     function renderUploadMessage(message) {
       const data = message.data;
-      const timestamp = new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const timestamp = new Date(message.timestamp).toLocaleString([], {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+      }).replace(',', ' |');
 
       return \`
-        <div class="message-item outbound-message">
-          <div class="outbound-bubble">
-            <div class="outbound-header">
-              <div class="outbound-icon upload-icon">
-                <i class="fas fa-upload"></i>
+        <div class="message-item-wrapper upload-message-wrapper">
+          <div class="upload-bubble-container">
+            <div class="upload-bubble-content">
+              <div class="bubble-header">
+                <div class="upload-icon">
+                  <i class="fa-solid fa-cloud-arrow-up"></i>
+                </div>
+                <div class="message-details">
+                  <div class="header-row">
+                    <div class="badge-section">
+                      <div class="upload-method-badge">
+                        <span>Upload Link</span>
+                      </div>
+                    </div>
+                    <div class="status-and-menu">
+                      <div class="upload-status-badge">
+                        <div class="status-content">
+                          <span class="status-label">Uploaded:</span>
+                          <span class="status-value">\${timestamp}</span>
+                        </div>
+                      </div>
+                      <button class="menu-button">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="upload-field">
+                    <span class="field-label">Uploaded by:</span>
+                    <span class="field-value uploader-name">\${data.uploader}</span>
+                  </div>
+                  <div class="upload-field">
+                    <span class="field-label">Client uploaded document:</span>
+                    <span class="field-value file-name">\${data.filename}</span>
+                  </div>
+                  <div class="upload-method">
+                    Upload method: \${data.uploadMethod === 'upload-link' ? 'Upload Link' : data.uploadMethod}
+                  </div>
+                </div>
               </div>
-              <div class="outbound-details">
-                <div class="outbound-title">File Upload: \${data.filename}</div>
-                <div class="outbound-subtitle">Uploaded by \${data.uploader} • \${timestamp}</div>
-              </div>
-              <span class="status-tag \${data.status}">\${data.status}</span>
-              \${!message.isRead ? '<span class="new-badge">NEW</span>' : ''}
             </div>
-            <div class="outbound-content">Uploaded via \${data.uploadMethod}</div>
           </div>
         </div>
       \`;
