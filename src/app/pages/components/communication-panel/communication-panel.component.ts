@@ -393,6 +393,8 @@ export interface CommunicationPanelConfig {
 })
 export class CommunicationPanelComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit {
   @ViewChild('messageFeed', { static: false }) messageFeedRef!: ElementRef;
+
+  constructor(private tabAcknowledgmentService: TabAcknowledgmentService) {}
   @Input() isOpen: boolean = false;
   @Input() messages: CommunicationMessage[] = [];
   @Input() activeFilter: FilterType = 'all';
