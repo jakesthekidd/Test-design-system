@@ -398,27 +398,18 @@ import { SimpleWindowLauncherService } from '../../../services/simple-window-lau
   `]
 })
 export class MessageCenterExpandedComponent implements OnInit, OnDestroy {
-  private stateSubscription: Subscription = new Subscription();
-  currentState: any = null;
 
   constructor(
-    private messageWindowService: MessageCenterWindowService,
-    private stateService: MessageCenterStateService
+    private windowLauncher: SimpleWindowLauncherService
   ) {}
 
   ngOnInit(): void {
-    // Subscribe to state changes to update UI
-    this.stateSubscription = this.stateService.state$.subscribe(state => {
-      console.log('MessageCenter state updated:', state);
-      this.currentState = state;
-    });
-
-    // Initialize current state
-    this.currentState = this.stateService.getCurrentState();
+    console.log('MessageCenterExpanded component initialized');
   }
 
   ngOnDestroy(): void {
-    this.stateSubscription.unsubscribe();
+    // Close window when component is destroyed
+    this.windowLauncher.closeWindow();
   }
 
   demonstrateStateSync(): void {
