@@ -1651,10 +1651,66 @@ export class SimpleWindowLauncherService {
     // Initialize communication and display
     setupParentCommunication();
 
+    // Helper functions for component injection
+    function renderFallbackMessage(message) {
+      const timestamp = new Date(message.timestamp).toLocaleString();
+      return \`
+        <div class="message-item-wrapper fallback-message" data-message-id="\${message.id}">
+          <div class="fallback-container">
+            <div class="fallback-header">
+              <span class="fallback-type">\${message.type.toUpperCase()}</span>
+              <span class="fallback-timestamp">\${timestamp}</span>
+            </div>
+            <div class="fallback-content">
+              \${getFallbackContent(message)}
+            </div>
+          </div>
+        </div>
+      \`;
+    }
+
+    function getFallbackContent(message) {
+      switch (message.type) {
+        case 'note':
+          return \`<strong>\${message.data.author}:</strong> \${message.data.content}\`;
+        case 'sms':
+          return \`SMS to \${message.data.toRecipients?.join(', ')}: \${message.data.messageBody}\`;
+        case 'automated-email':
+        case 'manual-email':
+          return \`<strong>\${message.data.subjectLine}</strong><br>\${message.data.messageBody}\`;
+        case 'upload':
+          return \`File uploaded: \${message.data.filename} by \${message.data.uploader}\`;
+        default:
+          return 'Unknown message type';
+      }
+    }
+
+    function setupComponentEventListeners() {
+      document.querySelectorAll('[data-message-id]').forEach(element => {
+        const messageId = element.dataset.messageId;
+
+        element.addEventListener('click', (event) => {
+          if (event.detail > 1) return;
+          handleMessageClick(messageId, 'component-click');
+        });
+
+        const menuButtons = element.querySelectorAll('.menu-button, button[data-action="menu"]');
+        menuButtons.forEach(button => {
+          button.addEventListener('click', (event) => {
+            event.stopPropagation();
+            sendToParent({
+              type: 'COMPONENT_MENU_CLICKED',
+              payload: { messageId }
+            });
+          });
+        });
+      });
+    }
+
     // Initial render with current data
     updateDisplay();
 
-    console.log('Message Center expanded window initialized with live data sync');
+    console.log('Message Center expanded window initialized with component injection');
     console.log('Initial data loaded:', messages.length, 'messages');
   </script>
 </body>
