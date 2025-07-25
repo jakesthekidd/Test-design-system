@@ -1579,4 +1579,8 @@ export class SimpleWindowLauncherService {
 </body>
 </html>`;
   }
+
+  ngOnDestroy(): void {
+    this.closeWindow();
+  }
 }
