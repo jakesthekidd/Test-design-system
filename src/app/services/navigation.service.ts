@@ -194,6 +194,21 @@ export class NavigationService {
       ]
     },
     {
+      id: 'demo',
+      name: 'Demo',
+      icon: 'fas fa-play-circle',
+      description: 'Interactive demos and workflows',
+      components: [
+        {
+          id: 'communication-demo',
+          name: 'Communication Demo',
+          description: 'End-to-end communication flow demonstration: FAB → Panel → Expanded Window with state synchronization',
+          route: '/communication-demo',
+          tags: ['demo', 'workflow', 'communication', 'fab', 'panel', 'expanded', 'state-sync', 'end-to-end']
+        }
+      ]
+    },
+    {
       id: 'overlay',
       name: 'Overlay',
       icon: 'fas fa-layer-group',
