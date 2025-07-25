@@ -1650,6 +1650,9 @@ export class SimpleWindowLauncherService {
         return false;
       });
 
+      // Acknowledge this tab (dismiss badge for session)
+      acknowledgedTabs.add(filter);
+
       // Send read status updates for all unread messages in this filter
       unreadMessagesInFilter.forEach(message => {
         markMessageAsRead(message.id);
@@ -1664,7 +1667,7 @@ export class SimpleWindowLauncherService {
         payload: { filter }
       });
 
-      console.log('Filter changed to:', filter, 'marked', unreadMessagesInFilter.length, 'messages as read');
+      console.log('Filter changed to:', filter, 'acknowledged tab, marked', unreadMessagesInFilter.length, 'messages as read');
     }
 
     // Enhanced compose button handler
