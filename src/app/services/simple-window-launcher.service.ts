@@ -221,6 +221,14 @@ export class SimpleWindowLauncherService {
         payload: { unreadCounts }
       });
     });
+
+    // Subscribe to acknowledgment updates
+    this.acknowledgmentSubscription = this.tabAcknowledgmentService.acknowledgedTabs$.subscribe(acknowledgedTabs => {
+      this.sendMessageToWindow({
+        type: 'TAB_ACKNOWLEDGMENTS_UPDATED',
+        payload: { acknowledgedTabs: Array.from(acknowledgedTabs) }
+      });
+    });
   }
 
   /**
