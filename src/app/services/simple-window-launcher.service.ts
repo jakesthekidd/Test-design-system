@@ -1300,7 +1300,7 @@ export class SimpleWindowLauncherService {
       });
 
       return \`
-        <div class="message-item-wrapper outbound-message-wrapper">
+        <div class="message-item-wrapper outbound-message-wrapper" data-message-id="\${message.id}">
           <div class="sms-bubble-container">
             <div class="sms-bubble-content">
               <div class="bubble-header">
