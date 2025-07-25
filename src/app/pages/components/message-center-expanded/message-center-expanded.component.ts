@@ -79,36 +79,25 @@ import { SimpleWindowLauncherService } from '../../../services/simple-window-lau
           </ul>
 
           <div class="state-demo">
-            <h4>State Management Demo:</h4>
+            <h4>Window Testing:</h4>
             <div class="demo-actions">
-              <button class="demo-btn" (click)="demonstrateStateSync()">
-                <i class="fas fa-sync-alt"></i>
-                Test State Sync
-              </button>
-              <button class="demo-btn" (click)="markAllMessagesRead()">
-                <i class="fas fa-check-double"></i>
-                Mark All Read
-              </button>
               <button class="demo-btn debug" (click)="debugWindowLaunch()">
                 <i class="fas fa-bug"></i>
                 Debug Launch
               </button>
             </div>
-            <div class="state-info" *ngIf="currentState">
-              <small>
-                <strong>Current State:</strong>
-                Filter: {{currentState.activeFilter}} |
-                Unread: {{currentState.unreadCounts?.all || 0}} |
-                Messages: {{currentState.messages?.length || 0}} |
-                Window Open: {{currentState.isOpen}} |
-                Last Updated: {{formatTimestamp(currentState.lastUpdated)}}
-              </small>
-            </div>
 
             <div class="debug-note" *ngIf="isWindowOpen()">
               <small>
-                <i class="fas fa-bug"></i>
-                <strong>Debug:</strong> Check browser console for window initialization logs and error details.
+                <i class="fas fa-check-circle"></i>
+                <strong>Status:</strong> Window is currently open and displaying mock message data.
+              </small>
+            </div>
+
+            <div class="debug-note" *ngIf="!isWindowOpen()">
+              <small>
+                <i class="fas fa-info-circle"></i>
+                <strong>Status:</strong> No window is currently open. Click "Launch in New Window" to open.
               </small>
             </div>
           </div>
