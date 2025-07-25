@@ -1151,29 +1151,9 @@ export class SimpleWindowLauncherService {
       }
     }
 
-    // Calculate unread counts by type
-    function calculateUnreadCounts() {
-      const counts = { all: 0, notes: 0, emails: 0, sms: 0 };
-
-      messages.forEach(msg => {
-        if (!msg.isRead) {
-          counts.all++;
-          switch (msg.type) {
-            case 'note':
-              counts.notes++;
-              break;
-            case 'automated-email':
-            case 'manual-email':
-              counts.emails++;
-              break;
-            case 'sms':
-              counts.sms++;
-              break;
-          }
-        }
-      });
-
-      return counts;
+    // Use live unread counts from parent
+    function getCurrentUnreadCounts() {
+      return unreadCounts;
     }
 
     // Render a note message using exact NoteBubbleComponent structure
