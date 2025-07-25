@@ -1010,7 +1010,25 @@ export class WindowLauncherService {
         // Setup communication
         setupCommunication();
 
-      console.log('CommunicationPanel initialized successfully');
+        console.log('CommunicationPanel initialized successfully');
+
+      } catch (error) {
+        console.error('Error initializing CommunicationPanel:', error);
+
+        // Show error state
+        if (window.showError) {
+          window.showError('Failed to initialize: ' + error.message);
+        }
+
+        // Notify parent of error
+        if (window.opener) {
+          window.opener.postMessage({
+            type: 'ERROR',
+            error: error.message,
+            timestamp: Date.now()
+          }, '*');
+        }
+      }
     }
 
     function setupCommunication() {
