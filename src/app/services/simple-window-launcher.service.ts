@@ -110,6 +110,10 @@ export class SimpleWindowLauncherService {
           this.unreadCountsSubscription.unsubscribe();
           this.unreadCountsSubscription = null;
         }
+        if (this.acknowledgmentSubscription) {
+          this.acknowledgmentSubscription.unsubscribe();
+          this.acknowledgmentSubscription = null;
+        }
 
         console.log('Message Center window closed and subscriptions cleaned up');
         return true;
