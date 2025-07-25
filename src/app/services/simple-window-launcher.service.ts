@@ -1512,8 +1512,6 @@ export class SimpleWindowLauncherService {
             return renderManualEmailMessage(message);
           case 'upload':
             return renderUploadMessage(message);
-          case 'manual-email':
-            return renderManualEmailMessage(message);
           default:
             return '<div>Unknown message type</div>';
         }
