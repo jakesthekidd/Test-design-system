@@ -80,38 +80,88 @@ export class SimpleWindowLauncherService {
   }
 
   private generateWindowHTML(): string {
+    // Use the exact same data structure as MessageDataService
     const mockMessages = [
       {
         id: '1',
         type: 'note',
-        author: 'Jake Cummings',
-        content: 'A BOL document is like the passport for a shipment; it tells you everything you need to know about where it\'s coming from, where it\'s going, and what\'s inside.',
-        timestamp: '9:00 AM',
-        isUnread: true
+        timestamp: new Date('2024-08-01T09:00:00'),
+        isRead: false,
+        data: {
+          author: 'Jake Cummings',
+          content: 'A BOL document is like the passport for a shipment; it tells you everything you need to know about where it\'s coming from, where it\'s going, and what\'s inside.',
+          timestamp: '2024-08-02T09:00:00',
+          isOwnMessage: false,
+          authorInitials: 'JC',
+          authorName: 'Jake Cummings'
+        }
       },
       {
         id: '2',
-        type: 'email',
-        author: 'Automated Email',
-        content: 'Document Upload Required - Your shipment requires additional documentation. Please upload the required BOL document.',
-        timestamp: '10:32 AM',
-        isUnread: true
+        type: 'sms',
+        timestamp: new Date('2024-08-01T11:00:00'),
+        isRead: false,
+        data: {
+          toRecipients: ['+1 (999) 999-9999'],
+          messageBody: 'Your shipment requires additional documentation. Please upload the required BOL document using the secure link below within 24 hours to avoid delays.',
+          status: 'sent',
+          timestamp: '2024-08-01T11:00:00'
+        }
       },
       {
         id: '3',
-        type: 'sms',
-        author: 'SMS to +1 (999) 999-9999',
-        content: 'Your shipment requires additional documentation. Please upload the required BOL document within 24 hours.',
-        timestamp: '11:00 AM',
-        isUnread: false
+        type: 'automated-email',
+        timestamp: new Date('2024-08-02T10:32:00'),
+        isRead: false,
+        data: {
+          fromAddress: 'system@docprocessing.com',
+          toRecipients: ['client@company.com', 'shipper@logistics.com'],
+          subjectLine: 'Document Upload Required - Shipment #SP-2024-1205',
+          messageBody: 'Your shipment requires additional documentation. Please upload the required BOL document using the secure link below within 24 hours to avoid delays.',
+          status: 'sent',
+          timestamp: '2024-08-02T10:32:00'
+        }
       },
       {
         id: '4',
+        type: 'note',
+        timestamp: new Date('2024-08-02T11:15:00'),
+        isRead: true,
+        data: {
+          author: 'Sarah Mitchell',
+          content: 'I\'ve reviewed the documentation and everything looks good to proceed. The carrier has confirmed pickup for tomorrow morning.',
+          timestamp: '2024-08-02T11:15:00',
+          isOwnMessage: true,
+          authorInitials: 'SM',
+          authorName: 'Sarah Mitchell'
+        }
+      },
+      {
+        id: '5',
         type: 'upload',
-        author: 'File Upload: BOL_12345.pdf',
-        content: 'Uploaded via secure link by driver@carrier.com',
-        timestamp: '11:23 AM',
-        isUnread: false
+        timestamp: new Date('2024-08-02T11:23:00'),
+        isRead: false,
+        data: {
+          uploader: 'driver@carrier.com',
+          filename: 'BOL_12345.pdf',
+          uploadMethod: 'upload-link',
+          status: 'uploaded',
+          timestamp: '2024-08-02T11:23:00'
+        }
+      },
+      {
+        id: '6',
+        type: 'manual-email',
+        timestamp: new Date('2024-08-02T12:30:00'),
+        isRead: false,
+        data: {
+          fromUser: 'operations@company.com',
+          toRecipients: ['client@business.com'],
+          subjectLine: 'Shipment Update - Delivery Confirmed',
+          messageBody: 'Your shipment has been successfully delivered. Thank you for choosing our services!',
+          status: 'sent',
+          timestamp: '2024-08-02T12:30:00'
+        }
       }
     ];
 
