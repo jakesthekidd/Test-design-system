@@ -809,12 +809,9 @@ export class WindowLauncherService {
       const hasExceededRetries = retryCount >= maxRetries;
 
       return \`
-        <div style="padding: 20px; font-family: Arial, sans-serif;">
-          <div style="background: #2474BB; color: white; padding: 15px; margin-bottom: 20px; border-radius: 8px;">
-            <h2 style="margin: 0; display: flex; align-items: center; gap: 10px;">
-              <i class="fas fa-comment"></i>
-              Message Center - Expanded View
-            </h2>
+        <div class="message-center-content">
+          <div class="message-header">
+            <h2>📬 Message Center - Expanded View</h2>
           </div>
 
           <div style="display: flex; gap: 10px; margin-bottom: 20px;">
