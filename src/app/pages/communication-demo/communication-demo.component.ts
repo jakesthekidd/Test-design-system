@@ -642,6 +642,16 @@ export class CommunicationDemoComponent implements OnInit, OnDestroy {
     this.logAction('Filter button clicked');
   }
 
+  onFilterTabClicked(event: { filter: FilterType, messages: CommunicationMessage[] }): void {
+    // Mark all unread messages in this filter as read
+    event.messages.forEach(message => {
+      this.messageDataService.updateMessage(message.id, { isRead: true });
+    });
+
+    const filterName = event.filter === 'all' ? 'all' : event.filter;
+    this.logAction(`${filterName} tab clicked - marked ${event.messages.length} messages as read`);
+  }
+
   // Demo Controls
   resetDemo(): void {
     this.isPanelOpen = false;
