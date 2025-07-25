@@ -412,101 +412,58 @@ export class MessageCenterExpandedComponent implements OnInit, OnDestroy {
     this.windowLauncher.closeWindow();
   }
 
-  demonstrateStateSync(): void {
-    // Change filter to demonstrate state sync
-    const filters = ['all', 'notes', 'emails', 'sms'] as const;
-    const currentIndex = filters.indexOf(this.currentState?.activeFilter || 'all');
-    const nextFilter = filters[(currentIndex + 1) % filters.length];
-
-    this.stateService.changeFilter(nextFilter);
-    console.log('Filter changed to demonstrate state sync:', nextFilter);
-  }
-
-  markAllMessagesRead(): void {
-    this.stateService.getCurrentState().messages.forEach(message => {
-      if (!message.isRead) {
-        this.stateService.markMessageAsRead(message.id);
-      }
-    });
-    console.log('All messages marked as read');
-  }
-
-  formatTimestamp(timestamp: number): string {
-    if (!timestamp) return 'N/A';
-    return new Date(timestamp).toLocaleTimeString();
-  }
-
-  debugWindowLaunch(): void {
-    console.log('=== DEBUG: Testing Window Launch ===');
-    console.log('Current state:', this.currentState);
-    console.log('Is window open:', this.isWindowOpen());
-
-    // Test basic window.open
-    console.log('Testing basic window.open...');
-    const testWindow = window.open('about:blank', 'test', 'width=400,height=300');
-    if (testWindow) {
-      console.log('✅ Basic window.open works');
-      testWindow.document.write('<h1>Test Window</h1><p>This is a test. Close this window.</p>');
-      setTimeout(() => testWindow.close(), 3000);
+  launchWindow(): void {
+    console.log('Launching Message Center window...');
+    const success = this.windowLauncher.openMessageCenterWindow();
+    if (success) {
+      console.log('✅ Message Center window launched successfully');
     } else {
-      console.error('❌ Basic window.open failed - popup blocker?');
-    }
-
-    // Test MessageCenter launch with detailed logging
-    console.log('Testing MessageCenter launch...');
-    this.launchWindow().then(() => {
-      console.log('Launch attempt completed');
-    }).catch(error => {
-      console.error('Launch attempt failed:', error);
-    });
-  }
-
-  async launchWindow(): Promise<void> {
-    try {
-      const window = await this.messageWindowService.openMessageCenter();
-      if (window) {
-        console.log('Message Center window launched successfully');
-      } else {
-        console.error('Failed to launch Message Center window');
-      }
-    } catch (error) {
-      console.error('Error launching Message Center window:', error);
+      console.error('❌ Failed to launch Message Center window - check popup blocker');
     }
   }
 
   closeWindow(): void {
-    const success = this.messageWindowService.closeMessageCenter();
+    console.log('Closing Message Center window...');
+    const success = this.windowLauncher.closeWindow();
     if (success) {
-      console.log('Message Center window closed successfully');
+      console.log('✅ Message Center window closed successfully');
     } else {
-      console.warn('No Message Center window to close or close failed');
+      console.warn('⚠️ No window to close or close failed');
     }
   }
 
   refreshWindow(): void {
-    const success = this.messageWindowService.refreshMessageFeed();
-    if (success) {
-      console.log('Message Center window refreshed');
+    console.log('Refreshing Message Center window...');
+    if (this.isWindowOpen()) {
+      this.closeWindow();
+      setTimeout(() => this.launchWindow(), 500);
     } else {
-      console.warn('Failed to refresh Message Center window');
+      console.warn('⚠️ No window is currently open to refresh');
     }
   }
 
-  async launchPreset(preset: 'default' | 'compose' | 'notifications'): Promise<void> {
-    try {
-      const window = await this.messageWindowService.openWithPreset(preset);
-      if (window) {
-        console.log(`Message Center window launched with preset: ${preset}`);
-      } else {
-        console.error(`Failed to launch Message Center window with preset: ${preset}`);
-      }
-    } catch (error) {
-      console.error(`Error launching Message Center window with preset ${preset}:`, error);
+  debugWindowLaunch(): void {
+    console.log('=== DEBUG: Testing Window Launch ===');
+
+    // Test basic window.open capability
+    console.log('Testing basic window.open...');
+    const testWindow = window.open('about:blank', 'test', 'width=400,height=300');
+    if (testWindow) {
+      console.log('✅ Basic window.open works');
+      testWindow.document.write('<h1>Test Window</h1><p>This window will close in 3 seconds.</p>');
+      setTimeout(() => testWindow.close(), 3000);
+    } else {
+      console.error('❌ Basic window.open failed - popup blocker may be active');
+      return;
     }
+
+    // Test MessageCenter launch
+    console.log('Testing MessageCenter launch...');
+    this.launchWindow();
   }
 
   isWindowOpen(): boolean {
-    return this.messageWindowService.isMessageCenterOpen();
+    return this.windowLauncher.isWindowOpen();
   }
 }
 
