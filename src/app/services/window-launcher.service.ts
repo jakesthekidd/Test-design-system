@@ -1121,51 +1121,6 @@ export class WindowLauncherService {
       }, 100);
     }
 
-        console.log('CommunicationPanel initialized successfully');
-
-        // Show the application immediately
-        console.log('Showing application...');
-        if (window.showApp) {
-          window.showApp();
-        } else {
-          // Fallback: manually show the app if showApp function not available
-          const loading = document.getElementById('loading');
-          const error = document.getElementById('error');
-          const app = document.getElementById('angular-app');
-
-          if (loading) loading.style.display = 'none';
-          if (error) error.style.display = 'none';
-          if (app) app.style.display = 'block';
-        }
-
-        // Notify parent of successful initialization
-        if (window.opener) {
-          window.opener.postMessage({
-            type: 'COMPONENT_LOADED',
-            componentName: '${config.componentName}',
-            timestamp: Date.now()
-          }, '*');
-        }
-
-      } catch (error) {
-        console.error('Error initializing MessageCenter window:', error);
-
-        // Show error state
-        if (window.showError) {
-          window.showError('Failed to initialize: ' + error.message);
-        }
-
-        // Notify parent of error
-        if (window.opener) {
-          window.opener.postMessage({
-            type: 'ERROR',
-            error: error.message,
-            timestamp: Date.now()
-          }, '*');
-        }
-      }
-    }
-
     // Initialize immediately when DOM is ready
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', function() {
