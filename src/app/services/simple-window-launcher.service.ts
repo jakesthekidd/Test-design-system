@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector, EnvironmentInjector } from '@angular/core';
 import { MessageDataService } from './message-data.service';
+import { ComponentInjectionService } from './component-injection.service';
 import { CommunicationMessage } from '../pages/components/communication-panel/communication-panel.component';
 import { FilterType } from '../pages/components/message-center-header/message-center-header.component';
 import { Subscription } from 'rxjs';
