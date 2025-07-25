@@ -559,17 +559,17 @@ export class WindowLauncherService {
             </h2>
           </div>
 
-          <div style="display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;">
-            <button onclick="setActiveFilter('all')" style="background: \${activeFilter === 'all' ? '#2474BB' : '#f0f0f0'}; color: \${activeFilter === 'all' ? 'white' : '#333'}; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
+          <div style="display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;" id="filter-buttons">
+            <button data-filter="all" style="background: \${activeFilter === 'all' ? '#2474BB' : '#f0f0f0'}; color: \${activeFilter === 'all' ? 'white' : '#333'}; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
               All (\${unreadCounts.all})
             </button>
-            <button onclick="setActiveFilter('notes')" style="background: \${activeFilter === 'notes' ? '#2474BB' : '#f0f0f0'}; color: \${activeFilter === 'notes' ? 'white' : '#333'}; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
+            <button data-filter="notes" style="background: \${activeFilter === 'notes' ? '#2474BB' : '#f0f0f0'}; color: \${activeFilter === 'notes' ? 'white' : '#333'}; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
               Notes (\${unreadCounts.notes})
             </button>
-            <button onclick="setActiveFilter('emails')" style="background: \${activeFilter === 'emails' ? '#2474BB' : '#f0f0f0'}; color: \${activeFilter === 'emails' ? 'white' : '#333'}; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
+            <button data-filter="emails" style="background: \${activeFilter === 'emails' ? '#2474BB' : '#f0f0f0'}; color: \${activeFilter === 'emails' ? 'white' : '#333'}; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
               Emails (\${unreadCounts.emails})
             </button>
-            <button onclick="setActiveFilter('sms')" style="background: \${activeFilter === 'sms' ? '#2474BB' : '#f0f0f0'}; color: \${activeFilter === 'sms' ? 'white' : '#333'}; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
+            <button data-filter="sms" style="background: \${activeFilter === 'sms' ? '#2474BB' : '#f0f0f0'}; color: \${activeFilter === 'sms' ? 'white' : '#333'}; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
               SMS (\${unreadCounts.sms})
             </button>
           </div>
