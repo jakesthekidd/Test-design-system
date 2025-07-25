@@ -605,24 +605,16 @@ export class CommunicationDemoComponent implements OnInit, OnDestroy {
     this.isPanelOpen = false;
     this.expandedWindowOpen = false;
     this.activeFilter = 'all';
-    
+
     if (!this.windowLauncher.isWindowClosed()) {
       this.windowLauncher.closeWindow();
     }
 
     // Reset messages to initial state
     this.messageDataService.markAllAsRead();
-    
-    // Add some unread messages back
-    setTimeout(() => {
-      if (this.messages.length > 0) {
-        this.messageDataService.updateMessage(this.messages[0].id, { isRead: false });
-        this.messageDataService.updateMessage(this.messages[1].id, { isRead: false });
-        if (this.messages[8]) {
-          this.messageDataService.updateMessage(this.messages[8].id, { isRead: false });
-        }
-      }
-    }, 100);
+
+    // Reinitialize demo state
+    this.initializeDemoState();
 
     this.actionLog = [];
     this.logAction('Demo reset to initial state');
