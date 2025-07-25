@@ -169,6 +169,7 @@ import { SimpleWindowLauncherService } from '../../services/simple-window-launch
         (composeEmail)="onComposeEmail()"
         (messageClicked)="onMessageClicked($event)"
         (filterClicked)="onFilterClicked()"
+        (filterTabClicked)="onFilterTabClicked($event)"
       />
 
       <div class="action-log" *ngIf="actionLog.length > 0">
