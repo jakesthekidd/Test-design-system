@@ -1,6 +1,8 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
+import { TabAcknowledgmentService } from '../../../services/tab-acknowledgment.service';
+import { Subscription } from 'rxjs';
 
 export type FilterType = 'notes' | 'emails' | 'sms' | 'all';
 
