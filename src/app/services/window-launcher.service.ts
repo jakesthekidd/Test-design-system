@@ -697,6 +697,35 @@ export class WindowLauncherService {
       \`;
     }
 
+    // Setup CSP-compliant event listeners
+    function setupEventListeners() {
+      console.log('Setting up CSP-compliant event listeners...');
+
+      // Filter button event listeners
+      const filterButtons = document.getElementById('filter-buttons');
+      if (filterButtons) {
+        filterButtons.addEventListener('click', function(event) {
+          const target = event.target;
+          if (target.tagName === 'BUTTON' && target.hasAttribute('data-filter')) {
+            const filter = target.getAttribute('data-filter');
+            console.log('Filter button clicked:', filter);
+            window.setActiveFilter(filter);
+          }
+        });
+      }
+
+      // Close window button event listener
+      const closeBtn = document.getElementById('close-window-btn');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+          console.log('Close button clicked');
+          window.close();
+        });
+      }
+
+      console.log('Event listeners setup complete');
+    }
+
     // Global functions for interaction
     window.setActiveFilter = function(filter) {
       console.log('Filter changed to:', filter);
