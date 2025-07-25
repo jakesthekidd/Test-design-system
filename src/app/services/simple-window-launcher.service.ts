@@ -1617,6 +1617,30 @@ export class SimpleWindowLauncherService {
         }
       }
 
+      // Mark all unread messages in this filter as read (clear badges)
+      const unreadMessagesInFilter = messages.filter(message => {
+        if (!message.isRead) {
+          switch (filter) {
+            case 'notes':
+              return message.type === 'note';
+            case 'emails':
+              return message.type === 'automated-email' || message.type === 'manual-email';
+            case 'sms':
+              return message.type === 'sms';
+            case 'all':
+              return true;
+            default:
+              return false;
+          }
+        }
+        return false;
+      });
+
+      // Send read status updates for all unread messages in this filter
+      unreadMessagesInFilter.forEach(message => {
+        markMessageAsRead(message.id);
+      });
+
       // Re-render messages
       renderMessages();
 
@@ -1626,7 +1650,7 @@ export class SimpleWindowLauncherService {
         payload: { filter }
       });
 
-      console.log('Filter changed to:', filter);
+      console.log('Filter changed to:', filter, 'marked', unreadMessagesInFilter.length, 'messages as read');
     }
 
     // Enhanced compose button handler
