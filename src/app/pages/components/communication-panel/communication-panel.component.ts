@@ -634,10 +634,10 @@ export class CommunicationPanelComponent implements OnInit, OnDestroy, OnChanges
           const messageElement = entry.target as HTMLElement;
           const messageId = messageElement.dataset['messageId'];
           if (messageId) {
-            // Add delay to simulate reading time
+            // Add delay to simulate reading time (longer delay to allow tab-based clearing)
             setTimeout(() => {
               this.markMessageAsViewed(messageId);
-            }, 1500);
+            }, 5000);
           }
         }
       });
