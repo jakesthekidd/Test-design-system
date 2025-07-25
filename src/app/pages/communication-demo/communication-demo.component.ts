@@ -587,9 +587,17 @@ export class CommunicationDemoComponent implements OnInit, OnDestroy {
   }
 
   onMessageClicked(message: CommunicationMessage): void {
-    // Update message through service to maintain sync
-    this.messageDataService.updateMessage(message.id, { isRead: true });
-    this.logAction(`Message ${message.id} clicked and marked as read`);
+    console.log('Message clicked:', message.id, 'isRead:', message.isRead);
+
+    // Only update if the message is currently unread
+    if (!message.isRead) {
+      this.messageDataService.updateMessage(message.id, { isRead: true });
+      this.logAction(`Message ${message.id} clicked and marked as read`);
+      console.log('Message state updated via service');
+    } else {
+      this.logAction(`Message ${message.id} clicked (already read)`);
+      console.log('Message already read, no update needed');
+    }
   }
 
   onComposeEmail(): void {
