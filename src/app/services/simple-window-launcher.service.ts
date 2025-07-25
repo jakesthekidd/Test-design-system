@@ -1060,9 +1060,81 @@ export class SimpleWindowLauncherService {
   </div>
 
   <script>
-    // Mock data with exact CommunicationMessage structure
-    const messages = ${JSON.stringify(mockMessages)};
+    // Live data - will be updated via postMessage
+    let messages = ${JSON.stringify(messages)};
+    let unreadCounts = ${JSON.stringify(unreadCounts)};
     let activeFilter = 'all';
+
+    // Set up postMessage communication with parent window
+    function setupParentCommunication() {
+      // Listen for messages from parent window
+      window.addEventListener('message', function(event) {
+        if (event.source === window.opener) {
+          handleParentMessage(event.data);
+        }
+      });
+
+      // Notify parent that window is ready
+      sendToParent({
+        type: 'WINDOW_READY'
+      });
+    }
+
+    // Handle messages from parent window
+    function handleParentMessage(data) {
+      switch (data.type) {
+        case 'INITIAL_DATA':
+          messages = data.payload.messages;
+          unreadCounts = data.payload.unreadCounts;
+          updateDisplay();
+          break;
+        case 'MESSAGES_UPDATED':
+          messages = data.payload.messages;
+          renderMessages();
+          updateTabBadges();
+          break;
+        case 'UNREAD_COUNTS_UPDATED':
+          unreadCounts = data.payload.unreadCounts;
+          updateTabBadges();
+          break;
+        default:
+          console.log('Unknown message from parent:', data);
+      }
+    }
+
+    // Send message to parent window
+    function sendToParent(message) {
+      if (window.opener && !window.opener.closed) {
+        try {
+          window.opener.postMessage(message, '*');
+        } catch (error) {
+          console.error('Error sending message to parent:', error);
+        }
+      }
+    }
+
+    // Update the entire display
+    function updateDisplay() {
+      renderMessages();
+      updateTabBadges();
+      console.log('Display updated with live data:', messages.length, 'messages');
+    }
+
+    // Enhanced message click handler
+    function handleMessageClick(messageId, messageType) {
+      sendToParent({
+        type: 'MESSAGE_CLICKED',
+        payload: { messageId, messageType }
+      });
+    }
+
+    // Enhanced message read handler
+    function markMessageAsRead(messageId) {
+      sendToParent({
+        type: 'MESSAGE_READ',
+        payload: { messageId }
+      });
+    }
 
     // Filter mapping - match the exact behavior of CommunicationPanel
     function getFilteredMessages() {
