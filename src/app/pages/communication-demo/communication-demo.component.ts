@@ -584,6 +584,39 @@ export class CommunicationDemoComponent implements OnInit, OnDestroy {
   onFilterChanged(filter: FilterType): void {
     this.activeFilter = filter;
     this.logAction(`Filter changed to: ${filter}`);
+
+    // Mark all messages in this filter as read (clear badges)
+    this.markFilterMessagesAsRead(filter);
+  }
+
+  private markFilterMessagesAsRead(filter: FilterType): void {
+    const messagesToUpdate = this.messages.filter(message => {
+      if (!message.isRead) {
+        switch (filter) {
+          case 'notes':
+            return message.type === 'note';
+          case 'emails':
+            return message.type === 'automated-email' || message.type === 'manual-email';
+          case 'sms':
+            return message.type === 'sms';
+          case 'all':
+            return true; // Mark all unread messages as read
+          default:
+            return false;
+        }
+      }
+      return false;
+    });
+
+    if (messagesToUpdate.length > 0) {
+      // Update all messages in this filter as read
+      messagesToUpdate.forEach(message => {
+        this.messageDataService.updateMessage(message.id, { isRead: true });
+      });
+
+      const filterName = filter === 'all' ? 'all' : filter;
+      this.logAction(`Marked ${messagesToUpdate.length} ${filterName} messages as read`);
+    }
   }
 
   onMessageClicked(message: CommunicationMessage): void {
