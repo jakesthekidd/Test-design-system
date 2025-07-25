@@ -153,6 +153,8 @@ export class SimpleWindowLauncherService {
         break;
       case 'FILTER_CHANGED':
         console.log('Filter changed in expanded view:', data.payload.filter);
+        // Acknowledge the tab when clicked in expanded window
+        this.tabAcknowledgmentService.acknowledgeTab(data.payload.filter);
         break;
       case 'COMPOSE_EMAIL':
         console.log('Compose email requested from expanded view');
