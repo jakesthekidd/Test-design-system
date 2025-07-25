@@ -122,6 +122,10 @@ export class SimpleWindowLauncherService {
     return this.openWindow !== null && !this.openWindow.closed;
   }
 
+  isWindowClosed(): boolean {
+    return this.openWindow === null || this.openWindow.closed;
+  }
+
   /**
    * Set up message listener for communication from child window
    */
