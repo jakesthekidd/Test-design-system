@@ -69,13 +69,13 @@ import { SimpleWindowLauncherService } from '../../../services/simple-window-lau
             The CommunicationPanel is now running in a separate window with:
           </p>
           <ul class="status-features">
-            <li>✅ Independent Angular application instance</li>
-            <li>✅ Separate Zone.js context</li>
-            <li>✅ Identical message data and state</li>
-            <li>✅ Full filter functionality</li>
-            <li>✅ Cross-window communication</li>
-            <li>✅ Real-time state synchronization</li>
-            <li>✅ Persistent state across browser sessions</li>
+            <li>✅ Independent browser window</li>
+            <li>✅ Plain HTML, CSS, and JavaScript</li>
+            <li>✅ Mock message data rendering</li>
+            <li>✅ Interactive filter functionality</li>
+            <li>✅ Clean, minimal implementation</li>
+            <li>✅ No Angular dependencies in child window</li>
+            <li>✅ Proper error handling and logging</li>
           </ul>
 
           <div class="state-demo">
