@@ -156,8 +156,40 @@ export class SimpleWindowLauncherService {
         // Child window is ready, send initial data
         this.sendDataToWindow();
         break;
+      case 'REQUEST_COMPONENT_HTML':
+        // Generate component HTML and send back to child
+        this.handleComponentHTMLRequest(data);
+        break;
+      case 'COMPONENT_MENU_CLICKED':
+        console.log('Component menu clicked:', data.payload);
+        break;
       default:
         console.log('Unknown message from child window:', data);
+    }
+  }
+
+  /**
+   * Handle component HTML generation requests from child window
+   */
+  private handleComponentHTMLRequest(data: any): void {
+    try {
+      const message = data.payload.message;
+      const componentHTML = this.componentInjectionService.createComponentHTML(message);
+
+      this.sendMessageToWindow({
+        type: 'COMPONENT_HTML_RESPONSE',
+        requestId: data.requestId,
+        html: componentHTML
+      });
+    } catch (error) {
+      console.error('Error generating component HTML:', error);
+
+      // Send fallback response
+      this.sendMessageToWindow({
+        type: 'COMPONENT_HTML_RESPONSE',
+        requestId: data.requestId,
+        html: null
+      });
     }
   }
 
