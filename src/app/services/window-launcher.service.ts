@@ -750,6 +750,9 @@ export class WindowLauncherService {
 
         console.log('Content rendered successfully');
 
+        // Setup CSP-compliant event listeners
+        setupEventListeners();
+
         // Add simple styles
         const style = document.createElement('style');
         style.textContent = \`
