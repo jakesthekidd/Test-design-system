@@ -239,17 +239,111 @@ export class WindowLauncherService {
     rel="stylesheet"
   >
 
-  <!-- Design System Styles -->
-  <link href="${this.baseUrl}/styles.css" rel="stylesheet">
-  <link href="${this.baseUrl}/design-system.css" rel="stylesheet">
-  <link href="${this.baseUrl}/design-tokens.css" rel="stylesheet">
-  <link href="${this.baseUrl}/lara-light-tokens.css" rel="stylesheet">
-  <link href="${this.baseUrl}/lara-light-overrides.css" rel="stylesheet">
+  <!-- Essential External Styles (verified CDN sources) -->
+  <link href="https://cdn.jsdelivr.net/npm/primeng@17.3.0/resources/themes/lara-light-blue/theme.css" rel="stylesheet" type="text/css">
+  <link href="https://cdn.jsdelivr.net/npm/primeng@17.3.0/resources/primeng.min.css" rel="stylesheet" type="text/css">
+  <link href="https://cdn.jsdelivr.net/npm/primeicons@6.0.1/primeicons.css" rel="stylesheet" type="text/css">
 
-  <!-- PrimeNG Theme -->
-  <link href="https://cdn.jsdelivr.net/npm/primeng@17.3.0/resources/themes/lara-light-blue/theme.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/primeng@17.3.0/resources/primeng.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/primeicons@6.0.1/primeicons.css" rel="stylesheet">
+  <!-- Inline Design System Styles (replaces problematic external files) -->
+  <style type="text/css">
+    /* Design System Tokens */
+    :root {
+      --surface-ground: #EFF2F4;
+      --surface-section: #ffffff;
+      --surface-card: #ffffff;
+      --surface-overlay: #ffffff;
+      --surface-border: #E2E6EB;
+      --surface-hover: #F7F8F9;
+      --surface-50: #F7F8F9;
+      --surface-100: #EFF2F4;
+      --surface-200: #E2E6EB;
+      --surface-300: #C6CCD6;
+      --surface-400: #A9B3C2;
+      --surface-500: #8D9AAE;
+      --surface-600: #70819A;
+      --surface-700: #546985;
+      --surface-800: #3D4B5C;
+      --surface-900: #262D33;
+
+      --primary-color: #2474BB;
+      --primary-50: #E3F2FD;
+      --primary-100: #BBDEFB;
+      --primary-200: #90CAF9;
+      --primary-300: #64B5F6;
+      --primary-400: #42A5F5;
+      --primary-500: #2196F3;
+      --primary-600: #1E88E5;
+      --primary-700: #1976D2;
+      --primary-800: #1565C0;
+      --primary-900: #0D47A1;
+
+      --text-color: #3D3D3D;
+      --text-color-secondary: #8D9AAE;
+      --text-color-disabled: #C6CCD6;
+
+      --red-500: #DA1F2C;
+      --red-600: #C41E3A;
+      --green-500: #22C55E;
+      --green-600: #16A34A;
+      --orange-500: #FF9800;
+      --orange-600: #F57C00;
+      --blue-100: #E3F2FD;
+      --blue-600: #1976D2;
+      --indigo-100: #E8EAF6;
+      --indigo-600: #3F51B5;
+    }
+
+    /* Base Application Styles */
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--surface-ground, #EFF2F4);
+      color: var(--text-color, #3D3D3D);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    /* Scrollbar Styling */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--surface-100, #EFF2F4);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--surface-400, #A9B3C2);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--surface-500, #8D9AAE);
+    }
+  </style>
 
   ${this.generateAdditionalStyles(config.additionalStyles)}
 
