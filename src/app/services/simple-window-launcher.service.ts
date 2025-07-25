@@ -13,8 +13,24 @@ export class SimpleWindowLauncherService {
   private messageSubscription: Subscription | null = null;
   private unreadCountsSubscription: Subscription | null = null;
 
-  constructor(private messageDataService: MessageDataService) {
+  constructor(
+    private messageDataService: MessageDataService,
+    private componentInjectionService: ComponentInjectionService,
+    private injector: Injector,
+    private environmentInjector: EnvironmentInjector
+  ) {
     this.setupMessageListener();
+    this.initializeComponentInjection();
+  }
+
+  /**
+   * Initialize component injection system
+   */
+  private initializeComponentInjection(): void {
+    this.componentInjectionService.initialize({
+      injector: this.injector,
+      environmentInjector: this.environmentInjector
+    });
   }
 
   openMessageCenterWindow(): boolean {
