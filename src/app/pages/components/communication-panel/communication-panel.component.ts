@@ -668,10 +668,8 @@ export class CommunicationPanelComponent implements OnInit, OnDestroy, OnChanges
   private markMessageAsViewed(messageId: string): void {
     const message = this.messages.find(m => m.id === messageId);
     if (message && !message.isRead) {
-      message.isRead = true;
-      this.updateUnreadCounts();
-      this.updateFilterTabs();
-
+      // Emit the message click event to let parent handle state update
+      this.messageClicked.emit(message);
       console.log(`Message ${messageId} auto-marked as viewed`);
     }
   }
