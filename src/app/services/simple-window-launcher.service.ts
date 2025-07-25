@@ -13,6 +13,7 @@ export class SimpleWindowLauncherService {
   private openWindow: Window | null = null;
   private messageSubscription: Subscription | null = null;
   private unreadCountsSubscription: Subscription | null = null;
+  private acknowledgmentSubscription: Subscription | null = null;
 
   constructor(
     private messageDataService: MessageDataService,
