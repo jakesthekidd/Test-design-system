@@ -1572,9 +1572,14 @@ export class SimpleWindowLauncherService {
       setupComponentEventListeners();
     }
 
-    // Update tab badges with live unread counts
+    // Update tab badges with acknowledgment-aware visibility
     function updateTabBadges() {
       const counts = getCurrentUnreadCounts();
+
+      // Helper function to determine if badge should show
+      function shouldShowBadge(tabId, count) {
+        return count > 0 && !acknowledgedTabs.has(tabId);
+      }
 
       // Update badges
       const allBadge = document.getElementById('all-badge');
@@ -1584,22 +1589,22 @@ export class SimpleWindowLauncherService {
 
       if (allBadge) {
         allBadge.textContent = counts.all;
-        allBadge.style.display = counts.all > 0 ? 'flex' : 'none';
+        allBadge.style.display = shouldShowBadge('all', counts.all) ? 'flex' : 'none';
       }
 
       if (notesBadge) {
         notesBadge.textContent = counts.notes;
-        notesBadge.style.display = counts.notes > 0 ? 'flex' : 'none';
+        notesBadge.style.display = shouldShowBadge('notes', counts.notes) ? 'flex' : 'none';
       }
 
       if (emailsBadge) {
         emailsBadge.textContent = counts.emails;
-        emailsBadge.style.display = counts.emails > 0 ? 'flex' : 'none';
+        emailsBadge.style.display = shouldShowBadge('emails', counts.emails) ? 'flex' : 'none';
       }
 
       if (smsBadge) {
         smsBadge.textContent = counts.sms;
-        smsBadge.style.display = counts.sms > 0 ? 'flex' : 'none';
+        smsBadge.style.display = shouldShowBadge('sms', counts.sms) ? 'flex' : 'none';
       }
     }
 
