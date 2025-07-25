@@ -470,8 +470,8 @@ export class WindowLauncherService {
         // Retry logic - max 3 attempts
         if (retryCount < 3) {
           window.renderRetryCount = retryCount + 1;
-          setTimeout(() => {
-            console.log(\`Retry attempt \${window.renderRetryCount}/3 - re-rendering...\`);
+          setTimeout(function() {
+            console.log('Retry attempt ' + window.renderRetryCount + '/3 - re-rendering...');
             const container = document.getElementById('component-root');
             if (container) {
               container.innerHTML = renderCommunicationPanel();
