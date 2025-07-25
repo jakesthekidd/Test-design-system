@@ -105,6 +105,106 @@ export class SimpleWindowLauncherService {
     return this.openWindow !== null && !this.openWindow.closed;
   }
 
+  /**
+   * Set up message listener for communication from child window
+   */
+  private setupMessageListener(): void {
+    window.addEventListener('message', (event) => {
+      // Verify the message is from our expanded window
+      if (event.source === this.openWindow) {
+        this.handleChildWindowMessage(event.data);
+      }
+    });
+  }
+
+  /**
+   * Handle messages received from the child window
+   */
+  private handleChildWindowMessage(data: any): void {
+    switch (data.type) {
+      case 'MESSAGE_READ':
+        this.messageDataService.updateMessage(data.payload.messageId, { isRead: true });
+        break;
+      case 'MESSAGE_CLICKED':
+        console.log('Message clicked in expanded view:', data.payload);
+        break;
+      case 'FILTER_CHANGED':
+        console.log('Filter changed in expanded view:', data.payload.filter);
+        break;
+      case 'COMPOSE_EMAIL':
+        console.log('Compose email requested from expanded view');
+        // This could trigger opening a compose modal in the main app
+        break;
+      case 'WINDOW_READY':
+        // Child window is ready, send initial data
+        this.sendDataToWindow();
+        break;
+      default:
+        console.log('Unknown message from child window:', data);
+    }
+  }
+
+  /**
+   * Set up real-time data synchronization with the child window
+   */
+  private setupDataSync(): void {
+    // Subscribe to message updates
+    this.messageSubscription = this.messageDataService.messages$.subscribe(messages => {
+      this.sendMessageToWindow({
+        type: 'MESSAGES_UPDATED',
+        payload: { messages }
+      });
+    });
+
+    // Subscribe to unread count updates
+    this.unreadCountsSubscription = this.messageDataService.unreadCounts$.subscribe(unreadCounts => {
+      this.sendMessageToWindow({
+        type: 'UNREAD_COUNTS_UPDATED',
+        payload: { unreadCounts }
+      });
+    });
+  }
+
+  /**
+   * Send initial data to the child window
+   */
+  private sendDataToWindow(): void {
+    const messages = this.messageDataService.getMessages();
+    const unreadCounts = this.messageDataService.getUnreadCounts();
+
+    this.sendMessageToWindow({
+      type: 'INITIAL_DATA',
+      payload: { messages, unreadCounts }
+    });
+  }
+
+  /**
+   * Send a message to the child window
+   */
+  private sendMessageToWindow(message: any): void {
+    if (this.openWindow && !this.openWindow.closed) {
+      try {
+        this.openWindow.postMessage(message, '*');
+      } catch (error) {
+        console.error('Error sending message to child window:', error);
+      }
+    }
+  }
+
+  /**
+   * Add a new message (for external components to call)
+   */
+  addMessage(message: CommunicationMessage): void {
+    this.messageDataService.addMessage(message);
+  }
+
+  /**
+   * Mark message as read (for external components to call)
+   */
+  markMessageAsRead(messageId: string): void {
+    this.messageDataService.updateMessage(messageId, { isRead: true });
+  }
+
   private generateWindowHTML(): string {
     // Use the exact same data structure as MessageDataService
     const mockMessages = [
