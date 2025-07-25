@@ -72,11 +72,11 @@ export interface MessageCenterHeaderConfig {
           >
             <i [class]="tab.icon" class="tab-icon"></i>
             <span class="tab-label">{{ tab.label }}</span>
-            <span 
-              *ngIf="tab.notificationCount && tab.notificationCount > 0" 
+            <span
+              *ngIf="shouldShowTabBadge(tab)"
               class="tab-badge"
             >
-              {{ tab.notificationCount }}
+              {{ tab.originalUnreadCount || tab.notificationCount }}
             </span>
           </button>
         </div>
