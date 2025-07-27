@@ -117,8 +117,11 @@ import { NavigationService, NavigationCategory, ComponentItem } from '../service
       gap: 0.5rem;
     }
 
-    .logo i {
-      font-size: 1.75rem;
+    .logo-image {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      object-fit: cover;
     }
 
     .search-container {
