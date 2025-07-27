@@ -15,7 +15,7 @@ import { NavigationService, NavigationCategory, ComponentItem } from '../service
         <div class="header-content">
           <div class="logo-section">
             <h1 class="logo" (click)="navigateHome()">
-              <i class="fas fa-cube"></i>
+              <img src="https://cdn.builder.io/api/v1/image/assets%2Fcec1caf5d0d444ed91733b34b90309ff%2F1bc8e780dffe4479933cb79b22868862?format=webp&width=800" alt="Logo" class="logo-image">
               Design System
             </h1>
           </div>
