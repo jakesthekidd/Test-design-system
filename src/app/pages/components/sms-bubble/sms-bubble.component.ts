@@ -299,14 +299,156 @@ export class SmsBubbleComponent {
     <div class="component-doc">
       <div class="component-header">
         <h1>SMS Bubble</h1>
-        <p class="component-description">
-          Reusable communication component that displays outbound SMS messages sent through automated workflows. 
-          Mirrors the AutomatedEmailBubbleComponent but is adapted for the SMS channel with SMS-specific icons, 
-          indigo color scheme, and phone number emphasis.
-        </p>
       </div>
 
       <p-tabView>
+        <p-tabPanel header="Documentation">
+          <div class="documentation-section">
+
+            <h2>🔧 Component Overview</h2>
+            <p>
+              The SMS Bubble component displays outbound SMS messages sent through automated workflows with delivery status tracking.
+              It features an SMS-specific icon, indigo color scheme, and emphasizes phone numbers for clear recipient identification.
+              Use this component when displaying automated SMS communications in message threads or communication logs.
+            </p>
+
+            <h2>📋 Usage Example</h2>
+            <pre><code>&lt;app-sms-bubble
+  [smsData]="mySmsData"
+  (menuClick)="handleMenuClick($event)"
+  (smsClick)="handleSmsClick($event)"&gt;
+&lt;/app-sms-bubble&gt;</code></pre>
+
+            <h2>⚙️ Input/Output API</h2>
+            <div class="api-table">
+              <h3>@Input Properties</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Default</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>smsData</code></td>
+                    <td>SmsData</td>
+                    <td><em>required</em></td>
+                    <td>Complete SMS information including recipient, content, and status</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <h3>@Output Events</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>menuClick</code></td>
+                    <td>EventEmitter&lt;SmsData&gt;</td>
+                    <td>Emitted when the three-dot menu button is clicked</td>
+                  </tr>
+                  <tr>
+                    <td><code>smsClick</code></td>
+                    <td>EventEmitter&lt;SmsData&gt;</td>
+                    <td>Emitted when the SMS bubble itself is clicked</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <h3>SmsData Interface</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Property</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>toNumber</code></td>
+                    <td>string</td>
+                    <td>Recipient phone number (e.g., "+1 (555) 123-4567")</td>
+                  </tr>
+                  <tr>
+                    <td><code>messageBody</code></td>
+                    <td>string</td>
+                    <td>SMS message content</td>
+                  </tr>
+                  <tr>
+                    <td><code>status</code></td>
+                    <td>StatusType</td>
+                    <td>Delivery status: 'sent', 'scheduled', or 'workflow-stopped'</td>
+                  </tr>
+                  <tr>
+                    <td><code>timestamp</code></td>
+                    <td>string?</td>
+                    <td>Timestamp for sent messages</td>
+                  </tr>
+                  <tr>
+                    <td><code>timeOffset</code></td>
+                    <td>string?</td>
+                    <td>Time offset for scheduled messages (e.g., "3 Hours out")</td>
+                  </tr>
+                  <tr>
+                    <td><code>workflowId</code></td>
+                    <td>string?</td>
+                    <td>Associated workflow identifier</td>
+                  </tr>
+                  <tr>
+                    <td><code>workflowName</code></td>
+                    <td>string?</td>
+                    <td>Human-readable workflow name</td>
+                  </tr>
+                  <tr>
+                    <td><code>retryCount</code></td>
+                    <td>number?</td>
+                    <td>Number of delivery retry attempts</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h2>🔗 Dependencies / Related Components</h2>
+            <ul>
+              <li><strong>Status Components:</strong> AutomatedBadgeComponent, StatusBadgeComponent, MenuButtonComponent</li>
+              <li><strong>SMS-Specific:</strong> SmsIconComponent, SmsAutomatedBadgeComponent</li>
+              <li><strong>PrimeNG Modules:</strong> ButtonModule, TooltipModule</li>
+              <li><strong>Angular Modules:</strong> CommonModule, FormsModule</li>
+              <li><strong>Icons:</strong> FontAwesome (fa-message, fa-ellipsis-vertical)</li>
+            </ul>
+
+            <h2>🎨 Styling Notes</h2>
+            <ul>
+              <li><strong>Color Scheme:</strong> Indigo theme with purple border (#BCBDF9) and light purple background (#F7F7FE)</li>
+              <li><strong>Border Radius:</strong> Rounded corners (8px 8px 0px 8px) for outbound message styling</li>
+              <li><strong>Phone Number:</strong> Bold font weight (700) for recipient emphasis</li>
+              <li><strong>Typography:</strong> Roboto font family, 14px for content and labels</li>
+              <li><strong>Layout:</strong> Flexbox with right-aligned outbound message layout</li>
+              <li><strong>Responsive:</strong> Stacks elements vertically on mobile with adjusted padding</li>
+            </ul>
+
+            <h2>🧪 Testing Instructions</h2>
+            <ul>
+              <li><strong>Status Testing:</strong> Test all three status types (sent, scheduled, workflow-stopped)</li>
+              <li><strong>Event Testing:</strong> Verify menu and SMS click events are properly emitted</li>
+              <li><strong>Phone Formatting:</strong> Test various phone number formats for proper display</li>
+              <li><strong>Responsive:</strong> Verify mobile layout stacking and alignment</li>
+              <li><strong>Tooltip:</strong> Ensure SMS options tooltip appears on menu button hover</li>
+            </ul>
+
+          </div>
+        </p-tabPanel>
+
         <p-tabPanel header="Examples">
           <div class="examples-section">
             
