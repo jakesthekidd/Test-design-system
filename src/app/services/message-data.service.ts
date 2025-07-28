@@ -104,9 +104,10 @@ export class MessageDataService {
         timestamp: new Date('2024-08-01T09:00:00'),
         isRead: false,
         data: {
-          author: 'Jake Cummings',
+          authorInitials: 'JC',
+          authorName: 'Jake Cummings',
           content: 'A BOL document is like the passport for a shipment; it tells you everything you need to know about where it\'s coming from, where it\'s going, and what\'s inside.',
-          timestamp: '2024-08-02T09:00:00',
+          timestamp: 'Aug 2, 2024 | 9:00 AM',
           isOwnMessage: false
         }
       },
@@ -142,9 +143,10 @@ export class MessageDataService {
         timestamp: new Date('2024-08-02T11:15:00'),
         isRead: true,
         data: {
-          author: 'Sarah Mitchell',
+          authorInitials: 'SM',
+          authorName: 'Sarah Mitchell',
           content: 'I\'ve reviewed the documentation and everything looks good to proceed. The carrier has confirmed pickup for tomorrow morning.',
-          timestamp: '2024-08-02T11:15:00',
+          timestamp: 'Aug 2, 2024 | 11:15 AM',
           isOwnMessage: true
         }
       },
