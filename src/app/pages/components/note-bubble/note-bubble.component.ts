@@ -227,60 +227,13 @@ export class NoteBubbleComponent {
             <h3>Basic Note Bubbles</h3>
             <div class="example-container">
               <div class="message-thread">
-                <!-- Message from other user -->
-                <div class="note-bubble" [class.own-message]="false">
-                  <div class="bubble-container other-message">
-                    <div class="bubble-content">
-                      <div class="bubble-header">
-                        <p-avatar 
-                          label="JK" 
-                          styleClass="bubble-avatar other-avatar">
-                        </p-avatar>
-                        <div class="message-details">
-                          <div class="header-row">
-                            <span class="author-name">John Doe</span>
-                            <button class="menu-button" pTooltip="Message options">
-                              <i class="fa-solid fa-ellipsis-vertical"></i>
-                            </button>
-                          </div>
-                          <div class="message-text">
-                            A BOL document is like the passport for a shipment; it tells you everything you need to know about where it's coming from, where it's going, and what's inside.
-                          </div>
-                          <div class="timestamp-container other-timestamp">
-                            <span class="timestamp">Aug 2, 2024 | 9:00 AM</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <div class="note-bubble"
+                     [class.own-message]="basicNotes[0].isOwnMessage">
+                  <app-note-bubble [noteData]="basicNotes[0]" (menuClick)="onMenuClick($event)"></app-note-bubble>
                 </div>
-
-                <!-- Message from current user -->
-                <div class="note-bubble" [class.own-message]="true">
-                  <div class="bubble-container own-message">
-                    <div class="bubble-content">
-                      <div class="bubble-header">
-                        <p-avatar 
-                          label="JK" 
-                          styleClass="bubble-avatar own-avatar">
-                        </p-avatar>
-                        <div class="message-details">
-                          <div class="header-row">
-                            <span class="author-name">Jake Cummings</span>
-                            <button class="menu-button" pTooltip="Message options">
-                              <i class="fa-solid fa-ellipsis-vertical"></i>
-                            </button>
-                          </div>
-                          <div class="message-text">
-                            A BOL document is like the passport for a shipment; it tells you
-                          </div>
-                          <div class="timestamp-container own-timestamp">
-                            <span class="timestamp">Aug 2, 2024 | 1:50 PM</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <div class="note-bubble"
+                     [class.own-message]="basicNotes[1].isOwnMessage">
+                  <app-note-bubble [noteData]="basicNotes[1]" (menuClick)="onMenuClick($event)"></app-note-bubble>
                 </div>
               </div>
             </div>
@@ -650,7 +603,7 @@ export class NoteBubbleComponent &#123;
 
     .bubble-header {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 8px;
       width: 100%;
     }
@@ -847,6 +800,23 @@ export class NoteBubbleComponent &#123;
   `]
 })
 export class NoteBubbleDocComponent {
+  basicNotes: NoteBubbleData[] = [
+    {
+      authorInitials: 'JD',
+      authorName: 'John Doe',
+      timestamp: 'Aug 2, 2024 | 9:00 AM',
+      content: 'A BOL document is like the passport for a shipment; it tells you everything you need to know about where it\'s coming from, where it\'s going, and what\'s inside.',
+      isOwnMessage: false
+    },
+    {
+      authorInitials: 'JK',
+      authorName: 'Jake Cummings',
+      timestamp: 'Aug 2, 2024 | 1:50 PM',
+      content: 'A BOL document is like the passport for a shipment; it tells you',
+      isOwnMessage: true
+    }
+  ];
+
   sampleNotes: NoteBubbleData[] = [
     {
       authorInitials: 'JD',
