@@ -12,13 +12,131 @@ import { FigmaButtonComponent } from '../../../figma-button.component';
     <div class="component-documentation">
       <div class="doc-header">
         <h1>Button</h1>
-        <p class="doc-description">
-          Interactive buttons with multiple variants and states. Built to match Figma designs with exact spacing, 
-          typography, and color specifications from the Lara Light design system.
-        </p>
       </div>
 
       <p-tabView>
+        <p-tabPanel header="Documentation">
+          <div class="documentation-section">
+
+            <h2>🔧 Component Overview</h2>
+            <p>
+              The Button component provides interactive buttons with multiple severity levels, sizes, and icon support.
+              Built to match Figma designs with exact spacing, typography, and color specifications from the Lara Light design system.
+              Use this component for all actionable user interface elements like form submissions, navigation, and feature triggers.
+            </p>
+
+            <h2>📋 Usage Example</h2>
+            <pre><code>&lt;app-figma-button
+  label="Submit"
+  severity="primary"
+  size="medium"
+  leftIcon="save"
+  [disabled]="false"
+  (click)="handleClick()"&gt;
+&lt;/app-figma-button&gt;</code></pre>
+
+            <h2>⚙️ Input/Output API</h2>
+            <div class="api-table">
+              <h3>@Input Properties</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Default</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>label</code></td>
+                    <td>string</td>
+                    <td><em>required</em></td>
+                    <td>Button text label</td>
+                  </tr>
+                  <tr>
+                    <td><code>severity</code></td>
+                    <td>'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'danger'</td>
+                    <td>'primary'</td>
+                    <td>Visual style variant</td>
+                  </tr>
+                  <tr>
+                    <td><code>size</code></td>
+                    <td>'small' | 'medium' | 'large'</td>
+                    <td>'medium'</td>
+                    <td>Button size</td>
+                  </tr>
+                  <tr>
+                    <td><code>leftIcon</code></td>
+                    <td>string</td>
+                    <td>undefined</td>
+                    <td>FontAwesome icon name for left side</td>
+                  </tr>
+                  <tr>
+                    <td><code>rightIcon</code></td>
+                    <td>string</td>
+                    <td>undefined</td>
+                    <td>FontAwesome icon name for right side</td>
+                  </tr>
+                  <tr>
+                    <td><code>disabled</code></td>
+                    <td>boolean</td>
+                    <td>false</td>
+                    <td>Whether button is disabled</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <h3>@Output Events</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>click</code></td>
+                    <td>EventEmitter&lt;MouseEvent&gt;</td>
+                    <td>Emitted when button is clicked</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h2>🔗 Dependencies / Related Components</h2>
+            <ul>
+              <li><strong>Angular Modules:</strong> CommonModule</li>
+              <li><strong>Icons:</strong> FontAwesome icons for left and right icon support</li>
+              <li><strong>Design System:</strong> Lara Light design tokens for colors and spacing</li>
+              <li><strong>Figma Integration:</strong> Matches exact Figma specifications</li>
+            </ul>
+
+            <h2>🎨 Styling Notes</h2>
+            <ul>
+              <li><strong>Severity Colors:</strong> Each severity has distinct background, border, and text colors</li>
+              <li><strong>State Management:</strong> Hover, focus, and disabled states with proper visual feedback</li>
+              <li><strong>Icon Spacing:</strong> Consistent 8px gap between icons and text</li>
+              <li><strong>Typography:</strong> Font weight and size varies by button size</li>
+              <li><strong>Border Radius:</strong> Consistent 4px rounded corners across all variants</li>
+              <li><strong>Responsive:</strong> Maintains proper proportions across screen sizes</li>
+            </ul>
+
+            <h2>🧪 Testing Instructions</h2>
+            <ul>
+              <li><strong>Severity Testing:</strong> Test all severity variants for proper visual styling</li>
+              <li><strong>Size Testing:</strong> Verify small, medium, and large size variants</li>
+              <li><strong>Icon Testing:</strong> Test left, right, and combined icon configurations</li>
+              <li><strong>State Testing:</strong> Verify hover, focus, active, and disabled states</li>
+              <li><strong>Event Testing:</strong> Ensure click events are properly emitted</li>
+              <li><strong>Accessibility:</strong> Test keyboard navigation and screen reader support</li>
+            </ul>
+
+          </div>
+        </p-tabPanel>
+
         <p-tabPanel header="Examples">
           <div class="example-section">
             <h3>Severity Variants</h3>
