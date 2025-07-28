@@ -209,9 +209,10 @@ export class MessageDataService {
         timestamp: new Date('2024-08-02T15:10:00'),
         isRead: false,
         data: {
-          author: 'Mike Chen',
+          authorInitials: 'MC',
+          authorName: 'Mike Chen',
           content: 'Customer called to reschedule delivery. Updated delivery window to Aug 3rd, 10 AM - 2 PM. Driver has been notified.',
-          timestamp: '2024-08-02T15:10:00',
+          timestamp: 'Aug 2, 2024 | 3:10 PM',
           isOwnMessage: false
         }
       },
