@@ -1273,14 +1273,15 @@ export class SimpleWindowLauncherService {
     function renderNoteMessage(message) {
       const data = message.data;
       const isOwn = data.isOwnMessage;
-      const timestamp = new Date(message.timestamp).toLocaleString([], {
+      // Use the timestamp format from data if available, otherwise format the message timestamp
+      const timestamp = data.timestamp || new Date(message.timestamp).toLocaleString([], {
         month: 'short',
         day: 'numeric',
         year: 'numeric',
         hour: '2-digit',
         minute: '2-digit',
         hour12: true
-      });
+      }).replace(',', ' |');
 
       return \`
         <div class="message-item-wrapper \${isOwn ? 'own-message-wrapper' : 'other-message-wrapper'}" data-message-id="\${message.id}">
@@ -1288,11 +1289,11 @@ export class SimpleWindowLauncherService {
             <div class="bubble-content">
               <div class="bubble-header">
                 <div class="bubble-avatar \${isOwn ? 'own-avatar' : 'other-avatar'}">
-                  \${data.authorInitials || data.author.split(' ').map(n => n[0]).join('')}
+                  \${data.authorInitials}
                 </div>
                 <div class="message-details">
                   <div class="header-row">
-                    <span class="author-name">\${data.authorName || data.author}</span>
+                    <span class="author-name">\${data.authorName}</span>
                     <button class="menu-button">
                       <i class="fa-solid fa-ellipsis-vertical"></i>
                     </button>
