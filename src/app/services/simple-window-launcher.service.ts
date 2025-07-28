@@ -586,7 +586,7 @@ export class SimpleWindowLauncherService {
 
     .bubble-header {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 8px;
       width: 100%;
     }
