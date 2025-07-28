@@ -321,7 +321,7 @@ export class SmsBubbleComponent {
 
             <h2>⚙️ Input/Output API</h2>
             <div class="api-table">
-              <h3>@Input Properties</h3>
+              <h3>&#64;Input Properties</h3>
               <table>
                 <thead>
                   <tr>
@@ -341,7 +341,7 @@ export class SmsBubbleComponent {
                 </tbody>
               </table>
 
-              <h3>@Output Events</h3>
+              <h3>&#64;Output Events</h3>
               <table>
                 <thead>
                   <tr>
