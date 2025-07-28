@@ -695,12 +695,18 @@ export class CommunicationDemoComponent implements OnInit, OnDestroy {
       timestamp: new Date(),
       isRead: false,
       data: {
-        author: 'Demo User',
-        content: `New demo message added at ${new Date().toLocaleTimeString()}. This message demonstrates real-time state synchronization across all views.`,
-        timestamp: new Date().toISOString(),
-        isOwnMessage: Math.random() > 0.5,
         authorInitials: 'DU',
-        authorName: 'Demo User'
+        authorName: 'Demo User',
+        content: `New demo message added at ${new Date().toLocaleTimeString()}. This message demonstrates real-time state synchronization across all views.`,
+        timestamp: new Date().toLocaleDateString('en-US', {
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric',
+          hour: 'numeric',
+          minute: '2-digit',
+          hour12: true
+        }).replace(',', ' |'),
+        isOwnMessage: Math.random() > 0.5
       }
     };
 
