@@ -106,6 +106,7 @@ export interface NoteBubbleData {
       border: 1px solid #FFF;
       font-size: 10px !important;
       font-weight: 500 !important;
+      margin-top: 1px;
     }
 
     :host ::ng-deep .other-avatar {
