@@ -213,14 +213,138 @@ export class NoteBubbleComponent {
     <div class="component-doc">
       <div class="component-header">
         <h1>Note Bubble</h1>
-        <p class="component-description">
-          Communication UI element for displaying internal notes within threaded message views. 
-          Visually distinguishes between messages from the current user and other users with different
-          alignments, colors, and avatar treatments.
-        </p>
       </div>
 
       <p-tabView>
+        <p-tabPanel header="Documentation">
+          <div class="documentation-section">
+
+            <h2>🔧 Component Overview</h2>
+            <p>
+              The Note Bubble component displays internal notes within threaded message views for communication workflows.
+              It visually distinguishes between messages from the current user and other users with different alignments, colors, and avatar treatments.
+              Use this component when you need to show conversational messages with clear authorship and timestamp information.
+            </p>
+
+            <h2>📋 Usage Example</h2>
+            <pre><code>&lt;app-note-bubble
+  [noteData]="myNoteData"
+  (menuClick)="handleMenuClick($event)"
+  (noteClick)="handleNoteClick($event)"&gt;
+&lt;/app-note-bubble&gt;</code></pre>
+
+            <h2>⚙️ Input/Output API</h2>
+            <div class="api-table">
+              <h3>@Input Properties</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Default</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>noteData</code></td>
+                    <td>NoteBubbleData</td>
+                    <td><em>required</em></td>
+                    <td>Complete note information including author, content, and timestamp</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <h3>@Output Events</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>menuClick</code></td>
+                    <td>EventEmitter&lt;NoteBubbleData&gt;</td>
+                    <td>Emitted when the three-dot menu button is clicked</td>
+                  </tr>
+                  <tr>
+                    <td><code>noteClick</code></td>
+                    <td>EventEmitter&lt;NoteBubbleData&gt;</td>
+                    <td>Emitted when the note bubble itself is clicked</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <h3>NoteBubbleData Interface</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Property</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>authorInitials</code></td>
+                    <td>string</td>
+                    <td>User initials to display in avatar (e.g., "JK")</td>
+                  </tr>
+                  <tr>
+                    <td><code>authorName</code></td>
+                    <td>string</td>
+                    <td>Full name of the message author</td>
+                  </tr>
+                  <tr>
+                    <td><code>timestamp</code></td>
+                    <td>string</td>
+                    <td>Formatted timestamp for display (e.g., "Aug 2, 2024 | 9:00 AM")</td>
+                  </tr>
+                  <tr>
+                    <td><code>content</code></td>
+                    <td>string</td>
+                    <td>The note message content</td>
+                  </tr>
+                  <tr>
+                    <td><code>isOwnMessage</code></td>
+                    <td>boolean</td>
+                    <td>Whether this note was authored by the current user</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h2>🔗 Dependencies / Related Components</h2>
+            <ul>
+              <li><strong>PrimeNG Modules:</strong> AvatarModule, TooltipModule</li>
+              <li><strong>Angular Modules:</strong> CommonModule</li>
+              <li><strong>Icons:</strong> FontAwesome (fa-ellipsis-vertical)</li>
+              <li><strong>Design Tokens:</strong> Uses CSS custom properties for colors and spacing</li>
+            </ul>
+
+            <h2>🎨 Styling Notes</h2>
+            <ul>
+              <li><strong>Layout:</strong> Uses flexbox with <code>align-items: flex-start</code> for proper avatar alignment</li>
+              <li><strong>Avatar:</strong> 24px circular avatar with 1px margin-top for name alignment</li>
+              <li><strong>Colors:</strong> Own messages use blue theme (#2474BB), others use gray theme (#A9B3C2)</li>
+              <li><strong>Border Radius:</strong> Speech bubble effect with cut corners (8px 8px 0px 8px for own, 8px 8px 8px 0px for others)</li>
+              <li><strong>Responsive:</strong> Padding adjusts on mobile, maintains readability at all screen sizes</li>
+              <li><strong>Typography:</strong> Roboto font family, 14px content, 13px timestamp</li>
+            </ul>
+
+            <h2>🧪 Testing Instructions</h2>
+            <ul>
+              <li><strong>Manual Testing:</strong> Test with both <code>isOwnMessage: true</code> and <code>false</code> to verify alignment</li>
+              <li><strong>Event Testing:</strong> Click menu button and note content to verify events are emitted</li>
+              <li><strong>Accessibility:</strong> Ensure tooltip appears on menu button hover</li>
+              <li><strong>Visual Testing:</strong> Verify avatar alignment with author name, proper speech bubble styling</li>
+            </ul>
+
+          </div>
+        </p-tabPanel>
         <p-tabPanel header="Examples">
           <div class="examples-section">
             
