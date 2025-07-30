@@ -861,8 +861,108 @@ export class SearchAutocompleteComponent implements ControlValueAccessor {
                 </tbody>
               </table>
 
+              <h3>SearchAutocompleteComponent Additional Properties</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Default</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>options</code></td>
+                    <td>SearchOption[]</td>
+                    <td>[]</td>
+                    <td>Array of searchable options with label, description, category</td>
+                  </tr>
+                  <tr>
+                    <td><code>maxResults</code></td>
+                    <td>number</td>
+                    <td>8</td>
+                    <td>Maximum number of results to display in dropdown</td>
+                  </tr>
+                  <tr>
+                    <td><code>showCategories</code></td>
+                    <td>boolean</td>
+                    <td>true</td>
+                    <td>Whether to show category badges in dropdown results</td>
+                  </tr>
+                  <tr>
+                    <td><code>highlightMatches</code></td>
+                    <td>boolean</td>
+                    <td>true</td>
+                    <td>Whether to highlight matching text in search results</td>
+                  </tr>
+                  <tr>
+                    <td><code>minSearchLength</code></td>
+                    <td>number</td>
+                    <td>1</td>
+                    <td>Minimum characters required before showing dropdown</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <h3>SearchAutocompleteComponent Additional Events</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>optionSelected</code></td>
+                    <td>EventEmitter&lt;SearchOption&gt;</td>
+                    <td>Emitted when user selects an option from dropdown</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <h3>SearchOption Interface</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Property</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>id</code></td>
+                    <td>string</td>
+                    <td>Unique identifier for the option</td>
+                  </tr>
+                  <tr>
+                    <td><code>label</code></td>
+                    <td>string</td>
+                    <td>Display text for the option</td>
+                  </tr>
+                  <tr>
+                    <td><code>description</code></td>
+                    <td>string?</td>
+                    <td>Optional description text shown below label</td>
+                  </tr>
+                  <tr>
+                    <td><code>category</code></td>
+                    <td>string?</td>
+                    <td>Optional category for grouping and filtering</td>
+                  </tr>
+                  <tr>
+                    <td><code>icon</code></td>
+                    <td>string?</td>
+                    <td>Optional FontAwesome icon class</td>
+                  </tr>
+                </tbody>
+              </table>
+
               <h3>Form Integration</h3>
-              <p>This component implements <code>ControlValueAccessor</code> and works seamlessly with Angular Reactive Forms and Template-driven Forms:</p>
+              <p>Both components implement <code>ControlValueAccessor</code> and work seamlessly with Angular Reactive Forms and Template-driven Forms:</p>
               <pre><code>// Reactive Forms
 const form = this.fb.group(&#123;
   search: ['']
