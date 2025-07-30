@@ -72,6 +72,21 @@ export class NavigationService {
       ]
     },
     {
+      id: 'search',
+      name: 'Search',
+      icon: 'fas fa-search',
+      description: 'Search and filtering components',
+      components: [
+        {
+          id: 'search-input',
+          name: 'Search Input',
+          description: 'Specialized search input with magnifying glass icon and clear functionality',
+          route: '/components/search-input',
+          tags: ['search', 'input', 'filter', 'find', 'query', 'magnifying-glass']
+        }
+      ]
+    },
+    {
       id: 'data',
       name: 'Data',
       icon: 'fas fa-table',
