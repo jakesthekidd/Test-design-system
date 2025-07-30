@@ -136,7 +136,7 @@ export interface SearchInputConfig {
     }
 
     .clear-button:focus {
-      outline: 2px solid var(--blue-400, #72CDF4);
+      outline: 2px solid #72CDF4;
       outline-offset: 2px;
       border-radius: 2px;
     }
