@@ -992,6 +992,7 @@ const form = this.fb.group(&#123;
             </ul>
 
             <h2>🧪 Testing Instructions</h2>
+            <h4>Basic Search Input:</h4>
             <ul>
               <li><strong>Keyboard Testing:</strong> Test Enter (search), Escape (clear), Tab (navigation)</li>
               <li><strong>State Testing:</strong> Verify all visual states (resting, focused, has-value, disabled)</li>
@@ -1000,6 +1001,18 @@ const form = this.fb.group(&#123;
               <li><strong>Form Testing:</strong> Test integration with both Reactive and Template-driven forms</li>
               <li><strong>Accessibility:</strong> Test screen reader support, keyboard navigation, and focus management</li>
               <li><strong>Mobile Testing:</strong> Verify touch interactions and responsive behavior</li>
+            </ul>
+
+            <h4>Search Autocomplete Additional Testing:</h4>
+            <ul>
+              <li><strong>Dropdown Navigation:</strong> Test Arrow Up/Down, Enter to select, Escape to close</li>
+              <li><strong>Mouse Interaction:</strong> Test hover highlighting and click selection</li>
+              <li><strong>Search Filtering:</strong> Verify options filter correctly based on input</li>
+              <li><strong>Highlight Testing:</strong> Ensure matching text is highlighted when enabled</li>
+              <li><strong>Category Display:</strong> Test category badges show/hide correctly</li>
+              <li><strong>No Results State:</strong> Verify "no results" message displays appropriately</li>
+              <li><strong>Outside Click:</strong> Test dropdown closes when clicking outside component</li>
+              <li><strong>Performance:</strong> Test with large option lists for smooth scrolling</li>
             </ul>
 
           </div>
