@@ -693,7 +693,7 @@ export class SearchAutocompleteComponent implements ControlValueAccessor {
     }
   }
 
-  private closeDropdown(): void {
+  closeDropdown(): void {
     this.isDropdownOpen = false;
     this.highlightedIndex = -1;
   }
