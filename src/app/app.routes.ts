@@ -23,6 +23,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/components/input/input.component').then(m => m.InputDocComponent)
   },
   {
+    path: 'components/search-input',
+    loadComponent: () => import('./pages/components/search-input/search-input.component').then(m => m.SearchInputDocComponent)
+  },
+  {
     path: 'components/table',
     loadComponent: () => import('./pages/components/table/table.component').then(m => m.TableDocComponent)
   },
