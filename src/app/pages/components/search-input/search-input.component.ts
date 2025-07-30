@@ -766,14 +766,27 @@ export class SearchAutocompleteComponent implements ControlValueAccessor {
             </p>
 
             <h2>📋 Usage Example</h2>
-            <pre><code>&lt;app-search-input 
-  placeholder="Search components..." 
+            <h4>Basic Search Input:</h4>
+            <pre><code>&lt;app-search-input
+  placeholder="Search components..."
   [showClearButton]="true"
   size="medium"
   [(ngModel)]="searchTerm"
   (searchEvent)="handleSearch($event)"
   (clearEvent)="handleClear()"&gt;
 &lt;/app-search-input&gt;</code></pre>
+
+            <h4>Search with Autocomplete/Dropdown:</h4>
+            <pre><code>&lt;app-search-autocomplete
+  placeholder="Search components..."
+  [options]="searchOptions"
+  [showCategories]="true"
+  [highlightMatches]="true"
+  [maxResults]="8"
+  [(ngModel)]="searchTerm"
+  (optionSelected)="handleOptionSelected($event)"
+  (searchEvent)="handleSearch($event)"&gt;
+&lt;/app-search-autocomplete&gt;</code></pre>
 
             <h2>⚙️ Input/Output API</h2>
             <div class="api-table">
