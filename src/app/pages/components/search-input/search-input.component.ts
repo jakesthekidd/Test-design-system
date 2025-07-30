@@ -74,8 +74,8 @@ export interface SearchInputConfig {
     }
 
     .search-input-container:focus-within .search-input-wrapper {
-      border-color: var(--blue-400, #72CDF4);
-      box-shadow: 0 0 0 2px var(--blue-100, #D3E3F1);
+      border-color: #72CDF4;
+      box-shadow: 0 0 0 2px #D3E3F1;
     }
 
     .search-input-container.has-value .search-input-wrapper {
