@@ -760,6 +760,10 @@ export class SearchAutocompleteComponent implements ControlValueAccessor {
               Built on PrimeNG InputText with enhanced search-specific features and pixel-perfect Figma design matching.
               Use this component for search bars, filter inputs, and any text input where users need to find or filter content.
             </p>
+            <p>
+              <strong>Search Autocomplete</strong> extends the basic search input with dropdown functionality, providing real-time search suggestions with keyboard navigation,
+              result highlighting, and category organization. Perfect for component searches, user lookups, and documentation navigation.
+            </p>
 
             <h2>📋 Usage Example</h2>
             <pre><code>&lt;app-search-input 
