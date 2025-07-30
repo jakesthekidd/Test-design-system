@@ -1343,6 +1343,15 @@ export class SearchInputDocComponent {
     console.log('Clear event triggered');
   }
 
+  onOptionSelected(option: SearchOption): void {
+    this.selectedOption = `${option.label} (${option.category || 'No category'})`;
+    console.log('Option selected:', option);
+  }
+
+  onUserSelected(option: SearchOption): void {
+    console.log('User selected:', option);
+  }
+
   setSearchValue(): void {
     this.basicSearch = 'Programmatically set value';
   }
@@ -1354,6 +1363,10 @@ export class SearchInputDocComponent {
     this.mediumSearch = '';
     this.largeSearch = '';
     this.templateSearch = '';
+    this.autocompleteSearch = '';
+    this.userSearch = '';
+    this.docSearch = '';
+    this.selectedOption = '';
   }
 
   toggleDisabled(): void {
