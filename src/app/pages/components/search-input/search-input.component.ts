@@ -261,6 +261,476 @@ export class SearchInputComponent implements ControlValueAccessor {
   }
 }
 
+// Search Autocomplete Component with Dropdown
+@Component({
+  selector: 'app-search-autocomplete',
+  standalone: true,
+  imports: [CommonModule, FormsModule, InputTextModule, ButtonModule, TooltipModule],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => SearchAutocompleteComponent),
+      multi: true
+    }
+  ],
+  template: `
+    <div class="search-autocomplete-container"
+         [class.has-value]="value"
+         [class.disabled]="disabled"
+         [class.dropdown-open]="isDropdownOpen">
+      <div class="search-input-wrapper"
+           (clickOutside)="closeDropdown()"
+           #searchContainer>
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input
+          #searchInput
+          type="text"
+          class="search-input"
+          [placeholder]="placeholder"
+          [disabled]="disabled"
+          [value]="value"
+          (input)="onInput($event)"
+          (focus)="onFocus()"
+          (blur)="onBlur()"
+          (keydown)="onKeyDown($event)"
+          autocomplete="off"
+        />
+        <button
+          *ngIf="showClearButton && value"
+          type="button"
+          class="clear-button"
+          (click)="onClear()"
+          pTooltip="Clear search"
+          tooltipPosition="top"
+        >
+          <i class="fa-solid fa-times"></i>
+        </button>
+      </div>
+
+      <!-- Dropdown Results -->
+      <div *ngIf="isDropdownOpen && filteredOptions.length > 0"
+           class="search-dropdown"
+           role="listbox"
+           [attr.aria-expanded]="isDropdownOpen">
+
+        <div *ngFor="let option of filteredOptions; let i = index; trackBy: trackByOption"
+             class="search-option"
+             [class.highlighted]="i === highlightedIndex"
+             [attr.aria-selected]="i === highlightedIndex"
+             role="option"
+             (click)="selectOption(option)"
+             (mouseenter)="highlightedIndex = i">
+
+          <div class="option-content">
+            <i *ngIf="option.icon" [class]="option.icon" class="option-icon"></i>
+            <div class="option-text">
+              <div class="option-label" [innerHTML]="highlightMatches ? highlightText(option.label) : option.label"></div>
+              <div *ngIf="option.description" class="option-description">{{ option.description }}</div>
+            </div>
+            <span *ngIf="showCategories && option.category" class="option-category">{{ option.category }}</span>
+          </div>
+        </div>
+
+        <div *ngIf="value && value.length >= minSearchLength && filteredOptions.length === 0"
+             class="no-results">
+          <i class="fa-solid fa-search"></i>
+          <span>No results found for "{{ value }}"</span>
+        </div>
+      </div>
+    </div>
+  `,
+  styles: [`
+    .search-autocomplete-container {
+      position: relative;
+      width: 100%;
+    }
+
+    .search-input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 12px 17px;
+      border-radius: 4px;
+      border: 1px solid var(--surface-700, #8D9AAE);
+      background: var(--surface-0, #FFF);
+      gap: 10px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .search-autocomplete-container:focus-within .search-input-wrapper,
+    .search-autocomplete-container.dropdown-open .search-input-wrapper {
+      border-color: #72CDF4;
+      box-shadow: 0 0 0 2px #D3E3F1;
+    }
+
+    .search-autocomplete-container.has-value .search-input-wrapper {
+      border-color: #72CDF4;
+    }
+
+    .search-autocomplete-container.disabled .search-input-wrapper {
+      background: var(--surface-100, #F7F8F9);
+      border-color: var(--surface-300, #C6CCD6);
+      cursor: not-allowed;
+    }
+
+    .search-icon {
+      color: var(--surface-700, #8D9AAE);
+      font-size: 16px;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .search-input {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: var(--surface-900, #3D3D3D);
+      font-family: 'Roboto', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: normal;
+      min-width: 0;
+    }
+
+    .search-input::placeholder {
+      color: #C6CCD6;
+    }
+
+    .search-input:disabled {
+      cursor: not-allowed;
+      color: var(--surface-500, #A9B3C2);
+    }
+
+    .clear-button {
+      background: none;
+      border: none;
+      color: var(--surface-700, #8D9AAE);
+      font-size: 16px;
+      cursor: pointer;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .clear-button:hover {
+      color: var(--surface-900, #3D3D3D);
+    }
+
+    .clear-button:focus {
+      outline: 2px solid #72CDF4;
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    /* Dropdown Styles */
+    .search-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: var(--surface-0, #FFF);
+      border: 1px solid #72CDF4;
+      border-top: none;
+      border-radius: 0 0 4px 4px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .search-option {
+      padding: 12px 16px;
+      cursor: pointer;
+      border-bottom: 1px solid var(--surface-200, #EFF2F4);
+      transition: background-color 0.2s ease;
+    }
+
+    .search-option:last-child {
+      border-bottom: none;
+    }
+
+    .search-option:hover,
+    .search-option.highlighted {
+      background: var(--surface-100, #F7F8F9);
+    }
+
+    .option-content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .option-icon {
+      color: var(--surface-700, #8D9AAE);
+      font-size: 16px;
+      width: 16px;
+      flex-shrink: 0;
+    }
+
+    .option-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .option-label {
+      color: var(--surface-900, #3D3D3D);
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.3;
+    }
+
+    .option-description {
+      color: var(--surface-600, #8D9AAE);
+      font-size: 12px;
+      line-height: 1.3;
+      margin-top: 2px;
+    }
+
+    .option-category {
+      color: var(--surface-600, #8D9AAE);
+      font-size: 11px;
+      font-weight: 500;
+      background: var(--surface-200, #EFF2F4);
+      padding: 2px 6px;
+      border-radius: 12px;
+      flex-shrink: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .no-results {
+      padding: 20px 16px;
+      text-align: center;
+      color: var(--surface-600, #8D9AAE);
+      font-size: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .no-results i {
+      font-size: 24px;
+      opacity: 0.5;
+    }
+
+    /* Highlight text styling */
+    :host ::ng-deep .highlight {
+      background: #FFE066;
+      font-weight: 600;
+      padding: 0 1px;
+    }
+
+    /* Size variants */
+    .search-autocomplete-container.size-small .search-input-wrapper {
+      padding: 8px 12px;
+    }
+
+    .search-autocomplete-container.size-small .search-icon,
+    .search-autocomplete-container.size-small .clear-button {
+      font-size: 14px;
+    }
+
+    .search-autocomplete-container.size-small .search-input {
+      font-size: 14px;
+    }
+
+    .search-autocomplete-container.size-large .search-input-wrapper {
+      padding: 16px 20px;
+    }
+
+    .search-autocomplete-container.size-large .search-icon,
+    .search-autocomplete-container.size-large .clear-button {
+      font-size: 18px;
+    }
+
+    .search-autocomplete-container.size-large .search-input {
+      font-size: 18px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .search-input-wrapper {
+        padding: 10px 14px;
+      }
+
+      .search-input {
+        font-size: 16px; /* Prevent zoom on iOS */
+      }
+
+      .search-dropdown {
+        max-height: 250px;
+      }
+    }
+  `]
+})
+export class SearchAutocompleteComponent implements ControlValueAccessor {
+  @Input() placeholder: string = 'Search...';
+  @Input() disabled: boolean = false;
+  @Input() showClearButton: boolean = true;
+  @Input() size: 'small' | 'medium' | 'large' = 'medium';
+  @Input() options: SearchOption[] = [];
+  @Input() maxResults: number = 8;
+  @Input() showCategories: boolean = true;
+  @Input() highlightMatches: boolean = true;
+  @Input() minSearchLength: number = 1;
+
+  @Output() searchEvent = new EventEmitter<string>();
+  @Output() clearEvent = new EventEmitter<void>();
+  @Output() focusEvent = new EventEmitter<void>();
+  @Output() blurEvent = new EventEmitter<void>();
+  @Output() optionSelected = new EventEmitter<SearchOption>();
+
+  value: string = '';
+  isDropdownOpen: boolean = false;
+  filteredOptions: SearchOption[] = [];
+  highlightedIndex: number = -1;
+
+  private onChange = (value: string) => {};
+  private onTouched = () => {};
+
+  onInput(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    this.value = target.value;
+    this.onChange(this.value);
+    this.searchEvent.emit(this.value);
+    this.filterOptions();
+    this.openDropdown();
+    this.highlightedIndex = -1;
+  }
+
+  onFocus(): void {
+    this.focusEvent.emit();
+    if (this.value.length >= this.minSearchLength) {
+      this.filterOptions();
+      this.openDropdown();
+    }
+  }
+
+  onBlur(): void {
+    this.onTouched();
+    this.blurEvent.emit();
+    // Delay closing to allow option selection
+    setTimeout(() => this.closeDropdown(), 150);
+  }
+
+  onKeyDown(event: KeyboardEvent): void {
+    if (!this.isDropdownOpen) {
+      if (event.key === 'ArrowDown' && this.value.length >= this.minSearchLength) {
+        this.filterOptions();
+        this.openDropdown();
+        event.preventDefault();
+      }
+      return;
+    }
+
+    switch (event.key) {
+      case 'ArrowDown':
+        event.preventDefault();
+        this.highlightedIndex = Math.min(this.highlightedIndex + 1, this.filteredOptions.length - 1);
+        break;
+      case 'ArrowUp':
+        event.preventDefault();
+        this.highlightedIndex = Math.max(this.highlightedIndex - 1, -1);
+        break;
+      case 'Enter':
+        event.preventDefault();
+        if (this.highlightedIndex >= 0 && this.filteredOptions[this.highlightedIndex]) {
+          this.selectOption(this.filteredOptions[this.highlightedIndex]);
+        } else {
+          this.searchEvent.emit(this.value);
+          this.closeDropdown();
+        }
+        break;
+      case 'Escape':
+        event.preventDefault();
+        this.closeDropdown();
+        break;
+      case 'Tab':
+        this.closeDropdown();
+        break;
+    }
+  }
+
+  onClear(): void {
+    this.value = '';
+    this.onChange(this.value);
+    this.clearEvent.emit();
+    this.searchEvent.emit(this.value);
+    this.closeDropdown();
+  }
+
+  selectOption(option: SearchOption): void {
+    this.value = option.label;
+    this.onChange(this.value);
+    this.optionSelected.emit(option);
+    this.searchEvent.emit(this.value);
+    this.closeDropdown();
+  }
+
+  private filterOptions(): void {
+    if (!this.value || this.value.length < this.minSearchLength) {
+      this.filteredOptions = [];
+      return;
+    }
+
+    const query = this.value.toLowerCase();
+    this.filteredOptions = this.options
+      .filter(option =>
+        option.label.toLowerCase().includes(query) ||
+        (option.description && option.description.toLowerCase().includes(query)) ||
+        (option.category && option.category.toLowerCase().includes(query))
+      )
+      .slice(0, this.maxResults);
+  }
+
+  private openDropdown(): void {
+    if (this.filteredOptions.length > 0 || (this.value.length >= this.minSearchLength)) {
+      this.isDropdownOpen = true;
+    }
+  }
+
+  private closeDropdown(): void {
+    this.isDropdownOpen = false;
+    this.highlightedIndex = -1;
+  }
+
+  highlightText(text: string): string {
+    if (!this.highlightMatches || !this.value) {
+      return text;
+    }
+
+    const query = this.value.toLowerCase();
+    const regex = new RegExp(`(${query})`, 'gi');
+    return text.replace(regex, '<span class="highlight">$1</span>');
+  }
+
+  trackByOption(index: number, option: SearchOption): string {
+    return option.id;
+  }
+
+  // ControlValueAccessor implementation
+  writeValue(value: string): void {
+    this.value = value || '';
+  }
+
+  registerOnChange(fn: (value: string) => void): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+  }
+}
+
 // Documentation Component
 @Component({
   selector: 'app-search-input-doc',
