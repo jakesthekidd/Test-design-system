@@ -741,7 +741,8 @@ export class SearchAutocompleteComponent implements ControlValueAccessor {
     TabViewModule,
     ButtonModule,
     TooltipModule,
-    SearchInputComponent
+    SearchInputComponent,
+    SearchAutocompleteComponent
   ],
   template: `
     <div class="component-doc">
