@@ -671,7 +671,7 @@ export class SearchAutocompleteComponent implements ControlValueAccessor {
     this.closeDropdown();
   }
 
-  private filterOptions(): void {
+  filterOptions(): void {
     if (!this.value || this.value.length < this.minSearchLength) {
       this.filteredOptions = [];
       return;
@@ -687,7 +687,7 @@ export class SearchAutocompleteComponent implements ControlValueAccessor {
       .slice(0, this.maxResults);
   }
 
-  private openDropdown(): void {
+  openDropdown(): void {
     if (this.filteredOptions.length > 0 || (this.value.length >= this.minSearchLength)) {
       this.isDropdownOpen = true;
     }
