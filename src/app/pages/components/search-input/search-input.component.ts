@@ -279,7 +279,6 @@ export class SearchInputComponent implements ControlValueAccessor {
          [class.disabled]="disabled"
          [class.dropdown-open]="isDropdownOpen">
       <div class="search-input-wrapper"
-           (clickOutside)="closeDropdown()"
            #searchContainer>
         <i class="fa-solid fa-magnifying-glass search-icon"></i>
         <input
