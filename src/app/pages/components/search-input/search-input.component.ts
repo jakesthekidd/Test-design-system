@@ -567,7 +567,7 @@ export class SearchInputComponent implements ControlValueAccessor {
     }
   `]
 })
-export class SearchAutocompleteComponent implements ControlValueAccessor {
+export class SearchAutocompleteComponent implements ControlValueAccessor, OnDestroy {
   @Input() placeholder: string = 'Search...';
   @Input() disabled: boolean = false;
   @Input() showClearButton: boolean = true;
