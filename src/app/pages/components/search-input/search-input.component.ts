@@ -592,6 +592,19 @@ export class SearchAutocompleteComponent implements ControlValueAccessor, OnDest
   private onChange = (value: string) => {};
   private onTouched = () => {};
 
+  constructor(private elementRef: ElementRef) {}
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    if (!this.elementRef.nativeElement.contains(event.target)) {
+      this.closeDropdown();
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.closeDropdown();
+  }
+
   onInput(event: Event): void {
     const target = event.target as HTMLInputElement;
     this.value = target.value;
