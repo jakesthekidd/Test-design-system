@@ -959,13 +959,56 @@ const form = this.fb.group(&#123;
               </div>
             </div>
 
+            <h3>Search with Autocomplete/Dropdown</h3>
+            <div class="example-container">
+              <div class="autocomplete-examples">
+                <div class="example-item">
+                  <h4>Component Autocomplete</h4>
+                  <app-search-autocomplete
+                    placeholder="Search components..."
+                    [options]="componentOptions"
+                    [showCategories]="true"
+                    [highlightMatches]="true"
+                    [(ngModel)]="autocompleteSearch"
+                    (optionSelected)="onOptionSelected($event)">
+                  </app-search-autocomplete>
+                  <small>Selected: {{ selectedOption || 'None' }}, Value: "{{ autocompleteSearch }}"</small>
+                </div>
+
+                <div class="example-item">
+                  <h4>User Search (No Categories)</h4>
+                  <app-search-autocomplete
+                    placeholder="Search users..."
+                    [options]="userOptions"
+                    [showCategories]="false"
+                    [maxResults]="5"
+                    [(ngModel)]="userSearch"
+                    (optionSelected)="onUserSelected($event)">
+                  </app-search-autocomplete>
+                  <small>Value: "{{ userSearch }}"</small>
+                </div>
+
+                <div class="example-item">
+                  <h4>Large Size with Icons</h4>
+                  <app-search-autocomplete
+                    placeholder="Search documentation..."
+                    [options]="docOptions"
+                    size="large"
+                    [minSearchLength]="2"
+                    [(ngModel)]="docSearch">
+                  </app-search-autocomplete>
+                  <small>Minimum 2 characters required</small>
+                </div>
+              </div>
+            </div>
+
             <h3>Form Integration</h3>
             <div class="example-container">
               <div class="form-examples">
                 <div class="example-item">
                   <h4>Template-driven Form</h4>
                   <form #searchForm="ngForm">
-                    <app-search-input 
+                    <app-search-input
                       name="searchTerm"
                       placeholder="Template-driven search..."
                       [(ngModel)]="templateSearch"
