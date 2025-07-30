@@ -109,7 +109,7 @@ export interface SearchInputConfig {
     }
 
     .search-input::placeholder {
-      color: var(--surface-700, #8D9AAE);
+      color: #C6CCD6;
     }
 
     .search-input:disabled {
