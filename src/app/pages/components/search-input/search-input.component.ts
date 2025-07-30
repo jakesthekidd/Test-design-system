@@ -13,6 +13,22 @@ export interface SearchInputConfig {
   size?: 'small' | 'medium' | 'large';
 }
 
+export interface SearchOption {
+  id: string;
+  label: string;
+  description?: string;
+  category?: string;
+  icon?: string;
+}
+
+export interface SearchAutocompleteConfig extends SearchInputConfig {
+  options?: SearchOption[];
+  maxResults?: number;
+  showCategories?: boolean;
+  highlightMatches?: boolean;
+  minSearchLength?: number;
+}
+
 // Main Search Input Component
 @Component({
   selector: 'app-search-input',
