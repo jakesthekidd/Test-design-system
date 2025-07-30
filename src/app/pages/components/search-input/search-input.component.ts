@@ -1207,6 +1207,133 @@ export class SearchInputDocComponent {
   mediumSearch: string = '';
   largeSearch: string = '';
   templateSearch: string = '';
+  autocompleteSearch: string = '';
+  userSearch: string = '';
+  docSearch: string = '';
+  selectedOption: string = '';
+
+  componentOptions: SearchOption[] = [
+    {
+      id: 'button',
+      label: 'Button',
+      description: 'Interactive buttons with multiple variants and states',
+      category: 'Form',
+      icon: 'fas fa-hand-pointer'
+    },
+    {
+      id: 'search-input',
+      label: 'Search Input',
+      description: 'Specialized search input with magnifying glass icon',
+      category: 'Search',
+      icon: 'fas fa-search'
+    },
+    {
+      id: 'table',
+      label: 'Table',
+      description: 'Data table with sorting, filtering, and pagination',
+      category: 'Data',
+      icon: 'fas fa-table'
+    },
+    {
+      id: 'note-bubble',
+      label: 'Note Bubble',
+      description: 'Message bubbles for threaded conversations',
+      category: 'Communication',
+      icon: 'fas fa-comment'
+    },
+    {
+      id: 'accordion',
+      label: 'Accordion',
+      description: 'Collapsible content panels',
+      category: 'Panel',
+      icon: 'fas fa-chevron-down'
+    },
+    {
+      id: 'input',
+      label: 'Input Text',
+      description: 'Text input fields with validation and styling',
+      category: 'Form',
+      icon: 'fas fa-keyboard'
+    },
+    {
+      id: 'card',
+      label: 'Card',
+      description: 'Container for related content and actions',
+      category: 'Data',
+      icon: 'fas fa-id-card'
+    },
+    {
+      id: 'sms-bubble',
+      label: 'SMS Bubble',
+      description: 'Automated SMS message display with delivery status',
+      category: 'Communication',
+      icon: 'fas fa-sms'
+    }
+  ];
+
+  userOptions: SearchOption[] = [
+    {
+      id: 'user1',
+      label: 'Jake Cummings',
+      description: 'Product Manager',
+      icon: 'fas fa-user'
+    },
+    {
+      id: 'user2',
+      label: 'Sarah Mitchell',
+      description: 'UX Designer',
+      icon: 'fas fa-user'
+    },
+    {
+      id: 'user3',
+      label: 'Mike Chen',
+      description: 'Frontend Developer',
+      icon: 'fas fa-user'
+    },
+    {
+      id: 'user4',
+      label: 'Emily Johnson',
+      description: 'Backend Developer',
+      icon: 'fas fa-user'
+    },
+    {
+      id: 'user5',
+      label: 'David Rodriguez',
+      description: 'DevOps Engineer',
+      icon: 'fas fa-user'
+    }
+  ];
+
+  docOptions: SearchOption[] = [
+    {
+      id: 'getting-started',
+      label: 'Getting Started',
+      description: 'Introduction to the design system',
+      category: 'Guide',
+      icon: 'fas fa-play-circle'
+    },
+    {
+      id: 'design-tokens',
+      label: 'Design Tokens',
+      description: 'Color, spacing, and typography tokens',
+      category: 'Foundation',
+      icon: 'fas fa-palette'
+    },
+    {
+      id: 'component-api',
+      label: 'Component API Reference',
+      description: 'Complete API documentation for all components',
+      category: 'Reference',
+      icon: 'fas fa-code'
+    },
+    {
+      id: 'accessibility',
+      label: 'Accessibility Guidelines',
+      description: 'WCAG compliance and best practices',
+      category: 'Guide',
+      icon: 'fas fa-universal-access'
+    }
+  ];
 
   onSearch(value: string): void {
     console.log('Search event:', value);
